@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c306eb30-b119-424a-b379-f32028dd118d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resume/index.html" afterPath="$PROJECT_DIR$/resume/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="wentixiaogege.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,26 +23,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="134" column="26" selection-start-line="134" selection-start-column="26" selection-end-line="134" selection-end-column="26" />
+            <state relative-caret-position="302">
+              <caret line="134" column="28" selection-start-line="134" selection-start-column="28" selection-end-line="134" selection-end-column="28" />
               <folding>
                 <element signature="n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#nav#1;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="e#8803#8807#0" expanded="true" />
-                <element signature="e#8816#8820#0" expanded="true" />
-                <element signature="e#8830#8834#0" expanded="true" />
+                <element signature="e#8802#8806#0" expanded="true" />
+                <element signature="e#8815#8819#0" expanded="true" />
+                <element signature="e#8829#8833#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resume/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
+            <state relative-caret-position="1271">
               <caret line="279" column="58" selection-start-line="279" selection-start-column="58" selection-end-line="279" selection-end-column="58" />
               <folding />
             </state>
@@ -139,8 +139,8 @@
         <option value="$PROJECT_DIR$/CNAME" />
         <option value="$PROJECT_DIR$/links/index.html" />
         <option value="$PROJECT_DIR$/404.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/resume/index.html" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -1042,25 +1042,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/resume/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="134" column="26" selection-start-line="134" selection-start-column="26" selection-end-line="134" selection-end-column="26" />
-          <folding>
-            <element signature="n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#nav#1;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="e#8803#8807#0" expanded="true" />
-            <element signature="e#8816#8820#0" expanded="true" />
-            <element signature="e#8830#8834#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1271">
+          <caret line="279" column="58" selection-start-line="279" selection-start-column="58" selection-end-line="279" selection-end-column="58" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resume/index.html">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="279" column="58" selection-start-line="279" selection-start-column="58" selection-end-line="279" selection-end-column="58" />
-          <folding />
+        <state relative-caret-position="302">
+          <caret line="134" column="28" selection-start-line="134" selection-start-column="28" selection-end-line="134" selection-end-column="28" />
+          <folding>
+            <element signature="n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#nav#1;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="e#8802#8806#0" expanded="true" />
+            <element signature="e#8815#8819#0" expanded="true" />
+            <element signature="e#8829#8833#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
