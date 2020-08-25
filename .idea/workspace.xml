@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c306eb30-b119-424a-b379-f32028dd118d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/icons/icon-48x48.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/icons/icon-64x64.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/icons/icon-128x128.png" afterPath="$PROJECT_DIR$/icons/icon-128x128.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/icons/icon-16x16.png" afterPath="$PROJECT_DIR$/icons/icon-16x16.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/icons/icon-256x256.png" afterPath="$PROJECT_DIR$/icons/icon-256x256.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/icons/icon-32x32.png" afterPath="$PROJECT_DIR$/icons/icon-32x32.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/media/links/yuanji.jpg" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/links/liyang.jpeg" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/links/index.html" afterPath="$PROJECT_DIR$/links/index.html" />
     </list>
     <ignored path="wentixiaogege.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,10 +39,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="icon-144x144.png" pinned="false" current-in-tab="true">
+      <file leaf-file-name="icon-144x144.png" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/icons/icon-144x144.png">
           <provider selected="true" editor-type-id="images">
             <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/links/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="232" column="43" selection-start-line="232" selection-start-column="43" selection-end-line="232" selection-end-column="43" />
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -120,7 +126,6 @@
         <option value="$PROJECT_DIR$/404.html" />
         <option value="$PROJECT_DIR$/sitemap.xml" />
         <option value="$PROJECT_DIR$/categories/index.html" />
-        <option value="$PROJECT_DIR$/links/index.html" />
         <option value="$PROJECT_DIR$/page/1/index.html" />
         <option value="$PROJECT_DIR$/page/2/index.html" />
         <option value="$PROJECT_DIR$/page/3/index.html" />
@@ -131,6 +136,7 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/index.xml" />
         <option value="$PROJECT_DIR$/CNAME" />
+        <option value="$PROJECT_DIR$/links/index.html" />
       </list>
     </option>
   </component>
@@ -200,7 +206,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
+              <option name="myItemId" value="media" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -214,7 +220,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="icons" />
+              <option name="myItemId" value="media" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="links" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wentixiaogege.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wentixiaogege.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="links" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -232,6 +256,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/media/links" />
       <recent name="$PROJECT_DIR$/icons" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/images" />
@@ -468,9 +493,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="23" width="1439" height="807" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24982105" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24982105" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -527,16 +552,6 @@
     <entry file="file://$PROJECT_DIR$/media/posts/hugo-nuo-post-preview/videojs.mp4">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/links/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3458">
-          <caret line="260" column="38" selection-start-line="260" selection-start-column="38" selection-end-line="260" selection-end-column="38" />
-          <folding>
-            <element signature="e#4666#4671#0" expanded="false" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/page/1/index.html">
@@ -6299,6 +6314,14 @@
     <entry file="file://$PROJECT_DIR$/icons/icon-144x144.png">
       <provider selected="true" editor-type-id="images">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/links/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="232" column="43" selection-start-line="232" selection-start-column="43" selection-end-line="232" selection-end-column="43" />
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
