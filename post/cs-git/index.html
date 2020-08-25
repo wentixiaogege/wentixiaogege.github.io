@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>常用的Git命令整理</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <link href="//hm.baidu.com" rel="dns-prefetch">
+
+  
+
+  
+  <meta name="author" content="Qi Zhang">
+  <meta name="description" content="Git 是目前最流行、最好用的版本控制系统，在它的基础之上催生出了 GitHub 和 GitLab 这两个当前最流行的代码托管平台。本文梳理了一些常用的Git命令。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="常用的Git命令整理">
+    <meta name="twitter:description" content="Git 是目前最流行、最好用的版本控制系统，在它的基础之上催生出了 GitHub 和 GitLab 这两个当前最流行的代码托管平台。本文梳理了一些常用的Git命令。
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="常用的Git命令整理">
+  <meta property="og:description" content="Git 是目前最流行、最好用的版本控制系统，在它的基础之上催生出了 GitHub 和 GitLab 这两个当前最流行的代码托管平台。本文梳理了一些常用的Git命令。
+">
+  <meta property="og:url" content="https://www.wentixiaogege.com/post/cs-git/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.57.2">
+
+
+<link rel="canonical" href="https://www.wentixiaogege.com/post/cs-git/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.wentixiaogege.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.wentixiaogege.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.wentixiaogege.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.wentixiaogege.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.wentixiaogege.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.wentixiaogege.com/manifest.json">
+
+
+<link rel="preload" href="https://www.wentixiaogege.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.wentixiaogege.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.wentixiaogege.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.wentixiaogege.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://www.wentixiaogege.com/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">wentixiaogege</h2>
+  
+  <p class="subtitle">Getty Images Contributor. I&#39;m not a photographer but a data enthusiast.</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.wentixiaogege.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">GitHub</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://wentixiaogegefoto.tuchong.com/">Gallery</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:hi@wentixiaogege.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/wentixiaogege" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/bother7" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://www.wentixiaogege.com/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">常用的Git命令整理</h1>
+      <p class="post-meta">@Qi Zhang · Jul 2, 2019 · 8 min read</p>
+    </header>
+    <article class="post-content"><p>Git 是目前最流行、最好用的版本控制系统，在它的基础之上催生出了 GitHub 和 GitLab 这两个当前最流行的代码托管平台。本文梳理了一些常用的Git命令。</p>
+
+<blockquote>
+<p>Git(读音为/gɪt/。)是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。Git 是 <a href="https://baike.baidu.com/item/Linus Torvalds/9336769">Linus Torvalds</a> 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。</p>
+</blockquote>
+
+<h2 id="0-基本概念和原理">0. 基本概念和原理</h2>
+
+<p>git整个工作流的whole picture可以参考下面这张图片：</p>
+
+<p><img src="pics/image-20190831105613619.png" alt="image-20190831105613619" /></p>
+
+<p>图中的各部分分别表示：</p>
+
+<ul>
+<li>工作区<strong>Workspace</strong>：就是你在电脑里能看到的目录，即你代码放的那个文件夹。即时性强，对文件的所有更改都会立刻提现在这里</li>
+<li>版本库：工作区有一个隐藏目录<code>.git</code>，这个不算工作区，而是Git的版本库</li>
+<li>暂存区 <strong>Index/Stage</strong>：<code>git add</code>以后，当前对文件的更改会保存到这里</li>
+<li>本地仓库<strong>Repository</strong>：<code>git commit</code>以后，当前暂存区里对文件的更改会提交到本地仓库</li>
+<li>远程仓库<strong>Remote</strong>：远程仓库名一般默认叫<code>origin</code>。<code>git push</code>以后，本地仓库里优先于远程仓库的commit会被push到远程仓库
+<img src="pics/image-20190831111346293.png" alt="image-20190831111346293" /></li>
+</ul>
+
+<p>一些基本概念：</p>
+
+<ul>
+<li>SVN是集中式版本控制系统，版本库是集中放在中央服务器的。</li>
+<li>Git是分布式版本控制系统，那么它就没有中央服务器的，每个人的电脑就是一个完整的版本库。</li>
+<li>origin - 这是 Git 给你克隆的仓库服务器的默认名字。</li>
+
+<li><p>HEAD - 在 Git 中，它是一个指针，指向当前所在的本地分支的最新一次提交（可将 HEAD 想象为当前分支的别名）。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat .git/HEAD
+ref: refs/heads/master <span style="color:#75715e"># 当前指向master</span></code></pre></div></li>
+</ul>
+
+<p><img src="pics/image-20190831105455392.png" alt="image-20190831105455392" /></p>
+
+<h2 id="1-quick-start">1.Quick Start</h2>
+
+<h4 id="1-配置用户信息">1. 配置用户信息</h4>
+
+<p>第一步需要配置你的git用户信息</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git config --global user.name <span style="color:#e6db74">&#34;yourname&#34;</span>
+$ git config --global user.email youremail@example.com</code></pre></div>
+<p>如果使用了 <code>--global</code> 选项，那么该命令只需要运行一次，因为之后无论你在该系统上做任何事情， git 都会使用那些信息。</p>
+
+<p>当你想针对特定项目使用不同的用户名称与邮件地址时，可以在那个项目目录下运
+行没有 <code>--global</code> 选项的命令来配置。</p>
+
+<p>配置为之后，可以用以下命令查看：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> git config --list</code></pre></div>
+<p><strong>注意：github的提交记录，需要你本地配置的email被加入到了github设置中才会记录为有效提交。</strong></p>
+
+<p>详情参考：</p>
+
+<ul>
+<li><a href="https://help.github.com/en/articles/setting-your-commit-email-address-on-github">Setting your commit email address on GitHub</a></li>
+<li><a href="https://help.github.com/en/articles/adding-an-email-address-to-your-github-account">Adding an email address to your GitHub account</a></li>
+<li><a href="https://help.github.com/en/articles/why-are-my-contributions-not-showing-up-on-my-profile">Why are my contributions not showing up on my profile?</a></li>
+</ul>
+
+<h4 id="2-初始化">2. 初始化</h4>
+
+<p>把普通目录改成用git管理的仓库。目录下会多了一个.git的目录，这个目录是git来跟踪管理版本的</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git init</code></pre></div>
+<h4 id="3-常用命令">3. 常用命令</h4>
+
+<p>下面这几个命令是最最最常用，最最最基本的git命令，可以先走一遍流程。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git status <span style="color:#75715e"># 查看目前文件夹git的状态</span>
+
+git add . <span style="color:#75715e"># 将本地所有的修改添加到暂存区</span>
+
+<span style="color:#75715e"># git checkout -- &lt;file&gt; # 放弃对某个文件的修改</span>
+
+git commit -m <span style="color:#e6db74">&#34;your description&#34;</span>
+git push -u origin master <span style="color:#75715e"># the first time with -u</span>
+<span style="color:#75715e"># git push origin &lt;要推送的本地分支名&gt;</span></code></pre></div>
+<h4 id="4-查看版本库的更新过程">4. 查看版本库的更新过程</h4>
+
+<p>可以用log查看版本库的更新过程：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git log
+<span style="color:#75715e"># 查看各版本号及信息(所有的commit：本地commit + 其他同事的commit)</span>
+
+git log –pretty<span style="color:#f92672">=</span>oneline
+git log --graph --pretty<span style="color:#f92672">=</span>oneline --abbrev-commit
+<span style="color:#75715e"># --pretty=oneline：一行显示，只显示哈希值和提交说明（--online本身也可以作为单独的属性）</span>
+<span style="color:#75715e"># --abbrev-commit：仅显示SHA-1的前几个字符，而非所有的40个字符</span></code></pre></div>
+<h4 id="5-更多常用命令">5. 更多常用命令</h4>
+
+<p><a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html">阮一峰-常用 Git 命令清单</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout -b dev
+git checkout master
+git merge --no-ff dev
+git tag -a V2.3 -m <span style="color:#e6db74">&#34;use canon online&#34;</span>
+git push --tags
+<span style="color:#75715e"># 删除标签：</span>
+git push -d v1.4 <span style="color:#75715e"># 本地</span>
+git push origin --delete v1.4 <span style="color:#75715e"># 同步删除远程</span></code></pre></div>
+<h2 id="2-常用的撤销或回退操作">2. 常用的撤销或回退操作</h2>
+
+<p>人非圣贤孰能无过，在执行了不想执行的<code>git add</code> 或者 <code>git commit</code> 或者 <code>git push</code>操作，我们需要执行相应的撤销操作。</p>
+
+<h4 id="2-1-git-add的撤销">2.1 git add的撤销</h4>
+
+<p>用命令<code>git reset HEAD &lt;file&gt;</code>可以把暂存区的修改撤销掉（unstage），重新放回工作区：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git reset HEAD readme.txt
+Unstaged changes after reset:
+M    readme.txt</code></pre></div>
+<p><a href="https://git-scm.com/docs/git-reset"><code>git reset</code></a>命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用<code>HEAD</code>时，表示最新的版本（上一个commit）。</p>
+
+<h4 id="2-2-直接丢弃在工作区对某个文件做的修改">2.2 直接丢弃在工作区对某个文件做的修改</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git reset --hard HEAD <span style="color:#75715e"># 撤销工作目录中所有未提交文件的修改内容</span>
+git checkout -- readme.txt  <span style="color:#75715e"># 撤销工作目录中制定的未提交文件的修改内容</span></code></pre></div>
+<p>意思就是，把<code>readme.txt</code>文件在工作区做的修改全部撤销，这里有2种情况：
+1. 如果 readme.txt修改后还没有放到暂存区，使用撤销修改就回到和版本库一模一样的状态（last commit）。
+2. 另外一种是readme.txt已经放入暂存区了，接着又作了修改，撤销修改就回到添加暂存区后的状态。但一旦执行了<code>git commit -m &quot;*&quot;</code>，就不能再使用上面的命令回退。</p>
+
+<p>如果文件已经提交到了暂存区，可以采取以下两个步骤放弃修改。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git reset HEAD &lt;file&gt; <span style="color:#75715e"># to unstage, 撤销git add</span> 
+git checkout -- &lt;file&gt; </code></pre></div>
+<p><code>git checkout</code>其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。所以<code>git checkout -- [file]</code> 是一个危险的命令。 你对那个文件做的任何修改都会消失 - 你只是拷贝了另一个文件来覆盖它。 除非你确实清楚不想要那个文件了，否则不要使用这个命令。</p>
+
+<h4 id="2-3-git-commit撤销-没有push">2.3 git commit撤销（没有push）</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git reset --hard HEAD~1 <span style="color:#75715e"># git reset --hard HEAD^</span>
+<span style="color:#75715e"># 撤销之前的提交：</span>
+<span style="color:#75715e"># 因为你使用了 --hard，所有你的文件将重置到上一次提交时的状态。</span>
+<span style="color:#75715e"># uncommit for reworking: 去掉&#34;--hard&#34;，这个对于非merge的commit有效，对于merge的commit最好删除merge后重新创建。</span>
+
+git reset --soft HEAD~1 <span style="color:#75715e"># git reset --soft HEAD^</span>
+<span style="color:#75715e"># 撤销提交但保留文件和索引：</span>
+<span style="color:#75715e"># 从当前分支移除上一次commit，但是当前文件的修改会保留在你的工作区（working tree），同时暂存区（index）的修改也会保留。</span>
+<span style="color:#75715e"># 此时直接用git commit就可以回到git reset之前的状态。</span>
+
+git reset HEAD~1 <span style="color:#75715e"># git reset HEAD^</span>
+<span style="color:#75715e"># 要撤销提交但保留更改：mixed mode，与soft mode非常像。</span>
+<span style="color:#75715e"># 但是只把更改保留在工作区（working tree）而非暂存区（index），此时需要先git add然后git commit即可回到git reset之前的状态。</span></code></pre></div>
+<p>注意：<code>git rest --hard HEAD~1</code>的操作非常危险，本地工作区如果有unstaged的修改就会丢失，所以在使用这个命令前一定要保证本地没有unstaged files，即<code>git status</code>是空的！
+所幸：<code>git reset --keep HEAD~1</code>可以作为<code>git rest --hard HEAD~1</code>的安全版本。</p>
+
+<p><img src="pics/image-20190831123230822.png" alt="image-20190831123230822" /></p>
+
+<p>如果某次commit后发现漏了一个文件，可以使用下面命令把这个文件加上上一次的commit中。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git add missing_file
+$ git commit --amend --no-edit   <span style="color:#75715e"># &#34;--no-edit&#34;: 不编辑, 直接合并到上一个 commit</span>
+$ git log --oneline    <span style="color:#75715e"># &#34;--oneline&#34;: 每个 commit 内容显示在一行</span></code></pre></div>
+<h4 id="2-4-git-push的撤销">2.4 git push的撤销</h4>
+
+<h5 id="对于已经push的版本-进行回退">对于已经push的版本，进行回退</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># step 1，本地回退到指定的版本</span>
+git reset --hard 版本号
+
+<span style="color:#75715e"># step 2，将远程的也回退到指定版本</span>
+git push  -f origin dev    </code></pre></div>
+<h4 id="2-5-版本回退">2.5 版本回退</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 回到上一个版本</span>
+git reset --hard HEAD^ 
+<span style="color:#75715e"># HEAD指向的版本就是当前版本</span>
+<span style="color:#75715e"># 或者使用 git reset --hard HEAD~</span> 
+<span style="color:#75715e"># ------------------------------ #</span>
+<span style="color:#75715e"># 如果想回退到100个版本：</span>
+git reset –-hard HEAD~100
+<span style="color:#75715e"># 本地回退到指定的版本</span>
+git reset --hard 版本号 
+<span style="color:#75715e"># ------------------------------ #</span>
+<span style="color:#75715e"># 查看以往版本号(本地的commit)</span>
+git log
+<span style="color:#75715e"># 如果要回到未来的版本可以用这个查看</span>
+git reflog</code></pre></div>
+<h4 id="2-6-git强制覆盖本地代码-与git远程仓库保持一致">2.6  git强制覆盖本地代码（与git远程仓库保持一致）</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git fetch --all
+$ git reset --hard origin/master 
+$ git pull</code></pre></div>
+<h2 id="3-远程操作">3. 远程操作</h2>
+
+<p><a href="http://www.ruanyifeng.com/blog/2014/06/git_remote.html">Git远程操作详解</a>: git pull/git fetch/git push等。</p>
+
+<h4 id="3-1-git-pull">3.1 git pull</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</code></pre></div>
+<p>比如，要取回origin主机的next分支，与本地的master分支合并，需要写成下面这样 -</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git pull origin next:master
+
+<span style="color:#75715e"># 相当于：</span>
+$ git fetch origin next
+$ git merge origin/next</code></pre></div>
+<p>如果远程分支是与当前分支合并，则冒号后面的部分可以省略。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git pull origin next</code></pre></div>
+<p>在某些场合，Git会自动在本地分支与远程分支之间，建立一种追踪关系（tracking）。比如，在git clone的时候，所有本地分支默认与远程主机的同名分支，建立追踪关系，也就是说，本地的master分支自动&rdquo;追踪&rdquo;origin/master分支。</p>
+
+<p>Git也允许手动建立追踪关系。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git branch --set-upstream master origin/next 
+<span style="color:#75715e"># 新版本git已经不支持该命令，改为：</span>
+git branch --set-upstream-to<span style="color:#f92672">=</span>origin/master master</code></pre></div>
+<p>上面命令指定master分支追踪origin/next分支。</p>
+
+<p>如果当前分支与远程分支存在追踪关系，git pull就可以省略远程分支名。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git pull origin</code></pre></div>
+<p>上面命令表示，本地的当前分支自动与对应的origin主机&rdquo;追踪分支&rdquo;（remote-tracking branch）进行合并。</p>
+
+<p>如果当前分支只有一个追踪分支，连远程主机名都可以省略。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git pull</code></pre></div>
+<p>上面命令表示，当前分支自动与唯一一个追踪分支进行合并。</p>
+
+<p>如果合并需要采用rebase模式，可以使用&ndash;rebase选项。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git pull --rebase &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</code></pre></div>
+<p>如果远程主机删除了某个分支，默认情况下，<code>git pull</code>不会在拉取远程分支的时候，删除对应的本地分支。这是为了防止，由于其他人操作了远程主机，导致<code>git pull</code>不知不觉删除了本地分支。</p>
+
+<p>但是，你可以改变这个行为，加上参数 -p 就会在本地删除远程已经删除的分支。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git pull -p
+<span style="color:#75715e"># 等同于下面的命令</span>
+$ git fetch --prune origin 
+$ git fetch -p</code></pre></div>
+<h4 id="3-2-git-fetch">3.2  git fetch</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git fetch &lt;远程主机名&gt;</code></pre></div>
+<p>默认情况下，<code>git fetch</code>取回所有分支（branch）的更新。如果只想取回特定分支的更新，可以指定分支名。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git fetch &lt;远程主机名&gt; &lt;分支名&gt;</code></pre></div>
+<p>比如，取回origin主机的master分支。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git fetch origin master</code></pre></div>
+<p>所取回的更新，在本地主机上要用&rdquo;远程主机名/分支名&rdquo;的形式读取。比如origin主机的master，就要用origin/master读取。</p>
+
+<h4 id="3-3-git-push">3.3 git push</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git push origin master</code></pre></div>
+<p>上面命令表示，将本地的master分支推送到origin主机的master分支。如果后者不存在，则会被新建。</p>
+
+<p>如果省略本地分支名，则表示删除指定的远程分支，因为这等同于推送一个空的本地分支到远程分支。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git push origin :master
+<span style="color:#75715e"># 等同于</span>
+$ git push origin --delete master</code></pre></div>
+<p>上面命令表示删除origin主机的master分支。</p>
+
+<p>如果当前分支与远程分支之间存在追踪关系，则本地分支和远程分支都可以省略。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git push origin</code></pre></div>
+<p>上面命令表示，将当前分支推送到origin主机的对应分支。</p>
+
+<p>如果当前分支只有一个追踪分支，那么主机名都可以省略。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git push</code></pre></div>
+<p>如果当前分支与多个主机存在追踪关系，则可以使用-u选项指定一个默认主机，这样后面就可以不加任何参数使用git push。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git push -u origin master</code></pre></div>
+<p>上面命令将本地的master分支推送到origin主机，同时指定origin为默认主机，后面就可以不加任何参数使用git push了。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git push --force origin </code></pre></div>
+<p>上面命令使用&ndash;force选项，结果导致远程主机上更新的版本被覆盖。</p>
+
+<h2 id="4-分支管理-branch">4. 分支管理 branch</h2>
+
+<p><a href="http://www.ruanyifeng.com/blog/2012/07/git.html">branch management</a></p>
+
+<p><a href="https://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a></p>
+
+<p><a href="https://sandofsky.com/blog/git-workflow.html">Understanding the Git Workflow</a></p>
+
+<h4 id="4-1-概述">4.1 概述</h4>
+
+<p>并不是一定要把本地分支往远程推送：</p>
+
+<ul>
+<li>master分支是主分支，因此要时刻与远程同步；一般来说，代码库有且只有一个主分支。Git主分支的名字，默认叫做Master。它是自动建立的，版本库初始化以后，默认就是在主分支在进行开发。</li>
+<li>dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；</li>
+<li>bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；</li>
+
+<li><p>feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 查看分支：</span>
+$ git branch -a
+
+<span style="color:#75715e"># 创建本地分支：</span>
+$ git branch &lt;分支名&gt;
+
+<span style="color:#75715e"># 切换本地分支：</span>
+$ git checkout &lt;分支名&gt; 
+
+<span style="color:#75715e"># 创建+切换本地分支：</span>
+$ git checkout -b &lt;name&gt; 
+<span style="color:#75715e"># 相当于：git branch &lt;分支名&gt; + git checkout &lt;分支名&gt;</span>  
+
+<span style="color:#75715e"># 合并某分支到当前分支：</span>
+$ git merge &lt;要合并的分支&gt;
+<span style="color:#75715e"># 将本地分支推送到远程</span>
+$ git push origin &lt;要推送的本地分支名&gt;
+<span style="color:#75715e"># 以远程分支为基础，建一个本地分支</span>
+$ git checkout -b &lt;本地分支名&gt; origin/&lt;远程分支名&gt;
+<span style="color:#75715e"># 删除本地分支：</span>
+$ git branch -d &lt;本地分支名&gt;
+<span style="color:#75715e"># 删除远程分支。将本地空分支推送到远程分支,相当于删除远程分支</span>
+$ git push origin  :&lt;要删除的远程分支名&gt;
+
+<span style="color:#75715e"># 删除分支例子：</span>
+git branch -a
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">dev
+</span><span style="color:#e6db74">* master
+</span><span style="color:#e6db74">online
+</span><span style="color:#e6db74">remotes/origin/dev
+</span><span style="color:#e6db74">remotes/origin/master
+</span><span style="color:#e6db74">remotes/origin/online
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+git branch -d online
+git branch -a
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">dev
+</span><span style="color:#e6db74">* master
+</span><span style="color:#e6db74">remotes/origin/dev
+</span><span style="color:#e6db74">remotes/origin/master
+</span><span style="color:#e6db74">remotes/origin/online
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+git push origin --delete online
+git branch -a
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">dev
+</span><span style="color:#e6db74">* master
+</span><span style="color:#e6db74">remotes/origin/dev
+</span><span style="color:#e6db74">remotes/origin/master
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span></code></pre></div></li>
+</ul>
+
+<h4 id="4-2-git-tag-https-git-scm-com-book-zh-v2-git-基础-打标签">4.2 <a href="https://git-scm.com/book/zh/v2/Git-基础-打标签">git tag</a></h4>
+
+<p>Git 使用的标签有两种类型：<b>轻量级的（lightweight）</b>和<b>含附注的（annotated）</b>。</p>
+
+<p>轻量级标签就像是个不会变化的分支，实际上它就是个指向特定提交对象的引用。而含附注标签(<code>git tag -a</code> )，实际上是存储在仓库中的一个独立对象，它有自身的校验和信息，包含着标签的名字，电子邮件地址和日期，以及标签说明，标签本身也允许使用 GNU Privacy Guard (GPG) 来签署或验证。</p>
+
+<p><b>一般我们都建议使用含附注型的标签，以便保留相关信息；</b>当然，如果只是临时性加注标签，或者不需要旁注额外信息，用轻量级标签也没问题。å创建一个含附注类型的标签非常简单，用<code>git tag -a</code> （ <code>annotated</code> 的首字母）指定标签名字即可。</p>
+
+<p>注意：标签总是和某个commit挂钩。如果这个commit既出现在master分支，又出现在dev分支，那么在这两个分支上都可以看到这个标签。</p>
+
+<ul>
+<li>命令<code>git tag -a &lt;tagname&gt;</code> ：用于新建一个标签，默认为<code>HEAD</code>，也可以指定一个commit id；</li>
+<li>可以用<code>git log --pretty=oneline --abbrev-commit</code> ： 找到历史提交的commit_id</li>
+<li>命令<code>git tag -a &lt;tagname&gt; -m &quot;blablabla...&quot;</code>： <code>-m</code> 选项则指定了对应的标签说明，Git 会将此说明一同保存在标签对象中。</li>
+<li>命令<code>git tag</code>可以查看所有标签。</li>
+
+<li><p>可以使用 <code>git show</code> 命令查看相应标签的版本信息，并连同显示打标签时的提交对象。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git tag <span style="color:#75715e"># 列出所有标签</span>
+git tag -l <span style="color:#e6db74">&#39;v1.4.2.*&#39;</span> <span style="color:#75715e"># 搜索模式</span>
+git tag -a v1.4 -m <span style="color:#e6db74">&#39;my version 1.4&#39;</span> 
+git show v1.4</code></pre></div></li>
+</ul>
+
+<p>后期加注标签：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 后期加注标签，在提交 “updated rakefile” 后为此项目打上版本号 v1.2</span>
+git log --pretty<span style="color:#f92672">=</span>oneline
+15027957951b64cf874c3557a0f3547bd83b3ff6 Merge branch <span style="color:#e6db74">&#39;experiment&#39;</span>
+a6b4c97498bd301d84096da251c98a07c7723e65 beginning write support
+0d52aaab4479697da7686c15f77a3d64d9165190 one more thing
+6d52a271eda8725415634dd79daabbc4d9b6008e Merge branch <span style="color:#e6db74">&#39;experiment&#39;</span>
+0b7434d86859cc7b8c3d5e1dddfed66ff742fcbc added a commit <span style="color:#66d9ef">function</span>
+4682c3261057305bdd616e23b64b0857d832627b added a todo file
+166ae0c4d3f420721acbb115cc33848dfcc2121a started write support
+9fceb02d0ae598e95dc970b74767f19372d61af8 updated rakefile
+964f16d36dfccde844893cac5b347e7b3d44abbc commit the todo
+8a5cbc430f1a9c3d00faaeffd07798508422908a updated readme
+
+git tag -a v1.2 9fceb02</code></pre></div>
+<p>默认情况下，<code>git push</code> 并不会把标签传送到远端服务器上，只有通过显式命令才能分享标签到远端仓库。其命令格式如同推送分支，运行 <code>git push origin [tagname]</code> ，比如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git push origin v1.5</code></pre></div>
+<p>如果要一次推送所有本地新增的标签上去，可以使用 <code>--tags</code> 选项：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git push origin --tags</code></pre></div>
+<p>删除标签：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git tag -d v1.4</code></pre></div>
+<p>删除后的标签是不会自动同步到远程仓库的。需要执行：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git push origin :refs/tags/v1.4
+<span style="color:#75715e"># 将冒号前面的空值推送到远程标签名，从而高效地删除它。</span></code></pre></div>
+<p>或者：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git push origin --delete v1.4</code></pre></div>
+<h4 id="4-3-master和dev分支">4.3 master和dev分支</h4>
+
+<p>git clone 默认会把远程仓库整个给clone下来，但只会在本地默认创建一个master分支，可以使用checkout命令来把远程分支取到本地。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone ...
+git checkout -b dev origin/dev
+<span style="color:#75715e"># 或者使用-t参数，它默认会在本地建立一个和远程分支名字一样的分支</span>
+git checkout -t origin/dev
+
+git branch
+
+git branch -r <span style="color:#75715e"># 查看远程分支</span>
+git branch -a <span style="color:#75715e"># 查看所有分支</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Git创建Develop分支的命令：</span>
+git checkout -b develop master
+
+<span style="color:#75715e"># 将Develop分支发布到Master分支的命令：</span>
+<span style="color:#75715e"># 切换到Master分支</span>
+git checkout master
+
+<span style="color:#75715e"># 对Develop分支进行合并</span>
+git merge --no-ff develop</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 可能需要进行一下分支的关联，指定本地dev分支与远程origin/dev分支的链接:</span>
+$ git branch --set-upstream-to<span style="color:#f92672">=</span>origin/dev dev</code></pre></div>
+<h4 id="4-4-fast-forward">4.4 Fast-Forward</h4>
+
+<p>当前分支合并到另一分支时，如果没有分歧解决，就会直接移动文件指针。这个过程叫做fastforward。</p>
+
+<p>举例来说，开发一直在master分支进行，但忽然有一个新的想法，于是新建了一个develop的分支，并在其上进行一系列提交，完成时，回到 master分支，此时，master分支在创建develop分支之后并未产生任何新的commit。此时的合并就叫fast forward。</p>
+
+<p><strong>About parameter: <code>--no-ff</code></strong>
+<img src="pics/image-20190901010617970.png" alt="image-20190901010617970" /></p>
+
+<h4 id="4-5-临时性分支">4.5 临时性分支</h4>
+
+<p>Master和Develop是版本库的主要分支。前者用于正式发布，后者用于日常开发。常设分支只需要这两条就够了。</p>
+
+<p>但是，除了常设分支以外，还有一些临时性分支，用于应对一些特定目的的版本开发。临时性分支主要有三种：</p>
+
+<ul>
+<li><p>功能（feature）分支</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 功能分支的名字，可以采用feature-*的形式命名。</span>
+<span style="color:#75715e"># 创建一个功能分支：</span>
+git checkout -b feature-x develop
+<span style="color:#75715e"># 开发完成后，将功能分支合并到develop分支：</span>
+git checkout develop
+git merge --no-ff feature-x
+<span style="color:#75715e"># 删除feature分支：</span>
+git branch -d feature-x</code></pre></div></li>
+
+<li><p>预发布（release）分支</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 创建一个预发布分支：</span>
+git checkout -b release-1.2 develop
+<span style="color:#75715e"># 确认没有问题后，合并到master分支：</span>
+git checkout maste
+git merge --no-ff release-1.2
+<span style="color:#75715e"># 对合并生成的新节点，做一个标签</span>
+git tag -a <span style="color:#ae81ff">1</span>.2
+<span style="color:#75715e"># 再合并到develop分支：</span>
+git checkout develop
+git merge --no-ff release-1.2
+<span style="color:#75715e"># 最后，删除预发布分支：</span>
+git branch -d release-1.2</code></pre></div></li>
+
+<li><p>修补bug（fixbug）分支</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 创建一个修补bug分支：</span>
+git checkout -b fixbug-0.1 master
+<span style="color:#75715e"># 修补结束后，合并到master分支：</span>
+git checkout master
+git merge --no-ff fixbug-0.1
+git tag -a <span style="color:#ae81ff">0</span>.1.1
+<span style="color:#75715e"># 再合并到develop分支：</span>
+git checkout develop
+git merge --no-ff fixbug-0.1
+<span style="color:#75715e"># 最后，删除&#34;修补bug分支&#34;：</span>
+git branch -d fixbug-0.1</code></pre></div></li>
+</ul>
+
+<h4 id="4-6-git-stash">4.6  <code>git stash</code></h4>
+
+<p><strong>具体操作时，可能会用到 <code>git stash</code></strong></p>
+
+<p>1、储藏更改:将当前更改的代码储藏起来，等以后恢复使用</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git stash</code></pre></div>
+<p>2、恢复储藏的代码</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git stash pop 
+//恢复的同时把stash内容删掉</code></pre></div>
+<p>或者</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git stash apply  
+//恢复stash，但是stash内容并不删除
+
+git stash drop 
+//在上面操作的基础上，以此来删除stash</code></pre></div>
+<p>注： <code>git stash list</code> : 查看全部的stash列表。</p>
+
+<p>3、将stash空间清空</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git stash clear</code></pre></div>
+<p>4、<code>git stash pop</code> 和 <code>git stash apply</code> 区别</p>
+
+<p>原来<code>git stash pop stash@{id}</code>命令会在执行后将对应的<code>stash id</code> 从<code>stash list</code>里删除，而 <code>git stash apply stash@{id}</code> 命令则会继续保存<code>stash id</code>。</p>
+
+<h4 id="4-7-example">4.7 Example</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout -b newbranch <span style="color:#75715e"># create a new branch</span>
+<span style="color:#75715e"># do something...</span>
+git add .
+git commit -m <span style="color:#e6db74">&#34;do sth&#34;</span>
+git checkout master
+git merge --no-ff -m <span style="color:#e6db74">&#34;merge new branch&#34;</span> newbranch <span style="color:#75715e"># merge with no fast forward</span> 
+git branch -d newbranch
+git branch</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git push origin master
+git push origin dev
+
+<span style="color:#75715e"># 将本地分支branch1推到远端的branch2：</span>
+git push origin branch1:branch2
+
+<span style="color:#75715e"># 删除分支</span>
+git branch -D issues1234  //本地强制删除分支issues1234    
+git push origin  :issues1234  //推到远程</code></pre></div>
+<p>master分支是主分支，因此要时刻与远程同步。一些修复bug分支不需要推送到远程去，可以先合并到主分支上，然后把主分支master推送到远程去。</p>
+
+<p>把远程的origin的dev分支到本地来，可使用命令创建本地dev分支：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout  –b dev origin/dev</code></pre></div>
+<h2 id="5-conflicts">5. Conflicts</h2>
+
+<p>发生冲突的文件</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">&lt;&lt;&lt;&lt;&lt;&lt;</span>&lt; HEAD
+
+Creating a new branch is quick &amp; simple.
+
+<span style="color:#f92672">=======</span>
+
+Creating a new branch is quick AND simple.
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature1</code></pre></div>
+<p>其中，git使用 <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>， <code>=======</code>， <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> 标记文件中自己和别人产生冲突的部分。</p>
+
+<p>在 <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>， <code>=======</code> 之间为自己的代码，先出现；</p>
+
+<p><code>=======</code>， <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> 之间为别人的代码，后出现。</p>
+
+<ul>
+<li><p>查看远程库信息，使用<code>git remote -v</code>；</p></li>
+
+<li><p>修改远程仓库地址<code>git remote set-url origin new_git_url</code></p></li>
+
+<li><p>本地新建的分支如果不推送到远程，对其他人就是不可见的；</p></li>
+
+<li><p>从本地推送分支，使用<code>git push origin branch-name</code>，如果推送失败，先用<code>git pull</code>抓取远程的新提交；</p></li>
+
+<li><p>在本地创建和远程分支对应的分支，使用<code>git checkout -b branch-name origin/branch-name</code>，本地和远程分支的名称最好一致；</p></li>
+
+<li><p>建立本地分支和远程分支的关联，使用<code>git branch --set-upstream branch-name origin/branch-name</code>；</p></li>
+
+<li><p>从远程抓取分支，使用<code>git pull</code>，如果有冲突，要先处理冲突。</p></li>
+</ul>
+
+<h2 id="6-diff">6. diff</h2>
+
+<p>要查看尚未暂存的文件更新了哪些部分，不加参数直接输入<code>git diff</code>：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git diff</code></pre></div>
+<p>此命令比较的是工作目录中当前文件和暂存区域快照之间的差异， 也就是修改之后还没有暂存起来的变化内容。</p>
+
+<p>如果暂存了，用<code>git diff</code>就没有反应了。</p>
+
+<p>若要查看已暂存的将要添加到下次提交里的内容，可以用 <code>git diff --cached</code> 命令。（Git 1.6.1 及更高版本还允许使用 <code>git diff --staged</code>，效果是相同的，但更好记些。）</p>
+
+<p><b>总结：</b></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git diff <span style="color:#75715e"># shows unstaged changes.</span>
+git diff --cached <span style="color:#75715e"># shows staged changes.</span>
+git diff HEAD <span style="color:#75715e"># shows all changes (both staged and unstaged).</span></code></pre></div>
+<p><b>版本之间的差异</b></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 上次提交：HEAD^</span>
+git diff HEAD^ HEAD
+
+<span style="color:#75715e"># As of Git 1.8.5, @ is an alias for HEAD, so you can use:</span>
+git diff @~..@
+
+<span style="color:#75715e">#The following will also work:</span>
+git show
+
+<span style="color:#75715e"># If you want to know the diff between head and any commit you can use:</span>
+git diff commit_id HEAD
+
+<span style="color:#75715e"># And this will launch your visual diff tool (if configured):</span>
+git difftool HEAD^ HEAD
+
+<span style="color:#75715e"># Since comparison to HEAD is default you can omit it (as pointed out by Orient):</span>
+
+git diff @^
+git diff HEAD^
+git diff commit_id</code></pre></div>
+<h2 id="7-submodule">7. submodule</h2>
+
+<p><a href="https://www.cnblogs.com/nicksheng/p/6201711.html">https://www.cnblogs.com/nicksheng/p/6201711.html</a></p>
+
+<p><a href="https://git-scm.com/book/zh/v2/Git-工具-子模块">https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97</a></p>
+
+<h2 id="8-rm的不同操作-rm-git-rm-git-rm-cached-的区别-https-www-cnblogs-com-everfight-p-git-rm-usage-html">8. rm的不同操作 <a href="https://www.cnblogs.com/everfight/p/git_rm_usage.html"><code>rm</code>, <code>git rm</code>, <code>git rm --cached</code>的区别</a></h2>
+
+<ul>
+<li><code>rm</code></li>
+</ul>
+
+<blockquote>
+<p>删除文件</p>
+</blockquote>
+
+<ul>
+<li><code>git rm</code></li>
+</ul>
+
+<blockquote>
+<p><code>git rm</code>
+当我们需要删除暂存区或分支上的文件, 同时工作区也不需要这个文件了, 可以使用<code>git rm</code>
+<code>git rm file</code> = <code>rm file &amp;&amp; git add file</code>
+<code>rm file</code>删除本地文件
+<code>git add file</code> 提交删除的步骤同步到git仓库</p>
+</blockquote>
+
+<ul>
+<li><code>git rm --cached file</code></li>
+</ul>
+
+<blockquote>
+<p>当我们需要删除暂存区或分支上的文件, 但本地又需要使用, 只是不希望这个文件被版本控制, 可以使用 <code>git rm --cached</code>
+<code>git rm --cached</code> 会从index里面删除该文件，下次commit的时候会修改git仓库，但是本地的文件还是保留</p>
+</blockquote>
+
+<ul>
+<li>Untrack and stop tracking files in git</li>
+</ul>
+
+<blockquote>
+<p>有一些文件我们不想提交到git上去了，但是又被检测到有变化，显示Untracked files，我们可以采用
+<code>git rm --cached file</code>来停止跟踪这些文件。</p>
+</blockquote>
+
+<h2 id="9-移除历史中的大文件">9. 移除历史中的大文件</h2>
+
+<p><a href="https://www.zhihu.com/question/54419234">https://www.zhihu.com/question/54419234</a></p>
+
+<p><a href="https://help.github.com/en/github/authenticating-to-github/removing-sensitive-data-from-a-repository">https://help.github.com/en/github/authenticating-to-github/removing-sensitive-data-from-a-repository</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 显示大文件的sha</span>
+git verify-pack -v .git/objects/pack/pack-*.idx | sort -k <span style="color:#ae81ff">3</span> -g | tail -5
+<span style="color:#75715e"># 根据sha找到文件名</span>
+git rev-list --objects --all | grep ef54a7931498f859a08f22c8ee4a944c7802704a
+<span style="color:#75715e"># 删除</span>
+git filter-branch --force --index-filter <span style="color:#e6db74">&#39;git rm --cached --ignore-unmatch df_ord_1546.h5&#39;</span> --prune-empty --tag-name-filter cat -- --all
+git push origin --force --all
+
+git push origin --force --all
+git push origin --force --tags
+git <span style="color:#66d9ef">for</span>-each-ref --format<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;delete %(refname)&#39;</span> refs/original | git update-ref --stdin
+git reflog expire --expire<span style="color:#f92672">=</span>now --all
+git gc --prune<span style="color:#f92672">=</span>now
+git count-objects -v</code></pre></div>
+<h2 id="reference">REFERENCE</h2>
+
+<p><a href="https://github.github.com/training-kit/downloads/zh_CN/github-git-cheat-sheet/">git cheat sheet</a></p>
+
+<p><a href="http://github.phodal.com/">GitHub 漫游指南 – GitHub 漫游指南</a></p>
+
+<p><a href="http://rogerdudler.github.io/git-guide/index.zh.html">git - 简明指南</a></p>
+
+<p><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">廖雪峰git</a></p>
+
+<p><a href="https://www.yiibai.com/git/">GIT tutorial</a></p>
+
+<p><a href="https://git-scm.com/book/zh/v2">GIT PRO BOOK (Chinese)</a></p>
+
+<p><a href="https://try.github.io/">git tutorial</a></p>
+
+<p><a href="https://rachelcarmena.github.io/2018/12/12/how-to-teach-git.html">how to teach git</a></p>
+
+<p><a href="http://medium.freecodecamp.org/follow-these-simple-rules-and-youll-become-a-git-and-github-master-e1045057468f">Follow these simple rules and you’ll become a Git and GitHub master</a></p>
+
+<p><a href="https://www.linuxidc.com/Linux/2018-04/151810.htm">Git重要概念与常用命令(中文版，速查)</a></p>
+
+<p><a href="https://blog.zakjost.comimplementing-git/">Implementing Git in Data Science</a></p>
+
+<h5 id="阮一峰的git教程">阮一峰的git教程：</h5>
+
+<p><a href="http://www.ruanyifeng.com/blog/2019/12/git-undo.html">git撤回操作</a></p>
+
+<p><a href="http://www.ruanyifeng.com/blog/2014/06/git_remote.html">Git远程操作详解</a></p>
+
+<p><a href="http://www.ruanyifeng.com/blog/2015/08/git-use-process.html">Git 使用规范流程</a></p>
+
+<p><a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html">常用 Git 命令清单</a></p>
+
+<p><a href="http://www.ruanyifeng.com/blog/2015/12/git-workflow.html">Git 工作流程</a></p>
+
+<p><a href="http://www.ruanyifeng.com/blog/2012/07/git.html">Git分支管理策略</a></p>
+
+<p><a href="https://git-scm.com/docs/git-checkout#_detached_head">detached_head</a></p>
+
+<p><a href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1">CS Visualized: Useful Git Commands</a></p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.wentixiaogege.com/tags/git"><span class="tag">Git</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/linux"><span class="tag">Linux</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>350</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "orion-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.wentixiaogege.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5713bba443e20a46d066ca93c131f795";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  </body>
+</html>

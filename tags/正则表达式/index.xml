@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>正则表达式 on wentixiaogege</title>
+    <link>https://www.wentixiaogege.com/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
+    <description>Recent content in 正则表达式 on wentixiaogege</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Thu, 30 May 2019 13:34:21 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.wentixiaogege.com/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>一文梳理正则表达式常用方法</title>
+      <link>https://www.wentixiaogege.com/post/py-regex-intro/</link>
+      <pubDate>Thu, 30 May 2019 13:34:21 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/py-regex-intro/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;正则表达式&lt;/strong&gt;，又称规则表达式&lt;strong&gt;。&lt;/strong&gt;（英语：Regular Expression，在代码中常简写为regex、regexp或RE），计算机科学的一个概念。正则表达式通常被用来检索、替换那些符合某个模式(规则)的文本。&lt;/p&gt;
+
+&lt;p&gt;许多程序设计语言都支持利用正则表达式进行字符串操作。例如，在&lt;a href=&#34;https://baike.baidu.com/item/Perl&#34;&gt;Perl&lt;/a&gt;中就内建了一个功能强大的正则表达式引擎。正则表达式这个概念最初是由&lt;a href=&#34;https://baike.baidu.com/item/Unix&#34;&gt;Unix&lt;/a&gt;中的工具软件（例如sed和&lt;a href=&#34;https://baike.baidu.com/item/grep/5997841&#34;&gt;grep&lt;/a&gt;）普及开的。&lt;/p&gt;
+
+&lt;p&gt;—&lt;a href=&#34;[https://baike.baidu.com/item/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/1700215?fr=aladdin](https://baike.baidu.com/item/正则表达式/1700215?fr=aladdin)&#34;&gt;baidu百科&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;简单来说，正则表达式就是对字符串进行操作的一种逻辑公式，用事先定义好的⼀些规则，组成⼀个规则字符串，然后用这个规则字符串去匹配符合这个规则的字符串，实现对字符串的匹配和过滤。本文基于python中的re模块来介绍正则表达式的常见用法，但这并非Python独有的，绝大多数语言都支持正则表达式。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

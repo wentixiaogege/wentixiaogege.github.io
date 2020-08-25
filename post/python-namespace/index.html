@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Python命名空间和作用域</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <link href="//hm.baidu.com" rel="dns-prefetch">
+
+  
+
+  
+  <meta name="author" content="Qi Zhang">
+  <meta name="description" content="本文主要介绍一下Python命名空间和作用域。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="Python命名空间和作用域">
+    <meta name="twitter:description" content="本文主要介绍一下Python命名空间和作用域。
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Python命名空间和作用域">
+  <meta property="og:description" content="本文主要介绍一下Python命名空间和作用域。
+">
+  <meta property="og:url" content="https://www.wentixiaogege.com/post/python-namespace/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.57.2">
+
+
+<link rel="canonical" href="https://www.wentixiaogege.com/post/python-namespace/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.wentixiaogege.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.wentixiaogege.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.wentixiaogege.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.wentixiaogege.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.wentixiaogege.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.wentixiaogege.com/manifest.json">
+
+
+<link rel="preload" href="https://www.wentixiaogege.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.wentixiaogege.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.wentixiaogege.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.wentixiaogege.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://www.wentixiaogege.com/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">wentixiaogege</h2>
+  
+  <p class="subtitle">Getty Images Contributor. I&#39;m not a photographer but a data enthusiast.</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.wentixiaogege.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">GitHub</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://wentixiaogegefoto.tuchong.com/">Gallery</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:hi@wentixiaogege.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/wentixiaogege" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/bother7" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://www.wentixiaogege.com/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Python命名空间和作用域</h1>
+      <p class="post-meta">@Qi Zhang · May 18, 2019 · 4 min read</p>
+    </header>
+    <article class="post-content"><p>本文主要介绍一下Python命名空间和作用域。</p>
+
+<p>简单的说，命名空间就是一种“名称-对象”的映射表，使得我们可以通过对象指定的名称来访问它们。</p>
+
+<p>比如<code>meteoai=666666</code>我们可以用<code>meteoai</code>来访问到具体的值<code>666666</code>。在python中，具体的命名空间就是一个 字典（dictionary） ，它的键就是变量名，它的值就是那些变量的值（对象）。</p>
+
+<blockquote>
+<p>A <em>namespace</em> is a mapping from names to objects. Most namespaces are currently implemented as Python dictionaries。</p>
+</blockquote>
+
+<p>但是命名空间可以相互独立地存在，可以按照一定的层级组织起来，每个命名空间有其对应的作用域。举个简单的例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">global_a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;I am in global scope&#34;</span> 
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">function_a</span>():
+    local_a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;I am in function_a&#34;</span>
+    <span style="color:#66d9ef">return</span> local_a
+<span style="color:#66d9ef">print</span>(global_a)
+<span style="color:#66d9ef">print</span>(function_a())
+<span style="color:#66d9ef">print</span>(local_a) <span style="color:#75715e"># 局部变量local_a无法在全局空间中被访问到，会报错</span>
+
+<span style="color:#75715e"># output:</span>
+I am <span style="color:#f92672">in</span> <span style="color:#66d9ef">global</span> scope
+I am <span style="color:#f92672">in</span> function_a
+<span style="color:#a6e22e">NameError</span>: name <span style="color:#e6db74">&#39;local_a&#39;</span> <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> defined</code></pre></div>
+<p><code>function_a</code>中的变量<code>local_a</code>和<code>module level</code>的变量<code>global_a</code>就在不同的命名空间中，所以<code>print(local_a)</code>会报错。</p>
+
+<p>要想使得<code>local_a</code>可以在函数外部被访问到，只需要加一行代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">global_a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;I am in global scope&#34;</span> 
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">function_a</span>():
+    <span style="color:#66d9ef">global</span> local_a
+    local_a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;I am in function_a&#34;</span>
+    <span style="color:#66d9ef">return</span> local_a
+<span style="color:#66d9ef">print</span>(global_a)
+<span style="color:#66d9ef">print</span>(function_a())
+<span style="color:#66d9ef">print</span>(local_a) 
+
+<span style="color:#75715e"># output:</span>
+I am <span style="color:#f92672">in</span> <span style="color:#66d9ef">global</span> scope
+I am <span style="color:#f92672">in</span> function_a
+I am <span style="color:#f92672">in</span> function_a</code></pre></div>
+<p>python中的关键字<code>def</code>、<code>class</code>、<code>lamda</code>等能够改变变量作用域，即它们代码块中的变量，不可在外部访问。而 <code>if</code>、 <code>try</code>、 <code>for</code>、 <code>while</code> 等关键字不涉及变量作用域的更改，即它们代码块中的变量，可在外部访问。</p>
+
+<p>而python中对变量命名空间的搜索基于LEGB规则，按此顺序依次进行搜索。首先从当前作用域开始寻找变量，如果没找到就往上一层作用域寻找，没找到就再上一层&hellip;&hellip;</p>
+
+<p>LEGB：</p>
+
+<ul>
+<li>Local(L): Defined inside function/class</li>
+<li>Enclosed(E): Defined inside enclosing functions(Nested function concept)</li>
+<li>Global(G): Defined at the uppermost level</li>
+<li>Built-in(B): Reserved names in Python builtin modules</li>
+</ul>
+
+<p>即：当前作用域局部变量-&gt;外层作用域变量-&gt;再外层作用域变量-&gt;&hellip;&hellip;-&gt;当前模块全局变量-&gt;pyhton内置变量，如果还是找不到会抛出<code>NameError</code>异常。</p>
+
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190518111925514.png" style="zoom:50%"/></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">a_var <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;global value&#39;</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">outer</span>():
+    a_var <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;enclosed value&#39;</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">inner</span>():
+        a_var <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;local value&#39;</span>
+        <span style="color:#66d9ef">print</span>(a_var)
+    inner()
+outer()
+
+<span style="color:#75715e"># output</span>
+local value</code></pre></div>
+<p>所以我们要谨慎使用<code>from a_module import *</code>，因为这条语句向global namespace 导入了一些变量，可能会存在重名变量被覆盖的风险。</p>
+
+<h2 id="global-和-nonlocal">global 和 nonlocal</h2>
+
+<ul>
+<li>global: 全局变量</li>
+<li>nonlocal: 外层嵌套函数的变量</li>
+</ul>
+
+<p>python 函数中变量的作用域和其他语言类似。如果变量是在函数内部定义的，即为局部变量，只在函数内部有效。一旦函数执行完毕，局部变量就会被回收，无法访问。相对应的，全局变量则是定义在整个文件层次上的，可以在文件内的任何地方被访问，在函数的内部也是可以的。但是我们不能在函数内部随意修改全局变量的值。会报错：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">func1</span>():
+    A<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+
+func1()
+
+<span style="color:#75715e"># output</span>
+<span style="color:#a6e22e">UnboundLocalError</span>: local variable <span style="color:#e6db74">&#39;A&#39;</span> referenced before assignment</code></pre></div>
+<p>这是因为python会默认函数的内部变量为局部变量，但发现在函数内部又没有对变量进行声明，所以就会报错。如果要执行这样的操作，需要在函数内部加上<code>global A</code>这个声明。</p>
+
+<p><code>global</code>关键字用来在函数或其他局部作用域中使用全局变量。但是如果不修改全局变量也可以不使用<code>global</code>关键字。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">a_var <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;global value&#39;</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">a_func</span>():
+    <span style="color:#66d9ef">global</span> a_var
+    a_var <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;local value&#39;</span>
+    <span style="color:#66d9ef">print</span>(a_var, <span style="color:#e6db74">&#39;[ a_var inside a_func() ]&#39;</span>)
+<span style="color:#66d9ef">print</span>(a_var, <span style="color:#e6db74">&#39;[ a_var outside a_func() ]&#39;</span>)
+a_func()
+<span style="color:#66d9ef">print</span>(a_var, <span style="color:#e6db74">&#39;[ a_var outside a_func() ]&#39;</span>)
+
+<span style="color:#75715e"># output:</span>
+<span style="color:#66d9ef">global</span> value [ a_var outside a_func() ]
+local value [ a_var inside a_func() ]
+local value [ a_var outside a_func() ]</code></pre></div>
+<p>同样的，我们可以使用<code>nonlocal</code>关键字在嵌套函数的内部改变改变嵌套作用域的变量（L改变E中的变量）。</p>
+
+<p>函数的嵌套可以保证内部函数的隐私，内部函数只能被其外部函数所访问，不会暴露在全局作用域中。因此可以用内部函数来封装一些隐私数据，如用户名密码等，可以提高程序的安全性，同时可以提高程序的运行效率。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">a_var <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;global value&#39;</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">outer</span>():
+    a_var <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;local value&#39;</span>
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;outer before:&#39;</span>, a_var)
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">inner</span>():
+        nonlocal a_var 
+        a_var <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;inner value&#39;</span>
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;in inner():&#39;</span>, a_var)
+    inner()
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;outer after:&#34;</span>, a_var)
+outer()
+
+<span style="color:#75715e">## output:</span>
+outer before: local value
+<span style="color:#f92672">in</span> inner(): inner value
+outer after: inner value</code></pre></div>
+<h4 id="使用总结">使用总结：</h4>
+
+<p>1、局部作用域改变全局变量（L中修改G中的变量）用<code>global</code>， <code>global</code>同时还可以定义新的全局变量</p>
+
+<p>2、内层函数改变外层函数变量（在L中修改E中的变量）用<code>nonlocal</code>，<code>nonlocal</code>不能定义新的外层函数变量，只能改变已有的外层函数变量，同时<code>nonlocal</code>不能改变全局变量。</p>
+
+<h2 id="闭包-closure">闭包(closure)</h2>
+
+<p>闭包和前面所说的嵌套函数类似，不同的是，外层函数返回的是一个函数。例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calc_power</span>(n):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">inner_power</span>(base):
+        <span style="color:#66d9ef">return</span> base <span style="color:#f92672">**</span> n
+    <span style="color:#66d9ef">return</span> inner_power <span style="color:#75715e"># 返回值是一个函数</span>
+
+calc_square <span style="color:#f92672">=</span> calc_power(<span style="color:#ae81ff">2</span>) <span style="color:#75715e"># 计算一个数的平方</span>
+calc_cube <span style="color:#f92672">=</span> calc_power(<span style="color:#ae81ff">3</span>) <span style="color:#75715e"># 计算一个数的立方 </span>
+<span style="color:#66d9ef">print</span>(calc_square)
+<span style="color:#66d9ef">print</span>(calc_cube)
+
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;The square of 6 is {calc_square(6)}&#34;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;The cube of 3 is {calc_cube(3)}&#34;</span>)
+
+<span style="color:#75715e"># output</span>
+<span style="color:#f92672">&lt;</span>function calc_power<span style="color:#f92672">.&lt;</span>locals<span style="color:#f92672">&gt;.</span>inner_power at <span style="color:#ae81ff">0x10cf998c8</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>function calc_power<span style="color:#f92672">.&lt;</span>locals<span style="color:#f92672">&gt;.</span>inner_power at <span style="color:#ae81ff">0x10cfd60d0</span><span style="color:#f92672">&gt;</span>
+The square of <span style="color:#ae81ff">6</span> <span style="color:#f92672">is</span> <span style="color:#ae81ff">36</span>
+The cube of <span style="color:#ae81ff">3</span> <span style="color:#f92672">is</span> <span style="color:#ae81ff">27</span></code></pre></div>
+<p>合理使用闭包可以使得代码更加简洁，可读性更好。闭包常常和装饰器（decorator）一起使用。</p>
+
+<h2 id="global-variable-和-free-variable">global variable 和 free variable</h2>
+
+<p>global variable是作用范围是整个模块（G）的变量， 而free variable是某个代码块中引用但不是在此处定义的变量。global variable 和 free variable并没有必然的联系。举个例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">############</span>
+<span style="color:#75715e">## example 1</span>
+<span style="color:#75715e">############</span>
+a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">func_a</span>():
+    <span style="color:#66d9ef">print</span>(a) 
+<span style="color:#75715e"># 这里的a是global variable，同时在func_a()中，a也是free variable</span>
+
+<span style="color:#75715e">############</span>
+<span style="color:#75715e">## example 2</span>
+<span style="color:#75715e">############</span>
+a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">func_b</span>():
+    a <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+    <span style="color:#66d9ef">print</span>(a) 
+<span style="color:#75715e"># 这里的a分别是global variable和local variable，但是没有free variable</span>
+
+<span style="color:#75715e">############</span>
+<span style="color:#75715e">## example 3</span>
+<span style="color:#75715e">############</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">func_c</span>():
+    a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">func_d</span>():
+        b <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+        <span style="color:#66d9ef">print</span>(a)
+        <span style="color:#66d9ef">print</span>(b)
+<span style="color:#75715e"># 在func_d()中a是free variable，但是这里没有全局变量</span>
+      </code></pre></div>
+<h2 id="dir-globals-和locals">dir(), globals()和locals()</h2>
+
+<p><code>globals()</code>返回全局的符号表（global symbol table）。locals() 函数会以字典类型返回当前位置的全部局部变量（local symbol table）。</p>
+
+<blockquote>
+<p>A symbol table is a data structure maintained by a compiler which contains all necessary information about the program.</p>
+
+<p>These include variable names, methods, classes, etc. There are mainly two kinds of symbol table.</p>
+
+<ol>
+<li>Local symbol table  ==&gt; <code>globals()</code></li>
+<li>Global symbol table ==&gt; <code>locals()</code></li>
+</ol>
+</blockquote>
+
+<p>关于namespace和symbol table：</p>
+
+<blockquote>
+<p>A symbol table is an implementation detail. Namespaces are implemented using symbol tables, but symbol tables are used for more than just namespaces. For example, functions have their own symbol table for local variables, but those variables do not exist in any namespace (that is, it is impossible to somehow access the local variables of a function using a fully-qualified name). You could say a namespace is a symbol table that can be traversed with simple attribute access alone.</p>
+</blockquote>
+
+<p>在global scope 中， <code>locals()</code> 和 <code>globals()</code> 返回global namespace的同一个字典。</p>
+
+<blockquote>
+<p><code>dir([object])</code> : Without arguments, return the list of names in the current local scope (similar to <code>locals().keys()</code>). With an argument, attempt to return a list of valid attributes for that object. 不带参数时，返回当前范围内的变量、方法和定义的类型列表；带参数时，返回参数的属性、方法列表。如果参数包含方法<code>__dir__()</code>，该方法将被调用。如果参数不包含<code>__dir__()</code>，该方法将最大限度地收集参数信息。</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(dir()) <span style="color:#75715e"># show the names in the module namespace</span>
+<span style="color:#75715e">## OUTPUT: ##</span>
+[<span style="color:#e6db74">&#39;__annotations__&#39;</span>, <span style="color:#e6db74">&#39;__builtins__&#39;</span>, <span style="color:#e6db74">&#39;__cached__&#39;</span>, <span style="color:#e6db74">&#39;__doc__&#39;</span>, <span style="color:#e6db74">&#39;__file__&#39;</span>, <span style="color:#e6db74">&#39;__loader__&#39;</span>, <span style="color:#e6db74">&#39;__name__&#39;</span>, <span style="color:#e6db74">&#39;__package__&#39;</span>, <span style="color:#e6db74">&#39;__spec__&#39;</span>]
+<span style="color:#75715e">############################################################</span>
+<span style="color:#66d9ef">print</span>(globals())
+<span style="color:#75715e">## OUTPUT: ##</span>
+{<span style="color:#e6db74">&#39;__name__&#39;</span>: <span style="color:#e6db74">&#39;__main__&#39;</span>, <span style="color:#e6db74">&#39;__doc__&#39;</span>: None, <span style="color:#e6db74">&#39;__package__&#39;</span>: None, <span style="color:#e6db74">&#39;__loader__&#39;</span>: <span style="color:#f92672">&lt;</span>_frozen_importlib_external<span style="color:#f92672">.</span>SourceFileLoader object at <span style="color:#ae81ff">0x10da810f0</span><span style="color:#f92672">&gt;</span>, <span style="color:#e6db74">&#39;__spec__&#39;</span>: None, <span style="color:#e6db74">&#39;__annotations__&#39;</span>: {}, <span style="color:#e6db74">&#39;__builtins__&#39;</span>: <span style="color:#f92672">&lt;</span>module <span style="color:#e6db74">&#39;builtins&#39;</span> (built<span style="color:#f92672">-</span><span style="color:#f92672">in</span>)<span style="color:#f92672">&gt;</span>, <span style="color:#e6db74">&#39;__file__&#39;</span>: <span style="color:#e6db74">&#39;/Users/xxx/xxx/xxx/xxx/test.py&#39;</span>, <span style="color:#e6db74">&#39;__cached__&#39;</span>: None}
+<span style="color:#75715e">############################################################</span>
+locals() <span style="color:#f92672">==</span> globals()
+<span style="color:#75715e">## OUTPUT: ##</span>
+True
+<span style="color:#75715e">############################################################</span>
+<span style="color:#66d9ef">print</span>(list(locals()<span style="color:#f92672">.</span>keys())<span style="color:#f92672">.</span>sort() <span style="color:#f92672">==</span> dir()<span style="color:#f92672">.</span>sort())
+<span style="color:#75715e">## OUTPUT: ##</span>
+True
+<span style="color:#75715e">############################################################</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_func</span>(arg):    
+    a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">print</span> (locals())
+test_func(<span style="color:#ae81ff">666</span>)
+<span style="color:#75715e">## OUTPUT: ##</span>
+{<span style="color:#e6db74">&#39;a&#39;</span>: <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;arg&#39;</span>: <span style="color:#ae81ff">666</span>}
+<span style="color:#75715e">############################################################</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_func</span>(arg):    
+    a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">print</span>(dir())
+    <span style="color:#66d9ef">print</span>(locals()<span style="color:#f92672">.</span>keys())
+    <span style="color:#66d9ef">print</span>(dir()<span style="color:#f92672">.</span>sort() <span style="color:#f92672">==</span> list(locals()<span style="color:#f92672">.</span>keys())<span style="color:#f92672">.</span>sort())
+test_func(<span style="color:#ae81ff">666</span>)
+<span style="color:#75715e">## OUTPUT: ##</span>
+[<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;arg&#39;</span>]
+dict_keys([<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;arg&#39;</span>])
+True</code></pre></div>
+<h2 id="reference">REFERENCE</h2>
+
+<p><a href="https://sebastianraschka.com/Articles/2014_python_scope_and_namespaces.html">A Beginner&rsquo;s Guide to Python&rsquo;s Namespaces, Scope Resolution, and the LEGB Rule</a></p>
+
+<p><a href="https://www.python-course.eu/python3_global_vs_local_variables.php">Global, Local and nonlocal Variables</a></p>
+
+<p><a href="https://zhuanlan.zhihu.com/p/26934085">一步一步教你认识Python闭包</a></p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.wentixiaogege.com/tags/python"><span class="tag">Python</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/legb"><span class="tag">LEGB</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>170</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "orion-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.wentixiaogege.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5713bba443e20a46d066ca93c131f795";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  </body>
+</html>

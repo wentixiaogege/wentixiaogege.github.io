@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GRU on wentixiaogege</title>
+    <link>https://www.wentixiaogege.com/tags/gru/</link>
+    <description>Recent content in GRU on wentixiaogege</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Wed, 10 Jul 2019 10:28:14 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.wentixiaogege.com/tags/gru/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>RNN, LSTM和GRU</title>
+      <link>https://www.wentixiaogege.com/post/dl-lstm-gru/</link>
+      <pubDate>Wed, 10 Jul 2019 10:28:14 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/dl-lstm-gru/</guid>
+      <description>&lt;p&gt;普通的RNN对短时记忆比较敏感，如果输入序列很长，在反向传播期间，RNN 会面临梯度消失和梯度爆炸的问题。为解决这个问题，人们对RNN进行了很多改进，其中最有效的改进方式是引入门控机制， 于是就有了LSTM和GRU。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>机器学习中的概念漂移（Concept Drift）</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <link href="//hm.baidu.com" rel="dns-prefetch">
+
+  
+
+  
+  <meta name="author" content="Qi Zhang">
+  <meta name="description" content="机器学习中的概念漂移（Concept Drift）的理解与解决方法。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="机器学习中的概念漂移（Concept Drift）">
+    <meta name="twitter:description" content="机器学习中的概念漂移（Concept Drift）的理解与解决方法。
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="机器学习中的概念漂移（Concept Drift）">
+  <meta property="og:description" content="机器学习中的概念漂移（Concept Drift）的理解与解决方法。
+">
+  <meta property="og:url" content="https://www.wentixiaogege.com/post/ml-concept-drift/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.57.2">
+
+
+<link rel="canonical" href="https://www.wentixiaogege.com/post/ml-concept-drift/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.wentixiaogege.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.wentixiaogege.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.wentixiaogege.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.wentixiaogege.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.wentixiaogege.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.wentixiaogege.com/manifest.json">
+
+
+<link rel="preload" href="https://www.wentixiaogege.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.wentixiaogege.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.wentixiaogege.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.wentixiaogege.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://www.wentixiaogege.com/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">wentixiaogege</h2>
+  
+  <p class="subtitle">Getty Images Contributor. I&#39;m not a photographer but a data enthusiast.</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.wentixiaogege.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">GitHub</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://wentixiaogegefoto.tuchong.com/">Gallery</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:hi@wentixiaogege.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/wentixiaogege" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/bother7" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://www.wentixiaogege.com/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">机器学习中的概念漂移（Concept Drift）</h1>
+      <p class="post-meta">@Qi Zhang · Jul 15, 2019 · 1 min read</p>
+    </header>
+    <article class="post-content"><p>机器学习中的概念漂移（Concept Drift）的理解与解决方法。</p>
+
+<p>在一些情景下，$X$(输入)和$y$(输出)之间的映射关系$y=f(X)$是随着时间变化的，在训练集和测试集上的$f$完全不一样，这样就会出现我们在离线测试调好的模型上线就不work的情况。</p>
+
+<blockquote>
+<p>In most challenging data analysis applications, data evolve over time and must be analyzed in near real time. Patterns and relations in such data often evolve over time, thus, models built for analyzing such data quickly become obsolete over time. In machine learning and data mining this phenomenon is referred to as concept drift.</p>
+
+<p>— <a href="http://www.win.tue.nl/~mpechen/publications/pubs/CD_applications15.pdf">An overview of concept drift applications</a>, 2016.</p>
+</blockquote>
+
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190707113627072.png" alt="image-20190707113627072" /></p>
+
+<p>wiki上对于concept drift的定义：</p>
+
+<blockquote>
+<p>In <a href="https://en.wikipedia.org/wiki/Predictive_analytics">predictive analytics</a> and <a href="https://en.wikipedia.org/wiki/Machine_learning">machine learning</a>, the <strong>concept drift</strong> means that the statistical properties of the target variable, which the model is trying to predict, change over time in unforeseen ways. This causes problems because the predictions become less accurate as time passes.</p>
+</blockquote>
+
+<p>concept drift在机器学习中是比较棘手的问题，最通用的解决思路就是通过历史数据分析，抽象出数据的pattern随时间变化的规律，其中可能包括若干趋势和周期的混杂信号。但多数情况下，$f$随时间的变化有很强的随机性，我们很难预测。</p>
+
+<p>如下图，数据在2018年11月前后有一个突变，如果没有相应的特征去反映这个突变前后的pattern，就可能会导致我们的模型在前后的预测性能不一致。</p>
+
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190707130541583.png" alt="image-20190707130541583" /></p>
+
+<p>举个例子，在一个气象要素的时间序列中往往会包含各种时间尺度的信号，如日~周尺度的天气系统变化，季节尺度的变化，年际~年代际的ENSO信号，以及百年尺度的全球变暖信号等。假设我们要做一个温度预测的模型，通过历史数据训练得到温度的预测模型$T=f(X)$，如果我们的历史数据不足一年，我们可能就捕捉不到季节变化的信号，比如用春夏秋的数据训练的模型很可能在冬季就不work；如果我们有1年的历史数据训练了，那可能ENSO这样的周期影响就会让我们的模型confusing；而且全球变暖一直在加剧，也许我们的模型在未来的场景下温度预测就偏低了(真实的温度在变高)。这些就是concept drift导致的我们的模型在未来场景下不work的一些可能性。</p>
+
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190707121919943.png" alt="image-20190707121919943" /></p>
+
+<h2 id="如何应对">如何应对</h2>
+
+<ol>
+<li>假设数据满足独立同分布，建立baseline模型作为评估基准。这个模型就是一个静态的模型(static model)，默认假设随着时间的变化，X和y的映射规律$y=f(X)$都是一致的。可以通过这个模型去检测是否存在concept drift，以及后续应对方案的有效性</li>
+<li>定期的加入新数据更新模型。在加入新数据的时候，也可以进一步筛选出最适合的样本进行retrain，在一些特殊的场景中，用最近的一小部分历史数据进行训练可以学到概念漂移后最新的X, y映射规律，得出更适合的模型(可以用一个滑窗进行检验)。当然，每次有新数据可以不需要每次都重新训练，可以用之前的模型热启动，基于之前的训练基础接着训练。</li>
+<li>也可以在训练之前，根据时序给样本不同的权重，时间越新的样本权重可以给大一点，越老的数据可以减少权重。</li>
+<li>用最新的数据，训练一个新模型对baseline model(static model)的预测结果打补丁，思路上有点类似于boosting。</li>
+<li>建立规则，在预测的时候选择合适的模型。可以在训练期根据不同的策略训练出一些子模型，这些模型也许各有所长，我们可以通过分析规律，制定模型选择的规则进行预测。比如对于一些突变的场景，我们可以建模判断什么情况下会导致突变。可用于对static model 的修正。</li>
+<li>可以参考时间序列的一些前处理方式，如去趋势，去周期等方式对数据进行前处理，然后再进行模型训练。可参考ARIMA模型的设计理念。其实，整体的周期和趋势变化的规律，可以直接通过添加完整周期的样本进行训练学到，这种情况严格意义上来说也不属于concept drift。如季节变化，我们可以通过一整年的数据，添加季节的相关特征进行模型训练。但对于一些数据没法覆盖全周期的情景，我们还是可以参考常用的时间序列前处理方法来消除未来数据分布变化带来的模型性能下降的影响。</li>
+</ol>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><p><a href="https://machinelearningmastery.com/gentle-introduction-concept-drift-machine-learning/">A Gentle Introduction to Concept Drift in Machine Learning</a></p></li>
+
+<li><p><a href="https://arxiv.org/abs/1010.4784">Learning under Concept Drift: An Overview</a></p></li>
+
+<li><p><a href="https://www.cs.waikato.ac.nz/~abifet/PAKDD2011/PAKDD11Tutorial_Handling_Concept_Drift.pdf">Handling Concept Drift</a></p></li>
+
+<li><p><a href="https://towardsdatascience.com/concept-drift-and-model-decay-in-machine-learning-a98a809ea8d4">Concept Drift and Model Decay in Machine Learning</a></p></li>
+</ul></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.wentixiaogege.com/tags/machine-learning"><span class="tag">Machine Learning</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>337</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "orion-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.wentixiaogege.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5713bba443e20a46d066ca93c131f795";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  </body>
+</html>

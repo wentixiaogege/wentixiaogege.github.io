@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>用贝叶斯优化进行超参数调优</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <link href="//hm.baidu.com" rel="dns-prefetch">
+
+  
+
+  
+  <meta name="author" content="Qi Zhang">
+  <meta name="description" content="超参数调优一直是机器学习里比较intractable的问题，繁多的超参数以及指数型爆炸的参数空间，往往让人无从下手。调参是一个很枯燥的过程，而且最后也不一定有很好的reward。很多的机器学习工程师也会戏称自己是&amp;rdquo;调参民工&amp;rdquo;，&amp;rdquo;炼丹师&amp;rdquo;…&amp;hellip;
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="用贝叶斯优化进行超参数调优">
+    <meta name="twitter:description" content="超参数调优一直是机器学习里比较intractable的问题，繁多的超参数以及指数型爆炸的参数空间，往往让人无从下手。调参是一个很枯燥的过程，而且最后也不一定有很好的reward。很多的机器学习工程师也会戏称自己是&amp;rdquo;调参民工&amp;rdquo;，&amp;rdquo;炼丹师&amp;rdquo;…&amp;hellip;
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="用贝叶斯优化进行超参数调优">
+  <meta property="og:description" content="超参数调优一直是机器学习里比较intractable的问题，繁多的超参数以及指数型爆炸的参数空间，往往让人无从下手。调参是一个很枯燥的过程，而且最后也不一定有很好的reward。很多的机器学习工程师也会戏称自己是&amp;rdquo;调参民工&amp;rdquo;，&amp;rdquo;炼丹师&amp;rdquo;…&amp;hellip;
+">
+  <meta property="og:url" content="https://www.wentixiaogege.com/post/ml-bayesian-optimization/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.57.2">
+
+
+<link rel="canonical" href="https://www.wentixiaogege.com/post/ml-bayesian-optimization/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.wentixiaogege.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.wentixiaogege.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.wentixiaogege.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.wentixiaogege.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.wentixiaogege.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.wentixiaogege.com/manifest.json">
+
+
+<link rel="preload" href="https://www.wentixiaogege.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.wentixiaogege.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.wentixiaogege.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.wentixiaogege.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://www.wentixiaogege.com/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">wentixiaogege</h2>
+  
+  <p class="subtitle">Getty Images Contributor. I&#39;m not a photographer but a data enthusiast.</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.wentixiaogege.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">GitHub</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://wentixiaogegefoto.tuchong.com/">Gallery</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:hi@wentixiaogege.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/wentixiaogege" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/bother7" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://www.wentixiaogege.com/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">用贝叶斯优化进行超参数调优</h1>
+      <p class="post-meta">@Qi Zhang · Jul 12, 2019 · 7 min read</p>
+    </header>
+    <article class="post-content"><p>超参数调优一直是机器学习里比较intractable的问题，繁多的超参数以及指数型爆炸的参数空间，往往让人无从下手。调参是一个很枯燥的过程，而且最后也不一定有很好的reward。很多的机器学习工程师也会戏称自己是&rdquo;调参民工&rdquo;，&rdquo;炼丹师&rdquo;…&hellip;</p>
+
+<blockquote>
+<p>超参数（Hyper-parameters）：Hyper-parameters are parameters that are not directly learnt within estimators.</p>
+</blockquote>
+
+<p>超参数的优化可以看做是这样一个方程：
+$$
+x^{\star}=\arg \min _{x \in \mathcal{X}} f(x)
+$$
+其中$ f(x) $ 表示目标函数，用于衡量误差，可以是MSE, RMSE, MAE等（如果是accuracy等指标可以将其添加负号求最小值），$x^{\star}$是使得$f(x)$最小的参数组合，理论上我们的目标就是要找到这个$x^{\star}$，但是要找到这样一个全局最优解几乎是不可能的。首先这个$f(x)$是个黑盒子，我们没法直接进行优化求解。事实上，我们每次为了得到$f(x)$，需要经过模型训练和评估，非常耗时，尤其对于一些深度学习模型，这个过程会特别漫长。我们只能在有限的计算资源和时间内，得到一些相对的局部最优解。</p>
+
+<p>一般的调参方法有下面几种：</p>
+
+<ul>
+<li>手动调参（Manual Search）</li>
+<li>网格搜索（Grid Search）</li>
+<li>随机搜索（Randomized Search）</li>
+<li>贝叶斯优化（Bayesian Optimization）</li>
+</ul>
+
+<h2 id="1-手动调参">1. 手动调参</h2>
+
+<p>对于手动调参，会对模型最重要的一些参数基于经验进行调节。比如lightgbm的叶<code>num_leaves</code>, <code>learning_rate</code>, <code>feature_fraction</code>, <code>lambda_l1</code>,<code>lambda_l2</code>, <code>min_data_in_leaf</code>等。</p>
+
+<h2 id="2-randomized-search-vs-grid-search">2. Randomized Search vs Grid Search</h2>
+
+<p>Grid Search会对定义的参数空间进行暴力搜索。网格搜索速度慢，但在搜索整个搜索空间方面效果很好。Randomized Search是从定义的参数空间中进行采样，然后训练。随机搜索很快，但可能会错过搜索空间中的重要点。</p>
+
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190708220335011.png" alt="image-20190708220335011" /></p>
+
+<p>事实上，调参的时候，不需要遍历模型的所有参数。事实上，影响效果的往往只有其中的几个参数，一般对这些参数进行Randomized Search或者Grid Search即可。具体可以查看模型文档，或相关文献。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Comparing randomized search and grid search for hyperparameter estimation</span>
+
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">from</span> time <span style="color:#f92672">import</span> time
+<span style="color:#f92672">from</span> scipy.stats <span style="color:#f92672">import</span> randint <span style="color:#66d9ef">as</span> sp_randint
+
+<span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> GridSearchCV
+<span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> RandomizedSearchCV
+<span style="color:#f92672">from</span> sklearn.datasets <span style="color:#f92672">import</span> load_digits
+<span style="color:#f92672">from</span> sklearn.ensemble <span style="color:#f92672">import</span> RandomForestClassifier
+
+<span style="color:#75715e"># get some data</span>
+digits <span style="color:#f92672">=</span> load_digits()
+X, y <span style="color:#f92672">=</span> digits<span style="color:#f92672">.</span>data, digits<span style="color:#f92672">.</span>target
+
+<span style="color:#75715e"># build a classifier</span>
+clf <span style="color:#f92672">=</span> RandomForestClassifier(n_estimators<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+
+<span style="color:#75715e"># Utility function to report best scores</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">report</span>(results, n_top<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>):
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, n_top <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>):
+        candidates <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>flatnonzero(results[<span style="color:#e6db74">&#39;rank_test_score&#39;</span>] <span style="color:#f92672">==</span> i)
+        <span style="color:#66d9ef">for</span> candidate <span style="color:#f92672">in</span> candidates:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Model with rank: {0}&#34;</span><span style="color:#f92672">.</span>format(i))
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Mean validation score: {0:.3f} (std: {1:.3f})&#34;</span><span style="color:#f92672">.</span>format(
+                  results[<span style="color:#e6db74">&#39;mean_test_score&#39;</span>][candidate],
+                  results[<span style="color:#e6db74">&#39;std_test_score&#39;</span>][candidate]))
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Parameters: {0}&#34;</span><span style="color:#f92672">.</span>format(results[<span style="color:#e6db74">&#39;params&#39;</span>][candidate]))
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;&#34;</span>)
+
+
+<span style="color:#75715e"># specify parameters and distributions to sample from</span>
+param_dist <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;max_depth&#34;</span>: [<span style="color:#ae81ff">3</span>, None],
+              <span style="color:#e6db74">&#34;max_features&#34;</span>: sp_randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">11</span>),
+              <span style="color:#e6db74">&#34;min_samples_split&#34;</span>: sp_randint(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">11</span>),
+              <span style="color:#e6db74">&#34;bootstrap&#34;</span>: [True, False],
+              <span style="color:#e6db74">&#34;criterion&#34;</span>: [<span style="color:#e6db74">&#34;gini&#34;</span>, <span style="color:#e6db74">&#34;entropy&#34;</span>]}
+
+<span style="color:#75715e"># run randomized search</span>
+n_iter_search <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>
+random_search <span style="color:#f92672">=</span> RandomizedSearchCV(clf, param_distributions<span style="color:#f92672">=</span>param_dist,
+                                   n_iter<span style="color:#f92672">=</span>n_iter_search, cv<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+
+start <span style="color:#f92672">=</span> time()
+random_search<span style="color:#f92672">.</span>fit(X, y)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;RandomizedSearchCV took </span><span style="color:#e6db74">%.2f</span><span style="color:#e6db74"> seconds for </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> candidates&#34;</span>
+      <span style="color:#e6db74">&#34; parameter settings.&#34;</span> <span style="color:#f92672">%</span> ((time() <span style="color:#f92672">-</span> start), n_iter_search))
+report(random_search<span style="color:#f92672">.</span>cv_results_)
+
+<span style="color:#75715e"># use a full grid over all parameters</span>
+param_grid <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;max_depth&#34;</span>: [<span style="color:#ae81ff">3</span>, None],
+              <span style="color:#e6db74">&#34;max_features&#34;</span>: [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">10</span>],
+              <span style="color:#e6db74">&#34;min_samples_split&#34;</span>: [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">10</span>],
+              <span style="color:#e6db74">&#34;bootstrap&#34;</span>: [True, False],
+              <span style="color:#e6db74">&#34;criterion&#34;</span>: [<span style="color:#e6db74">&#34;gini&#34;</span>, <span style="color:#e6db74">&#34;entropy&#34;</span>]}
+
+<span style="color:#75715e"># run grid search</span>
+grid_search <span style="color:#f92672">=</span> GridSearchCV(clf, param_grid<span style="color:#f92672">=</span>param_grid, cv<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+start <span style="color:#f92672">=</span> time()
+grid_search<span style="color:#f92672">.</span>fit(X, y)
+
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;GridSearchCV took </span><span style="color:#e6db74">%.2f</span><span style="color:#e6db74"> seconds for </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> candidate parameter settings.&#34;</span>
+      <span style="color:#f92672">%</span> (time() <span style="color:#f92672">-</span> start, len(grid_search<span style="color:#f92672">.</span>cv_results_[<span style="color:#e6db74">&#39;params&#39;</span>])))
+report(grid_search<span style="color:#f92672">.</span>cv_results_)</code></pre></div>
+<h5 id="output">Output:</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">RandomizedSearchCV took <span style="color:#ae81ff">5.55</span> seconds <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">20</span> candidates parameter settings<span style="color:#f92672">.</span>
+Model <span style="color:#66d9ef">with</span> rank: <span style="color:#ae81ff">1</span>
+Mean validation score: <span style="color:#ae81ff">0.939</span> (std: <span style="color:#ae81ff">0.024</span>)
+Parameters: {<span style="color:#e6db74">&#39;bootstrap&#39;</span>: False, <span style="color:#e6db74">&#39;criterion&#39;</span>: <span style="color:#e6db74">&#39;entropy&#39;</span>, <span style="color:#e6db74">&#39;max_depth&#39;</span>: None, <span style="color:#e6db74">&#39;max_features&#39;</span>: <span style="color:#ae81ff">7</span>, <span style="color:#e6db74">&#39;min_samples_split&#39;</span>: <span style="color:#ae81ff">3</span>}
+
+Model <span style="color:#66d9ef">with</span> rank: <span style="color:#ae81ff">2</span>
+Mean validation score: <span style="color:#ae81ff">0.933</span> (std: <span style="color:#ae81ff">0.022</span>)
+Parameters: {<span style="color:#e6db74">&#39;bootstrap&#39;</span>: False, <span style="color:#e6db74">&#39;criterion&#39;</span>: <span style="color:#e6db74">&#39;gini&#39;</span>, <span style="color:#e6db74">&#39;max_depth&#39;</span>: None, <span style="color:#e6db74">&#39;max_features&#39;</span>: <span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#39;min_samples_split&#39;</span>: <span style="color:#ae81ff">6</span>}
+
+Model <span style="color:#66d9ef">with</span> rank: <span style="color:#ae81ff">3</span>
+Mean validation score: <span style="color:#ae81ff">0.930</span> (std: <span style="color:#ae81ff">0.031</span>)
+Parameters: {<span style="color:#e6db74">&#39;bootstrap&#39;</span>: True, <span style="color:#e6db74">&#39;criterion&#39;</span>: <span style="color:#e6db74">&#39;gini&#39;</span>, <span style="color:#e6db74">&#39;max_depth&#39;</span>: None, <span style="color:#e6db74">&#39;max_features&#39;</span>: <span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#39;min_samples_split&#39;</span>: <span style="color:#ae81ff">6</span>}
+
+GridSearchCV took <span style="color:#ae81ff">16.95</span> seconds <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">72</span> candidate parameter settings<span style="color:#f92672">.</span>
+Model <span style="color:#66d9ef">with</span> rank: <span style="color:#ae81ff">1</span>
+Mean validation score: <span style="color:#ae81ff">0.937</span> (std: <span style="color:#ae81ff">0.019</span>)
+Parameters: {<span style="color:#e6db74">&#39;bootstrap&#39;</span>: False, <span style="color:#e6db74">&#39;criterion&#39;</span>: <span style="color:#e6db74">&#39;entropy&#39;</span>, <span style="color:#e6db74">&#39;max_depth&#39;</span>: None, <span style="color:#e6db74">&#39;max_features&#39;</span>: <span style="color:#ae81ff">10</span>, <span style="color:#e6db74">&#39;min_samples_split&#39;</span>: <span style="color:#ae81ff">2</span>}
+
+Model <span style="color:#66d9ef">with</span> rank: <span style="color:#ae81ff">2</span>
+Mean validation score: <span style="color:#ae81ff">0.935</span> (std: <span style="color:#ae81ff">0.020</span>)
+Parameters: {<span style="color:#e6db74">&#39;bootstrap&#39;</span>: False, <span style="color:#e6db74">&#39;criterion&#39;</span>: <span style="color:#e6db74">&#39;gini&#39;</span>, <span style="color:#e6db74">&#39;max_depth&#39;</span>: None, <span style="color:#e6db74">&#39;max_features&#39;</span>: <span style="color:#ae81ff">10</span>, <span style="color:#e6db74">&#39;min_samples_split&#39;</span>: <span style="color:#ae81ff">2</span>}
+
+Model <span style="color:#66d9ef">with</span> rank: <span style="color:#ae81ff">3</span>
+Mean validation score: <span style="color:#ae81ff">0.930</span> (std: <span style="color:#ae81ff">0.029</span>)
+Parameters: {<span style="color:#e6db74">&#39;bootstrap&#39;</span>: False, <span style="color:#e6db74">&#39;criterion&#39;</span>: <span style="color:#e6db74">&#39;entropy&#39;</span>, <span style="color:#e6db74">&#39;max_depth&#39;</span>: None, <span style="color:#e6db74">&#39;max_features&#39;</span>: <span style="color:#ae81ff">10</span>, <span style="color:#e6db74">&#39;min_samples_split&#39;</span>: <span style="color:#ae81ff">3</span>}</code></pre></div>
+<h4 id="1-1-grid-search">1.1 Grid Search</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> GridSearchCV
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">func_grid_search</span>(model, X_train, y_train, param_grid, cv<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, n_jobs<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    model: model instance
+</span><span style="color:#e6db74">    para_grid: dict type, params searching grid.
+</span><span style="color:#e6db74">    para_grid = {&#39;n_estimators&#39;:[100,200,500],
+</span><span style="color:#e6db74">                 &#39;max_depth&#39;: [5, 8, 10, 15],
+</span><span style="color:#e6db74">                 &#39;max_features&#39;: [0.80, 0.90, 0.95],
+</span><span style="color:#e6db74">                 &#39;min_samples_split&#39;:[2, 5, 8],
+</span><span style="color:#e6db74">                 &#39;min_samples_leaf&#39;: [1, 3, 5]}
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    gs <span style="color:#f92672">=</span> GridSearchCV(model, param_grid, cv<span style="color:#f92672">=</span>cv, n_jobs<span style="color:#f92672">=</span>n_jobs)
+    gs<span style="color:#f92672">.</span>fit(X_train, y_train<span style="color:#f92672">.</span>ravel())
+    <span style="color:#66d9ef">print</span>(gs<span style="color:#f92672">.</span>best_params_) 
+    <span style="color:#66d9ef">print</span>(gs<span style="color:#f92672">.</span>best_score_)
+    <span style="color:#75715e"># print(gs.cv_results_)</span>
+    bst_model <span style="color:#f92672">=</span> gs<span style="color:#f92672">.</span>best_estimator_
+    <span style="color:#66d9ef">return</span> bst_model</code></pre></div>
+<h4 id="1-2-randomized-search">1.2 Randomized Search</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> RandomizedSearchCV
+<span style="color:#f92672">from</span> scipy.stats <span style="color:#f92672">import</span> randint <span style="color:#66d9ef">as</span> sp_randint
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">func_random_search</span>(model, X_train, y_train, param_dist, n_iter<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>, cv<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, n_jobs<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    # parameters for GridSearchCV
+</span><span style="color:#e6db74">    # specify parameters and distributions to sample from
+</span><span style="color:#e6db74">    param_dist = {&#34;max_depth&#34;: [3, 5],
+</span><span style="color:#e6db74">                  &#34;max_features&#34;: sp_randint(1, 11),
+</span><span style="color:#e6db74">                  &#34;min_samples_split&#34;: sp_randint(2, 11),
+</span><span style="color:#e6db74">                  &#34;min_samples_leaf&#34;: sp_randint(1, 11),
+</span><span style="color:#e6db74">                  &#34;bootstrap&#34;: [True, False]
+</span><span style="color:#e6db74">                 }
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    rs <span style="color:#f92672">=</span> RandomizedSearchCV(model, param_dist, n_iter<span style="color:#f92672">=</span>n_iter, cv<span style="color:#f92672">=</span>cv, n_jobs<span style="color:#f92672">=</span>n_jobs)
+    rs<span style="color:#f92672">.</span>fit(X_train, y_train<span style="color:#f92672">.</span>ravel())
+    <span style="color:#66d9ef">print</span>(rs<span style="color:#f92672">.</span>best_params_) 
+    <span style="color:#66d9ef">print</span>(rs<span style="color:#f92672">.</span>best_score_)
+    <span style="color:#75715e"># print(rs.cv_results_)</span>
+    bst_model <span style="color:#f92672">=</span> rs<span style="color:#f92672">.</span>best_estimator_
+    <span style="color:#66d9ef">return</span> bst_model
+    </code></pre></div>
+<p>Grid Search太慢了，并不是很实用，一般会对参数空间先调一个粗粒度的格点搜索，然后根据结果进行细粒度的调整。而Randomized Search在迭代一定的次之后也可能实现较好的效果，值得更多的尝试。</p>
+
+<p><img src="https://www.wentixiaogege.com/post/pics/14781.png" alt="" /></p>
+
+<h2 id="3-bayesian-optimization">3. Bayesian Optimization</h2>
+
+<p>Grid Search和Randomized Search虽然可以让整个调参过程自动化，但它们无法从之前的调参结果中获取信息，可能会尝试很多无效的参数空间。而贝叶斯优化，会对上一次的评估结果进行追踪，建立一个概率模型，反应超参数在目标函数上表现的概率分布，即$P(\text {score} | \text {hyperparameters})$，可用于指导下一次的参数选择。</p>
+
+<p>贝叶斯优化可以更好的trade off Exploration&amp;Exploitation，而且适用于随机、非凸、不连续方程的优化。具体过程可用一句话概括为：对目标函数建立概率模型，通过这个概率模型得到最promising的参数组合，用于最终目标函数的评估。</p>
+
+<p>Sequential Model-Based Optimization(SMBO) 是贝叶斯优化更具体的表现形式，可认为它们是等价的。一般会有以下几个过程：</p>
+
+<ol>
+<li>给定要搜索的超参数空间</li>
+<li>定义一个目标函数用于评估优化</li>
+<li>建立目标函数的surrogate model</li>
+<li>建立一个评估surrogate model，作为选择超参数的标准(选择方程)</li>
+<li>获取score和hyperparameter的样本用于更新 surrogate model</li>
+</ol>
+
+<p>贝叶斯优化模型主要的区分是代理函数（surrogate function）的差异。surrogate model一般有 Gaussian Process, Random Forest和Tree Parzen Estimator (TPE) 这几种。常见的框架有<a href="https://github.com/JasperSnoek/spearmint">Spearmint</a>, <a href="https://hyperopt.github.io/hyperopt/">Hyperopt</a>, <a href="https://github.com/automl/SMAC3">SMAC</a>, <a href="https://github.com/Yelp/MOE">MOE</a>, <a href="https://github.com/fmfn/BayesianOptimization">BayesianOptimization</a>, <a href="https://scikit-optimize.github.io/#skopt.BayesSearchCV">skopt</a>等，它们的对比如下表：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">library</th>
+<th align="center">surrogate function</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">Spearmint</td>
+<td align="center">Gaussian Process</td>
+</tr>
+
+<tr>
+<td align="center">Hyperopt</td>
+<td align="center">Tree Parzen Estimator (TPE)</td>
+</tr>
+
+<tr>
+<td align="center">SMAC</td>
+<td align="center">Random Forest</td>
+</tr>
+</tbody>
+</table>
+
+<p><a href="https://optunity.readthedocs.io/en/latest/">Optunity</a>包括多种超参数调优的方法：</p>
+
+<ul>
+<li><a href="https://optunity.readthedocs.io/en/latest/user/solvers/grid_search.html">Grid Search</a></li>
+<li><a href="https://optunity.readthedocs.io/en/latest/user/solvers/random_search.html">Random Search</a></li>
+<li><a href="https://optunity.readthedocs.io/en/latest/user/solvers/particle_swarm.html">Particle Swarm Optimization</a>(默认方法)</li>
+<li><a href="https://optunity.readthedocs.io/en/latest/user/solvers/nelder-mead.html">Nelder-Mead simplex</a></li>
+<li><a href="https://optunity.readthedocs.io/en/latest/user/solvers/CMA_ES.html">CMA-ES</a></li>
+<li><a href="https://optunity.readthedocs.io/en/latest/user/solvers/TPE.html">Tree-structured Parzen Estimator</a>(基于hyperopt实现，用hyperopt更好)</li>
+<li><a href="https://optunity.readthedocs.io/en/latest/user/solvers/sobol.html">Sobol sequences</a></li>
+</ul>
+
+<p><strong>下面以<a href="https://hyperopt.github.io/hyperopt/">Hyperopt</a>为例说明贝叶斯优化的具体应用。</strong></p>
+
+<p>对于一个优化问题我们可以分为4个部分：</p>
+
+<ol>
+<li>优化的目标函数</li>
+<li>优化的参数空间</li>
+<li>超参数优化方程，建立代理函数（surrogate function），并用其决定下一次尝试的参数组合</li>
+<li>Trials: 记录每次尝试的loss、参数及更多额外信息（可DIY），可以记录整个迭代的过程，用于回测。</li>
+</ol>
+
+<p>空间定义：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> hyperopt <span style="color:#f92672">import</span> STATUS_OK, fmin, tpe, Trials, hp
+<span style="color:#f92672">import</span> xgboost <span style="color:#f92672">as</span> xgb
+<span style="color:#f92672">import</span> logging
+<span style="color:#f92672">from</span> timeit <span style="color:#f92672">import</span> default_timer <span style="color:#66d9ef">as</span> timer
+<span style="color:#f92672">import</span> os
+<span style="color:#f92672">from</span> functools <span style="color:#f92672">import</span> partial
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+
+MAX_EVALS <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span> <span style="color:#75715e"># 迭代次数</span>
+NFOLDS <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span> <span style="color:#75715e"># K-FOLD </span>
+FOLDS <span style="color:#f92672">=</span> None <span style="color:#75715e"># 自定义的FOLDS，优先级高于NFOLDS</span>
+BASE_DIR <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
+
+XGB_SPACE <span style="color:#f92672">=</span> {
+    <span style="color:#e6db74">&#39;booster&#39;</span>: <span style="color:#e6db74">&#39;gbtree&#39;</span>,
+    <span style="color:#e6db74">&#39;random_state&#39;</span>: <span style="color:#ae81ff">2019</span>,
+    <span style="color:#e6db74">&#39;eval_metric&#39;</span>: <span style="color:#e6db74">&#39;rmse&#39;</span>,
+    <span style="color:#e6db74">&#39;n_jobs&#39;</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+    <span style="color:#e6db74">&#39;learning_rate&#39;</span>: <span style="color:#ae81ff">0.05</span>,
+    <span style="color:#e6db74">&#39;subsample&#39;</span>: hp<span style="color:#f92672">.</span>uniform(<span style="color:#e6db74">&#39;subsample&#39;</span>, <span style="color:#ae81ff">0.1</span>, <span style="color:#ae81ff">1.0</span>),
+    <span style="color:#e6db74">&#39;colsample_bytree&#39;</span>: hp<span style="color:#f92672">.</span>uniform(<span style="color:#e6db74">&#39;colsample_bytree&#39;</span>, <span style="color:#ae81ff">0.1</span>, <span style="color:#ae81ff">1.0</span>),
+    <span style="color:#e6db74">&#39;max_depth&#39;</span>: hp<span style="color:#f92672">.</span>quniform(<span style="color:#e6db74">&#39;max_depth&#39;</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">1</span>),
+    <span style="color:#e6db74">&#39;gamma&#39;</span>: hp<span style="color:#f92672">.</span>uniform(<span style="color:#e6db74">&#39;gamma&#39;</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">2.0</span>),
+    <span style="color:#e6db74">&#39;min_child_weight&#39;</span>: hp<span style="color:#f92672">.</span>uniform(<span style="color:#e6db74">&#39;min_child_weight&#39;</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">5.0</span>),
+    <span style="color:#e6db74">&#39;reg_alpha&#39;</span>: hp<span style="color:#f92672">.</span>uniform(<span style="color:#e6db74">&#39;reg_alpha&#39;</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">3.0</span>),
+    <span style="color:#e6db74">&#39;reg_lambda&#39;</span>: hp<span style="color:#f92672">.</span>uniform(<span style="color:#e6db74">&#39;reg_lambda&#39;</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">3.0</span>)
+}</code></pre></div>
+<p>定义优化的目标函数：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">objective_base</span>(params,
+                   train_set,
+                   folds<span style="color:#f92672">=</span>None,
+                   nfold<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,
+                   writetoFile<span style="color:#f92672">=</span>True):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Objective function for Gradient Boosting Machine Hyperparameter Optimization
+</span><span style="color:#e6db74">    Args:
+</span><span style="color:#e6db74">        folds: This argument has highest priority over other data split arguments.
+</span><span style="color:#e6db74">    Return:
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#75715e"># Keep track of evals</span>
+    <span style="color:#66d9ef">global</span> _ITERATION
+    _ITERATION <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#75715e"># Make sure parameters that need to be integers are integers</span>
+    <span style="color:#66d9ef">for</span> parameter_name <span style="color:#f92672">in</span> [
+            <span style="color:#e6db74">&#39;num_leaves&#39;</span>, <span style="color:#e6db74">&#39;max_depth&#39;</span>, <span style="color:#e6db74">&#39;bagging_freq&#39;</span>, <span style="color:#e6db74">&#39;min_data_in_leaf&#39;</span>,
+            <span style="color:#e6db74">&#39;min_samples_split&#39;</span>, <span style="color:#e6db74">&#39;min_samples_leaf&#39;</span>
+    ]:
+        <span style="color:#66d9ef">if</span> parameter_name <span style="color:#f92672">in</span> params:
+            params[parameter_name] <span style="color:#f92672">=</span> int(params[parameter_name])
+    start <span style="color:#f92672">=</span> timer()
+    logging<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#34;{_ITERATION} ITERATION&#34;</span>)
+    logging<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#34;params:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{params}&#34;</span>)
+    cv_dict <span style="color:#f92672">=</span> xgb<span style="color:#f92672">.</span>cv(params,
+                     train_set,
+                     num_boost_round<span style="color:#f92672">=</span><span style="color:#ae81ff">5000</span>,
+                     nfold<span style="color:#f92672">=</span>nfold,
+                     stratified<span style="color:#f92672">=</span>False,
+                     folds<span style="color:#f92672">=</span>folds,
+                     early_stopping_rounds<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>,
+                     as_pandas<span style="color:#f92672">=</span>False,
+                     verbose_eval<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+                     seed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,
+                     shuffle<span style="color:#f92672">=</span>False)
+    <span style="color:#75715e"># Extract the min rmse, Loss must be minimized</span>
+    loss <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>min(cv_dict[<span style="color:#e6db74">&#39;test-rmse-mean&#39;</span>])
+    <span style="color:#75715e"># Boosting rounds that returned the lowest cv rmse</span>
+    n_estimators <span style="color:#f92672">=</span> int(np<span style="color:#f92672">.</span>argmin(cv_dict[<span style="color:#e6db74">&#39;test-rmse-mean&#39;</span>])<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+    run_time <span style="color:#f92672">=</span> timer() <span style="color:#f92672">-</span> start
+    <span style="color:#75715e"># Write to the csv file (&#39;a&#39; means append)</span>
+    <span style="color:#66d9ef">if</span> writetoFile:
+        random_datetime <span style="color:#f92672">=</span> str(int(time<span style="color:#f92672">.</span>time()))
+        hyper_base_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(BASE_DIR, <span style="color:#e6db74">&#39;hyperopt_output&#39;</span>)
+        trial_file <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(hyper_base_path, <span style="color:#e6db74">&#39;trials.csv&#39;</span>)
+        trial_file_rename <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(hyper_base_path,
+                                         <span style="color:#e6db74">&#39;trials_</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">.csv&#39;</span> <span style="color:#f92672">%</span> random_datetime)
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(hyper_base_path):
+            os<span style="color:#f92672">.</span>makedirs(hyper_base_path)
+            <span style="color:#66d9ef">print</span>(
+                <span style="color:#e6db74">&#34;No trial file directory &lt;hyperopt_output&gt; exists, will be created...&#34;</span>
+            )
+        <span style="color:#66d9ef">if</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(trial_file) <span style="color:#f92672">and</span> _ITERATION <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Trial file exists, will be renamed...&#34;</span>)
+            os<span style="color:#f92672">.</span>rename(trial_file, trial_file_rename)
+            <span style="color:#66d9ef">assert</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(
+                trial_file
+            ) <span style="color:#f92672">==</span> False, <span style="color:#e6db74">&#34;Trial file still exists, rename failed...&#34;</span>
+            <span style="color:#75715e"># File to save first results</span>
+            of_connection <span style="color:#f92672">=</span> open(trial_file, <span style="color:#e6db74">&#39;w&#39;</span>)
+            writer <span style="color:#f92672">=</span> csv<span style="color:#f92672">.</span>writer(of_connection)
+            <span style="color:#75715e"># Write the headers to the file</span>
+            writer<span style="color:#f92672">.</span>writerow(
+                [<span style="color:#e6db74">&#39;loss&#39;</span>, <span style="color:#e6db74">&#39;params&#39;</span>, <span style="color:#e6db74">&#39;iteration&#39;</span>, <span style="color:#e6db74">&#39;estimators&#39;</span>, <span style="color:#e6db74">&#39;train_time&#39;</span>])
+            of_connection<span style="color:#f92672">.</span>close()
+        of_connection <span style="color:#f92672">=</span> open(trial_file, <span style="color:#e6db74">&#39;a&#39;</span>)
+        writer <span style="color:#f92672">=</span> csv<span style="color:#f92672">.</span>writer(of_connection)
+        writer<span style="color:#f92672">.</span>writerow([loss, params, _ITERATION, n_estimators, run_time])
+    <span style="color:#75715e"># Dictionary with information for evaluation</span>
+    <span style="color:#66d9ef">return</span> {
+        <span style="color:#e6db74">&#39;loss&#39;</span>: loss,
+        <span style="color:#e6db74">&#39;params&#39;</span>: params,
+        <span style="color:#e6db74">&#39;iteration&#39;</span>: _ITERATION,
+        <span style="color:#e6db74">&#39;estimators&#39;</span>: n_estimators,
+        <span style="color:#e6db74">&#39;train_time&#39;</span>: run_time,
+        <span style="color:#e6db74">&#39;status&#39;</span>: STATUS_OK
+    }</code></pre></div>
+<p>定义前处理和后处理模块：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">build_train_set</span>(X_train, y_train):
+    isX_df <span style="color:#f92672">=</span> isinstance(X_train, pd<span style="color:#f92672">.</span>DataFrame)
+    isY_sr <span style="color:#f92672">=</span> isinstance(y_train, pd<span style="color:#f92672">.</span>Series)
+    isY_df <span style="color:#f92672">=</span> isinstance(y_train, pd<span style="color:#f92672">.</span>DataFrame)
+    <span style="color:#66d9ef">if</span> isY_df:
+        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">TypeError</span>(
+            f<span style="color:#e6db74">&#34;y_train is df, with the shape {y_train.shape}, which is not supportable now.&#34;</span>
+        )
+    <span style="color:#66d9ef">if</span> isX_df <span style="color:#f92672">^</span> isY_sr:
+        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">TypeError</span>(f<span style="color:#e6db74">&#34;X_train and y_train have different types!&#34;</span>)
+    <span style="color:#66d9ef">if</span> isX_df:
+        train_set <span style="color:#f92672">=</span> xgb<span style="color:#f92672">.</span>DMatrix(X_train<span style="color:#f92672">.</span>values, y_train<span style="color:#f92672">.</span>values)
+    <span style="color:#66d9ef">else</span>:
+        train_set <span style="color:#f92672">=</span> xgb<span style="color:#f92672">.</span>DMatrix(X_train, y_train)
+    <span style="color:#66d9ef">return</span> train_set
+ 
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">post_hyperopt</span>(bayes_trials, train_set, folds<span style="color:#f92672">=</span>None, nfold<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>):
+    <span style="color:#75715e"># get best params</span>
+    bayes_results <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(bayes_trials<span style="color:#f92672">.</span>results)
+    bayes_results <span style="color:#f92672">=</span> bayes_results<span style="color:#f92672">.</span>sort_values(by<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;loss&#39;</span>)
+    bayes_results<span style="color:#f92672">.</span>reset_index(drop<span style="color:#f92672">=</span>True, inplace<span style="color:#f92672">=</span>True)
+    best_params <span style="color:#f92672">=</span> bayes_results<span style="color:#f92672">.</span>loc[<span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;params&#39;</span>]
+    <span style="color:#75715e"># get best loss and trees</span>
+    best_params[<span style="color:#e6db74">&#39;learning_rate&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.01</span>
+    <span style="color:#75715e"># Perform n_folds cross validation</span>
+    cv_dict <span style="color:#f92672">=</span> xgb<span style="color:#f92672">.</span>cv(best_params,
+                     train_set,
+                     num_boost_round<span style="color:#f92672">=</span><span style="color:#ae81ff">5000</span>,
+                     folds<span style="color:#f92672">=</span>folds,
+                     nfold<span style="color:#f92672">=</span>nfold,
+                     stratified<span style="color:#f92672">=</span>False,
+                     shuffle<span style="color:#f92672">=</span>False,
+                     early_stopping_rounds<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>,
+                     as_pandas<span style="color:#f92672">=</span>False,
+                     verbose_eval<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+                     seed<span style="color:#f92672">=</span><span style="color:#ae81ff">2019</span>)
+    <span style="color:#75715e"># Extract the min rmse, Loss must be minimized</span>
+    loss <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>min(cv_dict[<span style="color:#e6db74">&#39;test-rmse-mean&#39;</span>])
+    <span style="color:#75715e"># Boosting rounds that returned the lowest cv rmse</span>
+    n_estimators <span style="color:#f92672">=</span> int(np<span style="color:#f92672">.</span>argmin(cv_dict[<span style="color:#e6db74">&#39;test-rmse-mean&#39;</span>]) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+    best_params[<span style="color:#e6db74">&#39;n_estimators&#39;</span>] <span style="color:#f92672">=</span> n_estimators
+    logging<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#34;best loss: {loss}, best n_estimators: {n_estimators}&#34;</span>)
+    logging<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#34;best params: {best_params}&#34;</span>)
+    <span style="color:#66d9ef">return</span> best_params, loss</code></pre></div>
+<p>定义主函数：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">  
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main_tuning_with_bo</span>(X_train,
+                        y_train,
+                        max_evals<span style="color:#f92672">=</span>MAX_EVALS,
+                        folds<span style="color:#f92672">=</span>FOLDS,
+                        nfold<span style="color:#f92672">=</span>NFOLD):
+    <span style="color:#75715e"># Keep track of results</span>
+    bayes_trials <span style="color:#f92672">=</span> Trials()
+    <span style="color:#75715e"># Global variable</span>
+    <span style="color:#66d9ef">global</span> _ITERATION
+    _ITERATION <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    TRAIN_SET <span style="color:#f92672">=</span> build_train_set(X_train, y_train)
+    SPACE <span style="color:#f92672">=</span> XGB_SPACE
+    func_objective <span style="color:#f92672">=</span> partial(objective_base,
+                             train_set<span style="color:#f92672">=</span>TRAIN_SET,
+                             folds<span style="color:#f92672">=</span>folds,
+                             nfold<span style="color:#f92672">=</span>nfold,
+                             writetoFile<span style="color:#f92672">=</span>True)
+    <span style="color:#75715e"># Run optimization</span>
+    best <span style="color:#f92672">=</span> fmin(fn<span style="color:#f92672">=</span>func_objective,
+                space<span style="color:#f92672">=</span>SPACE,
+                algo<span style="color:#f92672">=</span>tpe<span style="color:#f92672">.</span>suggest,
+                max_evals<span style="color:#f92672">=</span>max_evals,
+                trials<span style="color:#f92672">=</span>bayes_trials,
+                rstate<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>RandomState(<span style="color:#ae81ff">2019</span>))
+    best_params, loss <span style="color:#f92672">=</span> post_hyperopt(bayes_trials,
+                                      train_set<span style="color:#f92672">=</span>TRAIN_SET,
+                                      folds<span style="color:#f92672">=</span>folds,
+                                      nfold<span style="color:#f92672">=</span>nfold)
+    <span style="color:#66d9ef">return</span> best_params, loss</code></pre></div>
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="https://www.oreilly.com/ideas/evaluating-machine-learning-models/page/5/hyperparameter-tuning">Evaluating Machine Learning Models -Alice Zhang</a></li>
+<li><a href="https://stats.stackexchange.com/questions/193306/optimization-when-cost-function-slow-to-evaluate/193310#193310">Optimization when Cost Function Slow to Evaluate Ask</a></li>
+<li><a href="https://stats.stackexchange.com/questions/160479/practical-hyperparameter-optimization-random-vs-grid-search?noredirect=1&amp;lq=1">Practical hyperparameter optimization: Random vs. grid search</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/grid_search.html#">sklearn params tuning</a></li>
+<li><a href="https://indico.cern.ch/event/433556/contributions/1930567/attachments/1231738/1806005/fonarev_hyperparams.pdf">Overview on Automatic Tuning of Hyperparameters</a></li>
+<li><a href="https://scikit-learn.org/stable/auto_examples/model_selection/plot_multi_metric_evaluation.html#sphx-glr-auto-examples-model-selection-plot-multi-metric-evaluation-py">Demonstration of multi-metric evaluation on cross_val_score and GridSearchCV</a></li>
+<li><a href="https://towardsdatascience.com/an-introductory-example-of-bayesian-optimization-in-python-with-hyperopt-aae40fff4ff0">An Introductory Example of Bayesian Optimization in Python with Hyperopt</a></li>
+<li><a href="https://towardsdatascience.com/a-conceptual-explanation-of-bayesian-model-based-hyperparameter-optimization-for-machine-learning-b8172278050f">Will Koehrsen: A Conceptual Explanation of Bayesian Hyperparameter Optimization for Machine Learning(A high-level overview)</a></li>
+<li><a href="https://arimo.com/data-science/2016/bayesian-optimization-hyperparameter-tuning/">Bayesian Optimization for Hyperparameter Tuning</a></li>
+<li><a href="https://scikit-optimize.github.io/#skopt.BayesSearchCV">Practical Bayesian Optimization of Machine Learning Algorithms</a></li>
+<li><a href="https://github.com/hyperopt/hyperopt">hyperopt</a></li>
+<li><a href="https://github.com/fmfn/BayesianOptimization">BayesianOptimization</a></li>
+<li><a href="https://scikit-optimize.github.io/notebooks/bayesian-optimization.html">skopt:Bayesian Optimization, notebook</a></li>
+<li><a href="https://stats.stackexchange.com/questions/297337/what-are-some-of-the-disavantage-of-bayesian-hyper-parameter-optimization/351861#351861">What are some of the disavantage of bayesian hyper parameter optimization?</a></li>
+<li><a href="https://app.sigopt.com/static/pdf/SigOpt_Bayesian_Optimization_Primer.pdf">SigOpt-Bayesian Optimization Primer</a></li>
+<li><a href="https://github.com/claesenm/optunity">github-optunity</a></li>
+<li><a href="https://optunity.readthedocs.io/en/latest/user/solvers.html">Optunity’s</a></li>
+<li><a href="https://www.youtube.com/watch?v=-sIOMs4MSuA">Christopher Fonnesbeck - Bayesian Non-parametric Models for Data Science using PyMC3 - PyCon 2018</a></li>
+<li><a href="https://www.youtube.com/watch?v=4vGiHC35j9s">Machine learning - Introduction to Gaussian processes</a></li>
+<li><a href="https://www.jiqizhixin.com/articles/2018-08-08-2">Python 环境下的自动化机器学习超参数调优</a></li>
+<li><a href="https://www.kaggle.com/donkeys/exploring-hyperopt-parameter-tuning">hyperopt参数分布空间定义的说明</a></li>
+</ul></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.wentixiaogege.com/tags/machine-learning"><span class="tag">Machine Learning</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/%E8%B0%83%E5%8F%82"><span class="tag">调参</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF%E4%BC%98%E5%8C%96"><span class="tag">贝叶斯优化</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/python"><span class="tag">Python</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>340</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "orion-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.wentixiaogege.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5713bba443e20a46d066ca93c131f795";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  </body>
+</html>

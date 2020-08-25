@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>SQL基础整理</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <link href="//hm.baidu.com" rel="dns-prefetch">
+
+  
+
+  
+  <meta name="author" content="Qi Zhang">
+  <meta name="description" content="SQL基础知识整理。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="SQL基础整理">
+    <meta name="twitter:description" content="SQL基础知识整理。
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="SQL基础整理">
+  <meta property="og:description" content="SQL基础知识整理。
+">
+  <meta property="og:url" content="https://www.wentixiaogege.com/post/cs-sql-basic/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.57.2">
+
+
+<link rel="canonical" href="https://www.wentixiaogege.com/post/cs-sql-basic/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.wentixiaogege.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.wentixiaogege.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.wentixiaogege.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.wentixiaogege.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.wentixiaogege.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.wentixiaogege.com/manifest.json">
+
+
+<link rel="preload" href="https://www.wentixiaogege.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.wentixiaogege.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.wentixiaogege.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.wentixiaogege.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://www.wentixiaogege.com/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">wentixiaogege</h2>
+  
+  <p class="subtitle">Getty Images Contributor. I&#39;m not a photographer but a data enthusiast.</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.wentixiaogege.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">GitHub</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://wentixiaogegefoto.tuchong.com/">Gallery</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:hi@wentixiaogege.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/wentixiaogege" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/bother7" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://www.wentixiaogege.com/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">SQL基础整理</h1>
+      <p class="post-meta">@Qi Zhang · Jun 23, 2019 · 6 min read</p>
+    </header>
+    <article class="post-content"><p>SQL基础知识整理。</p>
+
+<h2 id="一-什么是sql">一、什么是SQL</h2>
+
+<h4 id="1-数据库-database">1.数据库（database)</h4>
+
+<p>保存有组织的数据的容器（通常是一个文件或者一组文件）</p>
+
+<h4 id="2-数据库软件-dbms-数据库管理系统">2.数据库软件（DBMS，数据库管理系统）</h4>
+
+<p>用来创建和操控数据库</p>
+
+<h4 id="3-表-table">3.表（table）</h4>
+
+<p>某种特定类型数据的结构化清单，同一个数据库中表名唯一</p>
+
+<h4 id="4-模式-schema">4.模式（schema）</h4>
+
+<p>关于数据库和表的布局及特性的信息</p>
+
+<h4 id="5-列-column">5.列（column）</h4>
+
+<p>表中的一个字段，所有表都是由一个或者多个列组成（将数据库想象成一个表格，网格中的每一列存储着一条特定的信息）</p>
+
+<h4 id="6-数据类型-datatype">6.数据类型（datatype）</h4>
+
+<p>所容许的数据类型。每个表列都有相对应的数据类型，它限制或容许该列中存储的数</p>
+
+<h4 id="7-行-row">7.行（row）</h4>
+
+<p>表中的一个记录</p>
+
+<h4 id="8-主键-primary-key">8.主键（primary key）</h4>
+
+<p>一列（或者一组列），其值能够唯一区分开每个行</p>
+
+<h4 id="9-sql-structured-query-language">9.SQL（structured query language）</h4>
+
+<p>结构化查询语言，专门用来与数据库通信</p>
+
+<h2 id="二-mysql简介及一些基础语句">二、MYSQL简介及一些基础语句</h2>
+
+<h4 id="1-mysql">1.MySQL</h4>
+
+<p>MySQL是一种DBMS，database management systerm，数据库软件，基于客户机-服务器运行</p>
+
+<h4 id="2-navicat-for-mysql">2.Navicat For MySQL</h4>
+
+<p>一款简单好用的数据库可视化软件（方便，点击连接，输入主机名、端口、用户名、密码等即可，点击表及可视）
+也可以用Sequel Pro</p>
+
+<h4 id="3-关键字-key-word">3.关键字（key word）</h4>
+
+<p>作为Mysql语言组成部分的一个保留字，不允许用关键字命名一个表或一个列。</p>
+
+<h4 id="4-选择数据库">4.选择数据库</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">USE</span> crashcource<span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#75715e"># 选择使用crashcource数据库</span></code></pre></div>
+<h4 id="5-返回可用数据库的一个列表">5.返回可用数据库的一个列表</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SHOW</span> <span style="color:#66d9ef">DATABASES</span><span style="color:#960050;background-color:#1e0010">；</span></code></pre></div>
+<h4 id="6-获取一个数据库内的表的列表">6.获取一个数据库内的表的列表</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SHOW</span>  <span style="color:#66d9ef">TABLES</span><span style="color:#960050;background-color:#1e0010">；</span></code></pre></div>
+<h4 id="7-获取表列名">7.获取表列名</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SHOW</span> COLUMNS <span style="color:#66d9ef">FROM</span> CUSTOMERS<span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#75715e"># 返回字段名、数据类型、是否允许NULL、键信息、默认值以及其他信息</span></code></pre></div>
+<h4 id="8-自动增量">8.自动增量</h4>
+
+<p>MySQL可以自动为下一个行分配下一个可用编号，不用在添加一行时手动分配唯一值。启用需在用CREATE语句创建表时将它作为表定义的组成部分</p>
+
+<h4 id="9-describe语句">9.DESCRIBE语句</h4>
+
+<p>DESCRIBE作为SHOW COLUMNS FROM的一种快捷方式。</p>
+
+<p>比如<code>DESCRIBE customers；</code>是 <code>SHOW COLUMNS FROM customers；</code>的一种快捷方式</p>
+
+<h4 id="10-支持的其他show语句">10.支持的其他SHOW语句</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SHOW</span> STATUS<span style="color:#960050;background-color:#1e0010">；</span><span style="color:#75715e"># 显示广泛的服务器状态信息
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SHOW</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span><span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#66d9ef">SHOW</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLES</span><span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#75715e"># 分别用来显示创建特定数据库或者表的MySql语句
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SHOW</span> GRANTS<span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#75715e"># 显示授予用户（所有用户或特定用户）的安全权限
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SHOW</span> ERRORS<span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#66d9ef">SHOW</span> WARNINGS<span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#75715e"># 用来显示服务器错误或者警告</span></code></pre></div>
+<h2 id="三-检索数据">三、检索数据</h2>
+
+<h4 id="1-检索单个列">1.检索单个列</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name
+<span style="color:#66d9ef">FROM</span> products;
+<span style="color:#75715e"># 从products表中检索一个名为prod_name的列，所需列名在SELECT关键字之后给出</span></code></pre></div>
+<h4 id="2-在mysql命令行中必须采用-结束语句">2.在mysql命令行中必须采用；结束语句</h4>
+
+<h4 id="3-sql不区分大小写-但是许多sql开发人员喜欢对sql关键字使用大写-而对所有列-表名使用小写-这样方便代码阅读和调试-同样的-适当使用空格分行也为了这个目的">3.SQL不区分大小写，但是许多SQL开发人员喜欢对SQL关键字使用大写，而对所有列、表名使用小写，这样方便代码阅读和调试，同样的，适当使用空格分行也为了这个目的</h4>
+
+<h4 id="4-检索多个列">4.检索多个列</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_id,prod_name,prod_price
+<span style="color:#66d9ef">FROM</span> products;</code></pre></div>
+<h4 id="5-检索所有列">5.检索所有列</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+<span style="color:#66d9ef">FROM</span> products<span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#75715e"># 注意，检索不必要的额列通常会降低检索和应用程序的性能</span></code></pre></div>
+<h4 id="6-检索不同的行">6.检索不同的行</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">DISTINCT</span> vend_id
+FRPM products;
+<span style="color:#75715e"># 返回批次不同的行</span></code></pre></div>
+<h4 id="7-限制查询结果的数量或位置">7.限制查询结果的数量或位置</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">5</span>;
+<span style="color:#75715e"># 可用来测试
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">5</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">5</span>;
+<span style="color:#75715e"># 指示MySQL返回从行5开始的5行，第一个数为开始的位置，第二个位置为要检索的行数
+</span><span style="color:#75715e"># LIMIT 4  OFFSET 3与LIMIT 3，4一样
+</span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">注意：检索出来的第一行为行</span><span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">而不是行</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">；检索出来的是第二行</span></code></pre></div>
+<h4 id="8-完全限定表名">8.完全限定表名</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> products.prod_name
+<span style="color:#66d9ef">FROM</span> crashcource.products;
+<span style="color:#75715e">#熟悉一下这个语法</span></code></pre></div>
+<h2 id="四-排序检索数据">四、排序检索数据</h2>
+
+<h4 id="1-子句-clause">1.子句（clause）</h4>
+
+<p>SQL由子句构成，有些子句是必需的，有些是可选的。一个子句通常由关键字和所提供的数据组成。子句例子有SELECT语句FROM子句</p>
+
+<h4 id="2-order-by子句字母顺序排序">2.ORDER BY子句字母顺序排序</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;</code></pre></div>
+<h4 id="3-按多个列排序">3.按多个列排序</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_id,prod_price,prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_price,prod_name;
+<span style="color:#75715e">#逐层下沉</span></code></pre></div>
+<h4 id="4-指定方向排序">4.指定方向排序</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_id,prod_price,prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_price <span style="color:#66d9ef">DESC</span>,prod_name;
+<span style="color:#75715e">#价格降序排序商品
+</span><span style="color:#75715e">#与DESC相反的关键词是ASC（ASCENDING0），升序排序，但因为升序是默认的用户不大</span></code></pre></div>
+<h4 id="5-利用刚刚学习的寻找一列中最大的值">5.利用刚刚学习的寻找一列中最大的值</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_price
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_price <span style="color:#66d9ef">DESC</span>
+<span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">1</span>;</code></pre></div>
+<h2 id="五-过滤数据">五、过滤数据</h2>
+
+<h4 id="1-搜索条件-search-criteria-也成为过滤条件-filter-condition">1.搜索条件（search criteria），也成为过滤条件（filter condition）</h4>
+
+<h4 id="2-条件过滤">2.条件过滤</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_price
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_price<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">10</span>;</code></pre></div>
+<h4 id="3-where子句的位置">3.WHERE子句的位置</h4>
+
+<p>在同时使用ORDER BY和WHERE子句时，应该让ORDER BY位于WHERE之后，否则会产生错误</p>
+
+<h4 id="4-常见的where子句操作符">4.常见的WHERE子句操作符</h4>
+
+<pre><code>= 等于    
+&lt;&gt; 不等于   
+!= 不等于  
+=&lt; 小（等）于  
+&gt;= 大（等）于  
+BETWEEN 两者之间
+注意：在执行匹配操作时候不区分大小写
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_price
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;chengzi&#39;</span>;
+<span style="color:#960050;background-color:#1e0010">注意：单引号用来限制字符串，如果将值与串类型的列进行比较，则需要限定引号</span></code></pre></div>
+<h4 id="5-区间查询">5.区间查询</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name,prod_price
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_price <span style="color:#66d9ef">BETWEEN</span> <span style="color:#ae81ff">5</span> <span style="color:#66d9ef">AND</span> <span style="color:#ae81ff">10</span>;</code></pre></div>
+<h4 id="6-null值-no-value">6.NULL值（no value）</h4>
+
+<p>不包含值，它与字段包含0、空字符串或仅仅包含空格不同</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name,prod_price
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_price <span style="color:#66d9ef">IS</span> <span style="color:#66d9ef">NULL</span>;
+<span style="color:#75715e"># NULL与不匹配是两种含义</span></code></pre></div>
+<h2 id="六-数据过滤">六、数据过滤</h2>
+
+<h4 id="1-操作符-operator">1.操作符（operator）</h4>
+
+<p>用来联结或改变WHERE子句中的子句的关键字，也成为逻辑操作符（logical operetor）</p>
+
+<h4 id="2-and操作符">2.AND操作符</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_id,prod_price,prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> ven_id<span style="color:#f92672">=</span><span style="color:#ae81ff">1003</span> <span style="color:#66d9ef">and</span>  prod_price<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">10</span>;</code></pre></div>
+<h4 id="3-or操作符">3.OR操作符</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_id,prod_price,prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> ven_id<span style="color:#f92672">=</span><span style="color:#ae81ff">1003</span> <span style="color:#66d9ef">or</span> ven_id<span style="color:#f92672">=</span><span style="color:#ae81ff">1004</span>;</code></pre></div>
+<h4 id="4-and在计算次序中优先级较高-为避免操作符被错位组合-可以写如下语句">4.AND在计算次序中优先级较高，为避免操作符被错位组合，可以写如下语句</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_id,prod_price,prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> <span style="color:#960050;background-color:#1e0010">（</span>ven_id<span style="color:#f92672">=</span><span style="color:#ae81ff">1003</span> <span style="color:#66d9ef">or</span> ven_id<span style="color:#f92672">=</span><span style="color:#ae81ff">1004</span><span style="color:#960050;background-color:#1e0010">）</span> <span style="color:#66d9ef">and</span> prod_price<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">10</span>;
+<span style="color:#75715e">#圆括号比AND和OR优先级更高</span></code></pre></div>
+<h4 id="5-in操作符">5.IN操作符</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_id,prod_price,prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> ven_id <span style="color:#66d9ef">IN</span> (<span style="color:#ae81ff">1002</span>,<span style="color:#ae81ff">1003</span>)
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;</code></pre></div>
+<h4 id="6-not操作符">6.NOT操作符</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_id,prod_price,prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> ven_id <span style="color:#66d9ef">IN</span> (<span style="color:#ae81ff">1002</span>,<span style="color:#ae81ff">1003</span>)
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;
+<span style="color:#960050;background-color:#1e0010">注意：</span>MySQL支持NOT对IN<span style="color:#960050;background-color:#1e0010">、</span>BETWEEN和EXISTS子句相反<span style="color:#960050;background-color:#1e0010">，这与其他</span>DBMS允许使用NOT对各种条件取反有很大的差别</code></pre></div>
+<h2 id="七-通配符过滤">七、通配符过滤</h2>
+
+<h2 id="1-通配符-wildcard">1.通配符（wildcard）</h2>
+
+<p>用来匹配值的一部分的特殊字符</p>
+
+<h2 id="2-搜索模式-search-pattern">2.搜索模式（search pattern）</h2>
+
+<p>由字面值、通配符或两者组合构成的搜索条件</p>
+
+<h2 id="3-特定查询-通配符">3.特定查询<code>%</code>通配符</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_id,prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;jet%&#39;</span>;
+<span style="color:#75715e"># 检索任意jet开头的词，且搜索模式区分大小写，与Jet并不匹配
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> prod_id,prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;%anvil%&#39;</span>;
+<span style="color:#75715e"># 包括anvil的所有值
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> prod_id,prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;a%s&#39;</span>;
+<span style="color:#75715e"># %代表搜索模式中给定位置的0个、1个或多个字符</span></code></pre></div>
+<p>注意：
+1.尾空格可能会干扰通配符匹配
+2.通配符不支持匹配NULL</p>
+
+<h4 id="4-通配符">4.<code>_</code>通配符</h4>
+
+<p><code>_</code>只能匹配单个字符而不是多个字符,不能多也不能少</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_id,prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;_jet&#39;</span>;</code></pre></div>
+<h4 id="5-通配符使用技巧">5.通配符使用技巧</h4>
+
+<p>通配符搜索的处理一般比其他的搜索时间更长。不要过度使用通配符,将通配符用在搜索模式的开始处是最慢的，仔细注意通配符的位置</p>
+
+<h2 id="八-正则表达式搜索">八、正则表达式搜索</h2>
+
+<h4 id="1-正则表达式">1.正则表达式</h4>
+
+<p>用来匹配文本的特殊的串；所有种类的程序设计语言、文本编辑器、操作系统等都支持正则表达式。</p>
+
+<h4 id="2-基本字符匹配">2.基本字符匹配</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span><span style="color:#e6db74">&#39;1000&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;
+<span style="color:#75715e"># REGEXP后面跟的就是正则表达式（与正文1000匹配的一个正则表达式)处理
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">SELECT</span> prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span><span style="color:#e6db74">&#39;.000&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;
+<span style="color:#75715e"># 其中.表示匹配任意一个字符</span></code></pre></div>
+<h4 id="3-使用binmary区分大小写">3.使用BINMARY区分大小写</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">where</span> prod_name <span style="color:#66d9ef">REGEXP</span> BINMAY <span style="color:#e6db74">&#39;JetPack  .000&#39;</span>
+<span style="color:#75715e"># MySQL本身不区分大小写</span></code></pre></div>
+<h4 id="4-进行or匹配">4.进行OR匹配</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span> <span style="color:#e6db74">&#39;1000|2000&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;</code></pre></div>
+<h4 id="5-匹配几个字符之一">5.匹配几个字符之一</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span> <span style="color:#e6db74">&#39;[123] Ton&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;
+<span style="color:#75715e"># 意思是匹配1或者2或者3，[]是另一种形式的OR语句，与[1|2|3]一致
+</span><span style="color:#75715e"># [^123]匹配除这些字符以外的东西</span></code></pre></div>
+<h4 id="6-匹配范围">6.匹配范围</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span> <span style="color:#e6db74">&#39;[1-5] Ton&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;</code></pre></div>
+<h4 id="7-匹配特殊字符">7.匹配特殊字符</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span> <span style="color:#e6db74">&#39;\\.&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;
+<span style="color:#75715e"># \\为前导，转义符
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e"># 转义符的其他用处：
+</span><span style="color:#75715e"># \\f  换页   \\n  换行  \\r  换车   
+</span><span style="color:#75715e"># \\t  制表   \\v   纵向制表   \\\  转义\</span></code></pre></div>
+<h4 id="8-匹配字符类-character-class">8.匹配字符类（character class）</h4>
+
+<ul>
+<li><code>[:alnum:]</code> 任意字母或数字</li>
+<li><code>[:alpha:]</code> 任意字符</li>
+<li><code>[:blank:]</code> 空格和制表</li>
+<li><code>[:cntrl:]</code> ASCⅡ控制字符</li>
+<li><code>[:digit:]</code> 任意数字</li>
+<li><code>[:graph:]</code> 与<code>[:print:]</code>相同，但不包括空格</li>
+<li><code>[:lower:]</code> 任意小写字母</li>
+<li><code>[:print:]</code> 任意可打印字符</li>
+<li><code>[:punct:]</code> 不在<code>[:cntrl:]</code> 和<code>[:alnum:]</code>中的字符</li>
+<li><code>[:space:]</code> 包括空格字符在的任意空白字符</li>
+<li><code>[:upper:]</code> 任意大写字母</li>
+<li><code>[:xdigit:]</code> 任意16进制数字</li>
+</ul>
+
+<h4 id="9-匹配多个实例">9.匹配多个实例</h4>
+
+<ul>
+<li><code>\*</code> ：0个或者多个匹配</li>
+<li><code>\+</code>  ：1个或者多个匹配<code>{1，}</code></li>
+<li><code>?</code>   ：0个或者多个匹配<code>{0，1}</code></li>
+<li><code>{n}</code> ：指定数目的匹配</li>
+<li><code>{n,}</code> ：不少于指定数目的匹配</li>
+
+<li><p><code>{n,m}</code> ：匹配数据的范围</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#75715e"># 举例
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span>  prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span> <span style="color:#e6db74">&#39;\\([0-9] sticks?\\)&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span>  prod_name;
+<span style="color:#75715e"># \\(匹配），[0-9]匹配任何数字，sticks？匹配stick和sticks（？使s出现0次或者1次），\\（匹配）
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span>  prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span> <span style="color:#e6db74">&#39;[[:digit:]]{4}&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;
+<span style="color:#75715e"># 连在一起的任意4位数字</span></code></pre></div></li>
+</ul>
+
+<h4 id="10-定位符">10.定位符</h4>
+
+<p>定位元字符：</p>
+
+<ul>
+<li><code>^</code> 文本的开始</li>
+<li><code>$</code> 文本的结尾</li>
+<li><code>[[:&lt;:]]</code> 词的开始</li>
+
+<li><p><code>[[:&gt;:]]</code> 词的结尾</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span>  prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span> <span style="color:#e6db74">&#39;^[0-9]\\.)&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span>  prod_name;</code></pre></div></li>
+</ul>
+
+<h2 id="九-创建计算字段-转换-计算-格式化">九、创建计算字段（转换、计算、格式化）</h2>
+
+<h4 id="1-字段-field">1.字段（field）</h4>
+
+<p>基本上与列（column）的意思相同，经常互换使用，术语字段通常用在计算字段的连接上。</p>
+
+<h4 id="2-concat-连接函数">2.Concat()（ 连接函数）</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">Concat</span>(vend_name,<span style="color:#e6db74">&#39;  (&#39;</span>,vend_country, <span style="color:#e6db74">&#39;)&#39;</span>)
+<span style="color:#66d9ef">FROM</span> vendors
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> vend_name;</code></pre></div>
+<h4 id="3-rtrim-删除右侧多余的空格">3.RTrim() （删除右侧多余的空格）</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">Concat</span>(<span style="color:#a6e22e">RTrim</span>(vend_name),<span style="color:#e6db74">&#39;  (&#39;</span>,<span style="color:#a6e22e">RTrim</span>(vend_country), <span style="color:#e6db74">&#39;)&#39;</span>)
+<span style="color:#66d9ef">FROM</span> vendors
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> vend_name;
+<span style="color:#75715e">#LTrim()去掉左边多余的空格</span></code></pre></div>
+<h4 id="4-as-使用别名">4.AS（使用别名）</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">Concat</span>(<span style="color:#a6e22e">RTrim</span>(vend_name),<span style="color:#e6db74">&#39;  (&#39;</span>,<span style="color:#a6e22e">RTrim</span>(vend_country), <span style="color:#e6db74">&#39;)&#39;</span>)
+<span style="color:#66d9ef">AS</span> vend_title
+<span style="color:#66d9ef">FROM</span> vendors
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> vend_name;</code></pre></div>
+<p>别名的其他用途：别名还有其他用途。常见的用途是在实际的表列名包含不符合规定的字符（如空格）时重新命名他，在原来的名字含混淆或容易误解时扩充它等等。</p>
+
+<p>有时别名也被称为导出列（derived column）</p>
+
+<h4 id="5-算术运算">5.算术运算</h4>
+
+<p><code>+ - * /</code> 加减乘除</p>
+
+<h4 id="6-测试运算">6.测试运算</h4>
+
+<p>省略FROM语句可以简单地访问和处理表达式，如<code>SELECT 3*2；</code>将返回6，<code>SELECT Trim（’abc ‘）;</code>将返回abc，<code>SELECT Now();</code>返回当前地日期和时间</p>
+
+<h2 id="十-使用函数处理数据">十、使用函数处理数据</h2>
+
+<h4 id="1-文本处理函数">1.文本处理函数</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span>   <span style="color:#a6e22e">Upper</span>(vend_name) <span style="color:#66d9ef">AS</span> vend_name_upcase
+<span style="color:#66d9ef">FROM</span> vendors
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> vend_name;
+
+<span style="color:#a6e22e">Upper</span>()<span style="color:#960050;background-color:#1e0010">转换大写函数</span>
+<span style="color:#66d9ef">Left</span>() <span style="color:#960050;background-color:#1e0010">返回串左边地字符</span>
+<span style="color:#a6e22e">Length</span>() <span style="color:#960050;background-color:#1e0010">返回串的长度</span>
+<span style="color:#a6e22e">Locate</span>() <span style="color:#960050;background-color:#1e0010">找出串的一个子串</span>
+<span style="color:#a6e22e">Lower</span>() <span style="color:#960050;background-color:#1e0010">将串转换成小写</span>
+<span style="color:#a6e22e">LTrim</span>() <span style="color:#960050;background-color:#1e0010">去掉串左边的空格</span>
+<span style="color:#66d9ef">Right</span>() <span style="color:#960050;background-color:#1e0010">返回串右边的字符</span>
+<span style="color:#a6e22e">RTrim</span>() <span style="color:#960050;background-color:#1e0010">去掉串右边的空格</span>
+<span style="color:#a6e22e">Soundex</span>() <span style="color:#960050;background-color:#1e0010">返回串的</span>SOUNDEX值<span style="color:#960050;background-color:#1e0010">（</span>
+SOUNDEX是一个将任何文本串转换成其语音表示的字母数字模式的算法<span style="color:#960050;background-color:#1e0010">，姓名模糊查询）</span>
+<span style="color:#a6e22e">SubString</span>() <span style="color:#960050;background-color:#1e0010">返回子串的字符</span>
+<span style="color:#a6e22e">Upper</span>()<span style="color:#960050;background-color:#1e0010">将串转换成大写</span></code></pre></div>
+<h4 id="2-日期时间处理函数">2.日期时间处理函数</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#a6e22e">AddDate</span>() <span style="color:#960050;background-color:#1e0010">增加一个日期（天、周等）</span>
+<span style="color:#a6e22e">AddTime</span>() <span style="color:#960050;background-color:#1e0010">增加一个时间（时、分等）</span>
+<span style="color:#a6e22e">CurDate</span>() <span style="color:#960050;background-color:#1e0010">返回当前日期</span>
+<span style="color:#a6e22e">CurTime</span>() <span style="color:#960050;background-color:#1e0010">返回当前时间</span>
+<span style="color:#66d9ef">Date</span>() <span style="color:#960050;background-color:#1e0010">返回日期时间的日期部分</span>
+<span style="color:#a6e22e">DateDiff</span>() <span style="color:#960050;background-color:#1e0010">计算两个日期之差</span>
+<span style="color:#a6e22e">Date_Add</span>() <span style="color:#960050;background-color:#1e0010">高度灵活的日期运算函数</span>
+<span style="color:#a6e22e">Date_Format</span>()<span style="color:#960050;background-color:#1e0010">返回一个格式化的日期或时间串</span>
+<span style="color:#a6e22e">Day</span>() <span style="color:#960050;background-color:#1e0010">返回一个日期的天数部分</span>
+<span style="color:#a6e22e">DayDfWeek</span>()<span style="color:#960050;background-color:#1e0010">对于一个日期，对应返回星期几</span>
+<span style="color:#a6e22e">Hour</span>() <span style="color:#960050;background-color:#1e0010">返回一个时间的小时部分</span>
+<span style="color:#a6e22e">Minute</span>() <span style="color:#960050;background-color:#1e0010">返回一个时间的分钟部分</span>
+<span style="color:#a6e22e">Month</span>() <span style="color:#960050;background-color:#1e0010">返回一个时间的月份部分</span>
+<span style="color:#a6e22e">Now</span>() <span style="color:#960050;background-color:#1e0010">返回当前时间</span>
+<span style="color:#a6e22e">Second</span>() <span style="color:#960050;background-color:#1e0010">返回一个时间的秒部分</span>
+<span style="color:#66d9ef">Time</span>() <span style="color:#960050;background-color:#1e0010">返回一个日期时间的时间部分</span>
+<span style="color:#66d9ef">Year</span>() <span style="color:#960050;background-color:#1e0010">返回一个日期的年份部分</span></code></pre></div>
+<h4 id="3-数值处理函数">3.数值处理函数</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#a6e22e">Abs</span>() <span style="color:#960050;background-color:#1e0010">返回一个数的绝对值</span>
+<span style="color:#a6e22e">Cos</span>() <span style="color:#960050;background-color:#1e0010">返回一个角度的余弦值</span>
+<span style="color:#a6e22e">Exp</span>() <span style="color:#960050;background-color:#1e0010">返回一个数的指数值</span>
+<span style="color:#66d9ef">Mod</span>() <span style="color:#960050;background-color:#1e0010">返回除操作的余数</span>
+<span style="color:#a6e22e">Pi</span>() <span style="color:#960050;background-color:#1e0010">返回圆周率</span>
+<span style="color:#a6e22e">Rand</span>() <span style="color:#960050;background-color:#1e0010">返回一个随机数</span>
+<span style="color:#a6e22e">Sin</span>() <span style="color:#960050;background-color:#1e0010">返回一个角度的正弦</span>
+<span style="color:#a6e22e">Sqrt</span>() <span style="color:#960050;background-color:#1e0010">返回一个数的平方根</span>
+<span style="color:#a6e22e">Tan</span>() <span style="color:#960050;background-color:#1e0010">返回一个角度的正切</span></code></pre></div>
+<h2 id="十一-建表案例">十一、建表案例</h2>
+
+<h3 id="mine">Mine</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">model_update_info</span> (
+<span style="color:#f92672">`</span>SID<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+<span style="color:#f92672">`</span>VERSION<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+<span style="color:#f92672">`</span>MODEL_NM<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+<span style="color:#f92672">`</span>METRICS_NM<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+<span style="color:#f92672">`</span>METRICS_MEAN<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+<span style="color:#f92672">`</span>METRICS_STD<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+<span style="color:#f92672">`</span>CV_METHOD<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">40</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+<span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#f92672">`</span>SID<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>VERSION<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>MODEL_NM<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>METRICS_NM<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>CV_METHOD<span style="color:#f92672">`</span>)
+) 
+<span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8
+;</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>temp_yusimiao_airq_bydate<span style="color:#f92672">`</span> (
+  <span style="color:#f92672">`</span>sid<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span><span style="color:#66d9ef">date</span><span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>aqi<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>co<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>no2<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>o3<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>pm10<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>pm25<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>so2<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>hour_hc<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>aqi_hc<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>co_hc<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>no2_hc<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>o3_hc<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>pm10_hc<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>pm25_hc<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>so2_hc<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#66d9ef">UNIQUE</span> <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>uniquekey<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>sid<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span><span style="color:#66d9ef">date</span><span style="color:#f92672">`</span>)
+) <span style="color:#66d9ef">ENGINE</span><span style="color:#f92672">=</span>InnoDB <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8 COMMENT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;临时表，空气质量按站点／天汇总&#39;</span>;
+
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>task_message<span style="color:#f92672">`</span> (
+  <span style="color:#f92672">`</span><span style="color:#66d9ef">Date</span><span style="color:#f92672">`</span> <span style="color:#66d9ef">date</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span><span style="color:#66d9ef">Time</span><span style="color:#f92672">`</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">zerofill</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>SID<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">45</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>Project<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">45</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>Version<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">45</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>Depend<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">45</span>) <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>Data_status<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">45</span>) <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>Calc_status<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">45</span>) <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>Upload_status<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">45</span>) <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>DS_start<span style="color:#f92672">`</span> <span style="color:#66d9ef">datetime</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>DS_end<span style="color:#f92672">`</span> <span style="color:#66d9ef">datetime</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>CS_start<span style="color:#f92672">`</span> <span style="color:#66d9ef">datetime</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>CS_end<span style="color:#f92672">`</span> <span style="color:#66d9ef">datetime</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>US_start<span style="color:#f92672">`</span> <span style="color:#66d9ef">datetime</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>US_end<span style="color:#f92672">`</span> <span style="color:#66d9ef">datetime</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#f92672">`</span><span style="color:#66d9ef">Date</span><span style="color:#f92672">`</span>,<span style="color:#f92672">`</span><span style="color:#66d9ef">Time</span><span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>SID<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>Project<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>Version<span style="color:#f92672">`</span>),
+  <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>index1<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>Data_status<span style="color:#f92672">`</span>) <span style="color:#66d9ef">USING</span> BTREE,
+  <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>index2<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>Data_status<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>Calc_status<span style="color:#f92672">`</span>) <span style="color:#66d9ef">USING</span> BTREE,
+  <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>index3<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>Depend<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>Data_status<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>Calc_status<span style="color:#f92672">`</span>) <span style="color:#66d9ef">USING</span> BTREE,
+  <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>index4<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>SID<span style="color:#f92672">`</span>) <span style="color:#66d9ef">USING</span> BTREE,
+  <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>idx_task_message_Version<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>Version<span style="color:#f92672">`</span>),
+  <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>index7<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span><span style="color:#66d9ef">Date</span><span style="color:#f92672">`</span>,<span style="color:#f92672">`</span><span style="color:#66d9ef">Time</span><span style="color:#f92672">`</span>)
+) <span style="color:#66d9ef">ENGINE</span><span style="color:#f92672">=</span>InnoDB <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8;
+
+
+<span style="color:#75715e">## SQL commands
+</span><span style="color:#75715e">## create database and tables
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#create database for air quality prediction
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">database</span> AQI_PREDICTION_DB;
+
+<span style="color:#75715e">#create table - air quality station info
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">air_station_info</span> (
+  SID <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;监测点编码&#39;</span>
+  ,SID_C <span style="color:#66d9ef">text</span> COMMENT <span style="color:#e6db74">&#39;监测点名称&#39;</span>
+  ,CITY <span style="color:#66d9ef">text</span> COMMENT <span style="color:#e6db74">&#39;城市&#39;</span>
+  ,LON <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;经度&#39;</span>
+  ,LAT <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;纬度&#39;</span>
+  ,REGION <span style="color:#66d9ef">text</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;所属地区&#39;</span>
+  ,<span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (SID)
+) 
+<span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8
+COMMENT <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;空气质量站点信息&#39;</span>
+;
+
+<span style="color:#75715e">#create table - prediction by date / station / variable
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">result_prediction</span> (
+  SID <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;监测点编码&#39;</span>
+  ,date_cur <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;进行预测时所在的日期&#39;</span>
+  ,date_pred <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;要预测的日期&#39;</span>
+  ,varname_pred <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;要预测的要素名称&#39;</span>
+  ,value_pred <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;预测出的数值&#39;</span>
+  ,model_tag <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">100</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;模型标签&#39;</span>
+  ,<span style="color:#66d9ef">UNIQUE</span> <span style="color:#66d9ef">KEY</span> <span style="color:#a6e22e">uniquekey</span> (SID, date_cur, date_pred, varname_pred, model_tag)
+) 
+<span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8
+COMMENT <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;结果表，空气质量预测，按站点／日期／要素&#39;</span>
+;
+
+<span style="color:#75715e">#SQL command - create table
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">temp_yusimiao_airq_bydate</span> (
+  sid <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,<span style="color:#66d9ef">date</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,aqi <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,co <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,no2 <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,o3 <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,pm10 <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,pm25 <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,so2 <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,hour_hc <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,aqi_hc <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,co_hc <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,no2_hc <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,o3_hc <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,pm10_hc <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,pm25_hc <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,so2_hc <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,<span style="color:#66d9ef">UNIQUE</span> <span style="color:#66d9ef">KEY</span> <span style="color:#a6e22e">uniquekey</span> (sid, <span style="color:#66d9ef">date</span>)
+) 
+<span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8
+COMMENT <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;临时表，空气质量按站点／天汇总&#39;</span>
+;</code></pre></div></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.wentixiaogege.com/tags/sql"><span class="tag">SQL</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/data-science"><span class="tag">Data Science</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "orion-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.wentixiaogege.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5713bba443e20a46d066ca93c131f795";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  </body>
+</html>

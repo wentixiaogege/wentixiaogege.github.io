@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>一文梳理正则表达式常用方法</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <link href="//hm.baidu.com" rel="dns-prefetch">
+
+  
+
+  
+  <meta name="author" content="Qi Zhang">
+  <meta name="description" content=" 正则表达式，又称规则表达式。（英语：Regular Expression，在代码中常简写为regex、regexp或RE），计算机科学的一个概念。正则表达式通常被用来检索、替换那些符合某个模式(规则)的文本。
+许多程序设计语言都支持利用正则表达式进行字符串操作。例如，在Perl中就内建了一个功能强大的正则表达式引擎。正则表达式这个概念最初是由Unix中的工具软件（例如sed和grep）普及开的。
+—baidu百科
+ 简单来说，正则表达式就是对字符串进行操作的一种逻辑公式，用事先定义好的⼀些规则，组成⼀个规则字符串，然后用这个规则字符串去匹配符合这个规则的字符串，实现对字符串的匹配和过滤。本文基于python中的re模块来介绍正则表达式的常见用法，但这并非Python独有的，绝大多数语言都支持正则表达式。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="一文梳理正则表达式常用方法">
+    <meta name="twitter:description" content=" 正则表达式，又称规则表达式。（英语：Regular Expression，在代码中常简写为regex、regexp或RE），计算机科学的一个概念。正则表达式通常被用来检索、替换那些符合某个模式(规则)的文本。
+许多程序设计语言都支持利用正则表达式进行字符串操作。例如，在Perl中就内建了一个功能强大的正则表达式引擎。正则表达式这个概念最初是由Unix中的工具软件（例如sed和grep）普及开的。
+—baidu百科
+ 简单来说，正则表达式就是对字符串进行操作的一种逻辑公式，用事先定义好的⼀些规则，组成⼀个规则字符串，然后用这个规则字符串去匹配符合这个规则的字符串，实现对字符串的匹配和过滤。本文基于python中的re模块来介绍正则表达式的常见用法，但这并非Python独有的，绝大多数语言都支持正则表达式。
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="一文梳理正则表达式常用方法">
+  <meta property="og:description" content=" 正则表达式，又称规则表达式。（英语：Regular Expression，在代码中常简写为regex、regexp或RE），计算机科学的一个概念。正则表达式通常被用来检索、替换那些符合某个模式(规则)的文本。
+许多程序设计语言都支持利用正则表达式进行字符串操作。例如，在Perl中就内建了一个功能强大的正则表达式引擎。正则表达式这个概念最初是由Unix中的工具软件（例如sed和grep）普及开的。
+—baidu百科
+ 简单来说，正则表达式就是对字符串进行操作的一种逻辑公式，用事先定义好的⼀些规则，组成⼀个规则字符串，然后用这个规则字符串去匹配符合这个规则的字符串，实现对字符串的匹配和过滤。本文基于python中的re模块来介绍正则表达式的常见用法，但这并非Python独有的，绝大多数语言都支持正则表达式。
+">
+  <meta property="og:url" content="https://www.wentixiaogege.com/post/py-regex-intro/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.57.2">
+
+
+<link rel="canonical" href="https://www.wentixiaogege.com/post/py-regex-intro/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.wentixiaogege.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.wentixiaogege.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.wentixiaogege.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.wentixiaogege.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.wentixiaogege.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.wentixiaogege.com/manifest.json">
+
+
+<link rel="preload" href="https://www.wentixiaogege.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.wentixiaogege.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.wentixiaogege.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.wentixiaogege.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://www.wentixiaogege.com/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">wentixiaogege</h2>
+  
+  <p class="subtitle">Getty Images Contributor. I&#39;m not a photographer but a data enthusiast.</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.wentixiaogege.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">GitHub</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://wentixiaogegefoto.tuchong.com/">Gallery</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:hi@wentixiaogege.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/wentixiaogege" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/bother7" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://www.wentixiaogege.com/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">一文梳理正则表达式常用方法</h1>
+      <p class="post-meta">@Qi Zhang · May 30, 2019 · 5 min read</p>
+    </header>
+    <article class="post-content"><blockquote>
+<p><strong>正则表达式</strong>，又称规则表达式<strong>。</strong>（英语：Regular Expression，在代码中常简写为regex、regexp或RE），计算机科学的一个概念。正则表达式通常被用来检索、替换那些符合某个模式(规则)的文本。</p>
+
+<p>许多程序设计语言都支持利用正则表达式进行字符串操作。例如，在<a href="https://baike.baidu.com/item/Perl">Perl</a>中就内建了一个功能强大的正则表达式引擎。正则表达式这个概念最初是由<a href="https://baike.baidu.com/item/Unix">Unix</a>中的工具软件（例如sed和<a href="https://baike.baidu.com/item/grep/5997841">grep</a>）普及开的。</p>
+
+<p>—<a href="[https://baike.baidu.com/item/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/1700215?fr=aladdin](https://baike.baidu.com/item/正则表达式/1700215?fr=aladdin)">baidu百科</a></p>
+</blockquote>
+
+<p>简单来说，正则表达式就是对字符串进行操作的一种逻辑公式，用事先定义好的⼀些规则，组成⼀个规则字符串，然后用这个规则字符串去匹配符合这个规则的字符串，实现对字符串的匹配和过滤。本文基于python中的re模块来介绍正则表达式的常见用法，但这并非Python独有的，绝大多数语言都支持正则表达式。</p>
+
+<h1 id="常用方法">常用方法</h1>
+
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>^</td>
+<td>匹配字符串的开头，<code>^\d</code>表示必须以数字开头</td>
+</tr>
+
+<tr>
+<td>$</td>
+<td>匹配字符串的末尾，<code>\d$</code>表示必须以数字结束</td>
+</tr>
+
+<tr>
+<td>.</td>
+<td>匹配除<code>\n</code>外的任意单字符。要匹配包括 <code>\n</code> 在内的任意单字符，可使用<code>[.\n]</code>的模式。当<code>re.DOTALL</code>标记被指定时，则也可匹配包括换行符的任意字符。</td>
+</tr>
+
+<tr>
+<td>[&hellip;]</td>
+<td>用来表示一组字符,单独列出：<code>[amk]</code> 匹配 &lsquo;a&rsquo;，&rsquo;m&rsquo;或&rsquo;k&rsquo;</td>
+</tr>
+
+<tr>
+<td>[^&hellip;]</td>
+<td>不在<code>[]</code>中的字符：<code>[^abc]</code> 匹配除了a,b,c之外的字符。</td>
+</tr>
+
+<tr>
+<td>*</td>
+<td>匹配0个或多个的表达式。大于等于0个。</td>
+</tr>
+
+<tr>
+<td>+</td>
+<td>匹配1个或多个的表达式。至少1个。</td>
+</tr>
+
+<tr>
+<td>?</td>
+<td>匹配0个或1个由前面的正则表达式定义的片段，非贪婪方式</td>
+</tr>
+
+<tr>
+<td>{n}</td>
+<td>精确匹配n个前面的表达式。例如，<code>o{2}</code>不能匹配&rdquo;Bob&rdquo;中的<code>o</code>，但是能匹配&rdquo;food&rdquo;中的两个o。</td>
+</tr>
+
+<tr>
+<td>{n,}</td>
+<td>至少匹配n个前面表达式。<code>o{1,}</code>等价于<code>o+</code>。<code>o{0,}</code>则等价于<code>o*</code>。</td>
+</tr>
+
+<tr>
+<td>{n,m}</td>
+<td>匹配n到m次由前面的正则表达式定义的片段，贪婪方式</td>
+</tr>
+
+<tr>
+<td>( )</td>
+<td>匹配括号内的表达式，也表示一个组</td>
+</tr>
+
+<tr>
+<td>a|b</td>
+<td>匹配a或b</td>
+</tr>
+
+<tr>
+<td>\w</td>
+<td>匹配数字字母下划线。等价于<code>[A-Za-z0-9_]</code>。</td>
+</tr>
+
+<tr>
+<td>\W</td>
+<td>匹配非数字字母下划线。等价于<code>[^A-Za-z0-9_]</code>。</td>
+</tr>
+
+<tr>
+<td>\s</td>
+<td>匹配任意空白字符，包括空格、制表符、换页符等。等价于<code>[\t\n\r\f\v]</code>。</td>
+</tr>
+
+<tr>
+<td>\S</td>
+<td>匹配任意非空字符。等价于 <code>[^\t\n\r\f\v]</code>。</td>
+</tr>
+
+<tr>
+<td>\d</td>
+<td>匹配任意数字，等价于<code>[0-9]</code>。</td>
+</tr>
+
+<tr>
+<td>\D</td>
+<td>匹配任意非数字，等价于<code>[^0-9]</code>。</td>
+</tr>
+
+<tr>
+<td>\A</td>
+<td>匹配字符串开始</td>
+</tr>
+
+<tr>
+<td>\Z</td>
+<td>匹配字符串结束，如果是存在换行，只匹配到换行前的结束字符串</td>
+</tr>
+
+<tr>
+<td>\z</td>
+<td>匹配字符串结束</td>
+</tr>
+
+<tr>
+<td>\G</td>
+<td>匹配最后匹配完成的位置</td>
+</tr>
+
+<tr>
+<td>\n</td>
+<td>匹配一个换行符</td>
+</tr>
+
+<tr>
+<td>\t</td>
+<td>匹配一个制表符</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="实例">实例</h1>
+
+<ul>
+<li><code>[Pp]ython</code>：匹配 &ldquo;Python&rdquo; 或 &ldquo;python&rdquo;</li>
+<li><code>rub[ye]</code> ：匹配 &ldquo;ruby&rdquo; 或 &ldquo;rube&rdquo;</li>
+<li><code>[aeiou]</code> ：匹配中括号内的任意一个字母，a、e、i、o或者u</li>
+<li><code>[^aeiou]</code> ：除了aeiou字母以外的所有字符</li>
+<li><code>[0-9]</code> ：匹配任何数字。类似于 [0123456789]</li>
+<li><code>[^0-9]</code> ：匹配除了数字外的字符</li>
+<li><code>[a-z]</code> ：匹配任何小写字母</li>
+<li><code>[A-Z]</code> ：匹配任何大写字母</li>
+<li><code>[a-zA-Z0-9]</code> ：匹配任何字母及数字</li>
+<li><code>py</code>可以匹配<code>'python'</code>，但是<code>^py$</code>只能匹配&rsquo;py&rsquo;了</li>
+<li><code>[0-9a-zA-Z\_]</code>可以匹配一个数字、字母或者下划线；等价于：<code>\w</code></li>
+<li><code>[0-9a-zA-Z\_]+</code>可以匹配至少由一个数字、字母或者下划线组成的字符串，比如<code>'a100'</code>，<code>'0_Z'</code>，<code>'Py3000'</code>等等；等价于<code>\w+</code></li>
+<li><code>[a-zA-Z\_][0-9a-zA-Z\_]*</code>可以匹配由字母或下划线开头，后接任意个由一个数字、字母或者下划线组成的字符串也就是Python合法的变量</li>
+<li><code>[a-zA-Z\_][0-9a-zA-Z\_]{0, 19}</code>更精确地限制了变量的长度是1-20个字符（前面1个字符+后面最多19个字符）。</li>
+<li><code>ab?</code> 会匹配 <code>'a'</code> 或者 <code>'ab'</code></li>
+<li><code>&lt;.*&gt;</code> 会进行贪婪匹配，会对<code>'&lt;a&gt; b &lt;c&gt;'</code>整个字符串进行匹配。<code>'&lt;.*?&gt;'</code>会遵循最小匹配原则，进行非贪婪匹配。</li>
+
+<li><p><code>{m,n}</code>和<code>{m,n}?</code>: 对于<code>'aaaaaa'</code>, <code>a{3,5}</code>会进行贪婪匹配，匹配5个a。而<code>a{3,5}?</code>会进行非贪婪匹配，匹配3个a</p></li>
+
+<li><p><code>\d{3}\s+\d{3,8}</code>：</p>
+
+<ul>
+<li><p><code>\d{3}</code>表示匹配3个数字，例如<code>'010'</code>；</p></li>
+
+<li><p><code>\s</code>可以匹配一个空格（也包括Tab等空白符），所以<code>\s+</code>表示至少有一个空格，例如匹配<code>' '，'  '</code>等；</p></li>
+
+<li><p><code>\d{3,8}</code>表示3-8个数字，例如<code>'1234567'</code>。</p></li>
+</ul></li>
+
+<li><p>若要匹配<code>'010-12345'</code>：由于<code>'-'</code>是特殊字符，在正则表达式中，要用<code>'\'</code>转义，所以，上面的正则是<code>\d{3}\-\d{3,8}</code>。</p></li>
+
+<li><p><code>(aa|bb|cc)</code>：匹配aa, bb或cc。用圆括号将所有选择项括起来，相邻的选择项之间用<code>|</code>分隔。但用圆括号会有一个副作用，使相关的匹配会被缓存，此时可用<code>?:</code>放在第一个选项前来消除这种副作用。</p></li>
+</ul>
+
+<h1 id="python中的re模块">Python中的re模块</h1>
+
+<p>python的<a href="https://docs.python.org/3/library/re.html">re模块</a>提供了类似于Perl的正则表达式匹配操作。
+被搜索匹配的字符串既可以是 Unicode 字符串 (str)，也可以是8位字节串 (bytes)。但是两者不能混用。即不能用一个字节串(bytes)模式去匹配 Unicode 字符串 (str)，反之亦然。</p>
+
+<p>注意：正则表达式使用反斜杠<code>('\')</code>来表示特殊形式，或者把特殊字符转义成普通字符。 而反斜杠在普通的 Python 字符串里也有相同的作用， 所以就产生了冲突。 解决办法是对于正则表达式样式使用 Python 的原始字符串表示法；在带有 <code>'r'</code> 前缀的字符串字面值中，反斜杠不必做任何特殊处理。因此 <code>r&quot;\n&quot;</code> 表示包含 <code>'\'</code> 和 <code>'n'</code> 两个字符的字符串，而 <code>&quot;\n&quot;</code> 则表示只包含一个换行符的字符串。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;ABC</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">-001&#39;</span>
+<span style="color:#75715e"># &#39;ABC\-001&#39;</span>
+<span style="color:#75715e"># 使用Python的r前缀，就不用考虑转义的问题了 r&#39;raw&#39;</span>
+s <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;ABC\-001&#39;</span>
+<span style="color:#75715e"># &#39;ABC\-001&#39;</span></code></pre></div>
+<p>前面的一个 <code>r</code> 表示字符串为非转义的原始字符串，让编译器忽略反斜杠，也就是忽略转义字符。原始字符串记法 (r&rdquo;text&rdquo;) 保持正则表达式正常。否则，每个正则式里的反斜杠(&rsquo;\&lsquo;) 都必须前缀一个反斜杠来转义。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#34;\W(.)</span><span style="color:#ae81ff">\1</span><span style="color:#e6db74">\W&#34;</span>, <span style="color:#e6db74">&#34; ff &#34;</span>))
+<span style="color:#66d9ef">print</span>(re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;\W(.)\1\W&#34;</span>, <span style="color:#e6db74">&#34; ff &#34;</span>))
+<span style="color:#66d9ef">print</span>(re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">W(.)</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">1</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">W&#34;</span>, <span style="color:#e6db74">&#34; ff &#34;</span>))
+
+<span style="color:#75715e"># output </span>
+None
+<span style="color:#f92672">&lt;</span>_sre<span style="color:#f92672">.</span>SRE_Match object; span<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>), match<span style="color:#f92672">=</span><span style="color:#e6db74">&#39; ff &#39;</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>_sre<span style="color:#f92672">.</span>SRE_Match object; span<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>), match<span style="color:#f92672">=</span><span style="color:#e6db74">&#39; ff &#39;</span><span style="color:#f92672">&gt;</span></code></pre></div>
+<p>下面介绍一下python标准库re模块的几种常用方法。</p>
+
+<h2 id="1-re-match">1. re.match()</h2>
+
+<p><code>re.match(pattern, string, flags=0)</code></p>
+
+<p><code>match()</code>尝试从字符串的起始位置匹配一个模式，如果不是起始位置匹配成功的话，<code>match()</code>就返回<code>none</code>。如果匹配成功，返回一个Match对象。常见的判断方法是：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+content <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Hello~666 | fr0m_Qi_Zhang|:)&#39;</span>
+<span style="color:#66d9ef">print</span>(len(content))
+result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^Hello~\d{3}\s\|\s\w+\|:\)$&#39;</span>, content)
+<span style="color:#75715e"># 也可以用.*进行泛匹配：</span>
+<span style="color:#75715e"># result = re.match(r&#39;^Hello.*:\)$&#39;, content)</span>
+<span style="color:#66d9ef">print</span>(result)
+<span style="color:#66d9ef">print</span>(result<span style="color:#f92672">.</span>group())
+<span style="color:#66d9ef">print</span>(result<span style="color:#f92672">.</span>span())
+
+<span style="color:#75715e"># output</span>
+<span style="color:#ae81ff">30</span>
+<span style="color:#f92672">&lt;</span>_sre<span style="color:#f92672">.</span>SRE_Match object; span<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">30</span>), match<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Hello~666 | fr0m_Qi_Zhang|:)&#39;</span><span style="color:#f92672">&gt;</span>
+Hello<span style="color:#f92672">~</span><span style="color:#ae81ff">666</span> <span style="color:#f92672">|</span> fr0m_Qi_Zhang<span style="color:#f92672">|</span>:)
+(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">30</span>)</code></pre></div>
+<h3 id="1-1-分组">1.1 分组</h3>
+
+<p>用<code>()</code>匹配目标，然后用<code>group</code>方法提取<code>()</code>中的内容，可用这种方法提取字符串中的子串。
+如果正则表达式中定义了组，就可以在Match对象上用<code>group()</code>方法提取出子串来。 <code>group(0)</code>是原始字符串，<code>group(1)</code>、<code>group(2)</code>…… 表示第1、2、…… 个子串。
+例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+m <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^(\d{3})-(\d{3,8})$&#39;</span>, <span style="color:#e6db74">&#39;010-12345&#39;</span>)
+m
+<span style="color:#75715e"># &lt;_sre.SRE_Match object; span=(0, 9), match=&#39;010-12345&#39;&gt;</span>
+m<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">0</span>)
+<span style="color:#75715e"># &#39;010-12345&#39;</span>
+m<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>)
+<span style="color:#75715e"># &#39;010&#39;</span>
+m<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">2</span>)
+<span style="color:#75715e"># &#39;12345&#39;</span></code></pre></div>
+<p><code>^(\d{3})-(\d{3,8})$</code>分别定义了两个组，可以直接从匹配的字符串中提取出区号和本地号码。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;19:05:30&#39;</span>
+<span style="color:#f92672">&gt;&gt;&gt;</span> m <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^(0[0-9]|1[0-9]|2[0-3]|[0-9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])$&#39;</span>, t)
+<span style="color:#f92672">&gt;&gt;&gt;</span> m<span style="color:#f92672">.</span>groups()
+(<span style="color:#e6db74">&#39;19&#39;</span>, <span style="color:#e6db74">&#39;05&#39;</span>, <span style="color:#e6db74">&#39;30&#39;</span>)</code></pre></div>
+<p>上面这个正则表达式可以直接识别合法的时间。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+content <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Hello~666 | fr0m_Qi_Zhang | :)&#39;</span>
+<span style="color:#66d9ef">print</span>(len(content))
+result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^Hello(~\d{3}).*:\)$&#39;</span>, content)
+<span style="color:#66d9ef">print</span>(result)
+<span style="color:#66d9ef">print</span>(result<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">0</span>))
+<span style="color:#66d9ef">print</span>(result<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>)) <span style="color:#75715e"># 提取(~\d{3})匹配的内容：~666</span>
+<span style="color:#66d9ef">print</span>(result<span style="color:#f92672">.</span>span())
+
+<span style="color:#75715e"># output</span>
+<span style="color:#ae81ff">32</span>
+<span style="color:#f92672">&lt;</span>_sre<span style="color:#f92672">.</span>SRE_Match object; span<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">32</span>), match<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Hello~666 | fr0m_Qi_Zhang | :)&#39;</span><span style="color:#f92672">&gt;</span>
+Hello<span style="color:#f92672">~</span><span style="color:#ae81ff">666</span> <span style="color:#f92672">|</span> fr0m_Qi_Zhang <span style="color:#f92672">|</span> :)
+<span style="color:#f92672">~</span><span style="color:#ae81ff">666</span>
+(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">32</span>)</code></pre></div>
+<p>分组例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+pattern <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;([a-z]+) ([a-z]+)&#39;</span>, re<span style="color:#f92672">.</span>I)   <span style="color:#75715e"># re.I 表示忽略大小写</span>
+m <span style="color:#f92672">=</span> pattern<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;Hello World Wide Web&#39;</span>)
+<span style="color:#66d9ef">print</span>(m<span style="color:#f92672">.</span>group())
+<span style="color:#66d9ef">print</span>(m<span style="color:#f92672">.</span>groups())
+<span style="color:#66d9ef">print</span>(m<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">0</span>))
+<span style="color:#66d9ef">print</span>(m<span style="color:#f92672">.</span>span(<span style="color:#ae81ff">0</span>))
+<span style="color:#66d9ef">print</span>(m<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>))
+<span style="color:#66d9ef">print</span>(m<span style="color:#f92672">.</span>span(<span style="color:#ae81ff">1</span>))
+<span style="color:#66d9ef">print</span>(m<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">2</span>))
+<span style="color:#66d9ef">print</span>(m<span style="color:#f92672">.</span>span(<span style="color:#ae81ff">2</span>))
+<span style="color:#66d9ef">print</span>(m<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">3</span>))
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">Hello World
+</span><span style="color:#e6db74">(&#39;Hello&#39;, &#39;World&#39;)
+</span><span style="color:#e6db74">Hello World
+</span><span style="color:#e6db74">(0, 11)
+</span><span style="color:#e6db74">Hello
+</span><span style="color:#e6db74">(0, 5)
+</span><span style="color:#e6db74">World
+</span><span style="color:#e6db74">(6, 11)
+</span><span style="color:#e6db74">---------------------------------------------------------------------------
+</span><span style="color:#e6db74">IndexError                                Traceback (most recent call last)
+</span><span style="color:#e6db74">&lt;ipython-input-9-797c6bfab8b0&gt; in &lt;module&gt;
+</span><span style="color:#e6db74">      7 print(m.group(2))
+</span><span style="color:#e6db74">      8 print(m.span(2))
+</span><span style="color:#e6db74">----&gt; 9 print(m.group(3))
+</span><span style="color:#e6db74">     10 
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">IndexError: no such group
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+pattern <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;([a-z]+) (?:[a-z]+)&#39;</span>, re<span style="color:#f92672">.</span>I)   <span style="color:#75715e"># re.I 表示忽略大小写</span>
+m <span style="color:#f92672">=</span> pattern<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;Hello World Wide Web&#39;</span>)
+<span style="color:#66d9ef">print</span>(m<span style="color:#f92672">.</span>groups())
+<span style="color:#75715e"># (&#39;Hello&#39;,)</span></code></pre></div>
+<h3 id="1-2-贪婪匹配与非贪婪匹配">1.2 贪婪匹配与非贪婪匹配</h3>
+
+<p>正则匹配默认是贪婪匹配，也就是匹配尽可能多的字符。例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^(\d+)(0*)$&#39;</span>, <span style="color:#e6db74">&#39;1008600000&#39;</span>)<span style="color:#f92672">.</span>groups()
+<span style="color:#75715e"># (&#39;1008600000&#39;, &#39;&#39;)</span></code></pre></div>
+<p><code>\d+</code>贪婪匹配，直接把后面的0全部匹配了，结果<code>0*</code>只能匹配空字符串。
+加<code>?</code>可让<code>\d+</code>采用非贪婪匹配(尽可能少匹配)：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^(\d+?)(0*)$&#39;</span>, <span style="color:#e6db74">&#39;1008600000&#39;</span>)<span style="color:#f92672">.</span>groups()
+(<span style="color:#e6db74">&#39;10086&#39;</span>, <span style="color:#e6db74">&#39;00000&#39;</span>)</code></pre></div>
+<p>（1）贪婪匹配</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+content <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Hello~666 | fr0m_Qi_Zhang | :)&#39;</span>
+result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^He.*(\d+).*:\)$&#39;</span>, content) 
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;result: {result}&#34;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;result.group(1): {result.group(1)}&#34;</span>)
+
+<span style="color:#75715e"># output</span>
+result: <span style="color:#f92672">&lt;</span>_sre<span style="color:#f92672">.</span>SRE_Match object; span<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">32</span>), match<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Hello~666 | fr0m_Qi_Zhang | :)&#39;</span><span style="color:#f92672">&gt;</span>
+result<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>): <span style="color:#ae81ff">0</span>
+<span style="color:#75715e"># .*会进行贪婪匹配。使得(\d+)匹配到了fr0m中的0</span></code></pre></div>
+<p>（2）非贪婪匹配</p>
+
+<p>将<code>.*</code>后面加一个<code>?</code>就会变成非贪婪匹配：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+content <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Hello~666 | fr0m_Qi_Zhang | :)&#39;</span>
+result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^He.*?(\d+).*:\)$&#39;</span>, content) 
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;result: {result}&#34;</span>)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;result.group(1): {result.group(1)}&#34;</span>)
+
+<span style="color:#75715e">#output</span>
+result: <span style="color:#f92672">&lt;</span>_sre<span style="color:#f92672">.</span>SRE_Match object; span<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">32</span>), match<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Hello~666 | fr0m_Qi_Zhang | :)&#39;</span><span style="color:#f92672">&gt;</span>
+result<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>): <span style="color:#ae81ff">666</span>
+<span style="color:#75715e"># 括号中的(\d+)还是进行了贪婪匹配，改为(\d+?)会只匹配一个6</span></code></pre></div>
+<h3 id="1-3-匹配模式">1.3 匹配模式</h3>
+
+<p>对于字符串中的换行符进行匹配：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+content <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;Hello~666 | 
+</span><span style="color:#e6db74">fr0m_Qi_Zhang | :)
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^He.*?(\d+).*:\)$&#39;</span>, content, re<span style="color:#f92672">.</span>S)
+<span style="color:#66d9ef">print</span>(result<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>))
+
+<span style="color:#75715e">#output</span>
+<span style="color:#ae81ff">666</span></code></pre></div>
+<p><code>re.S</code> 即为 <code>.</code> 并且包括换行符在内的任意字符（<code>.</code> 不包括换行符）</p>
+
+<p>其他常用的匹配模式：</p>
+
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>re.I</td>
+<td>忽略大小写匹配</td>
+</tr>
+
+<tr>
+<td>re.M</td>
+<td><code>re.MULTILINE</code>，多行匹配。<code>'^'</code> 匹配字符串的开始，和每一行的开始；<code>'$'</code>匹配字符串尾，和每一行的结尾</td>
+</tr>
+
+<tr>
+<td>re.S</td>
+<td><code>re.DOTALL</code>，使 <code>.</code> 匹配包括换行在内的所有字符</td>
+</tr>
+
+<tr>
+<td>re.X</td>
+<td><code>re.VERBOSE</code>，这个标记允许你通过分段和添加注释，编写更具可读性更友好的正则表达式</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="1-4-转义">1.4 转义</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+content <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;The price of the book is $66.66&#39;</span>
+result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;The price of the book is $66.66&#39;</span>, content)
+<span style="color:#66d9ef">print</span>(result) 
+<span style="color:#75715e"># None</span></code></pre></div>
+<p>在匹配的时候对于一些特殊字符需要加<code>\</code>进行转义，不然会匹配错误。上述代码可以改成如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+content <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;The price of the book is $66.66&#39;</span>
+result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;The price of the book is \$66\.66&#39;</span>, content)
+<span style="color:#66d9ef">print</span>(result)
+<span style="color:#75715e"># &lt;_sre.SRE_Match object; span=(0, 31), match=&#39;The price of the book is $66.66&#39;&gt;</span></code></pre></div>
+<h2 id="2-re-search">2. re.search()</h2>
+
+<p><code>re.search(pattern, string, flags=0)</code></p>
+
+<p><code>re.match()</code>只匹配字符串的开始，如果字符串开始不符合正则表达式，就会匹配失败，函数返回<code>None</code>；与<code>re.match()</code>不同的是，<code>re.search()</code>会扫描整个字符串并返回<strong>第一个</strong>成功的匹配。</p>
+
+<p>其他方法和<code>re.match()</code>类似。所以为了匹配更方便，能用search就不用match。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+content <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;wawawa Hello~666 | fr0m_Qi_Zhang | :)&#34;</span>
+<span style="color:#75715e"># match()</span>
+result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;He.*?(\d+).*:\)&#39;</span>, content)
+<span style="color:#66d9ef">if</span> result:
+    <span style="color:#66d9ef">print</span>(result<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>))
+<span style="color:#66d9ef">else</span>:
+    <span style="color:#66d9ef">print</span>(result)
+<span style="color:#75715e"># search()</span>
+result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;He.*?(\d+).*:\)&#39;</span>, content)
+<span style="color:#66d9ef">if</span> result:
+    <span style="color:#66d9ef">print</span>(result<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>))
+<span style="color:#66d9ef">else</span>:
+    <span style="color:#66d9ef">print</span>(result)
+    
+<span style="color:#75715e"># output </span>
+None
+<span style="color:#ae81ff">666</span></code></pre></div>
+<h2 id="3-re-findall">3. re.findall()</h2>
+
+<p><code>re.findall(pattern, string, flags=0)</code>
+在字符串中找到正则表达式所匹配的所有子串，并返回一个列表，如果没有找到匹配的，则返回空列表。匹配按找到的顺序返回。如果样式里存在一到多个组，就返回一个组合列表；就是一个元组的列表。<code>match()</code> 和 <code>search()</code> 是匹配一次 <code>findall()</code> 匹配所有。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;He was carefully carefully carefully disguised but captured quickly by police.&#34;</span>
+re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;\w+ly&#34;</span>, text)
+<span style="color:#75715e"># [&#39;carefully&#39;, &#39;carefully&#39;, &#39;carefully&#39;, &#39;quickly&#39;]</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+pattern <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;\d+&#39;</span>)   <span style="color:#75715e"># 查找数字</span>
+result1 <span style="color:#f92672">=</span> pattern<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">&#39;what 123 123 how where 456 also 123&#39;</span>)
+result2 <span style="color:#f92672">=</span> pattern<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">&#39;6688why12&#39;</span>, pos<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, endpos<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+<span style="color:#66d9ef">print</span>(result1)
+<span style="color:#66d9ef">print</span>(result2)
+
+<span style="color:#75715e"># output</span>
+[<span style="color:#e6db74">&#39;123&#39;</span>, <span style="color:#e6db74">&#39;123&#39;</span>, <span style="color:#e6db74">&#39;456&#39;</span>, <span style="color:#e6db74">&#39;123&#39;</span>]
+[<span style="color:#e6db74">&#39;668&#39;</span>]</code></pre></div>
+<h2 id="4-re-finditer">4. re.finditer()</h2>
+
+<p>以迭代器的形式返回匹配对象。从左到右扫描，匹配按顺序排列。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;He was carefully carefully carefully disguised but captured quickly by police.&#34;</span>
+<span style="color:#66d9ef">for</span> m <span style="color:#f92672">in</span> re<span style="color:#f92672">.</span>finditer(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;\w+ly&#34;</span>, text):
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%02d</span><span style="color:#e6db74">-</span><span style="color:#e6db74">%02d</span><span style="color:#e6db74">: </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> (m<span style="color:#f92672">.</span>start(), m<span style="color:#f92672">.</span>end(), m<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">0</span>)))
+
+<span style="color:#75715e"># output</span>
+<span style="color:#ae81ff">07</span><span style="color:#f92672">-</span><span style="color:#ae81ff">16</span>: carefully
+<span style="color:#ae81ff">17</span><span style="color:#f92672">-</span><span style="color:#ae81ff">26</span>: carefully
+<span style="color:#ae81ff">27</span><span style="color:#f92672">-</span><span style="color:#ae81ff">36</span>: carefully
+<span style="color:#ae81ff">60</span><span style="color:#f92672">-</span><span style="color:#ae81ff">67</span>: quickly</code></pre></div>
+<h2 id="5-re-split">5. re.split()</h2>
+
+<p>按照正则表达式，切分字符串</p>
+
+<pre><code>re.split(pattern, string[, maxsplit=0, flags=0])
+#参数：
+pattern	    匹配的正则表达式，如果有`()`，则所有的组里的文字也会包含在列表里。
+string	    要匹配的字符串。
+maxsplit	分隔次数，maxsplit=1 分隔一次，默认为 0，不限制次数。
+flags	    标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;a b   c&#39;</span><span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39; &#39;</span>))
+<span style="color:#75715e"># [&#39;a&#39;, &#39;b&#39;, &#39;&#39;, &#39;&#39;, &#39;c&#39;]</span>
+<span style="color:#66d9ef">print</span>(re<span style="color:#f92672">.</span>split(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;\s+&#39;</span>, <span style="color:#e6db74">&#39;a b   c&#39;</span>))
+<span style="color:#75715e"># [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span>
+<span style="color:#66d9ef">print</span>(re<span style="color:#f92672">.</span>split(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;[\s,]+&#39;</span>, <span style="color:#e6db74">&#39;a,b, c  d&#39;</span>))
+<span style="color:#75715e"># [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</span>
+<span style="color:#66d9ef">print</span>(re<span style="color:#f92672">.</span>split(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;[\s,;]+&#39;</span>, <span style="color:#e6db74">&#39;a,b;; c  d&#39;</span>))
+<span style="color:#75715e"># [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</span></code></pre></div>
+<p>官网的例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(re<span style="color:#f92672">.</span>split(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;\W+&#39;</span>, <span style="color:#e6db74">&#39;Words, words, words.&#39;</span>))
+<span style="color:#75715e"># [&#39;Words&#39;, &#39;words&#39;, &#39;words&#39;, &#39;&#39;]</span>
+<span style="color:#66d9ef">print</span>(re<span style="color:#f92672">.</span>split(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;(\W+)&#39;</span>, <span style="color:#e6db74">&#39;Words, words, words.&#39;</span>))
+<span style="color:#75715e"># [&#39;Words&#39;, &#39;, &#39;, &#39;words&#39;, &#39;, &#39;, &#39;words&#39;, &#39;.&#39;, &#39;&#39;]</span>
+<span style="color:#66d9ef">print</span>(re<span style="color:#f92672">.</span>split(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;\W+&#39;</span>, <span style="color:#e6db74">&#39;Words, words, words.&#39;</span>, <span style="color:#ae81ff">1</span>))
+<span style="color:#75715e"># [&#39;Words&#39;, &#39;words, words.&#39;]</span>
+<span style="color:#66d9ef">print</span>(re<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;[a-f]+&#39;</span>, <span style="color:#e6db74">&#39;0a3B9&#39;</span>, flags<span style="color:#f92672">=</span>re<span style="color:#f92672">.</span>IGNORECASE))
+<span style="color:#75715e"># [&#39;0&#39;, &#39;3&#39;, &#39;9&#39;]</span></code></pre></div>
+<h2 id="6-re-sub">6. re.sub()</h2>
+
+<p>替换字符串中每一个匹配的子串后返回替换后的字符串。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+content <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;wawawa Hello~666 | fr0m_Qi_Zhang | :)&#34;</span>
+content <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>sub(<span style="color:#e6db74">&#39;\d+&#39;</span>, <span style="color:#e6db74">&#39;@@@Replacement@@@&#39;</span>, content)
+<span style="color:#66d9ef">print</span>(content)
+
+<span style="color:#75715e"># output</span>
+wawawa Hello<span style="color:#f92672">~</span><span style="color:#960050;background-color:#1e0010">@@</span><span style="color:#a6e22e">@Replacement</span><span style="color:#960050;background-color:#1e0010">@@@</span> <span style="color:#f92672">|</span> fr<span style="color:#960050;background-color:#1e0010">@@</span><span style="color:#a6e22e">@Replacement</span><span style="color:#960050;background-color:#1e0010">@@</span><span style="color:#a6e22e">@m_Qi_Zhang</span> <span style="color:#f92672">|</span> :)</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+content <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;wawawa Hello~666 | fr0m_Qi_Zhang | :)&#34;</span>
+content <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>sub(<span style="color:#e6db74">&#39;[_]&#39;</span>, <span style="color:#e6db74">&#39; &#39;</span>, content)
+<span style="color:#66d9ef">print</span>(content)
+
+<span style="color:#75715e">#output</span>
+wawawa Hello<span style="color:#f92672">~</span><span style="color:#ae81ff">666</span> <span style="color:#f92672">|</span> fr0m Qi Zhang <span style="color:#f92672">|</span> :)</code></pre></div>
+<h2 id="7-re-compile">7. re.compile()</h2>
+
+<p><code>re.compile()</code>将一个正则表达式串编译成正则对象，以便于复用该匹配模式。</p>
+
+<p>在Python中使用正则表达式时，<code>re</code>模块内会有两个步骤：<strong>编译正则表达&ndash;&gt;匹配字符串</strong></p>
+
+<p>但若一个正则表达式要重复使用很多次，可以预编译该正则表达式以提高效率，编译后生成<code>Regular Expression</code>对象，可以重复调用：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+content <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;wawawa Hello~666 | fr0m_Qi_Zhang | :)&#34;</span>
+pattern <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;\d+&#39;</span>, re<span style="color:#f92672">.</span>S)
+result <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(pattern, content)
+<span style="color:#66d9ef">print</span>(result)
+<span style="color:#75715e">#output</span>
+<span style="color:#f92672">&lt;</span>_sre<span style="color:#f92672">.</span>SRE_Match object; span<span style="color:#f92672">=</span>(<span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">16</span>), match<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;666&#39;</span><span style="color:#f92672">&gt;</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> re
+<span style="color:#75715e"># 编译:</span>
+re_telephone <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^(\d{3})-(\d{3,8})$&#39;</span>)
+<span style="color:#75715e"># 使用：</span>
+<span style="color:#66d9ef">print</span>(re_telephone<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;010-12345&#39;</span>)<span style="color:#f92672">.</span>group())
+<span style="color:#66d9ef">print</span>(re_telephone<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;010-8086&#39;</span>)<span style="color:#f92672">.</span>groups())
+<span style="color:#75715e"># output</span>
+<span style="color:#ae81ff">010</span><span style="color:#f92672">-</span><span style="color:#ae81ff">12345</span>
+(<span style="color:#e6db74">&#39;010&#39;</span>, <span style="color:#e6db74">&#39;8086&#39;</span>)</code></pre></div>
+<h1 id="reference">Reference</h1>
+
+<ul>
+<li><a href="https://docs.python.org/3/library/re.html">python-re</a></li>
+<li><a href="https://deerchao.cn/tutorials/regex/regex.htm">正则表达式30分钟入门教程</a></li>
+<li><a href="https://docs.python.org/3/howto/regex.html#regex-howto">regex-howto</a></li>
+<li><a href="https://github.com/learnbyexample/py_regular_expressions">py_regular_expressions</a></li>
+<li><a href="https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md">Learn Regex the Easy Way(提供在线练习)</a></li>
+</ul></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.wentixiaogege.com/tags/python"><span class="tag">Python</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="tag">正则表达式</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/%E7%88%AC%E8%99%AB"><span class="tag">爬虫</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>383</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "orion-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.wentixiaogege.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5713bba443e20a46d066ca93c131f795";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  </body>
+</html>

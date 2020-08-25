@@ -1,0 +1,2280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>SQL必知必会梳理</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <link href="//hm.baidu.com" rel="dns-prefetch">
+
+  
+
+  
+  <meta name="author" content="Qi Zhang">
+  <meta name="description" content="SQL必知必会梳理。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="SQL必知必会梳理">
+    <meta name="twitter:description" content="SQL必知必会梳理。
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="SQL必知必会梳理">
+  <meta property="og:description" content="SQL必知必会梳理。
+">
+  <meta property="og:url" content="https://www.wentixiaogege.com/post/cs-sql-bizhibihui/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.57.2">
+
+
+<link rel="canonical" href="https://www.wentixiaogege.com/post/cs-sql-bizhibihui/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.wentixiaogege.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.wentixiaogege.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.wentixiaogege.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.wentixiaogege.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.wentixiaogege.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.wentixiaogege.com/manifest.json">
+
+
+<link rel="preload" href="https://www.wentixiaogege.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.wentixiaogege.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.wentixiaogege.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.wentixiaogege.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://www.wentixiaogege.com/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">wentixiaogege</h2>
+  
+  <p class="subtitle">Getty Images Contributor. I&#39;m not a photographer but a data enthusiast.</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.wentixiaogege.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">GitHub</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://wentixiaogegefoto.tuchong.com/">Gallery</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:hi@wentixiaogege.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/wentixiaogege" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/bother7" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://www.wentixiaogege.com/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">SQL必知必会梳理</h1>
+      <p class="post-meta">@Qi Zhang · Jun 23, 2019 · 17 min read</p>
+    </header>
+    <article class="post-content"><p>SQL必知必会梳理。</p>
+
+<h2 id="第1课-sql基础">第1课 SQL基础</h2>
+
+<h3 id="一-什么是sql">一、什么是SQL</h3>
+
+<h5 id="1-数据库-database">1.数据库（database)</h5>
+
+<p>保存有组织的数据的容器（通常是一个文件或者一组文件）</p>
+
+<h5 id="2-数据库软件-dbms-数据库管理系统">2.数据库软件（DBMS，数据库管理系统）</h5>
+
+<p>用来创建和操控数据库</p>
+
+<h5 id="3-表-table">3.表（table）</h5>
+
+<p>某种特定类型数据的结构化清单，同一个数据库中表名唯一</p>
+
+<h5 id="4-模式-schema">4.模式（schema）</h5>
+
+<p>关于数据库和表的布局及特性的信息</p>
+
+<h5 id="5-列-column">5.列（column）</h5>
+
+<p>表中的一个字段，所有表都是由一个或者多个列组成（将数据库想象成一个表格，网格中的每一列存储着一条特定的信息）</p>
+
+<h5 id="6-数据类型-datatype">6.数据类型（datatype）</h5>
+
+<p>所容许的数据类型。每个表列都有相对应的数据类型，它限制或容许该列中存储的数</p>
+
+<h5 id="7-行-row">7.行（row）</h5>
+
+<p>表中的一个记录</p>
+
+<h5 id="8-主键-primary-key">8.主键（primary key）</h5>
+
+<p>一列（或者一组列），其值能够唯一区分开每个行</p>
+
+<h5 id="9-sql-structured-query-language">9.SQL（structured query language）</h5>
+
+<p>结构化查询语言，专门用来与数据库通信</p>
+
+<h3 id="二-mysql简介及一些基础语句">二、MYSQL简介及一些基础语句</h3>
+
+<h5 id="1-mysql">1.MySQL</h5>
+
+<p>MySQL是一种DBMS，database management systerm，数据库软件，基于客户机-服务器运行</p>
+
+<h5 id="2-navicat-for-mysql">2.Navicat For MySQL</h5>
+
+<p>一款简单好用的数据库可视化软件（方便，点击连接，输入主机名、端口、用户名、密码等即可，点击表及可视），也可以用Sequel Pro</p>
+
+<h5 id="3-关键字-key-word">3.关键字（key word）</h5>
+
+<p>作为Mysql语言组成部分的一个保留字，不允许用关键字命名一个表或一个列。</p>
+
+<h5 id="4-选择数据库">4.选择数据库</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">USE</span> crashcource<span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#75715e"># 选择使用crashcource数据库</span></code></pre></div>
+<h5 id="5-返回可用数据库的一个列表">5.返回可用数据库的一个列表</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SHOW</span> <span style="color:#66d9ef">DATABASES</span><span style="color:#960050;background-color:#1e0010">；</span></code></pre></div>
+<h5 id="6-获取一个数据库内的表的列表">6.获取一个数据库内的表的列表</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SHOW</span> <span style="color:#66d9ef">TABLES</span><span style="color:#960050;background-color:#1e0010">；</span></code></pre></div>
+<h5 id="7-获取表列名">7.获取表列名</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SHOW</span> COLUMNS <span style="color:#66d9ef">FROM</span> CUSTOMERS<span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#75715e"># 返回字段名、数据类型、是否允许NULL、键信息、默认值以及其他信息</span></code></pre></div>
+<h5 id="8-自动增量">8.自动增量</h5>
+
+<p>MySQL可以自动为下一个行分配下一个可用编号，不用在添加一行时手动分配唯一值。启用需在用<code>CREATE</code>语句创建表时将它作为表定义的组成部分</p>
+
+<h5 id="9-describe语句">9.DESCRIBE语句</h5>
+
+<p>DESCRIBE作为SHOW COLUMNS FROM的一种快捷方式。
+比如<code>DESCRIBE customers；</code>是 <code>SHOW COLUMNS FROM customers；</code>的一种快捷方式</p>
+
+<h5 id="10-支持的其他show语句">10.支持的其他SHOW语句</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SHOW</span> STATUS<span style="color:#960050;background-color:#1e0010">；</span><span style="color:#75715e"># 显示广泛的服务器状态信息
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SHOW</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span><span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#66d9ef">SHOW</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLES</span><span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#75715e"># 分别用来显示创建特定数据库或者表的MySql语句
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SHOW</span> GRANTS<span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#75715e"># 显示授予用户（所有用户或特定用户）的安全权限
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SHOW</span> ERRORS<span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#66d9ef">SHOW</span> WARNINGS<span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#75715e"># 用来显示服务器错误或者警告</span></code></pre></div>
+<h2 id="第2课-检索数据">第2课 检索数据</h2>
+
+<h5 id="2-3-检索多个列">2.3 检索多个列</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> column1, column2, column3 
+<span style="color:#66d9ef">FROM</span> tableName;</code></pre></div>
+<h5 id="2-4-检索所有的列">2.4 检索所有的列</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> products;</code></pre></div>
+<p>注：
+1. 缺点：使用通配符(<code>*</code>)，除非确实需要查询表的每一列，否则可能会降低检索和应用的性能.
+2. 优点：能检索出表的不明确的列。</p>
+
+<h5 id="2-5-检索不同的值">2.5 检索不同的值</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">DISTINCT</span> vend_id <span style="color:#66d9ef">FROM</span> products;</code></pre></div>
+<p>注:
+1. DISTINCT关键字作用于作用于其后的所有的列，不仅仅是其后的一列。
+2. 如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">DISTINCT</span> vend_id, prod_price <span style="color:#66d9ef">FROM</span> products;</code></pre></div>
+<p>那么这两列<code>vend_id</code>, <code>prod_price</code>都相同，才会合并。</p>
+
+<h5 id="2-6-限制结果">2.6 限制结果</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name 
+<span style="color:#66d9ef">FROM</span> products 
+<span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">5</span>; 
+<span style="color:#75715e"># 返回结果只有5行。
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">SELECT</span> prod_name 
+<span style="color:#66d9ef">FROM</span> products 
+<span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">5</span> 
+OFFSET <span style="color:#ae81ff">5</span>;
+<span style="color:#75715e"># 返回6,7,8,9,10这5行数据。</span></code></pre></div>
+<p>注:
+1. 第一个被检索的行是第0行，而不是第1行。因此，<code>LIMIT 1 OFFSET 1</code> 会检索第2行，而不是第1行;
+2. MySQL和MariaDB支持简化版的<code>LIMIT 4 OFFSET 3</code>语句，即<code>LIMIT 3,4</code>。</p>
+
+<h5 id="2-7-使用注释">2.7  使用注释</h5>
+
+<ol>
+<li>单行注释: <code>#</code></li>
+<li>多行注释: <code>/*. ...  */</code></li>
+</ol>
+
+<h2 id="第3课-排序检索数据">第3课 排序检索数据</h2>
+
+<p>使用<code>SELECT</code>子句的<code>ORDER BY</code>子句，根据需要检索排序出的数据。</p>
+
+<p>在同时使用ORDER BY和WHERE子句时，应该让ORDER BY位于WHERE之后，否则会产生错误。</p>
+
+<h5 id="3-1-排序数据">3.1 排序数据</h5>
+
+<p>使用Order by语句排序Select检索出来的语句， Order by子句取一个或多个列的名字。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name, prod_price 
+<span style="color:#66d9ef">FROM</span> products 
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_price;</code></pre></div>
+<p>注：Order by子句， 必须是select的最后一条语句。</p>
+
+<h5 id="3-2-按多个列排序">3.2 按多个列排序</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name, prod_price, prod_id 
+<span style="color:#66d9ef">FROM</span> products 
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_price, prod_name;</code></pre></div>
+<h5 id="3-3-按列位置排序">3.3 按列位置排序</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name, prod_price, prod_id 
+<span style="color:#66d9ef">FROM</span> products 
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>;</code></pre></div>
+<p>注: order by 后面可以接数字，比如：2代表的是prod_price, 3代表的是prod_id。不推荐使用这种方式。</p>
+
+<h5 id="3-4-指定排序方向">3.4 指定排序方向</h5>
+
+<p>ASC 升序(默认)，DESC 降序。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name, prod_price, prod_id 
+<span style="color:#66d9ef">FROM</span> products 
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_price <span style="color:#66d9ef">DESC</span>, prod_name;</code></pre></div>
+<ul>
+<li>如果DESC降序，必须对所有需要降序的列都要加上。</li>
+</ul>
+
+<h2 id="第4课-过滤数据">第4课 过滤数据</h2>
+
+<p>常见的WHERE子句操作符</p>
+
+<pre><code>= 等于    
+&lt;&gt; 不等于   
+!= 不等于  
+=&lt; 小（等）于  
+&gt;= 大（等）于  
+BETWEEN AND 两者之间
+注意：在执行匹配操作时候不区分大小写
+</code></pre>
+
+<h5 id="4-2-3-范围值检查">4.2.3 范围值检查</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name, prod_price, prod_id 
+<span style="color:#66d9ef">FROM</span> products 
+<span style="color:#66d9ef">WHERE</span> prod_price <span style="color:#66d9ef">BETWEEN</span> <span style="color:#ae81ff">4</span> <span style="color:#66d9ef">AND</span> <span style="color:#ae81ff">10</span>;</code></pre></div>
+<h5 id="4-2-4-空值检查">4.2.4 空值检查</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> customers <span style="color:#66d9ef">WHERE</span> cust_email <span style="color:#66d9ef">IS</span> <span style="color:#66d9ef">NULL</span>; <span style="color:#75715e"># 空判断过滤数据
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> customers <span style="color:#66d9ef">where</span> cust_email <span style="color:#66d9ef">IS</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>; <span style="color:#75715e"># 非空判断过滤数据</span></code></pre></div>
+<h2 id="第5课-高级数据过滤">第5课 高级数据过滤</h2>
+
+<h5 id="5-1-3-组合where子句">5.1.3 组合WHERE子句</h5>
+
+<ol>
+<li><p><code>OR</code>操作符和<code>AND</code>操作符。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name, prod_price, vend_id 
+<span style="color:#66d9ef">FROM</span> products 
+<span style="color:#66d9ef">WHERE</span> vend_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1001&#39;</span> <span style="color:#66d9ef">OR</span> vend_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1005&#39;</span> <span style="color:#66d9ef">AND</span> prod_price <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">10</span>;</code></pre></div></li>
+</ol>
+
+<p>结果：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">prod_name</th>
+<th align="center">prod_price</th>
+<th align="center">vend_id</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">.5 ton anvil</td>
+<td align="center">5.99</td>
+<td align="center">1001</td>
+</tr>
+
+<tr>
+<td align="center">1 ton anvil</td>
+<td align="center">9.99</td>
+<td align="center">1001</td>
+</tr>
+
+<tr>
+<td align="center">2 ton anvil</td>
+<td align="center">14.99</td>
+<td align="center">1001</td>
+</tr>
+
+<tr>
+<td align="center">JetPack 1000</td>
+<td align="center">35.00</td>
+<td align="center">1005</td>
+</tr>
+
+<tr>
+<td align="center">JetPack 2000</td>
+<td align="center">55.00</td>
+<td align="center">1005</td>
+</tr>
+</tbody>
+</table>
+
+<p>分析：</p>
+
+<p><code>OR</code>操作符和<code>AND</code>操作符优先级不同。<code>AND</code>操作符的优先级 &gt;<code>OR</code>操作符的优先级。所以上面的sql变成了:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name, prod_price, vend_id 
+<span style="color:#66d9ef">FROM</span> products 
+<span style="color:#66d9ef">WHERE</span> vend_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1001&#39;</span> <span style="color:#66d9ef">OR</span> (vend_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1005&#39;</span> <span style="color:#66d9ef">AND</span> prod_price <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">10</span> );</code></pre></div>
+<h5 id="5-2-in操作符">5.2 IN操作符</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name, prod_price, vend_id 
+<span style="color:#66d9ef">FROM</span> products 
+<span style="color:#66d9ef">WHERE</span> vend_id <span style="color:#66d9ef">IN</span> (<span style="color:#e6db74">&#39;1001&#39;</span>, <span style="color:#e6db74">&#39;1003&#39;</span>) 
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_price <span style="color:#66d9ef">DESC</span>;</code></pre></div>
+<p><code>IN</code>操作符的优点
+1. <code>IN</code>操作符一般比一组<code>OR</code>操作符更快
+2. <code>IN</code>最大的优点是：可以包含其他<code>SELECT</code>语句，能够动态的建立<code>WHERE</code>子句</p>
+
+<h5 id="5-3-not操作符">5.3 NOT操作符</h5>
+
+<p><code>NOT</code>操作符用作否定其后所跟的任何条件。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> products 
+<span style="color:#66d9ef">WHERE</span> <span style="color:#66d9ef">NOT</span> vend_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">1001</span> 
+<span style="color:#66d9ef">AND</span> prod_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Safe&#39;</span>;</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="center">prod_id</th>
+<th align="center">vend_id</th>
+<th align="center">prod_name</th>
+<th align="center">prod_price</th>
+<th align="center">prod_desc</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">SAFE</td>
+<td align="center">1003</td>
+<td align="center">Safe</td>
+<td align="center">50.00</td>
+<td align="center">Safe with combination lock</td>
+</tr>
+</tbody>
+</table>
+
+<p>注：<code>NOT</code>在这里只能作用于vend_id</p>
+
+<h2 id="第6课-使用通配符-wildcard-进行过滤">第6课 使用通配符(wildcard)进行过滤</h2>
+
+<h5 id="6-1-1-百分号-通配符">6.1.1 百分号(<code>%</code>)通配符</h5>
+
+<p>在搜索串中，<code>%</code>表示任何字符出现任意次数。
+代表搜索模式中给定位置0个、1个或多个字符。
+<code>%</code> 不能匹配NULL的行。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_id,prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;jet%&#39;</span>;
+<span style="color:#75715e"># 检索任意jet开头的词，且搜索模式区分大小写，与Jet并不匹配
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> prod_id,prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;%anvil%&#39;</span>;
+<span style="color:#75715e"># 包括anvil的所有值
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> prod_id,prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;a%s&#39;</span>;
+<span style="color:#75715e"># %代表搜索模式中给定位置的0个、1个或多个字符</span></code></pre></div>
+<h5 id="6-1-2-下划线-通配符">6.1.2 下划线(<code>_</code>)通配符</h5>
+
+<p>在搜索串中，下划线(<code>_</code>)只匹配<b>单个字符</b>，而不是多个字符。只能是一个字符。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_id, prod_name 
+<span style="color:#66d9ef">FROM</span> products 
+<span style="color:#66d9ef">WHERE</span> prod_name 
+<span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;JetPack _000&#39;</span>;</code></pre></div>
+<h5 id="6-2-使用通配符的技巧">6.2 使用通配符的技巧</h5>
+
+<ol>
+<li>要知道，使用通配符可能比其他的搜索耗费更长的时间，对数据库的压力更大。</li>
+<li>不要过度使用通配符，在其他操作符能达到效果的情况下，尽量不要使用通配符。</li>
+<li>尽量不要把通配符放在搜索模式的开始处，把通配符置于开始处，搜索起来最慢的。</li>
+</ol>
+
+<h2 id="第6-课-正则表达式搜索">第6+课 正则表达式搜索</h2>
+
+<h4 id="1-正则表达式">1.正则表达式</h4>
+
+<p>用来匹配文本的特殊的串；所有种类的程序设计语言、文本编辑器、操作系统等都支持正则表达式。</p>
+
+<h4 id="2-基本字符匹配">2.基本字符匹配</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span><span style="color:#e6db74">&#39;1000&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;
+<span style="color:#75715e"># REGEXP后面跟的就是正则表达式（与正文1000匹配的一个正则表达式)处理
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">SELECT</span> prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span><span style="color:#e6db74">&#39;.000&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;
+<span style="color:#75715e"># 其中.表示匹配任意一个字符</span></code></pre></div>
+<h4 id="3-使用binmary区分大小写">3.使用BINMARY区分大小写</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">where</span> prod_name <span style="color:#66d9ef">REGEXP</span> BINMAY <span style="color:#e6db74">&#39;JetPack  .000&#39;</span>
+<span style="color:#75715e"># MySQL本身不区分大小写</span></code></pre></div>
+<h4 id="4-进行or匹配">4.进行OR匹配</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span> <span style="color:#e6db74">&#39;1000|2000&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;</code></pre></div>
+<h4 id="5-匹配几个字符之一">5.匹配几个字符之一</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span> <span style="color:#e6db74">&#39;[123] Ton&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;
+<span style="color:#75715e"># 意思是匹配1或者2或者3，[]是另一种形式的OR语句，与[1|2|3]一致
+</span><span style="color:#75715e"># [^123]匹配除这些字符以外的东西</span></code></pre></div>
+<h4 id="6-匹配范围">6.匹配范围</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span> <span style="color:#e6db74">&#39;[1-5] Ton&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;</code></pre></div>
+<h4 id="7-匹配特殊字符">7.匹配特殊字符</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span> <span style="color:#e6db74">&#39;\\.&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;
+<span style="color:#75715e"># \\为前导，转义符
+</span><span style="color:#75715e"># 转义符的其他用处：
+</span><span style="color:#75715e"># \\f  换页   \\n  换行  \\r  换车   
+</span><span style="color:#75715e"># \\t  制表   \\v   纵向制表   \\\  转义\</span></code></pre></div>
+<h4 id="8-匹配字符类-character-class">8.匹配字符类（character class）</h4>
+
+<ul>
+<li><code>[:alnum:]</code> 任意字母或数字</li>
+<li><code>[:alpha:]</code> 任意字符</li>
+<li><code>[:blank:]</code> 空格和制表</li>
+<li><code>[:cntrl:]</code> ASCⅡ控制字符</li>
+<li><code>[:digit:]</code> 任意数字</li>
+<li><code>[:graph:]</code> 与<code>[:print:]</code>相同，但不包括空格</li>
+<li><code>[:lower:]</code> 任意小写字母</li>
+<li><code>[:print:]</code> 任意可打印字符</li>
+<li><code>[:punct:]</code> 不在<code>[:cntrl:]</code> 和<code>[:alnum:]</code>中的字符</li>
+<li><code>[:space:]</code> 包括空格字符在的任意空白字符</li>
+<li><code>[:upper:]</code> 任意大写字母</li>
+<li><code>[:xdigit:]</code> 任意16进制数字</li>
+</ul>
+
+<h4 id="9-匹配多个实例">9.匹配多个实例</h4>
+
+<ul>
+<li><code>\*</code> ：0个或者多个匹配</li>
+<li><code>\+</code>  ：1个或者多个匹配<code>{1，}</code></li>
+<li><code>?</code>   ：0个或者多个匹配<code>{0，1}</code></li>
+<li><code>{n}</code> ：指定数目的匹配</li>
+<li><code>{n,}</code> ：不少于指定数目的匹配</li>
+
+<li><p><code>{n,m}</code> ：匹配数据的范围</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#75715e"># 举例
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span>  prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span> <span style="color:#e6db74">&#39;\\([0-9] sticks?\\)&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span>  prod_name;
+<span style="color:#75715e"># \\(匹配），[0-9]匹配任何数字，sticks？匹配stick和sticks（？使s出现0次或者1次），\\（匹配）
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span>  prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span> <span style="color:#e6db74">&#39;[[:digit:]]{4}&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> prod_name;
+<span style="color:#75715e"># 连在一起的任意4位数字</span></code></pre></div></li>
+</ul>
+
+<h4 id="10-定位符">10.定位符</h4>
+
+<p>定位元字符：</p>
+
+<ul>
+<li><code>^</code> 文本的开始</li>
+<li><code>$</code> 文本的结尾</li>
+<li><code>[[:&lt;:]]</code> 词的开始</li>
+
+<li><p><code>[[:&gt;:]]</code> 词的结尾</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span>  prod_name
+<span style="color:#66d9ef">FROM</span> products
+<span style="color:#66d9ef">WHERE</span> prod_name <span style="color:#66d9ef">REGEXP</span> <span style="color:#e6db74">&#39;^[0-9]\\.)&#39;</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span>  prod_name;</code></pre></div></li>
+</ul>
+
+<h2 id="第7课-创建计算字段">第7课 创建计算字段</h2>
+
+<h5 id="7-1-计算字段">7.1 计算字段</h5>
+
+<p>计算字段是运行时在SELECT语句内创建的。不同于数据库中表的列。基本上与列（column）的意思相同，经常互换使用，术语字段通常用在计算字段的连接上。</p>
+
+<h5 id="7-2-拼接字段">7.2 拼接字段</h5>
+
+<p>将表中的列数据，拼接到一起。将值联结在一起(将一个值附加到另一个值), 构成单个值。如：prod_name(prod_price).</p>
+
+<p>拼接的操作符:  <code>concat(prod_name, '(', prod_price, ')')</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">Concat</span>(vend_name,<span style="color:#e6db74">&#39;  (&#39;</span>,vend_country, <span style="color:#e6db74">&#39;)&#39;</span>)
+<span style="color:#66d9ef">FROM</span> vendors
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> vend_name;</code></pre></div>
+<p>Trim函数：
+1. <code>RTRIM(String)</code>函数去掉字符串右边的空格。
+2. <code>LTRIM(String)</code>函数去掉字符串左边的空格。
+3. <code>TRIM(String)</code>函数去掉字符串左边和右边空格。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">Concat</span>(<span style="color:#a6e22e">RTrim</span>(vend_name),<span style="color:#e6db74">&#39;  (&#39;</span>,<span style="color:#a6e22e">RTrim</span>(vend_country), <span style="color:#e6db74">&#39;)&#39;</span>)
+<span style="color:#66d9ef">FROM</span> vendors
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> vend_name;
+<span style="color:#75715e"># LTrim()去掉左边多余的空格
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e"># AS别名。重新为列起一个新的名字。
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">concat</span>(prod_name, <span style="color:#e6db74">&#39;(&#39;</span>, vend_id, <span style="color:#e6db74">&#39;)&#39;</span>) 
+<span style="color:#66d9ef">AS</span> price_info 
+<span style="color:#66d9ef">FROM</span> products;
+
+<span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">Concat</span>(<span style="color:#a6e22e">RTrim</span>(vend_name),<span style="color:#e6db74">&#39;  (&#39;</span>,<span style="color:#a6e22e">RTrim</span>(vend_country), <span style="color:#e6db74">&#39;)&#39;</span>)
+<span style="color:#66d9ef">AS</span> vend_title
+<span style="color:#66d9ef">FROM</span> vendors
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> vend_name;</code></pre></div>
+<h5 id="7-3-执行算术计算">7.3 执行算术计算</h5>
+
+<p>算术运算符：加，减，乘，除</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#75715e"># 计算商品共卖出多少钱：
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> prod_id, quantity, item_price, quantity <span style="color:#f92672">*</span> item_price 
+<span style="color:#66d9ef">AS</span> expanded_price 
+<span style="color:#66d9ef">FROM</span> orderitems 
+<span style="color:#66d9ef">WHERE</span> order_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">20005</span>;</code></pre></div>
+<p>省略<code>FROM</code>语句可以简单地访问和处理表达式，如<code>SELECT 3*2;</code>将返回6，<code>SELECT Trim（'abc '）;</code>将返回abc，<code>SELECT Now();</code>返回当前地日期和时间。</p>
+
+<h2 id="第8课-使用数据处理函数">第8课 使用数据处理函数</h2>
+
+<h5 id="8-1-函数">8.1 函数</h5>
+
+<p>SQL中函数，各个DBMS所支持的都不同，如果使用过多的函数，可能会带来可移植问题。</p>
+
+<h5 id="8-2-使用函数">8.2 使用函数</h5>
+
+<p>大部分SQL实现支持以下类型的函数
+1. 用于处理文本字符串(如删除，填充值，转换大小写等)的文本函数。
+2. 用于在数值数据上进行的算术操作(如返回绝对值，进行代数运算)的数值函数。
+3. 用于处理日期和时间值，并从这些值中提取特定成分(如返回两个日期之差，检查日期有效性)的日期和时间函数。
+4. 返回DBMS正使用的特殊信息(如返回用户登录信息)的系统函数。</p>
+
+<h5 id="8-2-1-文本处理函数">8.2.1 文本处理函数</h5>
+
+<p>常见的文本处理函数</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><code>LEFT()</code>(或使用子字符串函数)</td>
+<td align="center">返回字符串左边的字符</td>
+</tr>
+
+<tr>
+<td align="center"><code>RIGHT()</code>(或使用子字符串函数)</td>
+<td align="center">返回字符串右边的字符</td>
+</tr>
+
+<tr>
+<td align="center"><code>LOWER()</code></td>
+<td align="center">将字符串转换为小写</td>
+</tr>
+
+<tr>
+<td align="center"><code>UPPER()</code></td>
+<td align="center">将字符串转换为大写</td>
+</tr>
+
+<tr>
+<td align="center"><code>LTRIM()</code></td>
+<td align="center">去掉字符串左边的空格</td>
+</tr>
+
+<tr>
+<td align="center"><code>RTRIM()</code></td>
+<td align="center">去掉字符串右边的空格</td>
+</tr>
+
+<tr>
+<td align="center"><code>TRIM()</code></td>
+<td align="center">去掉字符串左边和右边的空格</td>
+</tr>
+
+<tr>
+<td align="center"><code>SOUNDEX()</code></td>
+<td align="center">返回字符串的SOUNDEX值(读音相同)</td>
+</tr>
+
+<tr>
+<td align="center"><code>LENGTH()</code>(也使用<code>DATALENGTH()</code>或<code>LEN()</code>)</td>
+<td align="center">返回字符串长度</td>
+</tr>
+</tbody>
+</table>
+
+<p>解释文本处理函数: <code>SOUNDEX()</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#75715e"># SOUNDEX()函数是一种和根据读音相同来比较的，
+</span><span style="color:#75715e"># 是一个将任何文本串转换成其语音表示的字母数字模式的算法，姓名模糊查询）
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> cust_name, cust_contact 
+<span style="color:#66d9ef">FROM</span> Customers 
+<span style="color:#66d9ef">WHERE</span> <span style="color:#a6e22e">SOUNDEX</span>(cust_contact) <span style="color:#f92672">=</span> <span style="color:#a6e22e">SOUNDEX</span>(<span style="color:#e6db74">&#39;Michael Green&#39;</span>);</code></pre></div>
+<h5 id="8-2-2-日期和时间处理函数">8.2.2 日期和时间处理函数</h5>
+
+<p>非常遗憾的是：日期和时间处理函数在SQL实现中差别很大，可移植性非常差。所以，关于具体DBMS支持的日期-时间处理函数，请参阅相应的文档。</p>
+
+<pre><code>AddDate() 增加一个日期（天、周等）
+AddTime() 增加一个时间（时、分等）
+CurDate() 返回当前日期
+CurTime() 返回当前时间
+Date() 返回日期时间的日期部分
+DateDiff() 计算两个日期之差
+Date_Add() 高度灵活的日期运算函数
+Date_Format()返回一个格式化的日期或时间串
+Day() 返回一个日期的天数部分
+DayDfWeek()对于一个日期，对应返回星期几
+Hour() 返回一个时间的小时部分
+Minute() 返回一个时间的分钟部分
+Month() 返回一个时间的月份部分
+Now() 返回当前时间
+Second() 返回一个时间的秒部分
+Time() 返回一个日期时间的时间部分
+Year() 返回一个日期的年份部分
+</code></pre>
+
+<h5 id="8-2-3-数值处理函数">8.2.3 数值处理函数</h5>
+
+<p>数值处理函数仅处理数值数据，这些函数一般主要用于代数、三角或几何运算。数值处理函数在SQL差别不大。</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><code>ABS()</code></td>
+<td align="center">返回一个数的绝对值</td>
+</tr>
+
+<tr>
+<td align="center"><code>COS()</code></td>
+<td align="center">返回一个角度的余弦</td>
+</tr>
+
+<tr>
+<td align="center"><code>EXP()</code></td>
+<td align="center">返回一个数的指数值</td>
+</tr>
+
+<tr>
+<td align="center"><code>PI()</code></td>
+<td align="center">返回圆周率</td>
+</tr>
+
+<tr>
+<td align="center"><code>SIN()</code></td>
+<td align="center">返回一个角度的正弦</td>
+</tr>
+
+<tr>
+<td align="center"><code>SQRT()</code></td>
+<td align="center">返回一个数的平方根</td>
+</tr>
+
+<tr>
+<td align="center"><code>TAN()</code></td>
+<td align="center">返回一个角度的正切</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="第9课-汇总数据">第9课 汇总数据</h2>
+
+<h5 id="9-1-聚集函数">9.1 聚集函数</h5>
+
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><code>AVG()</code></td>
+<td align="center">返回某列的平均值</td>
+</tr>
+
+<tr>
+<td align="center"><code>COUNT()</code></td>
+<td align="center">返回某列的行数</td>
+</tr>
+
+<tr>
+<td align="center"><code>MAX()</code></td>
+<td align="center">返回某列的最大值</td>
+</tr>
+
+<tr>
+<td align="center"><code>MIN()</code></td>
+<td align="center">返回某列的最小值</td>
+</tr>
+
+<tr>
+<td align="center"><code>SUM()</code></td>
+<td align="center">返回某列值之和</td>
+</tr>
+</tbody>
+</table>
+
+<p>中位数：<code>select percentile(cast(age as BIGINT), 0.5) from table_name</code></p>
+
+<h5 id="9-1-1-avg-函数">9.1.1  AVG()函数</h5>
+
+<p><code>AVG()</code>函数计算表中列的平均值。<code>AVG()</code>只能用来确定特定数值列的平均值。<code>AVG()</code>函数忽略列值为NULL的行。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">avg</span>(prod_price) 
+<span style="color:#66d9ef">AS</span> avg_price 
+<span style="color:#66d9ef">FROM</span> products;</code></pre></div>
+<h5 id="9-1-2-count-函数">9.1.2 COUNT()函数</h5>
+
+<p><code>COUNT()</code> 函数有两种实现方式:
+1. 使用<code>count(*)</code>，对表中行的数目进行计数。无论是空值(NULL)或非空值。
+2. 使用<code>count(columnName)</code>对表特定列具有值进行计数，忽略NULL值。
+3. <code>SELECT count(vend_state) from vendors;</code> 语句忽略NULL值。</p>
+
+<h5 id="9-1-3-max-函数">9.1.3 MAX()函数</h5>
+
+<p><code>MAX()</code>返回指定列中的最大值。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">select</span> <span style="color:#a6e22e">max</span>(prod_price) <span style="color:#66d9ef">as</span> max_price <span style="color:#66d9ef">from</span> products;</code></pre></div>
+<h5 id="9-1-4-min-函数">9.1.4 MIN()函数</h5>
+
+<p><code>MIN()</code>的功能正好与<code>MAX()</code>功能相反，它返回指定列的最小值。</p>
+
+<h5 id="9-1-5-sum-函数">9.1.5 SUM()函数</h5>
+
+<p>SUM()用来返回指定列值的和(总计)。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">SUM</span>(item_price) <span style="color:#66d9ef">AS</span> sum_price <span style="color:#66d9ef">FROM</span> orderitems <span style="color:#66d9ef">WHERE</span> order_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">20005</span>;
+
+<span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">SUM</span>(item_price<span style="color:#f92672">*</span>quantity) <span style="color:#66d9ef">AS</span> total_price <span style="color:#66d9ef">FROM</span> orderitems <span style="color:#66d9ef">WHERE</span> order_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">20005</span>;</code></pre></div>
+<p>注: 利用标准的算术运算符，所有的聚集函数都可以执行多个列上的计算。</p>
+
+<h5 id="9-2-聚集不同的值">9.2 聚集不同的值</h5>
+
+<p>使用关键字:<code>DISTINCT</code>关键字，过滤相同的值。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">AVG</span>(<span style="color:#66d9ef">distinct</span> prod_price) 
+<span style="color:#66d9ef">AS</span> avg_price 
+<span style="color:#66d9ef">FROM</span> products 
+<span style="color:#66d9ef">WHERE</span> vend_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;DLL01&#39;</span>;</code></pre></div>
+<h5 id="9-3-组合聚集函数">9.3 组合聚集函数</h5>
+
+<p>select 语句可以根据需要包含多个聚集函数。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> num_items, 
+<span style="color:#a6e22e">MIN</span>(prod_price) <span style="color:#66d9ef">AS</span> min_price, 
+<span style="color:#a6e22e">MAX</span>(prod_price) <span style="color:#66d9ef">AS</span> max_price, 
+<span style="color:#a6e22e">SUM</span>(prod_price) <span style="color:#66d9ef">AS</span> sum_price 
+<span style="color:#66d9ef">FROM</span> products;</code></pre></div>
+<h2 id="第10课-分组数据">第10课 分组数据</h2>
+
+<p>将数据分组，使用<code>GROUP BY</code>子句和<code>HAVING</code>子句。</p>
+
+<h5 id="10-1-数据分组">10.1 数据分组</h5>
+
+<p>目前为止的所有计算都是在表的所有数据或匹配特定的<code>WHERE</code>子句的数据上进行的。没有对应的分组概念。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">COUNT</span>(<span style="color:#f92672">*</span>) 
+<span style="color:#66d9ef">AS</span> num_prods 
+<span style="color:#66d9ef">FROM</span> products 
+<span style="color:#66d9ef">WHERE</span> vend_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;DLL01&#39;</span>;</code></pre></div>
+<p>如果查询每个供应商提供的商品数，需要使用分组，<code>GROUP BY</code>子句和<code>HAVING</code>子句</p>
+
+<h5 id="10-2-创建分组">10.2 创建分组</h5>
+
+<p>分组是使用<code>SELECT</code>语句的<code>GROUP BY</code>实现的。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> vend_id, <span style="color:#a6e22e">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> num_prods 
+<span style="color:#66d9ef">FROM</span> products 
+<span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> vend_id;</code></pre></div>
+<p>使用<code>GROUP BY</code>子句分组数据，然后对每个组而不是整个结果集进行聚集。</p>
+
+<h5 id="使用-group-by-子句前-需要了解一些重要的规定">使用<code>GROUP BY</code>子句前，需要了解一些重要的规定:</h5>
+
+<ul>
+<li><code>GROUP BY</code>子句可以包含任意数目的列，因而可以对分组进行嵌套，更细致的进行分组。</li>
+<li><code>GROUP BY</code>子句嵌套了分组，数据将在最后指定的分组上进行汇总。</li>
+<li><code>GROUP BY</code>子句中列出的每一列必须是检索列或有效的表达式。如果在<code>SELECT</code>中使用表达式，则必须在<code>GROUP BY</code>子句中指定相同的表达式。不能使用别名。</li>
+<li>大多数SQL实现不允许<code>GROUP BY</code>列带有长度可变的数据类型。</li>
+<li>除聚集计算语句外，<code>SELECT</code>语句中的每一列都必须在<code>GROUP BY</code>子句中给出。</li>
+<li>如果分组列中包含具有NULL值的行，则NULL将作为一个分组返回。如果列中有多行NULL值，它们将分为一组。</li>
+<li><code>GROUP BY</code>子句必须出现在<code>WHERE</code>子句之后，<code>ORDER BY</code>子句之前。</li>
+</ul>
+
+<h5 id="10-3-过滤分组">10.3 过滤分组</h5>
+
+<p><code>GROUP BY</code>新建分组，使用<code>HAVING</code>子句过滤分组。如：查询至少有两个订单的顾客。</p>
+
+<h5 id="where-子句和-having-子句的区别"><code>WHERE</code>子句和<code>HAVING</code>子句的区别:</h5>
+
+<ul>
+<li>Where子句过滤的是行，而Having子句过滤的是分组。</li>
+
+<li><p>Having子句可以替代Where子句，但是不建议这样做。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> vend_id, <span style="color:#a6e22e">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> num_prods 
+<span style="color:#66d9ef">FROM</span> products 
+<span style="color:#66d9ef">WHERE</span> prod_price <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">4</span> 
+<span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> vend_id 
+<span style="color:#66d9ef">HAVING</span> <span style="color:#a6e22e">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>;</code></pre></div></li>
+</ul>
+
+<p>分析：首先，WHERE语句先选出价格大于4的商品，然后按照vend_id来进行分组，再对分组进行过滤。</p>
+
+<h5 id="10-4-分组和排序">10.4 分组和排序</h5>
+
+<table>
+<thead>
+<tr>
+<th align="center">ORDER BY</th>
+<th align="center">GROUP BY</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">对产生的输出排序</td>
+<td align="center">对行分组，但输出可能不是分组的顺序</td>
+</tr>
+
+<tr>
+<td align="center">任意列都可以使用</td>
+<td align="center">只可能使用选择列或表达式列，而且必须使用每个选择列表达式</td>
+</tr>
+
+<tr>
+<td align="center">不一定需要</td>
+<td align="center">如果与聚集函数一起使用列(或表达式)，则必须使用</td>
+</tr>
+</tbody>
+</table>
+
+<p>一般使用<code>GROUP BY</code>子句后，也应该使用<code>ORDER BY</code>子句。</p>
+
+<h5 id="10-5-select子句的顺序">10.5 SELECT子句的顺序</h5>
+
+<table>
+<thead>
+<tr>
+<th align="center">子句</th>
+<th align="center">说明</th>
+<th align="center">是否必须使用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><code>SELECT</code></td>
+<td align="center">要返回的列或表达式</td>
+<td align="center">是</td>
+</tr>
+
+<tr>
+<td align="center"><code>FROM</code></td>
+<td align="center">从中检索数据的表</td>
+<td align="center">仅在从表选择数据时使用</td>
+</tr>
+
+<tr>
+<td align="center"><code>WHERE</code></td>
+<td align="center">行级过滤</td>
+<td align="center">否</td>
+</tr>
+
+<tr>
+<td align="center"><code>GROUP BY</code></td>
+<td align="center">分组说明</td>
+<td align="center">仅在按组计算聚集时使用</td>
+</tr>
+
+<tr>
+<td align="center"><code>HAVING</code></td>
+<td align="center">组级过滤</td>
+<td align="center">否</td>
+</tr>
+
+<tr>
+<td align="center"><code>ORDER BY</code></td>
+<td align="center">输出排序顺序</td>
+<td align="center">否</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="第11课-使用子查询">第11课 使用子查询</h2>
+
+<h5 id="11-2-利用子查询进行过滤">11.2 利用子查询进行过滤</h5>
+
+<p>假如需要列出订购物品RGAN01的所有顾客，应该怎样检索?
+1. 从订单详情表(OrderItems)中查询订购物品GRANO1的所有订单编号。
+2. 根据订单编号，从表(Orders)中查询顾客ID
+3. 根据顾客ID，从表(Customers)查询顾客信息。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> cust_name, cust_contact <span style="color:#66d9ef">FROM</span> customers
+<span style="color:#66d9ef">WHERE</span> cust_id <span style="color:#66d9ef">IN</span> (<span style="color:#66d9ef">SELECT</span> cust_id <span style="color:#66d9ef">FROM</span> Orders
+                  <span style="color:#66d9ef">WHERE</span> order_num <span style="color:#66d9ef">IN</span> (<span style="color:#66d9ef">SELECT</span> order_num 
+                                      <span style="color:#66d9ef">FROM</span> OrderItems
+                                      <span style="color:#66d9ef">WHERE</span> prod_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;GRANO1&#39;</span>));</code></pre></div>
+<p>作为子查询的SELECT语句只能查询单个列。企图查询多个列，是错误的。</p>
+
+<h5 id="11-3-作为计算字段使用子查询">11.3 作为计算字段使用子查询</h5>
+
+<p>假如需要显示Customers表中每个顾客的订单总数，应该怎样写？
+1. 从Customers表中检索顾客列表。
+2. 对于检索的每个顾客，统计在Orders表中的数目。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> cust_name, cust_state, 
+(<span style="color:#66d9ef">SELECT</span> <span style="color:#a6e22e">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">FROM</span> Orders 
+<span style="color:#66d9ef">WHERE</span> Orders.cust_id <span style="color:#f92672">=</span> Customers.cust_id) 
+<span style="color:#66d9ef">AS</span> orders
+<span style="color:#66d9ef">FROM</span> Customers 
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> cust_name;
+<span style="color:#75715e"># 该子查询检索到每个顾客执行一次</span></code></pre></div>
+<h2 id="第12课-联结表">第12课 联结表</h2>
+
+<h5 id="12-1-1-关系表">12.1.1 关系表</h5>
+
+<p>关系表的设计就是把信息分成多个表，一类数据一个表。各个表通过共同的值进行关联。</p>
+
+<h5 id="12-2-创建联结">12.2 创建联结</h5>
+
+<ul>
+<li>当<code>FROM</code>子句后接多个表时候，表示联结产生了。</li>
+
+<li><p><code>SELECT</code>子句后面所接的字段，分别来自于两个表中。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> vend_name, prod_name, vend_city, vendors.vend_id 
+<span style="color:#66d9ef">FROM</span> vendors, products 
+<span style="color:#66d9ef">WHERE</span> vendors.vend_id <span style="color:#f92672">=</span> products.vend_id;</code></pre></div>
+<p>如果没有<code>WHERE</code>子句，那么返回结果就是笛卡尔积。</p></li>
+</ul>
+
+<h5 id="12-2-3-联结多个表">12.2.3 联结多个表</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> prod_name, vend_name, prod_price, quantity 
+<span style="color:#66d9ef">FROM</span> OrderItems, Products, Vendors
+<span style="color:#66d9ef">WHERE</span> Products.vend_id <span style="color:#f92672">=</span> Vendors.vend_id
+<span style="color:#66d9ef">AND</span> OrderItems.prod_id <span style="color:#f92672">=</span> Products.prod_id
+<span style="color:#66d9ef">AND</span> order_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">20007</span>;</code></pre></div>
+<h2 id="第13课-创建高级联结">第13课 创建高级联结</h2>
+
+<h5 id="13-1-使用表别名">13.1 使用表别名</h5>
+
+<p>使用表别名优点:
+1. 缩短SQL语句
+2. 允许在一条<code>SELECT</code>语句中多次使用相同的表</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> cust_name, cust_contact 
+<span style="color:#66d9ef">FROM</span> Customers <span style="color:#66d9ef">AS</span> C, Orders <span style="color:#66d9ef">AS</span> O, OrderItems <span style="color:#66d9ef">AS</span> OI
+<span style="color:#66d9ef">WHERE</span> C.cust_id <span style="color:#f92672">=</span> O.cust_id 
+<span style="color:#66d9ef">AND</span> OI.order_num <span style="color:#f92672">=</span> O.order_num 
+<span style="color:#66d9ef">AND</span> prod_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;RGAN01&#39;</span>;</code></pre></div>
+<h5 id="13-2-使用不同类型的联结">13.2 使用不同类型的联结</h5>
+
+<p>四种联结:
+1. 内联结或等值联结
+2. 自联结(self-join)
+3. 自然联结(natural join)
+4. 外联结(outer join)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> A  
+<span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span> B <span style="color:#66d9ef">ON</span> A.book_id<span style="color:#f92672">=</span>B.book_id;
+
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> A  
+<span style="color:#66d9ef">LEFT</span> <span style="color:#66d9ef">JOIN</span> B <span style="color:#66d9ef">ON</span> A.book_id<span style="color:#f92672">=</span>B.book_id;
+
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> A  
+<span style="color:#66d9ef">RIGHT</span> <span style="color:#66d9ef">JOIN</span> B <span style="color:#66d9ef">ON</span> A.book_id<span style="color:#f92672">=</span>B.book_id;
+
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> A  
+FULL <span style="color:#66d9ef">JOIN</span> B <span style="color:#66d9ef">ON</span> A.book_id<span style="color:#f92672">=</span>B.book_id;</code></pre></div>
+<p><img src=pics/image-20190823153132567.png style=width:666px>
+<img src=pics/image-20190823153209621.png style=width:666px>
+<img src=pics/image-20190822185745676.png style=width:666px></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> pv.pageid, u.age <span style="color:#66d9ef">FROM</span> page_view pv <span style="color:#66d9ef">JOIN</span> user u <span style="color:#66d9ef">ON</span> (pv.userid <span style="color:#f92672">=</span> u.userid);</code></pre></div>
+<h5 id="13-2-1-自联结">13.2.1 自联结</h5>
+
+<p>问：查询与Y Lee同一公司的所有顾客。
+1. 使用子查询</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> cust_name, cust_address 
+<span style="color:#66d9ef">FROM</span> customers 
+<span style="color:#66d9ef">WHERE</span> cust_name <span style="color:#f92672">=</span> (<span style="color:#66d9ef">SELECT</span> cust_name <span style="color:#66d9ef">FROM</span> customers <span style="color:#66d9ef">WHERE</span> cust_contact <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Y Lee&#39;</span>);</code></pre></div>
+<ol>
+<li><p>使用自联结</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> C1.cust_name, C2.cust_address 
+<span style="color:#66d9ef">FROM</span> customers <span style="color:#66d9ef">AS</span> C1, customers <span style="color:#66d9ef">AS</span> C2 
+<span style="color:#66d9ef">WHERE</span> C1.cust_name <span style="color:#f92672">=</span> C2.cust_name <span style="color:#66d9ef">AND</span> C1.cust_contact <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Y Lee&#39;</span>;</code></pre></div></li>
+</ol>
+
+<p>用自联结而不用子查询: 许多DBMS处理联结远比处理子查询快得多。</p>
+
+<h5 id="13-2-2-自然联结">13.2.2 自然联结</h5>
+
+<h5 id="13-2-3-外联结">13.2.3 外联结</h5>
+
+<p>许多联结将一个表中的行和另一个表中的行相关联，但有时候需要包含没有关联行的那些行。如以下工作:
+1. 对每个顾客订单进行计数，包括至今尚未下订单的顾客。
+2. 列出所有产品以及订购数量，包括没人订购的产品。</p>
+
+<p>上述举例，包括了那些相关表中没有关联的行。这种联结称为外联结。</p>
+
+<p>检索所有顾客及其订单</p>
+
+<ol>
+<li><p>内联结(inner join)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> Customers.cust_id, Orders.order_num 
+<span style="color:#66d9ef">FROM</span> Customers 
+<span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span> Orders 
+<span style="color:#66d9ef">ON</span> Customers.cust_id <span style="color:#f92672">=</span> Orders.cust_id;</code></pre></div></li>
+
+<li><p>外联结(left outer join)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> Customers.cust_id, Orders.order_num 
+<span style="color:#66d9ef">FROM</span> Customers 
+<span style="color:#66d9ef">LEFT</span> <span style="color:#66d9ef">OUTER</span> <span style="color:#66d9ef">JOIN</span> Orders
+<span style="color:#66d9ef">ON</span> Customers.cust_id <span style="color:#f92672">=</span> Orders.cust_id;</code></pre></div></li>
+</ol>
+
+<p>外联结的使用的是left outer join是从左边的表(Customers)中选择行，所以如果右表没有对应的id则补充。要注意on后面的表Customers和Orders顺序。
+3. 外联结(right outer join)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> Customers.cust_id, Orders.order_num 
+<span style="color:#66d9ef">FROM</span> Customers 
+<span style="color:#66d9ef">RIGHT</span> <span style="color:#66d9ef">OUTER</span> <span style="color:#66d9ef">JOIN</span> Orders 
+<span style="color:#66d9ef">ON</span> Orders.cust_id <span style="color:#f92672">=</span> Customers.cust_id;</code></pre></div>
+<ol>
+<li><p>全外联结(full outer join)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> Customers.cust_id, Orders.order_num 
+<span style="color:#66d9ef">FROM</span> Orders 
+FULL <span style="color:#66d9ef">OUTER</span> <span style="color:#66d9ef">JOIN</span> Customers
+<span style="color:#66d9ef">ON</span> Orders.cust_id <span style="color:#f92672">=</span> Customers.cust_id;</code></pre></div></li>
+</ol>
+
+<p>两个表的行的最大集合。</p>
+
+<h5 id="13-3-使用带聚集函数的联结">13.3 使用带聚集函数的联结</h5>
+
+<p>检索所有顾客及每个顾客所下的订单数</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> Customers.cust_id, <span style="color:#a6e22e">COUNT</span>(Orders.order_num) <span style="color:#66d9ef">AS</span> num_ord
+<span style="color:#66d9ef">FROM</span> Customers 
+<span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span> Orders <span style="color:#66d9ef">ON</span> Customers.cust_id <span style="color:#f92672">=</span> Orders.cust_id
+<span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> Customers.cust_id;</code></pre></div>
+<h5 id="13-4-使用联结和联结条件">13.4 使用联结和联结条件</h5>
+
+<p>联结和联结的使用要点:
+1. 注意使用的联结类型。有内联结，外联结等
+2. 联结语法每个DBMS可能不一样。
+3. 保证使用正确的联结条件，否则返回不正确的数据。
+4. 应该总是使用联结条件，否则会得到笛卡尔积。
+5. 在一个联结中可以包含多个表，甚至可以对每个联结采用不同的联结类型。虽然这样做是合法的，一般也很有用，但应该在一起测试它们 前分别测试每个联结。这会使故障排除更为简单。</p>
+
+<h2 id="第14课-组合查询">第14课 组合查询</h2>
+
+<p>利用UNION操作符将多条SELECT语句合成一个结果集。</p>
+
+<h5 id="14-1-组合查询">14.1 组合查询</h5>
+
+<p>SQL允许执行多条查询语句(多条SELECT语句)，并将结果作为一个查询结果集返回。</p>
+
+<p>主要有两种情况需要使用组合查询:
+1. 在一个查询中，从不同的表返回结构数据。
+2. 对一个表执行多个查询，按一个查询返回数据。</p>
+
+<p>注：一般多个Where子句的Select语句都可以作为一个组合查询。也就是说将Where子句拆分开来。</p>
+
+<h5 id="14-2-创建组合查询">14.2 创建组合查询</h5>
+
+<p>用操作符UNION操作符组合多条SELECT语句，将他们的结果组合成一个结果集。</p>
+
+<h5 id="14-2-1-使用union操作符">14.2.1 使用UNION操作符</h5>
+
+<p>查询Illinois、Indiana和Michigan等美国几个州的所有顾客的报表，和不管位于哪个州的所有的Fun4All</p>
+
+<ol>
+<li><p>使用<code>UNION</code>操作符查询</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> cust_name, cust_contact, cust_email <span style="color:#66d9ef">FROM</span> Customers
+<span style="color:#66d9ef">WHERE</span> cust_state <span style="color:#66d9ef">IN</span> (<span style="color:#e6db74">&#39;Illinois&#39;</span>,<span style="color:#e6db74">&#39;Indiana&#39;</span>,<span style="color:#e6db74">&#39;Michigan&#39;</span>)
+<span style="color:#66d9ef">UNION</span>
+<span style="color:#66d9ef">SELECT</span> cust_name, cust_contact, cust_email <span style="color:#66d9ef">FROM</span> Customers
+<span style="color:#66d9ef">WHERE</span> cust_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Fun4All&#39;</span>;</code></pre></div></li>
+
+<li><p>使用<code>WHERE</code>子句</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> cust_name, cust_contact, cust_email <span style="color:#66d9ef">FROM</span> Customers
+<span style="color:#66d9ef">WHERE</span> cust_state <span style="color:#66d9ef">IN</span> (<span style="color:#e6db74">&#39;Illinois&#39;</span>,<span style="color:#e6db74">&#39;Indiana&#39;</span>,<span style="color:#e6db74">&#39;Michigan&#39;</span>) <span style="color:#66d9ef">OR</span> cust_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Fun4All&#39;</span>;</code></pre></div></li>
+</ol>
+
+<p><code>UNION</code>和<code>WHERE</code>子句比较:</p>
+
+<ol>
+<li>对于较复杂的过滤条件，或者从多个表(而不是一个表)中检索数据的情形，使用<code>UNION</code>可能会使处理更简单。</li>
+<li>多数DBMS使用内部查询优化程序，使用<code>Union</code>关键字会在内部组合它们，所以性能几乎无差别。但使用<code>Union</code>操作符也请注意下性能问题。</li>
+</ol>
+
+<h5 id="14-2-2-union-规则">14.2.2 <code>UNION</code>规则</h5>
+
+<p><code>Union</code>非常好用，但使用组合前请注意下以下规则：</p>
+
+<ol>
+<li><code>UNION</code>必须由两条或两条以上的<code>SELECT</code>语句组成，语句之间用关键字<code>UNION</code>分隔。</li>
+<li><code>UNION</code>每次查询必须包含相同的列，表达式，聚集函数。(各个列不需要以相同的次序列出)。</li>
+<li>列数据类型必须兼容:类型不必完全相同，但必须是DBMS可以隐含转换的类型。</li>
+</ol>
+
+<h5 id="14-2-3-包含或取消重复的行">14.2.3 包含或取消重复的行</h5>
+
+<p><code>UNION</code>从查询结果集中自动去除了重复的行。</p>
+
+<p>使用关键字: <code>Union All</code>的会返回所有的匹配行(不进行去除重复的行)。
+<code>Union All</code>操作符是<code>Where</code>不能替代的。</p>
+
+<h5 id="14-2-4-对组合查询结果排序">14.2.4 对组合查询结果排序</h5>
+
+<p>用<code>Union</code>组合查询时，只能使用一条<code>Order by</code>子句，它必须位于最后一条<code>Select</code>语句。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">select</span> cust_name, cust_contact, cust_id <span style="color:#66d9ef">from</span> customers 
+<span style="color:#66d9ef">where</span> cust_state <span style="color:#66d9ef">in</span> (<span style="color:#e6db74">&#39;MI&#39;</span>, <span style="color:#e6db74">&#39;OH&#39;</span>) 
+<span style="color:#66d9ef">union</span> 
+<span style="color:#66d9ef">select</span> cust_name, cust_contact, cust_id <span style="color:#66d9ef">from</span> customers 
+<span style="color:#66d9ef">where</span> cust_contact <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;E Fudd&#39;</span> 
+<span style="color:#66d9ef">order</span> <span style="color:#66d9ef">by</span> cust_id;</code></pre></div>
+<p>注意：<code>union</code>组合查询中<code>order by</code>子句的列必须在<code>select</code>后面有。且<code>order by</code>必须在语句最后，对整个结果集进行排序。</p>
+
+<h2 id="第15课-插入数据">第15课 插入数据</h2>
+
+<p>利用SQL的INSERT语句将数据插入表中。</p>
+
+<h5 id="15-1-1-插入完整的行">15.1.1 插入完整的行</h5>
+
+<p>使用INSERT语句时，请在表名括号内明确给定列名。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#a6e22e">Customers</span>(cust_id,cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country, cust_contact, cust_email)
+<span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;1000000006&#39;</span>,<span style="color:#e6db74">&#39;Toy Land&#39;</span>,<span style="color:#e6db74">&#39;123 Any Street&#39;</span>,<span style="color:#e6db74">&#39;New York&#39;</span>,<span style="color:#e6db74">&#39;NY&#39;</span>,<span style="color:#e6db74">&#39;11111&#39;</span>,<span style="color:#e6db74">&#39;USA&#39;</span>,<span style="color:#66d9ef">NULL</span>, <span style="color:#66d9ef">NULL</span>);</code></pre></div>
+<h5 id="15-1-3-插入检索出的数据">15.1.3 插入检索出的数据</h5>
+
+<p>将SELECT语句的查询结果插入到表中。顾名思义，它是由一条INSERT语句和一条SELECT语句组成的。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> 
+<span style="color:#a6e22e">Customers</span>(cust_id, cust_contact,cust_email,cust_name,cust_address,cust_city,cust_state,cust_zip,cust_country)
+<span style="color:#66d9ef">SELECT</span> 
+cust_id,cust_contact,cust_email,cust_name,cust_address,cust_city,cust_state,cust_zip,cust_country 
+<span style="color:#66d9ef">FROM</span> CustNew;</code></pre></div>
+<p>说明：SELECT，插入到表Customers中.</p>
+
+<p>注意:
+1. INSERT和SELECT不一定要求列名匹配。它使用的是列的位置，因此SELECT中的第一列(不管其列名)将用来填充表列中指定的第一列，第二列将用来填充表列中指定的第二列。
+2. INSERT通常只插入一行。INSERT SELECT是个例外，它可以用一条INSERT插入多行，不管SELECT语句返回对少条语句，都会被插入到表中。</p>
+
+<h5 id="15-2-从一个表复制到另一个表">15.2 从一个表复制到另一个表</h5>
+
+<p>SELECT INTO将数据复制到一个新表中。</p>
+
+<p>INSERT SELECT与SELECT INTO区别:
+1. INSERT SELECT是导出数据，先SELECT出结果，然后插入到表中。SELECT INTO是导入数据。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">INTO</span> CustCopy <span style="color:#66d9ef">FROM</span> customers;
+<span style="color:#75715e"># 创建一个名为CustCopy的新表。然后将整个customers表内容复制到表CustCopy中。</span></code></pre></div>
+<p>Mysql中语法是：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> CustCopy <span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> Customers;</code></pre></div>
+<p>使用select into注意点:
+1. 任何select选项和子句都可以使用，包括where和order by。
+2. 可利用联结从多个表插入数据(Mysql中未测试通过).
+3. 不管从多少个表中检索数据，数据都只能插入到一个表中。</p>
+
+<h2 id="第16课-更新和删除数据">第16课 更新和删除数据</h2>
+
+<h5 id="16-1-更新数据">16.1 更新数据</h5>
+
+<p>UPDATE语句更新表中的数据。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">UPDATE</span> Customers 
+<span style="color:#66d9ef">SET</span> cust_contact <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Sam Roberts&#39;</span>,cust_email <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sam@toyland.com&#39;</span> 
+<span style="color:#66d9ef">WHERE</span> cust_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;10000006&#39;</span>;</code></pre></div>
+<p>注意：UPDATE语句可能更新多个值。</p>
+
+<h5 id="16-2-删除数据">16.2 删除数据</h5>
+
+<p>delete语句删除表中的数据。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">FROM</span> Customers <span style="color:#66d9ef">WHERE</span> cust_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;10000006&#39;</span>;</code></pre></div>
+<p>删除时外键考虑:
+使用DELETE语句删除数据时，可能会有外键的影响。
+比如：我要删除Products表中某个商品，但是该商品cust_id在订单表中有记录，作为订单表的外键。那么删除会失败。</p>
+
+<h5 id="16-3-更新和删除的指导原则">16.3 更新和删除的指导原则</h5>
+
+<ol>
+<li>除非确实删除所有行或更新所有行，否则绝不能不使用where语句。</li>
+<li>保证每个表都要有主键，尽可能像where子句那样使用它。</li>
+<li>在UPDATE和DELETE语句使用WHERE子句前，应该先用SELECT进行测试，保证过滤条件是正确无误的。</li>
+<li>使用强制实施引用完整性的数据库，这样DBMS将不允许删除其数据与其他表相关联的行。</li>
+</ol>
+
+<h2 id="第17课-创建和操纵表">第17课 创建和操纵表</h2>
+
+<h5 id="17-1-1-表创建基础">17.1.1 表创建基础</h5>
+
+<p>利用create table创建表,必须给出下列信息:
+1. 新表的名字，在关键字create table后给出.
+2. 表列的名字和定义，用逗号隔开。
+3. 有的DBMS还要指定表的位置。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">Products</span>
+(
+prod_id <span style="color:#66d9ef">char</span>(<span style="color:#ae81ff">10</span>) <span style="color:#66d9ef">Not</span> <span style="color:#66d9ef">null</span>,
+vend_id <span style="color:#66d9ef">char</span>(<span style="color:#ae81ff">10</span>) <span style="color:#66d9ef">Not</span> <span style="color:#66d9ef">null</span>,
+prod_name <span style="color:#66d9ef">char</span>(<span style="color:#ae81ff">254</span>) <span style="color:#66d9ef">Not</span> <span style="color:#66d9ef">null</span>,
+prod_price <span style="color:#66d9ef">DECIMAL</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">2</span>),
+prod_desc <span style="color:#66d9ef">text</span>(<span style="color:#ae81ff">1000</span>), <span style="color:#66d9ef">NULL</span>
+);</code></pre></div>
+<h5 id="17-1-2-使用null">17.1.2 使用Null</h5>
+
+<p>创建表的时候，指定表的列为Not null，则表示，以后执行insert语句，该列必须有值，不接受null。</p>
+
+<h5 id="17-1-3-指定默认值">17.1.3 指定默认值</h5>
+
+<p>创建表的时候，可以为表的列提供默认值。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">OrderItems</span>
+(
+order_num <span style="color:#66d9ef">INTEGER</span> <span style="color:#66d9ef">Not</span> <span style="color:#66d9ef">null</span>,
+order_item <span style="color:#66d9ef">INTEGER</span> <span style="color:#66d9ef">Not</span> <span style="color:#66d9ef">null</span>,
+prod_id <span style="color:#66d9ef">CHAR</span>(<span style="color:#ae81ff">10</span>) <span style="color:#66d9ef">Not</span> <span style="color:#66d9ef">null</span>,
+quantity <span style="color:#66d9ef">INTEGER</span> <span style="color:#66d9ef">Not</span> <span style="color:#66d9ef">null</span> <span style="color:#66d9ef">default</span> <span style="color:#ae81ff">1</span>,
+item_price <span style="color:#66d9ef">DECIMAL</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>
+);</code></pre></div>
+<h5 id="17-2-更新表">17.2 更新表</h5>
+
+<p>使用alter table时，请考虑下列的事:
+1. 理想情况下，不要再表包含数据时对其进行更新。应该在表的设计过程中充分烤炉未来可能。
+2. 所有的DBMS都允许给现有的表增加列，不过对所增加列的数据类型(以及NULL和Default的使用)有所限制.
+3. 许多DBMS不允许删除或更改表中的列.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> Vendors <span style="color:#66d9ef">add</span> vend_phone <span style="color:#66d9ef">CHAR</span>(<span style="color:#ae81ff">20</span>);</code></pre></div>
+<p>复杂的表结构更改一般需要手动删除过程，它涉及以下步骤:
+1. 用新的列布局创建一个新表;
+2. 使用INSERT SELECT语句从旧表复制数据到新表。有必要的话，可以使用转换函数和计算字段;
+3. 检验包含所需数据的新表;
+4. 重命名旧表(如果确定，可以删除它);
+5. 用旧表原来的名字重命名新表;
+6. 根据需要，重新创建触发器、存储过程、索引和外键</p>
+
+<h5 id="17-3-删除表">17.3 删除表</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">table</span> Customers;</code></pre></div>
+<p>注意：删除表不可撤销。请慎重</p>
+
+<h5 id="17-4-重命名表">17.4 重命名表</h5>
+
+<p>每个DBMS对表重命名的支持有所不同，具体要参考具体的DBMS文档.</p>
+
+<h5 id="17-5-建表案例">17.5 建表案例</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">model_update_info</span> (
+<span style="color:#f92672">`</span>SID<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+<span style="color:#f92672">`</span>VERSION<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+<span style="color:#f92672">`</span>MODEL_NM<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+<span style="color:#f92672">`</span>METRICS_NM<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+<span style="color:#f92672">`</span>METRICS_MEAN<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+<span style="color:#f92672">`</span>METRICS_STD<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+<span style="color:#f92672">`</span>CV_METHOD<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">40</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+<span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#f92672">`</span>SID<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>VERSION<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>MODEL_NM<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>METRICS_NM<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>CV_METHOD<span style="color:#f92672">`</span>)
+) 
+<span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8
+;</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>temp_yusimiao_airq_bydate<span style="color:#f92672">`</span> (
+  <span style="color:#f92672">`</span>sid<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span><span style="color:#66d9ef">date</span><span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>aqi<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>co<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>no2<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>o3<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>pm10<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>pm25<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>so2<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>hour_hc<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>aqi_hc<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>co_hc<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>no2_hc<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>o3_hc<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>pm10_hc<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>pm25_hc<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>so2_hc<span style="color:#f92672">`</span> <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#66d9ef">UNIQUE</span> <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>uniquekey<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>sid<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span><span style="color:#66d9ef">date</span><span style="color:#f92672">`</span>)
+) <span style="color:#66d9ef">ENGINE</span><span style="color:#f92672">=</span>InnoDB <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8 COMMENT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;临时表，空气质量按站点／天汇总&#39;</span>;
+
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>task_message<span style="color:#f92672">`</span> (
+  <span style="color:#f92672">`</span><span style="color:#66d9ef">Date</span><span style="color:#f92672">`</span> <span style="color:#66d9ef">date</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span><span style="color:#66d9ef">Time</span><span style="color:#f92672">`</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">zerofill</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>SID<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">45</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>Project<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">45</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>Version<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">45</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>Depend<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">45</span>) <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>Data_status<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">45</span>) <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>Calc_status<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">45</span>) <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>Upload_status<span style="color:#f92672">`</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">45</span>) <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>DS_start<span style="color:#f92672">`</span> <span style="color:#66d9ef">datetime</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>DS_end<span style="color:#f92672">`</span> <span style="color:#66d9ef">datetime</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>CS_start<span style="color:#f92672">`</span> <span style="color:#66d9ef">datetime</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>CS_end<span style="color:#f92672">`</span> <span style="color:#66d9ef">datetime</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>US_start<span style="color:#f92672">`</span> <span style="color:#66d9ef">datetime</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#f92672">`</span>US_end<span style="color:#f92672">`</span> <span style="color:#66d9ef">datetime</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+  <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#f92672">`</span><span style="color:#66d9ef">Date</span><span style="color:#f92672">`</span>,<span style="color:#f92672">`</span><span style="color:#66d9ef">Time</span><span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>SID<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>Project<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>Version<span style="color:#f92672">`</span>),
+  <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>index1<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>Data_status<span style="color:#f92672">`</span>) <span style="color:#66d9ef">USING</span> BTREE,
+  <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>index2<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>Data_status<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>Calc_status<span style="color:#f92672">`</span>) <span style="color:#66d9ef">USING</span> BTREE,
+  <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>index3<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>Depend<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>Data_status<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>Calc_status<span style="color:#f92672">`</span>) <span style="color:#66d9ef">USING</span> BTREE,
+  <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>index4<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>SID<span style="color:#f92672">`</span>) <span style="color:#66d9ef">USING</span> BTREE,
+  <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>idx_task_message_Version<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>Version<span style="color:#f92672">`</span>),
+  <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>index7<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span><span style="color:#66d9ef">Date</span><span style="color:#f92672">`</span>,<span style="color:#f92672">`</span><span style="color:#66d9ef">Time</span><span style="color:#f92672">`</span>)
+) <span style="color:#66d9ef">ENGINE</span><span style="color:#f92672">=</span>InnoDB <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8;
+
+
+<span style="color:#75715e">## SQL commands
+</span><span style="color:#75715e">## create database and tables
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#create database for air quality prediction
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">database</span> AQI_PREDICTION_DB;
+
+<span style="color:#75715e">#create table - air quality station info
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">air_station_info</span> (
+  SID <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;监测点编码&#39;</span>
+  ,SID_C <span style="color:#66d9ef">text</span> COMMENT <span style="color:#e6db74">&#39;监测点名称&#39;</span>
+  ,CITY <span style="color:#66d9ef">text</span> COMMENT <span style="color:#e6db74">&#39;城市&#39;</span>
+  ,LON <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;经度&#39;</span>
+  ,LAT <span style="color:#66d9ef">double</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;纬度&#39;</span>
+  ,REGION <span style="color:#66d9ef">text</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;所属地区&#39;</span>
+  ,<span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (SID)
+) 
+<span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8
+COMMENT <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;空气质量站点信息&#39;</span>
+;
+
+<span style="color:#75715e">#create table - prediction by date / station / variable
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">result_prediction</span> (
+  SID <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;监测点编码&#39;</span>
+  ,date_cur <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;进行预测时所在的日期&#39;</span>
+  ,date_pred <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;要预测的日期&#39;</span>
+  ,varname_pred <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;要预测的要素名称&#39;</span>
+  ,value_pred <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;预测出的数值&#39;</span>
+  ,model_tag <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">100</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;模型标签&#39;</span>
+  ,<span style="color:#66d9ef">UNIQUE</span> <span style="color:#66d9ef">KEY</span> <span style="color:#a6e22e">uniquekey</span> (SID, date_cur, date_pred, varname_pred, model_tag)
+) 
+<span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8
+COMMENT <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;结果表，空气质量预测，按站点／日期／要素&#39;</span>
+;
+
+<span style="color:#75715e">#SQL command - create table
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">temp_yusimiao_airq_bydate</span> (
+  sid <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,<span style="color:#66d9ef">date</span> <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,aqi <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,co <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,no2 <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,o3 <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,pm10 <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,pm25 <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,so2 <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,hour_hc <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,aqi_hc <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,co_hc <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,no2_hc <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,o3_hc <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,pm10_hc <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,pm25_hc <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,so2_hc <span style="color:#66d9ef">double</span> COMMENT <span style="color:#e6db74">&#39;&#39;</span>
+  ,<span style="color:#66d9ef">UNIQUE</span> <span style="color:#66d9ef">KEY</span> <span style="color:#a6e22e">uniquekey</span> (sid, <span style="color:#66d9ef">date</span>)
+) 
+<span style="color:#66d9ef">CHARSET</span><span style="color:#f92672">=</span>utf8
+COMMENT <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;临时表，空气质量按站点／天汇总&#39;</span>
+;</code></pre></div>
+<h2 id="第18课-使用视图">第18课 使用视图</h2>
+
+<h5 id="18-1-视图">18.1 视图</h5>
+
+<p>视图是虚拟的表。与包含数据的表不一样，视图只包含使用时动态检索数据的查询。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#75715e"># 理解视图的最好方法是看例子.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> cust_name, cust_contact 
+<span style="color:#66d9ef">FROM</span> Customers, Orders, OrderItems
+<span style="color:#66d9ef">WHERE</span> Customers.cust_id <span style="color:#f92672">=</span> Orders.cust_id
+<span style="color:#66d9ef">AND</span> OrderItems.order_num <span style="color:#f92672">=</span> Orders.order_num
+<span style="color:#66d9ef">AND</span> prod_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;RGAN01&#39;</span>;
+<span style="color:#75715e"># 该句sql检索订购了某种商品的顾客。任何需要这个数据的人必须理解这些表与表之间的关系。
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e"># 假如将整个查询包装成一个名为ProductsCustomers的虚拟表。那么sql可以简化为:
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> cust_name, cust_contact 
+<span style="color:#66d9ef">FROM</span> ProductCustomers 
+<span style="color:#66d9ef">WHERE</span> prod_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;RGANO1&#39;</span>;</code></pre></div>
+<p>总结：视图不包含任何的列或数据，包含的是一个查询。</p>
+
+<h5 id="18-1-1-为什么使用视图">18.1.1 为什么使用视图</h5>
+
+<p>视图的常见使用场景:
+1. 重用SQL语句。
+2. 简化复制的SQL操作。在编写查询后，可以方便的使用它，而不必知道具体的细节。
+3. 使用表的一部分，而不是整个表。
+4. 保护数据。可以授予用户访问表的特定部分，而不是表的全部权限。
+5. 更改数据格式和表示。视图可返回与底层表的表示和格式不同的数据。</p>
+
+<p>创建视图后，可以用表相同的方式去使用它们。可以对视图执行select操作，过滤和排序数据，将视图联结到其他视图或表等。</p>
+
+<p><strong>再次强调：视图只是包含了动态检索数据的查询。</strong></p>
+
+<h5 id="18-1-2-视图的规则与限制">18.1.2 视图的规则与限制</h5>
+
+<p>不同的DBMS中视图的限制和规则可能不同，具体请参考文档。</p>
+
+<p>视图的创建和使用的一些最常见的规则和限制：
+1. 与表一样，视图必须唯一命名，名字不能有冲突。
+2. 对于可以创建的视图数目没有限制。
+3. 创建视图，必须具有足够的访问权限。
+4. 视图可以嵌套，即可以利用从其他视图中检索数据的查询来构造视图。所允许的嵌套层数在不同的DBMS中有所不同(嵌套视图可能会严 重降低查询的性能，因此在产品环境中使用之前，应该对其进行全面测试)。
+5. 许多DBMS禁止在视图查询中使用ORDER BY子句。
+6. 有些DBMS要求对返回的所有列进行命名，如果列是计算字段，则需要使用别名。
+7. 视图不能索引，也不能有关联的触发器或默认值。
+8. 有些DBMS把视图作为只读的查询，这表示可以从视图检索数据，但不能将数据写回底层表。</p>
+
+<h5 id="18-2-创建视图">18.2 创建视图</h5>
+
+<p>Create view语句来创建视图。</p>
+
+<h5 id="18-2-1-利用视图简化复杂的联结">18.2.1 利用视图简化复杂的联结</h5>
+
+<p>视图最常见的应用：隐藏复杂的SQL</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">create</span> view ProductCustomers <span style="color:#66d9ef">AS</span>
+<span style="color:#66d9ef">select</span> cust_name, cust_contact, prod_id
+<span style="color:#66d9ef">from</span> Customers, Orders, OrderItems
+<span style="color:#66d9ef">where</span> Customers.cust_id <span style="color:#f92672">=</span> Orders.cust_id
+<span style="color:#66d9ef">AND</span> OrderItems.order_num <span style="color:#f92672">=</span> Orders.order_num;
+
+<span style="color:#75715e"># 然后调用sql查询:
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> cust_name, cust_contact <span style="color:#66d9ef">from</span> ProductCustomers <span style="color:#66d9ef">where</span> prod_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;RGANO1&#39;</span>;</code></pre></div>
+<h5 id="18-2-2-用视图重新下格式化检索的数据">18.2.2 用视图重新下格式化检索的数据</h5>
+
+<p>视图另一个常见的应用: 重新格式化检索出的数据</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">create</span> view VendorLocations <span style="color:#66d9ef">AS</span>
+<span style="color:#66d9ef">select</span> <span style="color:#a6e22e">RTRIM</span>(vend_name) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; (&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">RTRIM</span>(vend_country) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;)&#39;</span>
+<span style="color:#66d9ef">AS</span> vend_title <span style="color:#66d9ef">from</span> Vendors;</code></pre></div>
+<p>在单个组合计算列中返回供应商名和位置</p>
+
+<h5 id="18-2-3-用视图过滤不想要的数据">18.2.3 用视图过滤不想要的数据</h5>
+
+<p>可以定义一个视图：过滤没有电子邮件地址的顾客</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">create</span> view CustomerEMailList <span style="color:#66d9ef">AS</span>
+<span style="color:#66d9ef">select</span> cust_id, cust_name, cust_email
+<span style="color:#66d9ef">from</span> Customers <span style="color:#66d9ef">where</span> cust_email <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">Null</span>;</code></pre></div>
+<h5 id="18-2-4-使用视图与计算字段">18.2.4 使用视图与计算字段</h5>
+
+<p>在简化计算字段的使用上，视图也特别有用。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">create</span> view OrderItemsExpanded <span style="color:#66d9ef">AS</span>
+<span style="color:#66d9ef">select</span> order_num, prod_id, quantity, item_price, quantity<span style="color:#f92672">*</span>item_price <span style="color:#66d9ef">AS</span> expanded_price
+<span style="color:#66d9ef">from</span> OrderItems</code></pre></div>
+<h4 id="第19课-使用存储过程">第19课 使用存储过程</h4>
+
+<h5 id="19-1-存储过程">19.1 存储过程</h5>
+
+<ol>
+<li>通俗的讲，存储过程就是类似于C的一个方法。</li>
+<li>简单的说，存储过程就是为以后使用而保存一条或多条SQL语句。可以将其视为批文件，但它的作用不仅限于批处理。</li>
+</ol>
+
+<h5 id="19-2-为什么使用存储过程">19.2 为什么使用存储过程</h5>
+
+<ol>
+<li>存储过程有3个优点：简单，安全和高性能。</li>
+<li>多数DBMS的存储过程可能不同，而且存储过程也比较复杂，难于编写。</li>
+</ol>
+
+<h5 id="19-3-执行存储过程">19.3 执行存储过程</h5>
+
+<p>使用关键字execute来执行存储过程</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">EXECUTE <span style="color:#a6e22e">AddNewProduct</span>( <span style="color:#e6db74">&#39;JTS01&#39;</span>, <span style="color:#e6db74">&#39;Stuffed Eiffel Tower&#39;</span>, <span style="color:#ae81ff">6</span>.<span style="color:#ae81ff">49</span>,<span style="color:#e6db74">&#39;Plush stuffed toy with the text&#34;);</span></code></pre></div>
+<p>AddNewProduct是一个存储过程，将一个新的商品添加到Product表中。但我们发现，最重要的字段prod_id列没有，应为我们想统一化规格化生成对应的prod_id.
+所以，该存储过程需要做以下3件事：
+1. 验证传递的数据，保证所有4个参数都有值;
+2. 生成用作主键的唯一ID;
+3. 将新产品插入Products表，在合适的列中存储生成的主键和传递的数据。</p>
+
+<h5 id="19-4-创建存储过程">19.4 创建存储过程</h5>
+
+<p>创建存储过程，每个DBMS差别很大，具体需要参考DBMS文档。</p>
+
+<h2 id="第20课-管理事务处理">第20课 管理事务处理</h2>
+
+<ul>
+<li>使用事务处理，确保成批的SQL操作要么完全执行，要么完全不执行，来保证数据库的完整性。</li>
+<li>事务处理是一种机制，用来管理必须成批执行的SQL操作，保证数据库不可能包括不完整的操作结果。</li>
+<li>事务都应该具备ACID特征。所谓ACID是Atomic（原子性），Consistent（一致性），Isolated（隔离性），Durable（持久性）四个词的首字母所写，</li>
+</ul>
+
+<p>在使用事务时，需要理解几个关键字：
+1. 事务(transaction)指一组SQL语句.
+2. 回退(rollback)指撤销指定SQL语句的过程。
+3. 提交(commit)指将未存储的SQL语句结果写入数据库表。
+4. 保留点(savepoint)指事务处理中设置的临时占位符(placeholder)，可以对它发布回退。</p>
+
+<blockquote>
+<p>哪些sql语句可以回退?
+答：Insert, Delete和Update语句可以回退。Select, Drop和Create语句不能回退。</p>
+</blockquote>
+
+<h5 id="20-2-控制事务处理">20.2 控制事务处理</h5>
+
+<p>管理事务的关键在于将SQL语句组合成逻辑块，并规定数据何时回退，何时不应该回退。</p>
+
+<p>不同的DBMS实现事务处理的语法不同:
+1. SQL Server</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">Begin Transaction
+...
+Commit Transaction</code></pre></div>
+<p>在这里Begin Transaction和Commit Transaction之间的SQL必须完全执行，或完全不执行。
+2. Mysql</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">Start Transaction
+...
+Commit</code></pre></div>
+<ol>
+<li><p>Oracle</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">Set</span> Transaction
+...
+Commit</code></pre></div></li>
+</ol>
+
+<h5 id="20-2-1-使用rollback">20.2.1 使用Rollback</h5>
+
+<p>SQL 使用Rollback来回退(撤销)SQL命令</p>
+
+<p>命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">delete</span> <span style="color:#66d9ef">from</span> Orders; Rollback;</code></pre></div>
+<p>使用Delete语句，然后使用Rollback语句撤销。该句能充分说明：在事务处理块中，delete操作(insert操作和update操作)并不是最终的结果。</p>
+
+<h5 id="20-2-2-使用commit">20.2.2 使用Commit</h5>
+
+<p>在事务处理块中，提交必须时显示提交。</p>
+
+<p>删除订单12345，所以需要同时更新两个数据库表Orders表和OrderItems表。
+1. Mysql中</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">Begin Transaction
+<span style="color:#66d9ef">delete</span> OrderItems <span style="color:#66d9ef">where</span> order_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">12345</span>;
+<span style="color:#66d9ef">delete</span> Orders <span style="color:#66d9ef">where</span> order_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">12345</span>;
+Commit Transaction</code></pre></div>
+<ol>
+<li><p>Oracle中</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">Set</span> Transaction
+<span style="color:#66d9ef">delete</span> OrderItems <span style="color:#66d9ef">where</span> order_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">12345</span>;
+<span style="color:#66d9ef">delete</span> Orders <span style="color:#66d9ef">where</span> order_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">12345</span>;
+Commit;</code></pre></div></li>
+</ol>
+
+<p>上面的事务处理块中同时更新两个表中的记录，事务保证了操作的一致性，不可能出现部分删除。</p>
+
+<h5 id="20-2-3-使用保留点">20.2.3 使用保留点</h5>
+
+<p>保留点(savepoint)作用是：支持回退部分事务。
+例如添加一个订单，需要插入顾客信息，插入订单信息，订单详情信息，但当插入订单详情时发生错误，只需要回退到插入订单信息，不需要回退到插入顾客信息。这是就需要回退部分事务。
+保留点使用：在编写事务过程中，需要在事务处理块中的合适位置放置占位符。用于后面的回退。</p>
+
+<p>不同的DBMS的保留点设置不同
+1. Mysql</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">Savepoint delete1;</code></pre></div>
+<ol>
+<li><p>SQL Server</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">Save Transaction delete1;</code></pre></div></li>
+</ol>
+
+<p>不同的DBMS的回退保留点的方式不同
+1. Mysql</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">Rollback <span style="color:#66d9ef">to</span> delete1;</code></pre></div>
+<ol>
+<li><p>SQL Server</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">Rollback transaction delete1;</code></pre></div></li>
+</ol>
+
+<h5 id="20-3-sql-server事务举例">20.3 SQL Server事务举例</h5>
+
+<p>不同的DBMS可能不同，但是总体概念和流程都是相同的。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">Begin Transaction
+<span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> <span style="color:#a6e22e">Customers</span>(cust_id, cust_name) <span style="color:#66d9ef">values</span>(<span style="color:#e6db74">&#39;1000000010&#39;</span>, <span style="color:#e6db74">&#39;Toys Emporium&#39;</span>);
+save transaction StartOrder;
+<span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> <span style="color:#a6e22e">Orders</span>(order_num, order_date, cust_id) <span style="color:#66d9ef">values</span>(<span style="color:#ae81ff">20100</span>,<span style="color:#e6db74">&#39;2001/12/1&#39;</span>,<span style="color:#e6db74">&#39;1000000010&#39;</span>);
+<span style="color:#66d9ef">IF</span> <span style="color:#f92672">@@</span>ERROR <span style="color:#f92672">&lt;&gt;</span> <span style="color:#ae81ff">0</span> Rollback Transaction StartOrder;
+<span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> <span style="color:#a6e22e">OrderItems</span>(order_num, order_item, prod_id, quantity, item_price)
+<span style="color:#66d9ef">values</span>(<span style="color:#ae81ff">20100</span>, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;BR01&#39;</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">5</span>.<span style="color:#ae81ff">49</span>);
+<span style="color:#66d9ef">IF</span> <span style="color:#f92672">@@</span>ERROR <span style="color:#f92672">&lt;&gt;</span> <span style="color:#ae81ff">0</span> Rollback Transaction StartOrder;
+<span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> <span style="color:#a6e22e">OrderItems</span>(order_num, order_item, prod_id, quantity, item_price)
+<span style="color:#66d9ef">values</span>(<span style="color:#ae81ff">20100</span>, <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;BR03&#39;</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">10</span>.<span style="color:#ae81ff">99</span>);
+<span style="color:#66d9ef">IF</span> <span style="color:#f92672">@@</span>ERROR <span style="color:#f92672">&lt;&gt;</span> <span style="color:#ae81ff">0</span> Rollback Transaction StartOrder;
+Commit Transaction;</code></pre></div>
+<h2 id="第21课-使用游标">第21课 使用游标</h2>
+
+<h5 id="21-1-游标">21.1 游标</h5>
+
+<p>SQL检索结果是返回一组称为结果集的行。但是无法从结果集中得到第一行，下一行或前10行的数据。但是大多数Web应用开发人员不使用游标，而是根据自己的需要开发相应的功能。如：利用limit1, 10来实现分页查询， 或使用foreach来实现遍历。</p>
+
+<p>游标的用途:</p>
+
+<p>有时，需要在检索出来的行中前进或后退一行或多行，就需要使用游标。
+游标(cursor)是一个存储在DBMS服务器上的数据库查询，它不是一条SELECT语句。在存储了游标之后，应用程序可以根据需要滚动或浏览数据集中的数据。</p>
+
+<p>游标在不同的DBMS中的一些共性：
+1. 能够标记游标为只读，使数据能读取，但不能更新和删除。
+2. 能控制可以执行的定向操作(向前、向后、第一、最后、绝对位置、相对位置等)。
+3. 能标记某些列为可编辑的，某些列为不可编辑的。
+4. 规定访问范围，使游标对创建它的特定请求(如存储过程)或对所有请求可访问。
+5. 指示DBMS对检索出的数据(而不是指出表中活动数据)进行复制，使数据在游标打开和访问期间不变化。</p>
+
+<h5 id="21-2-使用游标">21.2 使用游标</h5>
+
+<p>使用游标的几个明确的步骤:
+1. 在使用游标前，必须定义它。这个过程实际上没有检索数据，它只是定义要使用的SELECT语句和游标。
+2. 一旦定义，就必须打开游标以供使用。这个过程用前面定义的SELECT语句把数据实际检索出来。
+3. 对于填有数据的游标，根据需要取检索各行。
+4. 在结束游标使用时，必须关闭游标，可能的话，释放游标(有赖于具体的DBMS)。</p>
+
+<h5 id="21-2-1-创建游标">21.2.1 创建游标</h5>
+
+<p>使用Declare语句创建游标。</p>
+
+<p>创建一个游标来检索没有电子邮件地址的所有顾客.
+1. Mysql + SQL Server</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">Declare</span> CustCursor <span style="color:#66d9ef">Cursor</span> <span style="color:#66d9ef">for</span>
+<span style="color:#66d9ef">Select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> Customers <span style="color:#66d9ef">where</span> cust_email <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">null</span>;</code></pre></div>
+<ol>
+<li><p>Oracle</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">Declare</span> <span style="color:#66d9ef">Cursor</span> CustCursor <span style="color:#66d9ef">is</span>
+<span style="color:#66d9ef">Select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">From</span> Customers <span style="color:#66d9ef">where</span> cust_email <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">null</span>;</code></pre></div></li>
+</ol>
+
+<h5 id="21-2-2-使用游标">21.2.2 使用游标</h5>
+
+<p>游标的使用场景并不多，该节笔记比较粗糙。</p>
+
+<p>使用OPEN CURSOR语句打开游标</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">Open <span style="color:#66d9ef">Cursor</span> CustCursor;</code></pre></div>
+<p>使用Fetch语句访问游标数据。
+Fetch需要指出检索哪些行，从何处检索他们以及将他们存放于何处。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">Declare</span> Type CustCursor <span style="color:#66d9ef">IS</span> ref <span style="color:#66d9ef">Cursor</span>
+<span style="color:#66d9ef">Return</span> Customers<span style="color:#f92672">%</span>ROWTYPE;
+<span style="color:#66d9ef">Declare</span> CustRecord Customers<span style="color:#f92672">%</span>ROWTYPE
+Begin
+	Open CustCursor;
+	<span style="color:#66d9ef">Fetch</span> CustCursor <span style="color:#66d9ef">INTO</span> CustRecord;
+	Close CustCursor;
+End;	</code></pre></div>
+<h5 id="21-2-3-关闭游标">21.2.3 关闭游标</h5>
+
+<ol>
+<li><p>Oracle</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">Close CustCursor;</code></pre></div></li>
+
+<li><p>SQL Server</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">Close CustCursor
+Deallocate <span style="color:#66d9ef">Cursor</span> CustCursor;</code></pre></div></li>
+</ol>
+
+<h2 id="第22课-高级sql特性">第22课 高级SQL特性</h2>
+
+<h5 id="22-1-约束">22.1 约束</h5>
+
+<ol>
+<li>约束: 管理如何插入或处理数据库数据的规则。</li>
+<li>引用完整性(referential integrity): 利用键来建立从一个表到另一个表的引用</li>
+</ol>
+
+<p>关系型数据库，需要保证插入数据库的数据和合法性。
+例如：如果Orders表存储订单信息，OrderItems表存储订单详细内容，应该保证OrderItems中引用的任何订单ID都存在于Orders中。类似地，在Orders表中引用的任意顾客必须存在于Customers表中。DBMS通过在数据库表上施加约束来实施引用完整性。</p>
+
+<h5 id="22-1-1-主键">22.1.1 主键</h5>
+
+<p>主键是一种特殊的约束，用来某一行的数据是唯一的，而且主键永不改动。</p>
+
+<p>表中的列只要满足以下条件，可用于主键:
+1. 任意两行的主键值都不相同。
+2. 每行都具有一个主键值(即列中不允许NULL值)。
+3. 包含主键值的列从不修改或更新。
+4. 主键值不能重用。如果从表中删除某一行，其主键值不分配给新行。</p>
+
+<p>主键的创建:
+1. Create Table</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">Create</span> <span style="color:#66d9ef">Table</span> <span style="color:#a6e22e">Vendors</span>
+(
+vend_id		<span style="color:#66d9ef">CHAR</span>(<span style="color:#ae81ff">10</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">Primary</span> <span style="color:#66d9ef">Key</span>,
+vend_name 	<span style="color:#66d9ef">CHAR</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+vend_address <span style="color:#66d9ef">CHAR</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NULL</span>,
+vend_city    <span style="color:#66d9ef">CHAR</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NULL</span>,
+vend_state   <span style="color:#66d9ef">CHAR</span>(<span style="color:#ae81ff">5</span>)  <span style="color:#66d9ef">NULL</span>,
+vend_zip     <span style="color:#66d9ef">CHAR</span>(<span style="color:#ae81ff">10</span>) <span style="color:#66d9ef">NULL</span>,
+vend_country <span style="color:#66d9ef">CHAR</span>(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NULL</span>
+);</code></pre></div>
+<p>Primary Key声明表的主键列。</p>
+
+<ol>
+<li><p>Alter Table</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">Alter</span> <span style="color:#66d9ef">Table</span> Vendors 
+<span style="color:#66d9ef">Add</span> <span style="color:#66d9ef">Constraint</span> <span style="color:#66d9ef">Primary</span> <span style="color:#66d9ef">Key</span>(vend_id);</code></pre></div></li>
+</ol>
+
+<h5 id="22-1-2-外键">22.1.2 外键</h5>
+
+<p>外键是表中的一列，其值必须在另一表的主键列中。</p>
+
+<p>外键是关系数据库描述表和表之间依赖关系
+1. Create Table</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">Create</span> <span style="color:#66d9ef">Table</span> <span style="color:#a6e22e">Orders</span>
+(
+	order_num		<span style="color:#66d9ef">Integer</span>	<span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span> <span style="color:#66d9ef">primary</span> <span style="color:#66d9ef">key</span>,
+	order_date	<span style="color:#66d9ef">DateTime</span>	<span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
+	cust_id		<span style="color:#66d9ef">char</span>(<span style="color:#ae81ff">10</span>)	<span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span> <span style="color:#66d9ef">references</span> <span style="color:#a6e22e">Customers</span>(cust_id)
+);</code></pre></div>
+<ol>
+<li><p>Alter Table</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">Alter</span> <span style="color:#66d9ef">Table</span> Orders
+<span style="color:#66d9ef">Add</span> <span style="color:#66d9ef">Constraint</span> <span style="color:#66d9ef">Foreign</span> <span style="color:#66d9ef">key</span> (cust_id) <span style="color:#66d9ef">references</span> <span style="color:#a6e22e">Customers</span>(cust_id);</code></pre></div></li>
+</ol>
+
+<p>外键的作用:
+1. 能够帮组保证引用完整性。
+2. 防止意外删除记录
+由于顾客表Customers表中主见: cust_id，作为订单表Orders中的外键。所以如果想直接删除顾客表中的记录，必须保证其值已经不被订单表中依赖。
+3. 级联删除
+Mysql支持级联删除特性。解释：如果从顾客表Customers表中删除某个顾客，那么由于顾客表Customers表中的主见cust_id作为了Orders表中的外键依赖，所以订单表Orders中的该顾客的订单也一并删除。</p>
+
+<h5 id="22-1-3-唯一约束">22.1.3 唯一约束</h5>
+
+<p>唯一约束用来保证某一列中的数据是唯一的。它和主键有以下区别:
+1. 表可包含多个唯一约束，但每个表只允许一个主键。
+2. 唯一约束列可包含NULL值。
+3. 唯一约束列可修改或更新。
+4. 唯一约束列的值可重复使用。
+5. 与主键不一样，唯一约束不能用来定义外键。</p>
+
+<h5 id="22-1-4-检查约束">22.1.4 检查约束</h5>
+
+<p>检查约束用来保证一列中的数据满足一组指定的条件。检查约束的常见用途:
+1. 检查最小或最大值。例如，防止0个物品的订单(即使0是合法的数)。
+2. 指定范围。例如，保证发货日期大于等于今天的日期，但不超过今天起一年后的日期。
+3. 只允许特定的值。例如，在性别字段中只允许M或F。</p>
+
+<p>对OrderItems表施加了检查约束，保证所有物品的数量大于0:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">OrderItems</span>
+(
+	order_num		<span style="color:#66d9ef">INTEGER</span>	<span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+	order_item	<span style="color:#66d9ef">INTEGER</span>	<span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>, 
+	prod_id		<span style="color:#66d9ef">CHAR</span>(<span style="color:#ae81ff">10</span>)	<span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>,
+	quantity		<span style="color:#66d9ef">INTEGER</span>	<span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span> <span style="color:#66d9ef">check</span> (quantity <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>),
+	item_price	MONEY		<span style="color:#66d9ef">not</span> <span style="color:#66d9ef">null</span>
+);</code></pre></div>
+<p>检查名为gender的列只包含M或F</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">Alter</span> <span style="color:#66d9ef">Table</span> OrderItems
+<span style="color:#66d9ef">Add</span> <span style="color:#66d9ef">Constraint</span> <span style="color:#66d9ef">Check</span> (gender <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;[MF]&#39;</span>)</code></pre></div>
+<h5 id="22-2-索引">22.2 索引</h5>
+
+<p>索引是利用B+等索引机制，加快查询和排序的速度。</p>
+
+<p>使用索引需要记住以下内容:
+1. 索引提高检索操作的性能，但降低了数据插入、修改和删除的性能。因为数据变更需要更新索引。
+2. 索引数据可能要占用大量的存储空间。
+3. 并非所有数据都适合做索引。查询量非常大，列的数据非常多，使用使用索引。
+4. 索引用于数据过滤和数据排序。如果你经常以某种特定的顺序排序数据，则该数据可能适合做索引。
+5. 可以在索引中定义多个列(例如，州加上城市)。这样的索引仅在以州加城市的顺序排序时有用。</p>
+
+<p>所以必须唯一命名:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">Create</span> <span style="color:#66d9ef">Index</span> prod_name_index <span style="color:#66d9ef">On</span> <span style="color:#a6e22e">Products</span>(prod_name);</code></pre></div>
+<h5 id="22-2-1-索引建立的几大原则">22.2.1 索引建立的几大原则</h5>
+
+<p>组合索引的解释：
+如果创建了(state, city, zip)列作为组合索引，索引中的数据行按照state/city/zip次序排列，
+这意味着，这个索引可以被用于搜索如下所示的数据列组合：
+state, city, zip
+state, city
+state</p>
+
+<p>但是MySQL不能利用这个索引来搜索没有包含在最左前缀的内容。例如，如果你按照city或zip来搜索，就不会使用到这个索引。如果你按照state，和zip来搜索，该索引也是不能用于这种组合值的，但是可以利用索引来查找匹配的state从而缩小搜索的范围。</p>
+
+<ol>
+<li>选择唯一性索引。唯一性索引的值是唯一的，能快速的通过该索引来确定某条记录。</li>
+<li>为经常需要排序、分组和联合操作的字段建立索引经常需要<code>Order By</code>、<code>Group By</code>、<code>Distinct</code>和<code>Union</code>等操作的字段，排序操作会浪费很多时间。</li>
+<li>为常作为查询条件的字段建立索引某个字段经常用来做查询条件，该字段的查询速度会影响整个表的查询速度。使用索引，可以极大加快查询速度。</li>
+<li>最左前缀匹配原则，非常重要的原则。mysql会一直向右匹配直到遇到范围查询(<code>&gt;</code>、<code>&lt;</code>、<code>between</code>、<code>like</code>)就停止匹配，比如<code>state='yes' and city='wuwei' and price &gt; 3 and name = 'ppp'</code>， 如果建立(state, city, price, name)顺序的索引，name的查询是用不到索引的，只能使用部分索引，然后在结果集上面进行排序。如果建立(state, city , ppp, price)的索引则都可以用到，state, city, name的顺序可以任意调整。</li>
+<li><code>=</code>和<code>in</code>可以乱序。比如<code>a = 1 and b = 2 and c = 3</code> 建立(a,b,c)索引可以任意顺序，mysql的查询优化器会帮你优化成索引可以识别的形式。但是如果建立索引(a,b,c)，结果where子句是:<code>b =2 and c=3</code>，则索引不起作用。</li>
+<li>尽量使用数据量少的索引。如果索引的值很长，那么查询的速度会受到影响。例如，对一个CHAR(100)类型的字段进行全文检索需要的时间肯定要比对CHAR(10)类型的字段需要的时间要多。</li>
+<li>尽量使用前缀来索引。索引字段的值很长，应该采用前缀来索引。</li>
+<li>尽量选择区分度高的列作为索引。数据量区分度越高，索引的比较成本会小很多。</li>
+<li>删除不再使用或者很少使用的索引。请定期删除不在使用的索引。</li>
+<li>限制索引的数目。使用索引需要付出代价，索引会消耗磁盘空间，对数据库记录的更新和删除产生影响。</li>
+<li>索引列不能参与计算。坚决不能将某个计算函数作为缩影。如：<code>from_unixtime(create_time) = ’2014-05-29’</code></li>
+<li>尽量的扩展索引，不要新建索引。 比如表中已经有a的索引，现在要加(a,b)的索引，那么只需要修改原来的索引即可</li>
+</ol>
+
+<h5 id="22-3-触发器">22.3 触发器</h5>
+
+<p>触发器是特殊的存储过程，可以在特定的数据库活动发生时自动执行。
+触发器可以与特定表上的Insert, Update或Delete操作(或组合)想关联。
+如：与Orders表上的Insert操作相关联的触发器只在Orders表中插入行时才会执行。</p>
+
+<p>触发器的常见用途:
+1. 保证数据一致。例如，在Insert或Update操作中将所有州名转换为大写。
+2. 基于某个表的变动在其他表上执行活动。例如，每当更新或删除一行时将审计跟踪记录写入某个日志表。
+3. 进行额外的验证并根据需要回退数据。例如，保证某个顾客的可用资金不超限定，如果已经超出，则阻塞插入。
+4. 计算计算列的值或更新时间戳。</p>
+
+<p>不同的DBMS的触发器差距很大，请参考具体文档.
+如：创建一个触发器，对所有Insert和Update操作，将Customers表中的cust_state列转换为大写。
+1. SQL Server</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">Create</span> <span style="color:#66d9ef">Trigger</span> customer_state <span style="color:#66d9ef">On</span> Customers
+<span style="color:#66d9ef">For</span> <span style="color:#66d9ef">Insert</span>, <span style="color:#66d9ef">Update</span> <span style="color:#66d9ef">As</span>
+<span style="color:#66d9ef">Update</span> Customers <span style="color:#66d9ef">Set</span> cust_state <span style="color:#f92672">=</span> <span style="color:#a6e22e">Upper</span>(cust_state)</code></pre></div>
+<ol>
+<li><p>Oracle</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">Create</span> <span style="color:#66d9ef">Trigger</span> customer_state
+After <span style="color:#66d9ef">Insert</span> <span style="color:#66d9ef">Or</span> Uupdate
+<span style="color:#66d9ef">For</span> <span style="color:#66d9ef">Each</span> Row
+Begin
+<span style="color:#66d9ef">Update</span> Customers
+<span style="color:#66d9ef">Set</span> cust_state <span style="color:#f92672">=</span> <span style="color:#a6e22e">Upper</span>(cust_state)
+<span style="color:#66d9ef">Where</span> Customers.cust_id <span style="color:#f92672">=</span> :OLD.cust_id
+end;</code></pre></div></li>
+</ol>
+
+<h5 id="22-4-数据库安全">22.4 数据库安全</h5>
+
+<p>一般对数据保护操作有:
+1. 对数据库管理功能(创建表、更改或删除已存在的表等)的访问;
+2. 对特定数据库或表的访问;
+3. 访问的类型(只读、对特定列的访问等);
+4. 仅通过视图或存储过程对表进行访问;
+5. 创建多层次的安全措施，从而允许多种基于登录的访问和控制;
+6. 限制管理用户账号的能力。</p>
+
+<h2 id="第23课-sql中的各种key">第23课 SQL中的各种KEY</h2>
+
+<p>PRIMARY KEY, UNIQUE KEY, FOREIGN KEY。</p>
+
+<h5 id="23-1-primary-key与unique-key的作用">23.1 PRIMARY KEY与UNIQUE KEY的作用</h5>
+
+<p>共同作用是为了约束字段/建立索引/提高查询效率</p>
+
+<p>PRIMARY KEY的属性：</p>
+
+<ol>
+<li>主键具有唯一性：是指一张表里只能有一个主键；</li>
+<li>主键作用：主键PRIMARY KEY是为了唯一标识一个字段，使其唯一且不能为NULL，自动生成索引；</li>
+<li>隐含定义：如果这些列没有被明确地定义为NOT NULL，MySQL会隐含地定义这些列。</li>
+<li>主键其实也是索引，甚至在MySQL的术语里面“键”就等于“索引”，</li>
+</ol>
+
+<p>UNIQUE KEY的属性：</p>
+
+<ol>
+<li>唯一性：定义了UNIQUE约束的字段中不能包含重复值，</li>
+<li>可为空：在UNIQUE约束的字段上可以包含空值.</li>
+<li>扩展：UNIQUE就是唯一,当你需要限定你的某个表字段每个值都唯一,没有重复值时使用.
+比如说,如果你有一个person_Info表,并且表中有个身份证的column,那么你就可以指定该字段unique.</li>
+</ol>
+
+<h5 id="23-2-关系">23.2 关系</h5>
+
+<p>主键 = NOT NULL +UNIQUE 键的结合；</p>
+
+<p>NOT NULL和UNIQUE约束最好的结合。如果这些列没有被明确地定义为NOT NULL，MySQL会隐含地定义这些列。</p>
+
+<h5 id="23-3-区别">23.3 区别</h5>
+
+<ul>
+<li>(1) 唯一性约束所在的列允许空值，但是主键约束所在的列不允许空值。</li>
+<li>(2) 可以把唯一性约束放在一个或者多个列上，这些列或列的组合必须有唯一的。但是，唯一性约束所在的列并不是表的主键列。</li>
+<li>(3) 唯一性约束强制在指定的列上创建一个唯一性索引。在默认情况下，创建唯一性的非聚簇索引，但是，也可以指定所创建的索引是聚簇索引。</li>
+<li>(4) 建立主键的目的是让外键来引用</li>
+<li>(5) 一个表最多只有一个主键，但可以有很多唯一键</li>
+</ul>
+
+<h2 id="第24课-sql-约束-constraints">第24课 SQL 约束（Constraints）</h2>
+
+<p>SQL 约束用于规定表中的数据规则。</p>
+
+<p>约束可以在创建表时规定（通过 CREATE TABLE 语句），或者在表创建之后规定（通过 ALTER TABLE 语句）。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#75715e"># SQL CREATE TABLE + CONSTRAINT 语法
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">table_name</span>
+(
+column_name1 <span style="color:#a6e22e">data_type</span>(size) constraint_name,
+column_name2 <span style="color:#a6e22e">data_type</span>(size) constraint_name,
+column_name3 <span style="color:#a6e22e">data_type</span>(size) constraint_name,
+....
+);</code></pre></div>
+<p>在 SQL 中，我们有如下约束：</p>
+
+<ul>
+<li>NOT NULL - 指示某列不能存储 NULL 值。</li>
+<li>UNIQUE - 保证某列的每行必须有唯一的值。</li>
+<li>PRIMARY KEY - NOT NULL 和 UNIQUE 的结合。确保某列（或两个列多个列的结合）有唯一标识，有助于更容易更快速地找到表中的一个特定的记录。</li>
+<li>FOREIGN KEY - 保证一个表中的数据匹配另一个表中的值的参照完整性。</li>
+<li>CHECK - 保证列中的值符合指定的条件。</li>
+<li>DEFAULT - 规定没有给列赋值时的默认值。</li>
+</ul>
+
+<h5 id="sql-not-null-约束">SQL NOT NULL 约束</h5>
+
+<p>在默认的情况下，表的列接受 NULL 值。</p>
+
+<p>NOT NULL 约束强制字段始终包含值。这意味着，如果不向字段添加值，就无法插入新记录或者更新记录。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#75715e"># 下面的 SQL 强制 &#34;P_Id&#34; 列和 &#34;LastName&#34; 列不接受 NULL 值：
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">Persons</span>
+(
+P_Id <span style="color:#66d9ef">int</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+LastName <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">255</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+FirstName <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">255</span>),
+Address <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">255</span>),
+City <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">255</span>)
+)</code></pre></div>
+<h5 id="sql-unique-约束">SQL UNIQUE 约束</h5>
+
+<p>UNIQUE 约束唯一标识数据库表中的每条记录。</p>
+
+<p>UNIQUE 和 PRIMARY KEY 约束均为列或列集合提供了唯一性的保证。</p>
+
+<p>PRIMARY KEY 约束拥有自动定义的 UNIQUE 约束。</p>
+
+<p>请注意，每个表可以有多个 UNIQUE 约束，但是每个表只能有一个 PRIMARY KEY 约束。</p>
+
+<p>下面的 SQL 在 &ldquo;Persons&rdquo; 表创建时在 &ldquo;P_Id&rdquo; 列上创建 UNIQUE 约束：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">Persons</span>
+(
+P_Id <span style="color:#66d9ef">int</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+LastName <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">255</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+FirstName <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">255</span>),
+Address <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">255</span>),
+City <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">255</span>),
+<span style="color:#66d9ef">UNIQUE</span> (P_Id)
+)</code></pre></div>
+<h5 id="sql-primary-key-约束">SQL PRIMARY KEY 约束</h5>
+
+<p>PRIMARY KEY 约束唯一标识数据库表中的每条记录。</p>
+
+<p>主键必须包含唯一的值。</p>
+
+<p>主键列不能包含 NULL 值。</p>
+
+<p>每个表都应该有一个主键，并且每个表只能有一个主键。</p>
+
+<p>下面的 SQL 在 &ldquo;Persons&rdquo; 表创建时在 &ldquo;P_Id&rdquo; 列上创建 PRIMARY KEY 约束：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">Persons</span>
+(
+P_Id <span style="color:#66d9ef">int</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+LastName <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">255</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+FirstName <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">255</span>),
+Address <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">255</span>),
+City <span style="color:#66d9ef">varchar</span>(<span style="color:#ae81ff">255</span>),
+<span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (P_Id)
+)</code></pre></div>
+<h5 id="sql-foreign-key-约束">SQL FOREIGN KEY 约束</h5>
+
+<p>一个表中的 FOREIGN KEY 指向另一个表中的 UNIQUE KEY(唯一约束的键)。</p>
+
+<p>让我们通过一个实例来解释外键。请看下面两个表：</p>
+
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190823181204590.png" alt="image-20190823181204590" /></p>
+
+<p>请注意，&rdquo;Orders&rdquo; 表中的 &ldquo;P_Id&rdquo; 列指向 &ldquo;Persons&rdquo; 表中的 &ldquo;P_Id&rdquo; 列。</p>
+
+<p>&ldquo;Persons&rdquo; 表中的 &ldquo;P_Id&rdquo; 列是 &ldquo;Persons&rdquo; 表中的 PRIMARY KEY。</p>
+
+<p>&ldquo;Orders&rdquo; 表中的 &ldquo;P_Id&rdquo; 列是 &ldquo;Orders&rdquo; 表中的 FOREIGN KEY。</p>
+
+<p>FOREIGN KEY 约束用于预防破坏表之间连接的行为。</p>
+
+<p>FOREIGN KEY 约束也能防止非法数据插入外键列，因为它必须是它指向的那个表中的值之一。</p>
+
+<p>下面的 SQL 在 &ldquo;Orders&rdquo; 表创建时在 &ldquo;P_Id&rdquo; 列上创建 FOREIGN KEY 约束：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">Orders</span>
+(
+O_Id <span style="color:#66d9ef">int</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+OrderNo <span style="color:#66d9ef">int</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+P_Id <span style="color:#66d9ef">int</span>,
+<span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (O_Id),
+<span style="color:#66d9ef">FOREIGN</span> <span style="color:#66d9ef">KEY</span> (P_Id) <span style="color:#66d9ef">REFERENCES</span> <span style="color:#a6e22e">Persons</span>(P_Id)
+)</code></pre></div>
+<h2 id="第25课-更多">第25课 更多</h2>
+
+<p><code>ROW_NUMBER() OVER(PARTITION BY COLUMN ORDER BY COLUMN)</code></p>
+
+<p><a href="https://www.cnblogs.com/fxgachiever/archive/2010/09/15/1826792.html">https://www.cnblogs.com/fxgachiever/archive/2010/09/15/1826792.html</a></p>
+
+<p>自增ID</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">select</span> ROW_NUMBER() over(<span style="color:#66d9ef">order</span> <span style="color:#66d9ef">by</span> rand(<span style="color:#ae81ff">123</span>)) ID,<span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">table</span></code></pre></div>
+<p><code>dense_rank()</code>, <code>rank()</code>, <code>row_number()</code></p>
+
+<h2 id="reference">REFERENCE</h2>
+
+<p><a href="https://github.com/thinkingfioa/Notes/tree/master/sql/SQL%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A4">PDF与源码</a></p>
+
+<p><a href="https://www.w3school.com.cn/sql/index.asp">W3School-SQL 教程</a></p>
+
+<p><a href="https://www.dataquest.io/blog/sql-joins-tutorial/">SQL Joins Tutorial: Working with Databases</a></p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.wentixiaogege.com/tags/data-science"><span class="tag">Data Science</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/sql"><span class="tag">SQL</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>359</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "orion-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.wentixiaogege.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5713bba443e20a46d066ca93c131f795";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  </body>
+</html>

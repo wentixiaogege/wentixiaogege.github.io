@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AI on wentixiaogege</title>
+    <link>https://www.wentixiaogege.com/tags/ai/</link>
+    <description>Recent content in AI on wentixiaogege</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Tue, 30 Jul 2019 19:11:16 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.wentixiaogege.com/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ESoWC 2019 Proposal: An AutoML Framework for Predicting Extreme Weather Hazards</title>
+      <link>https://www.wentixiaogege.com/post/others-ec-proposal/</link>
+      <pubDate>Tue, 30 Jul 2019 19:11:16 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/others-ec-proposal/</guid>
+      <description>&lt;p&gt;今年参加&lt;a href=&#34;https://www.ecmwf.int/en/learning/workshops/ecmwf-summer-weather-code-2019&#34;&gt;ESoWC 2019&lt;/a&gt;写的一个Proposal: An AutoML Framework for Predicting Extreme Weather Hazards.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hive学习整理</title>
+      <link>https://www.wentixiaogege.com/post/bd-hive/</link>
+      <pubDate>Mon, 22 Jul 2019 18:18:34 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/bd-hive/</guid>
+      <description>&lt;p&gt;Hadoop 大数据仓库 Hive：自动将 SQL 生成 MapReduce 代码。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用机器学习应对气候变化？</title>
+      <link>https://www.wentixiaogege.com/post/ml-climate-change/</link>
+      <pubDate>Fri, 14 Jun 2019 20:32:44 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/ml-climate-change/</guid>
+      <description>&lt;p&gt;气候变化是人类面临的越来越严重的问题，相信大家对此都不陌生。全球变暖、冰川消融、海平面上升、极端天气事件频发……人类的生存正在逐渐受到威胁。科学家们已经从很多不同的角度对气候变化进行了深入的研究，提出了很多应对气候变化的策略。除此之外，大家有没想过，近些年火遍各行各业的机器学习（ML）和人工智能（AI）可以与气候变化碰撞出什么样的火花呢？&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

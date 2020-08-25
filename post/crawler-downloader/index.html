@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>用python下载文件的若干种方法汇总</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <link href="//hm.baidu.com" rel="dns-prefetch">
+
+  
+
+  
+  <meta name="author" content="Qi Zhang">
+  <meta name="description" content="用python下载文件的若干种方法汇总。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="用python下载文件的若干种方法汇总">
+    <meta name="twitter:description" content="用python下载文件的若干种方法汇总。
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="用python下载文件的若干种方法汇总">
+  <meta property="og:description" content="用python下载文件的若干种方法汇总。
+">
+  <meta property="og:url" content="https://www.wentixiaogege.com/post/crawler-downloader/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.57.2">
+
+
+<link rel="canonical" href="https://www.wentixiaogege.com/post/crawler-downloader/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.wentixiaogege.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.wentixiaogege.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.wentixiaogege.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.wentixiaogege.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.wentixiaogege.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.wentixiaogege.com/manifest.json">
+
+
+<link rel="preload" href="https://www.wentixiaogege.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.wentixiaogege.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.wentixiaogege.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.wentixiaogege.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://www.wentixiaogege.com/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">wentixiaogege</h2>
+  
+  <p class="subtitle">Getty Images Contributor. I&#39;m not a photographer but a data enthusiast.</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.wentixiaogege.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">GitHub</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://wentixiaogegefoto.tuchong.com/">Gallery</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:hi@wentixiaogege.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/wentixiaogege" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/bother7" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://www.wentixiaogege.com/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">用python下载文件的若干种方法汇总</h1>
+      <p class="post-meta">@Qi Zhang · Jul 9, 2019 · 2 min read</p>
+    </header>
+    <article class="post-content"><p>用python下载文件的若干种方法汇总。</p>
+
+<h2 id="0-requests-https-2-python-requests-org-zh-cn-latest-index-html-标准模板">0. <a href="https://2.python-requests.org//zh_CN/latest/index.html">requests</a>标准模板</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
+url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;******&#34;</span>
+<span style="color:#66d9ef">try</span>:
+    r<span style="color:#f92672">=</span>requests<span style="color:#f92672">.</span>get(url)
+    r<span style="color:#f92672">.</span>raise_for_status()  <span style="color:#75715e">#如果不是200，产生异常requests.HTTPError</span>
+    r<span style="color:#f92672">.</span>encoding<span style="color:#f92672">=</span>r<span style="color:#f92672">.</span>apparent_encoding
+    <span style="color:#66d9ef">print</span>(r<span style="color:#f92672">.</span>text)
+<span style="color:#66d9ef">except</span>:
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;爬取失败...&#34;</span>)</code></pre></div>
+<h2 id="1-下载图片">1. 下载图片</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
+url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://www.python.org/static/img/python-logo@2x.png&#39;</span>
+myfile <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url)
+open(<span style="color:#e6db74">&#39;PythonImage.png&#39;</span>, <span style="color:#e6db74">&#39;wb&#39;</span>)<span style="color:#f92672">.</span>write(myfile<span style="color:#f92672">.</span>content)</code></pre></div>
+<p>用<code>wget</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> wget
+url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://www.python.org/static/img/python-logo@2x.png&#34;</span>
+wget<span style="color:#f92672">.</span>download(url, <span style="color:#e6db74">&#39;pythonLogo.png&#39;</span>)</code></pre></div>
+<h2 id="2-下载重定向的文件">2. 下载重定向的文件</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
+url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://readthedocs.org/projects/python-guide/downloads/pdf/latest/&#39;</span>
+myfile <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, allow_redirects<span style="color:#f92672">=</span>True)
+open(<span style="color:#e6db74">&#39;hello.pdf&#39;</span>, <span style="color:#e6db74">&#39;wb&#39;</span>)<span style="color:#f92672">.</span>write(myfile<span style="color:#f92672">.</span>content)</code></pre></div>
+<h2 id="3-分块下载大文件">3. 分块下载大文件</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
+url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://buildmedia.readthedocs.org/media/pdf/python-guide/latest/python-guide.pdf&#39;</span>
+r <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, stream <span style="color:#f92672">=</span> True)
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#34;PythonBook.pdf&#34;</span>, <span style="color:#e6db74">&#34;wb&#34;</span>) <span style="color:#66d9ef">as</span> Pypdf:
+    <span style="color:#66d9ef">for</span> chunk <span style="color:#f92672">in</span> r<span style="color:#f92672">.</span>iter_content(chunk_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1024</span>): <span style="color:#75715e"># 1024 bytes</span>
+        <span style="color:#66d9ef">if</span> chunk:
+            Pypdf<span style="color:#f92672">.</span>write(chunk)</code></pre></div>
+<h2 id="4-并行下载多文件">4. 并行下载多文件</h2>
+
+<p>不并行版本：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
+<span style="color:#f92672">import</span> requests
+<span style="color:#f92672">from</span> time <span style="color:#f92672">import</span> time
+<span style="color:#f92672">from</span> multiprocessing.pool <span style="color:#f92672">import</span> ThreadPool
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">url_response</span>(url):
+    path, url <span style="color:#f92672">=</span> url
+    r <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, stream<span style="color:#f92672">=</span>True)
+    <span style="color:#66d9ef">with</span> open(path, <span style="color:#e6db74">&#39;wb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+        <span style="color:#66d9ef">for</span> ch <span style="color:#f92672">in</span> r:
+            f<span style="color:#f92672">.</span>write(ch)
+        
+urls <span style="color:#f92672">=</span> [(<span style="color:#e6db74">&#34;Event1&#34;</span>, <span style="color:#e6db74">&#34;https://www.python.org/events/python-events/805/&#34;</span>),
+        (<span style="color:#e6db74">&#34;Event2&#34;</span>, <span style="color:#e6db74">&#34;https://www.python.org/events/python-events/801/&#34;</span>),
+        (<span style="color:#e6db74">&#34;Event3&#34;</span>, <span style="color:#e6db74">&#34;https://www.python.org/events/python-events/790/&#34;</span>),
+        (<span style="color:#e6db74">&#34;Event4&#34;</span>, <span style="color:#e6db74">&#34;https://www.python.org/events/python-events/798/&#34;</span>),
+        (<span style="color:#e6db74">&#34;Event5&#34;</span>, <span style="color:#e6db74">&#34;https://www.python.org/events/python-events/807/&#34;</span>),
+        (<span style="color:#e6db74">&#34;Event6&#34;</span>, <span style="color:#e6db74">&#34;https://www.python.org/events/python-events/807/&#34;</span>),
+        (<span style="color:#e6db74">&#34;Event7&#34;</span>, <span style="color:#e6db74">&#34;https://www.python.org/events/python-events/757/&#34;</span>),
+        (<span style="color:#e6db74">&#34;Event8&#34;</span>, <span style="color:#e6db74">&#34;https://www.python.org/events/python-user-group/816/&#34;</span>)]
+
+start <span style="color:#f92672">=</span> time()
+<span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> urls:
+    url_response(x)
+    
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Time to download: {time() - start}&#34;</span>)
+
+<span style="color:#75715e"># Time to download: 7.306085824966431</span></code></pre></div>
+<p>并行版本，只需改动一行代码<code>ThreadPool(9).imap_unordered(url_response, urls)</code>，时间会大幅度减少：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
+<span style="color:#f92672">import</span> requests
+<span style="color:#f92672">from</span> time <span style="color:#f92672">import</span> time
+<span style="color:#f92672">from</span> multiprocessing.pool <span style="color:#f92672">import</span> ThreadPool
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">url_response</span>(url):
+    path, url <span style="color:#f92672">=</span> url
+    r <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, stream<span style="color:#f92672">=</span>True)
+    <span style="color:#66d9ef">with</span> open(path, <span style="color:#e6db74">&#39;wb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+        <span style="color:#66d9ef">for</span> ch <span style="color:#f92672">in</span> r:
+            f<span style="color:#f92672">.</span>write(ch)
+            
+urls <span style="color:#f92672">=</span> [(<span style="color:#e6db74">&#34;Event1&#34;</span>, <span style="color:#e6db74">&#34;https://www.python.org/events/python-events/805/&#34;</span>),
+        (<span style="color:#e6db74">&#34;Event2&#34;</span>, <span style="color:#e6db74">&#34;https://www.python.org/events/python-events/801/&#34;</span>),
+        (<span style="color:#e6db74">&#34;Event3&#34;</span>, <span style="color:#e6db74">&#34;https://www.python.org/events/python-events/790/&#34;</span>),
+        (<span style="color:#e6db74">&#34;Event4&#34;</span>, <span style="color:#e6db74">&#34;https://www.python.org/events/python-events/798/&#34;</span>),
+        (<span style="color:#e6db74">&#34;Event5&#34;</span>, <span style="color:#e6db74">&#34;https://www.python.org/events/python-events/807/&#34;</span>),
+        (<span style="color:#e6db74">&#34;Event6&#34;</span>, <span style="color:#e6db74">&#34;https://www.python.org/events/python-events/807/&#34;</span>),
+        (<span style="color:#e6db74">&#34;Event7&#34;</span>, <span style="color:#e6db74">&#34;https://www.python.org/events/python-events/757/&#34;</span>),
+        (<span style="color:#e6db74">&#34;Event8&#34;</span>, <span style="color:#e6db74">&#34;https://www.python.org/events/python-user-group/816/&#34;</span>)]
+
+start <span style="color:#f92672">=</span> time()
+ThreadPool(<span style="color:#ae81ff">9</span>)<span style="color:#f92672">.</span>imap_unordered(url_response, urls)
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Time to download: {time() - start}&#34;</span>)
+
+<span style="color:#75715e"># Time to download: 0.0064961910247802734</span></code></pre></div>
+<h2 id="5-使用-urllib-获取html页面">5. 使用<code>urllib</code>获取html页面</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> urllib.request
+<span style="color:#75715e"># urllib.request.urlretrieve(&#39;url&#39;, &#39;path&#39;)</span>
+urllib<span style="color:#f92672">.</span>request<span style="color:#f92672">.</span>urlretrieve(<span style="color:#e6db74">&#39;https://www.python.org/&#39;</span>, <span style="color:#e6db74">&#39;PythonOrganization.html&#39;</span>)</code></pre></div>
+<h2 id="6-python下载视频的神器">6. python下载视频的神器</h2>
+
+<p><a href="https://github.com/soimort/you-get">you-get</a>，目前you-get所支持的网站包含国内外几十个网站(youtube、twitter、腾讯、爱奇艺、优酷、bilibili等)。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install you-get</code></pre></div>
+<p>测试一下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">you-get https://www.bilibili.com/video/av52694584/?spm_id_from<span style="color:#f92672">=</span><span style="color:#ae81ff">333</span>.334.b_686f6d655f706f70756c6172697a65.3</code></pre></div>
+<p><a href="https://github.com/ytdl-org/youtube-dl">youtube-dl</a>也是一个类似的工具。</p>
+
+<h2 id="7-举个例子">7. 举个例子</h2>
+
+<p>批量下载： <a href="https://www.esrl.noaa.gov/psd/cgi-bin/db_search/DBListFiles.pl?did=118&amp;tid=40290&amp;vid=2227">NOAA-CIRES 20th Century 2m气温再分析资料</a>。一个个点手会点残，这时候可以借助Python来批量化下载数据。</p>
+
+<p>首先打开页面，按F12查看网页源码：</p>
+
+<p><img src="https://www.wentixiaogege.com/post/pics/70.png" alt="img" /></p>
+
+<p>可以看出，对应下载文件的链接都在<code>div</code>标签下的<code>a</code>标签中，需要将这些链接一一获取然后就可以进行批量化下载了。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding: utf-8 -*-</span>
+<span style="color:#f92672">import</span> urllib
+<span style="color:#f92672">from</span> bs4 <span style="color:#f92672">import</span> BeautifulSoup
+
+rawurl<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;https://www.esrl.noaa.gov/psd/cgi-bin/db_search/DBListFiles.pl?did=118&amp;tid=40290&amp;vid=2227&#39;</span>
+content <span style="color:#f92672">=</span> urllib<span style="color:#f92672">.</span>request<span style="color:#f92672">.</span>urlopen(rawurl)<span style="color:#f92672">.</span>read()<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;ascii&#39;</span>)  <span style="color:#75715e"># 获取页面的HTML</span>
+
+soup <span style="color:#f92672">=</span> BeautifulSoup(content, <span style="color:#e6db74">&#39;lxml&#39;</span>)
+url_cand_html<span style="color:#f92672">=</span>soup<span style="color:#f92672">.</span>find_all(id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;content&#39;</span>) <span style="color:#75715e"># 定位到存放url的标号为content的div标签</span>
+list_urls<span style="color:#f92672">=</span>url_cand_html[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>find_all(<span style="color:#e6db74">&#34;a&#34;</span>) <span style="color:#75715e"># 定位到a标签，其中存放着文件的url</span>
+urls<span style="color:#f92672">=</span>[]
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> list_urls[<span style="color:#ae81ff">1</span>:]:
+    urls<span style="color:#f92672">.</span>append(i<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;href&#39;</span>)) <span style="color:#75715e"># 取出链接</span>
+
+<span style="color:#66d9ef">for</span> i,url <span style="color:#f92672">in</span> enumerate(urls):
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;This is file&#34;</span><span style="color:#f92672">+</span>str(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">+</span><span style="color:#e6db74">&#34; downloading! You still have &#34;</span><span style="color:#f92672">+</span>str(<span style="color:#ae81ff">142</span><span style="color:#f92672">-</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">+</span><span style="color:#e6db74">&#34; files waiting for downloading!!&#34;</span>)
+    file_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./ncfile/&#34;</span><span style="color:#f92672">+</span>url<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;/&#39;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#75715e"># 文件保存位置+文件名</span>
+    urllib<span style="color:#f92672">.</span>request<span style="color:#f92672">.</span>urlretrieve(url, file_name)</code></pre></div>
+<p>并行下载的版本，大家自己先试试，欢迎留言写下你的方案。</p>
+
+<h2 id="reference">REFERENCE</h2>
+
+<p><a href="https://likegeeks.com/downloading-files-using-python/#Download-via-proxy">Downloading Files Using Python (Simple Examples)</a></p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.wentixiaogege.com/tags/python"><span class="tag">Python</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/data-science"><span class="tag">Data Science</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/%E7%88%AC%E8%99%AB"><span class="tag">爬虫</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>342</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "orion-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.wentixiaogege.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5713bba443e20a46d066ca93c131f795";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  </body>
+</html>

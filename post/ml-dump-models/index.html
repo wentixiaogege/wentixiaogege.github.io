@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>保存机器学习模型——pickle和joblib</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <link href="//hm.baidu.com" rel="dns-prefetch">
+
+  
+
+  
+  <meta name="author" content="Qi Zhang">
+  <meta name="description" content="很多场合下我们都需要将训练完的模型存下以便于以后复用。
+这篇文章主要介绍持久化存储机器学习模型的两种方式：pickle和joblib，以及如何DIY自己的模型存储模块。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="保存机器学习模型——pickle和joblib">
+    <meta name="twitter:description" content="很多场合下我们都需要将训练完的模型存下以便于以后复用。
+这篇文章主要介绍持久化存储机器学习模型的两种方式：pickle和joblib，以及如何DIY自己的模型存储模块。
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="保存机器学习模型——pickle和joblib">
+  <meta property="og:description" content="很多场合下我们都需要将训练完的模型存下以便于以后复用。
+这篇文章主要介绍持久化存储机器学习模型的两种方式：pickle和joblib，以及如何DIY自己的模型存储模块。
+">
+  <meta property="og:url" content="https://www.wentixiaogege.com/post/ml-dump-models/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.57.2">
+
+
+<link rel="canonical" href="https://www.wentixiaogege.com/post/ml-dump-models/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.wentixiaogege.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.wentixiaogege.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.wentixiaogege.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.wentixiaogege.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.wentixiaogege.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.wentixiaogege.com/manifest.json">
+
+
+<link rel="preload" href="https://www.wentixiaogege.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.wentixiaogege.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.wentixiaogege.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.wentixiaogege.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://www.wentixiaogege.com/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">wentixiaogege</h2>
+  
+  <p class="subtitle">Getty Images Contributor. I&#39;m not a photographer but a data enthusiast.</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.wentixiaogege.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">GitHub</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://wentixiaogegefoto.tuchong.com/">Gallery</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:hi@wentixiaogege.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/wentixiaogege" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/bother7" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://www.wentixiaogege.com/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">保存机器学习模型——pickle和joblib</h1>
+      <p class="post-meta">@Qi Zhang · Jul 11, 2019 · 3 min read</p>
+    </header>
+    <article class="post-content"><p>很多场合下我们都需要将训练完的模型存下以便于以后复用。</p>
+
+<p>这篇文章主要介绍持久化存储机器学习模型的两种方式：<code>pickle</code>和<code>joblib</code>，以及如何DIY自己的模型存储模块。</p>
+
+<h2 id="before">Before</h2>
+
+<p>对于下面这个例子，我们用逻辑回归算法训练了模型，那么如何在以后的场景中，重复应用这个训练完的模型呢？</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> sklearn.linear_model <span style="color:#f92672">import</span> LogisticRegression  
+<span style="color:#f92672">from</span> sklearn.datasets <span style="color:#f92672">import</span> load_iris  
+<span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> train_test_split
+
+<span style="color:#75715e"># Load and split data</span>
+data <span style="color:#f92672">=</span> load_iris()  
+Xtrain, Xtest, Ytrain, Ytest <span style="color:#f92672">=</span> train_test_split(data<span style="color:#f92672">.</span>data, data<span style="color:#f92672">.</span>target, test_size<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)
+
+<span style="color:#75715e"># Create a model</span>
+model <span style="color:#f92672">=</span> LogisticRegression(C<span style="color:#f92672">=</span><span style="color:#ae81ff">0.1</span>,  
+                           max_iter<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>, 
+                           fit_intercept<span style="color:#f92672">=</span>True, 
+                           n_jobs<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, 
+                           solver<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;liblinear&#39;</span>)
+model<span style="color:#f92672">.</span>fit(Xtrain, Ytrain) 
+
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">our resulting model:
+</span><span style="color:#e6db74">LogisticRegression(C=0.1, class_weight=None, dual=False, fit_intercept=True,  
+</span><span style="color:#e6db74">    intercept_scaling=1, max_iter=20, multi_class=&#39;ovr&#39;, n_jobs=3,
+</span><span style="color:#e6db74">    penalty=&#39;l2&#39;, random_state=None, solver=&#39;liblinear&#39;, tol=0.0001,
+</span><span style="color:#e6db74">    verbose=0, warm_start=False)
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span></code></pre></div>
+<p>下面我们介绍python中三种常用的方法，来做模型的持久化存储，以便于后续的上线部署。</p>
+
+<h2 id="pickle-module-also-cpickle">Pickle Module (also: cPickle)</h2>
+
+<p>pickle可以序列化对象并保存到磁盘中，并在需要的时候读取出来，任何对象都可以执行序列化操作。同样我们也可以将训练好的模型对象序列化并存储到本地。具体的操作过程如下：</p>
+
+<blockquote>
+<p>This saving procedure is also known as object serialization - representing an object with a stream of bytes, in order to store it on disk, send it over a network or save to a database, while the restoring procedure is known as deserialization.</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pickle
+
+<span style="color:#75715e"># Create your model here (same as above)</span>
+
+<span style="color:#75715e"># Save to file in the current working directory</span>
+pkl_filename <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pickle_model.pkl&#34;</span>  
+<span style="color:#66d9ef">with</span> open(pkl_filename, <span style="color:#e6db74">&#39;wb&#39;</span>) <span style="color:#66d9ef">as</span> file:  
+    pickle<span style="color:#f92672">.</span>dump(model, file)
+
+<span style="color:#75715e"># Load from file</span>
+<span style="color:#66d9ef">with</span> open(pkl_filename, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> file:  
+    pickle_model <span style="color:#f92672">=</span> pickle<span style="color:#f92672">.</span>load(file)
+
+<span style="color:#75715e"># Calculate the accuracy score and predict target values</span>
+score <span style="color:#f92672">=</span> pickle_model<span style="color:#f92672">.</span>score(Xtest, Ytest)  
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Test score: {0:.2f} %&#34;</span><span style="color:#f92672">.</span>format(<span style="color:#ae81ff">100</span> <span style="color:#f92672">*</span> score))  
+Ypredict <span style="color:#f92672">=</span> pickle_model<span style="color:#f92672">.</span>predict(Xtest)  </code></pre></div>
+<p>也可以将一些过程中的参数通过tuple的形式保存下来：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">tuple_objects <span style="color:#f92672">=</span> (model, Xtrain, Ytrain, score)
+
+<span style="color:#75715e"># Save tuple</span>
+pickle<span style="color:#f92672">.</span>dump(tuple_objects, open(<span style="color:#e6db74">&#34;tuple_model.pkl&#34;</span>, <span style="color:#e6db74">&#39;wb&#39;</span>))
+
+<span style="color:#75715e"># Restore tuple</span>
+pickled_model, pickled_Xtrain, pickled_Ytrain, pickled_score <span style="color:#f92672">=</span> pickle<span style="color:#f92672">.</span>load(open(<span style="color:#e6db74">&#34;tuple_model.pkl&#34;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>))</code></pre></div>
+<p>cPickle是用 C 编码的pickle模块，性能更好，推荐在大多数的场景中使用该模块。</p>
+
+<p>需要注意的是：在序列化模型的时候尽可能的保持python及主要的依赖库（如numpy, sklearn等）版本一致，以防不兼容的错误。</p>
+
+<h4 id="注意-pickle性能问题和安全问题-https-www-benfrederickson-com-dont-pickle-your-data">注意：<a href="https://www.benfrederickson.com/dont-pickle-your-data/">pickle性能问题和安全问题</a></h4>
+
+<p>pickle较慢而且在序列化的时候很吃内存，如果数据较大，有可能在pickle的时候内存溢出了。</p>
+
+<blockquote>
+<p>Pickle requires a large amount of memory to save a data structure to disk.</p>
+</blockquote>
+
+<p>可以使用JSON和<a href="https://msgpack.org/index.html">MessagePack</a>代替，<a href="https://github.com/benfred/bens-blog-code/tree/master/python-serialization">CODE</a>。</p>
+
+<h2 id="joblib-module">Joblib Module</h2>
+
+<p><code>joblib</code>是<code>sklearn</code>中自带的一个工具，用于模型的持久化存储，做了很多的优化。在多数场景下，<code>joblib</code>的性能要优于<code>pickle</code>，尤其是当数据量较大的情况更加明显。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> sklearn.externals <span style="color:#f92672">import</span> joblib
+
+<span style="color:#75715e"># Save to file in the current working directory</span>
+joblib_file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;joblib_model.pkl&#34;</span>  
+joblib<span style="color:#f92672">.</span>dump(model, joblib_file)
+
+<span style="color:#75715e"># Load from file</span>
+joblib_model <span style="color:#f92672">=</span> joblib<span style="color:#f92672">.</span>load(joblib_file)
+
+<span style="color:#75715e"># Calculate the accuracy and predictions</span>
+score <span style="color:#f92672">=</span> joblib_model<span style="color:#f92672">.</span>score(Xtest, Ytest)  
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Test score: {0:.2f} %&#34;</span><span style="color:#f92672">.</span>format(<span style="color:#ae81ff">100</span> <span style="color:#f92672">*</span> score))  
+Ypredict <span style="color:#f92672">=</span> pickle_model<span style="color:#f92672">.</span>predict(Xtest)  </code></pre></div>
+<p>参见下面pickle和joblib的对比试验：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> sklearn.externals <span style="color:#f92672">import</span> joblib
+<span style="color:#f92672">import</span> time
+<span style="color:#f92672">import</span> numpy
+<span style="color:#f92672">import</span> pickle
+
+bigarray <span style="color:#f92672">=</span> numpy<span style="color:#f92672">.</span>zeros([<span style="color:#ae81ff">190</span>,<span style="color:#ae81ff">91</span>,<span style="color:#ae81ff">190</span>])
+bigarray <span style="color:#f92672">=</span> bigarray<span style="color:#f92672">.</span>flatten()
+
+<span style="color:#75715e">### Saving</span>
+start <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+joblib<span style="color:#f92672">.</span>dump(bigarray,<span style="color:#e6db74">&#34;bigarray1.pkl&#34;</span>)
+end <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> start
+end
+<span style="color:#75715e"># 0.31264686584472656</span>
+
+start <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+pickle<span style="color:#f92672">.</span>dump(bigarray,open(<span style="color:#e6db74">&#34;bigarray2.pkl&#34;</span>,<span style="color:#e6db74">&#34;wb&#34;</span>))
+end <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()<span style="color:#f92672">-</span>start
+end
+<span style="color:#75715e"># 4.827500104904175</span>
+
+<span style="color:#75715e">### Loading</span>
+start <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+joblib<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#34;bigarray1.pkl&#34;</span>)
+end <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> start
+end
+<span style="color:#75715e"># 0.47748589515686035</span>
+
+start <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+pickle<span style="color:#f92672">.</span>load(open(<span style="color:#e6db74">&#34;bigarray2.pkl&#34;</span>,<span style="color:#e6db74">&#34;rb&#34;</span>))
+end <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()<span style="color:#f92672">-</span>start
+end
+<span style="color:#75715e"># 0.7575929164886475</span></code></pre></div>
+<h2 id="diy-module">DIY Module</h2>
+
+<p>也可以自己DIY模型的JSON存储模块，可以设计的更加兼容，灵活性大，但是复杂度相应也会更高。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> json  
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyLogReg</span>(LogisticRegression):
+
+    <span style="color:#75715e"># Override the class constructor</span>
+    <span style="color:#66d9ef">def</span> __init__(self, C<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span>, solver<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;liblinear&#39;</span>, max_iter<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, X_train<span style="color:#f92672">=</span>None, Y_train<span style="color:#f92672">=</span>None):
+        LogisticRegression<span style="color:#f92672">.</span>__init__(self, C<span style="color:#f92672">=</span>C, solver<span style="color:#f92672">=</span>solver, max_iter<span style="color:#f92672">=</span>max_iter)
+        self<span style="color:#f92672">.</span>X_train <span style="color:#f92672">=</span> X_train
+        self<span style="color:#f92672">.</span>Y_train <span style="color:#f92672">=</span> Y_train
+
+    <span style="color:#75715e"># A method for saving object data to JSON file</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">save_json</span>(self, filepath):
+        dict_ <span style="color:#f92672">=</span> {}
+        dict_[<span style="color:#e6db74">&#39;C&#39;</span>] <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>C
+        dict_[<span style="color:#e6db74">&#39;max_iter&#39;</span>] <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>max_iter
+        dict_[<span style="color:#e6db74">&#39;solver&#39;</span>] <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>solver
+        dict_[<span style="color:#e6db74">&#39;X_train&#39;</span>] <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>X_train<span style="color:#f92672">.</span>tolist() <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>X_train <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#39;None&#39;</span>
+        dict_[<span style="color:#e6db74">&#39;Y_train&#39;</span>] <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>Y_train<span style="color:#f92672">.</span>tolist() <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>Y_train <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#39;None&#39;</span>
+
+        <span style="color:#75715e"># Creat json and save to file</span>
+        json_txt <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>dumps(dict_, indent<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)
+        <span style="color:#66d9ef">with</span> open(filepath, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">as</span> file:
+            file<span style="color:#f92672">.</span>write(json_txt)
+
+    <span style="color:#75715e"># A method for loading data from JSON file</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">load_json</span>(self, filepath):
+        <span style="color:#66d9ef">with</span> open(filepath, <span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">as</span> file:
+            dict_ <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>load(file)
+
+        self<span style="color:#f92672">.</span>C <span style="color:#f92672">=</span> dict_[<span style="color:#e6db74">&#39;C&#39;</span>]
+        self<span style="color:#f92672">.</span>max_iter <span style="color:#f92672">=</span> dict_[<span style="color:#e6db74">&#39;max_iter&#39;</span>]
+        self<span style="color:#f92672">.</span>solver <span style="color:#f92672">=</span> dict_[<span style="color:#e6db74">&#39;solver&#39;</span>]
+        self<span style="color:#f92672">.</span>X_train <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>asarray(dict_[<span style="color:#e6db74">&#39;X_train&#39;</span>]) <span style="color:#66d9ef">if</span> dict_[<span style="color:#e6db74">&#39;X_train&#39;</span>] <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;None&#39;</span> <span style="color:#66d9ef">else</span> None
+        self<span style="color:#f92672">.</span>Y_train <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>asarray(dict_[<span style="color:#e6db74">&#39;Y_train&#39;</span>]) <span style="color:#66d9ef">if</span> dict_[<span style="color:#e6db74">&#39;Y_train&#39;</span>] <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;None&#39;</span> <span style="color:#66d9ef">else</span> None</code></pre></div>
+<p>应用模块：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">filepath <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;mylogreg.json&#34;</span>
+
+<span style="color:#75715e"># Create a model and train it</span>
+mylogreg <span style="color:#f92672">=</span> MyLogReg(X_train<span style="color:#f92672">=</span>Xtrain, Y_train<span style="color:#f92672">=</span>Ytrain)  
+mylogreg<span style="color:#f92672">.</span>save_json(filepath)
+
+<span style="color:#75715e"># Create a new object and load its data from JSON file</span>
+json_mylogreg <span style="color:#f92672">=</span> MyLogReg()  
+json_mylogreg<span style="color:#f92672">.</span>load_json(filepath)  
+json_mylogreg  
+
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">MyLogReg(C=1.0,  
+</span><span style="color:#e6db74">     X_train=array([[ 4.3,  3. ,  1.1,  0.1],
+</span><span style="color:#e6db74">       [ 5.7,  4.4,  1.5,  0.4],
+</span><span style="color:#e6db74">       ...,
+</span><span style="color:#e6db74">       [ 7.2,  3. ,  5.8,  1.6],
+</span><span style="color:#e6db74">       [ 7.7,  2.8,  6.7,  2. ]]),
+</span><span style="color:#e6db74">     Y_train=array([0, 0, ..., 2, 2]), class_weight=None, dual=False,
+</span><span style="color:#e6db74">     fit_intercept=True, intercept_scaling=1, max_iter=100,
+</span><span style="color:#e6db74">     multi_class=&#39;ovr&#39;, n_jobs=1, penalty=&#39;l2&#39;, random_state=None,
+</span><span style="color:#e6db74">     solver=&#39;liblinear&#39;, tol=0.0001, verbose=0, warm_start=False)
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span></code></pre></div>
+<h2 id="reference">Reference</h2>
+
+<p><a href="[http://gael-varoquaux.info/programming/new_low-overhead_persistence_in_joblib_for_big_data.html](http://gael-varoquaux.info/programming/new_low-overhead_persistence_in_joblib_for_big_data.html)">Better Python compressed persistence in joblib</a></p>
+
+<p><a href="https://stackabuse.com/scikit-learn-save-and-restore-models/">Save and Restore Models</a></p>
+
+<p><a href="https://chrisalbon.com/machine_learning/basics/saving_machine_learning_models/">Saving machine learning models</a></p>
+
+<p><a href="http://scikit-learn.org/stable/modules/model_persistence.html">Model persistence</a></p>
+
+<p><a href="https://machinelearningmastery.com/save-load-machine-learning-models-python-scikit-learn/">Save and Load Machine Learning Models in Python with scikit-learn</a></p>
+
+<p><a href="https://www.datacamp.com/community/tutorials/pickle-python-tutorial#not">DataCamp pickle</a></p>
+
+<p><a href="https://github.com/rasbt/python-machine-learning-book/blob/master/code/bonus/scikit-model-to-json.ipynb">model persistence using JSON.</a></p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.wentixiaogege.com/tags/machine-learning"><span class="tag">Machine Learning</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/python"><span class="tag">Python</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/scikit-learn"><span class="tag">Scikit-Learn</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>341</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "orion-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.wentixiaogege.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5713bba443e20a46d066ca93c131f795";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  </body>
+</html>

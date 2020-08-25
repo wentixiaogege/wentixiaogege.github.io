@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>concurrent.futures on wentixiaogege</title>
+    <link>https://www.wentixiaogege.com/tags/concurrent.futures/</link>
+    <description>Recent content in concurrent.futures on wentixiaogege</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Wed, 08 May 2019 00:28:24 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.wentixiaogege.com/tags/concurrent.futures/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>用concurrent.futures模块实现并行</title>
+      <link>https://www.wentixiaogege.com/post/py-concurrent-futures/</link>
+      <pubDate>Wed, 08 May 2019 00:28:24 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/py-concurrent-futures/</guid>
+      <description>&lt;p&gt;Python实现多线程/多进程，大家常常会用到标准库中的&lt;code&gt;threading&lt;/code&gt;和&lt;code&gt;multiprocessing&lt;/code&gt;模块。&lt;/p&gt;
+
+&lt;p&gt;但从Python3.2开始，标准库为我们提供了&lt;code&gt;concurrent.futures&lt;/code&gt;模块，它提供了&lt;code&gt;ThreadPoolExecutor&lt;/code&gt;和&lt;code&gt;ProcessPoolExecutor&lt;/code&gt;两个类，实现了对&lt;code&gt;threading&lt;/code&gt;和&lt;code&gt;multiprocessing&lt;/code&gt;的进一步抽象，使得开发者只需编写少量代码即可让程序实现并行计算。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

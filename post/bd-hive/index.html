@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Hive学习整理</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <link href="//hm.baidu.com" rel="dns-prefetch">
+
+  
+
+  
+  <meta name="author" content="Qi Zhang">
+  <meta name="description" content="Hadoop 大数据仓库 Hive：自动将 SQL 生成 MapReduce 代码。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="Hive学习整理">
+    <meta name="twitter:description" content="Hadoop 大数据仓库 Hive：自动将 SQL 生成 MapReduce 代码。
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Hive学习整理">
+  <meta property="og:description" content="Hadoop 大数据仓库 Hive：自动将 SQL 生成 MapReduce 代码。
+">
+  <meta property="og:url" content="https://www.wentixiaogege.com/post/bd-hive/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.57.2">
+
+
+<link rel="canonical" href="https://www.wentixiaogege.com/post/bd-hive/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.wentixiaogege.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.wentixiaogege.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.wentixiaogege.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.wentixiaogege.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.wentixiaogege.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.wentixiaogege.com/manifest.json">
+
+
+<link rel="preload" href="https://www.wentixiaogege.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.wentixiaogege.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.wentixiaogege.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.wentixiaogege.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://www.wentixiaogege.com/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">wentixiaogege</h2>
+  
+  <p class="subtitle">Getty Images Contributor. I&#39;m not a photographer but a data enthusiast.</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.wentixiaogege.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">GitHub</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://wentixiaogegefoto.tuchong.com/">Gallery</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:hi@wentixiaogege.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/wentixiaogege" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/bother7" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://www.wentixiaogege.com/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Hive学习整理</h1>
+      <p class="post-meta">@Qi Zhang · Jul 22, 2019 · 4 min read</p>
+    </header>
+    <article class="post-content"><p>Hadoop 大数据仓库 Hive：自动将 SQL 生成 MapReduce 代码。</p>
+
+<h1 id="1-hive简介">1. Hive简介</h1>
+
+<p>Hive 是一个基于 Hadoop 文件系统之上的数据仓库架构。它为数据仓库的管理提供了许多功能：数据 ETL （抽取、转换和加载）工具、数据存储管理和大型数据集的查询和分析能力。同时 Hive 还定义了类 SQL的语言 &ndash; Hive QL. Hive QL 允许用户进行和 SQL 相似的操作，它可以将结构化的数据文件映射为一张数据库表，并提供简单的 SQL 查询功能。还允许开发人员方便地使用 Mapper 和 Reducer 操作，可以将 SQL 语句转换为 MapReduce 任务运行，这对 MapReduce 框架来说是一个强有力的支持。</p>
+
+<p>Hadoop Ecosystem:</p>
+
+<p><img src="https://www.wentixiaogege.com/post/pics/HadoopEcosystem-min.png" alt="img" /></p>
+
+<h4 id="hive和传统关系数据库的区别">Hive和传统关系数据库的区别</h4>
+
+<p>Hive 在很多方面与传统关系数据库类似（例如支持 SQL 接口），但是其底层对 HDFS 和 MapReduce 的依赖意味着它的体系结构有别于传统关系数据库，而这些区别又影响着 Hive 所支持的特性，进而影响着 Hive 的使用。</p>
+
+<p>我们可以列举一些简单区别：</p>
+
+<blockquote>
+<ul>
+<li>Hive 和关系数据库存储文件的系统不同，Hive 使用的是 Hadoop 的HDFS（Hadoop的分布式文件系统），关系数据库则是服务器本地的文件系统；</li>
+<li>Hive 使用的计算模型是 MapReduce，而关系数据库则是自己设计的计算模型；</li>
+<li>关系数据库都是为实时查询的业务进行设计的，而 Hive 则是为海量数据做数据挖掘设计的，<strong>实时性很差</strong>；实时性的区别导致 Hive 的应用场景和关系数据库有很大的不同；</li>
+<li>Hive 很容易扩展自己的存储能力和计算能力，这个是继承 Hadoop 的，而关系数据库在这个方面要差很多。</li>
+</ul>
+</blockquote>
+
+<p>Hive 构建在基于静态批处理的 Hadoop 之上，Hadoop 通常都有较高的延迟并且在作业提交和调度的时候需要大量的开销。因此，Hive 不适合在大规模数据集上实现低延迟快速的查询。</p>
+
+<p>Hive架构图：</p>
+
+<p><img src=https://www.wentixiaogege.com/post/pics/image-20190823112529298.png style=width:666px></p>
+
+<p><strong>基本组成</strong></p>
+
+<ul>
+<li><p>用户接口，包括 CLI，JDBC/ODBC，WebUI</p></li>
+
+<li><p>元数据存储，通常是存储在关系数据库如 mysql, derby 中</p></li>
+
+<li><p>解释器、编译器、优化器、执行器</p></li>
+
+<li><p>Hadoop：用 HDFS 进行存储，利用 MapReduce 进行计算</p></li>
+</ul>
+
+<p>Hive 并不适合那些需要低延迟的应用，例如，联机事务处理（OLTP）。Hive 查询操作过程严格遵守 Hadoop MapReduce 的作业执行模型，Hive 将用户的 HiveQL 语句通过解释器转换为 MapReduce 作业提交到 Hadoop 集群上，Hadoop 监控作业执行过程，然后返回作业执行结果给用户。Hive 并非为联机事务处理而设计，Hive 并不提供实时的查询和基于行级的数据更新操作。</p>
+
+<p>Hive 的最佳使用场合是大数据集的批处理作业，例如，网络日志分析。</p>
+
+<p>Hive 的数据存储是建立在 Hadoop 文件系统之上的。Hive 本身没有专门的数据存储格式，也不能为数据建立索引，因此用户可以非常自由地组织 Hive 中的表，只需要在创建表的时候告诉 Hive 数据中的列分隔符就可以解析数据了。</p>
+
+<p>Hive 中主要包括 4 种数据模型：<code>表（Table）</code>、<code>外部表（External Table）</code>、<code>分区（Partition）</code>以及 <code>桶（Bucket）</code>。</p>
+
+<p>Hive 的表和数据库中的表在概念上没有什么本质区别，在 Hive 中每个表都有一个对应的存储目录。而外部表指向已经在 HDFS 中存在的数据，也可以创建分区。Hive 中的每个分区都对应数据库中相应分区列的一个索引，但是其对分区的组织方式和传统关系数据库不同。桶在指定列进行 Hash 计算时，会根据哈希值切分数据，使每个桶对应一个文件。</p>
+
+<blockquote>
+<p>分区表是指在创建表时指定分区空间，即指定表内的某几个字段作为分区列。分区表实际就是对应分布式文件系统上的的独立的文件夹，该文件夹下是该分区所有数据文件。而分区可以理解为分类，通过分类把不同类型的数据放到不同的目录下。分类的标准就是分区字段，可以是一个，也可以是多个。</p>
+
+<p>分区表的意义在于优化查询。查询表时通过where字句查询指定所需查询的分区，避免全表扫描，提高处理效率，降低计算费用。</p>
+</blockquote>
+
+<p>由于 Hive 的元数据可能要面临不断地更新、修改和读取操作，所以它显然不适合使用 Hadoop 文件系统进行存储。目前 Hive 把元数据存储在 RDBMS 中，比如存储在 MySQL, Derby 中。</p>
+
+<h1 id="2-hive基本操作">2. Hive基本操作</h1>
+
+<ul>
+<li><strong>2.1 数据定义 - <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL?src=contextnavchildmode">DDL</a></strong></li>
+<li><strong>2.2 数据操作 - <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DML">DML</a></strong></li>
+<li><strong>2.3 数据查询 - DQL</strong></li>
+</ul>
+
+<h3 id="2-1-数据定义-ddl">2.1 数据定义 - DDL</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> [<span style="color:#66d9ef">EXTERNAL</span>] <span style="color:#66d9ef">TABLE</span> [<span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span>] <span style="color:#66d9ef">table_name</span> 
+  [(col_name data_type [<span style="color:#66d9ef">COMMENT</span> col_comment], ...)] 
+  [<span style="color:#66d9ef">COMMENT</span> table_comment] 
+  [PARTITIONED <span style="color:#66d9ef">BY</span> (col_name data_type [<span style="color:#66d9ef">COMMENT</span> col_comment], ...)] 
+  [CLUSTERED <span style="color:#66d9ef">BY</span> (col_name, col_name, ...) 
+  [SORTED <span style="color:#66d9ef">BY</span> (col_name [<span style="color:#66d9ef">ASC</span><span style="color:#f92672">|</span><span style="color:#66d9ef">DESC</span>], ...)] <span style="color:#66d9ef">INTO</span> num_buckets BUCKETS] 
+  [<span style="color:#66d9ef">ROW</span> FORMAT row_format] 
+  [STORED <span style="color:#66d9ef">AS</span> file_format] 
+  [<span style="color:#66d9ef">LOCATION</span> hdfs_path]</code></pre></div>
+<p>上面的一些关键字解释：</p>
+
+<ul>
+<li><strong>CREATE TABLE</strong> 创建一个指定名字的表。如果相同名字的表已经存在，则抛出异常；用户可以用 IF NOT EXIST 选项来忽略这个异常</li>
+
+<li><p><strong>EXTERNAL</strong> 关键字可以让用户创建一个外部表，在建表的同时指定一个指向实际数据的路径（LOCATION）</p></li>
+
+<li><p><strong>LIKE</strong> 允许用户复制现有的表结构，但是不复制数据</p></li>
+
+<li><p><strong>COMMENT</strong> 可以为表与字段增加描述</p></li>
+
+<li><p><strong>ROW FORMAT</strong> 用户在建表的时候可以自定义 SerDe 或者使用自带的 SerDe。如果没有指定 ROW FORMAT 或者 ROW FORMAT DELIMITED，将会使用自带的 SerDe。在建表的时候，用户还需要为表指定列，用户在指定表的列的同时也会指定自定义的 SerDe，Hive 通过 SerDe 确定表的具体的列的数据。</p></li>
+
+<li><p><strong>STORED AS</strong> 如果文件数据是纯文本，可以使用 STORED AS TEXTFILE。如果数据需要压缩，使用 STORED AS SEQUENCE 。</p></li>
+</ul>
+
+<p><strong>建表（CREATE）</strong></p>
+
+<ul>
+<li><p>创建普通表</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">hive<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> test1(
+    id        INT,
+    email     STRING,
+    name      STRING);</code></pre></div></li>
+
+<li><p>创建外部表</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">hive<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">EXTERNAL</span> <span style="color:#66d9ef">TABLE</span> test2(
+    id             INT,
+    email          STRING,
+    name           STRING
+    )
+    <span style="color:#66d9ef">LOCATION</span> <span style="color:#e6db74">&#39;/home/hive/external&#39;</span>;</code></pre></div></li>
+</ul>
+
+<p>如果没有LOCATION，Hive将在HDFS上的/user/hive/warehouse文件夹下以外部表的表名创建一个文件夹，并将属于这个表的数据存放在这里。</p>
+
+<ul>
+<li>创建分区表</li>
+</ul>
+
+<p>为了避免Hive在查询时扫描全表，增加没有必要的消耗，因此在建表时加入partition。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">hive<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">test3</span>(
+        id             <span style="color:#66d9ef">INT</span>,
+        email          STRING,
+        name           STRING
+        )
+        PARTITIONED <span style="color:#66d9ef">BY</span>(sign_date STRING,age <span style="color:#66d9ef">INT</span>);</code></pre></div>
+<p>使用了sign_date 和age 两个字段作为分区列。但是，我们必须先创建这两个分区，才能够使用。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">hive<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> test3 <span style="color:#66d9ef">add</span> <span style="color:#a6e22e">partition</span>(sign_date<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;20190823&#39;</span>,age<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>);</code></pre></div>
+<ul>
+<li>创建 Bucket 表</li>
+</ul>
+
+<p>Hive中的table可以拆分成partiton，table和partition又可以进一步通过<code>CLUSTERED BY</code>分成更小的文件bucket，这样使得多个文件可以在map上同时启动。 首先需要设置环境变量 <code>hive&gt;set hive.enforce.bucketing = true；</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">hive<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#a6e22e">test4</span>(
+        id             <span style="color:#66d9ef">INT</span>,
+        email          STRING,
+        name           STRING,
+        age            <span style="color:#66d9ef">INT</span>
+        )
+        PARTITIONED <span style="color:#66d9ef">BY</span>(sign_date STRING)
+        CLUSTERED <span style="color:#66d9ef">BY</span>(id)SORTED <span style="color:#66d9ef">BY</span>(age) <span style="color:#66d9ef">INTO</span> <span style="color:#ae81ff">5</span> BUCKETS
+        ROW FORMAT DELIMITED FIELDS <span style="color:#66d9ef">TERMINATED</span> <span style="color:#66d9ef">BY</span> <span style="color:#e6db74">&#39;,&#39;</span>;</code></pre></div>
+<h3 id="2-2-数据操作-dml">2.2 数据操作 - DML</h3>
+
+<h3 id="2-3-数据查询-dql">2.3 数据查询 - DQL</h3>
+
+<ul>
+<li>基本的 Select 操作</li>
+<li>基于 Partition 的查询</li>
+<li>HAVING 查询</li>
+<li>Join 查询</li>
+</ul>
+
+<p><strong>（1）基本的 Select 操作</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">[<span style="color:#66d9ef">WITH</span> <span style="color:#a6e22e">CommonTableExpression</span> (, CommonTableExpression)<span style="color:#f92672">*</span>]    (Note: Only available <span style="color:#66d9ef">starting</span> <span style="color:#66d9ef">with</span> Hive <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">13</span>.<span style="color:#ae81ff">0</span>)
+<span style="color:#66d9ef">SELECT</span> [<span style="color:#66d9ef">ALL</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">DISTINCT</span>] select_expr, select_expr, ...
+  <span style="color:#66d9ef">FROM</span> table_reference
+  [<span style="color:#66d9ef">WHERE</span> where_condition]
+  [<span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> col_list]
+  [<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> col_list]
+  [CLUSTER <span style="color:#66d9ef">BY</span> col_list
+    <span style="color:#f92672">|</span> [DISTRIBUTE <span style="color:#66d9ef">BY</span> col_list] [SORT <span style="color:#66d9ef">BY</span> col_list]
+  ]
+ [<span style="color:#66d9ef">LIMIT</span> [offset,] rows]</code></pre></div>
+<ul>
+<li>一个SELECT语句可以是UNION查询的一部分，也可以是另一个查询的子查询。</li>
+<li>table_reference表示的是所查询的表。</li>
+<li>表名和列名大小写敏感。</li>
+<li>使用 <strong>ALL</strong> 和 <strong>DISTINCT</strong> 选项区分对重复记录的处理。默认是 ALL，表示查询所有记录。DISTINCT 表示去掉重复的记录；</li>
+
+<li><p>LIMIT number可以限制查询的记录数</p></li>
+
+<li><p>简单的查询例子： <code>SELECT * FROM test</code></p></li>
+</ul>
+
+<p><strong>（2）基于 Partition 的查询</strong></p>
+
+<p>一般 SELECT 查询会扫描整个表，使用 PARTITIONED BY 子句建表，查询就可以利用分区剪枝（input pruning）的特性。 Hive 当前的分区剪枝，只有分区断言出现在离 FROM 子句最近的那个 WHERE 子句中，才会启用分区剪枝。</p>
+
+<p>下面是两个例子page_view根据date分区：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> page_views.<span style="color:#f92672">*</span>
+<span style="color:#66d9ef">FROM</span> page_views
+<span style="color:#66d9ef">WHERE</span> page_views.<span style="color:#66d9ef">date</span> <span style="color:#f92672">&gt;=</span> <span style="color:#e6db74">&#39;2008-03-01&#39;</span> <span style="color:#66d9ef">AND</span> page_views.<span style="color:#66d9ef">date</span> <span style="color:#f92672">&lt;=</span> <span style="color:#e6db74">&#39;2008-03-31&#39;</span>
+<span style="color:#66d9ef">SELECT</span> page_views.<span style="color:#f92672">*</span> 
+<span style="color:#66d9ef">FROM</span> page_views <span style="color:#66d9ef">JOIN</span> dim_users
+<span style="color:#66d9ef">ON</span> (page_views.user_id <span style="color:#f92672">=</span> dim_users.id <span style="color:#66d9ef">AND</span> page_views.<span style="color:#66d9ef">date</span> <span style="color:#f92672">&gt;=</span> <span style="color:#e6db74">&#39;2008-03-01&#39;</span> <span style="color:#66d9ef">AND</span> page_views.<span style="color:#66d9ef">date</span> <span style="color:#f92672">&lt;=</span> <span style="color:#e6db74">&#39;2008-03-31&#39;</span>)</code></pre></div>
+<p><strong>（3）HAVING 查询</strong></p>
+
+<p>Hive在0.7.0版本中添加了对HAVING语句的支持，在旧版本的Hive中，使用一个子查询也可以实现相同的效果。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> col1 <span style="color:#66d9ef">FROM</span> t1 <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> col1 <span style="color:#66d9ef">HAVING</span> <span style="color:#a6e22e">SUM</span>(col2) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span></code></pre></div>
+<p>等价于</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">SELECT</span> col1 <span style="color:#66d9ef">FROM</span> (<span style="color:#66d9ef">SELECT</span> col1, <span style="color:#a6e22e">SUM</span>(col2) <span style="color:#66d9ef">AS</span> col2sum <span style="color:#66d9ef">FROM</span> t1 <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> col1) t2 <span style="color:#66d9ef">WHERE</span> t2.col2sum <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span></code></pre></div>
+<p><strong>（4）Join 查询</strong></p>
+
+<p>Join 的语法如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">join_table:
+    table_reference <span style="color:#66d9ef">JOIN</span> table_factor [join_condition]
+  <span style="color:#f92672">|</span> table_reference <span style="color:#960050;background-color:#1e0010">{</span><span style="color:#66d9ef">LEFT</span><span style="color:#f92672">|</span><span style="color:#66d9ef">RIGHT</span><span style="color:#f92672">|</span>FULL<span style="color:#960050;background-color:#1e0010">}</span> [<span style="color:#66d9ef">OUTER</span>] <span style="color:#66d9ef">JOIN</span> table_reference join_condition
+  <span style="color:#f92672">|</span> table_reference <span style="color:#66d9ef">LEFT</span> SEMI <span style="color:#66d9ef">JOIN</span> table_reference join_condition
+  <span style="color:#f92672">|</span> table_reference <span style="color:#66d9ef">CROSS</span> <span style="color:#66d9ef">JOIN</span> table_reference [join_condition] (<span style="color:#66d9ef">as</span> of Hive <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">10</span>)
+
+table_reference:
+    table_factor
+  <span style="color:#f92672">|</span> join_table
+
+table_factor:
+    tbl_name [alias]
+  <span style="color:#f92672">|</span> table_subquery alias
+  <span style="color:#f92672">|</span> ( table_references )
+
+join_condition:
+    <span style="color:#66d9ef">ON</span> <span style="color:#a6e22e">equality_expression</span> ( <span style="color:#66d9ef">AND</span> equality_expression )<span style="color:#f92672">*</span>
+
+equality_expression:
+    expression <span style="color:#f92672">=</span> expression</code></pre></div>
+<p>hive 只支持等连接（equality joins）、外连接（outer joins）、左半连接（left semi joins）。hive 不支持非相等的 join 条件，因为它很难在 map/reduce job 中实现这样的条件。而且，hive 可以 join 两个以上的表。</p>
+
+<h1 id="3-hive例子">3. Hive例子</h1>
+
+<p>通过hive实现单词统计。新建一个<code>word.txt</code>文档，作为我们的数据文件：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vi word.txt</code></pre></div>
+<p>输入：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hello world
+hello China
+hello what
+hello from China
+hello why</code></pre></div>
+<p>创建一个数据表，并将word.txt内容导入。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#75715e"># 新建表：
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> <span style="color:#66d9ef">text</span><span style="color:#960050;background-color:#1e0010">（</span>line string<span style="color:#960050;background-color:#1e0010">）</span>;
+<span style="color:#75715e"># 载入数据：
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">load</span> data local inpath <span style="color:#e6db74">&#39;/home/hadoop/word.txt&#39;</span> <span style="color:#66d9ef">into</span> <span style="color:#66d9ef">table</span> <span style="color:#66d9ef">text</span>; </code></pre></div>
+<p>注意：使用load函数时，如果从本地加载到hive表中，需要使用关键字local，它会将文件同时上传到hdfs系统中。</p>
+
+<p>查看text表：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">from</span> <span style="color:#66d9ef">text</span>;</code></pre></div>
+<p>由于一行文本有多个单词，所以我们需要将每行的文本切割成单个的单词，可使用split函数：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">select</span> <span style="color:#a6e22e">split</span>(line,<span style="color:#e6db74">&#39; &#39;</span>) <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">text</span>;</code></pre></div>
+<p>每行文本已经被切割开来，但是得到的是数组类型，并不是hive能直接通过<code>group by</code>处理的形式，所以我们需要使用hive的另一个高级函数<code>explode</code>。</p>
+
+<p><code>explode</code>这个函数的功能是行转列（俗称炸裂），也就是说将上面我们得到的数组中的每个元素生成一行。</p>
+
+<p>命令如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">select</span> <span style="color:#a6e22e">explode</span>(<span style="color:#a6e22e">split</span>(line,<span style="color:#e6db74">&#39; &#39;</span>)) <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">text</span>;</code></pre></div>
+<p>对于我们炸裂出来的数据，原来的列的名称已经不再适用，我们将其取别名为word：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">select</span> <span style="color:#a6e22e">explode</span>(<span style="color:#a6e22e">split</span>(line,<span style="color:#e6db74">&#39; &#39;</span>))<span style="color:#66d9ef">as</span> word <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">text</span>;</code></pre></div>
+<p>接下来，我们就需要使用<code>group by</code>来对我们得到的炸裂开来的数据进行统计。我们需要将上面得到的结果作为另一张表t(子查询)，然后对这张表进行统计，否则将会报错：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">select</span> t.word,<span style="color:#a6e22e">count</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">from</span> (<span style="color:#66d9ef">select</span> <span style="color:#a6e22e">explode</span>(<span style="color:#a6e22e">split</span>(line,<span style="color:#e6db74">&#39; &#39;</span>))<span style="color:#66d9ef">as</span> word <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">text</span>) <span style="color:#66d9ef">as</span> t <span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> t.word;</code></pre></div>
+<p>接下来我们将所有单词按照降序排列，同时只打印前三个单词。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">select</span> t.word,<span style="color:#a6e22e">count</span>(<span style="color:#f92672">*</span>) c <span style="color:#66d9ef">from</span> (<span style="color:#66d9ef">select</span> <span style="color:#a6e22e">explode</span>(<span style="color:#a6e22e">split</span>(line,<span style="color:#e6db74">&#39; &#39;</span>))<span style="color:#66d9ef">as</span> word <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">text</span>) <span style="color:#66d9ef">as</span> t <span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> t.word <span style="color:#66d9ef">order</span> <span style="color:#66d9ef">by</span> c <span style="color:#66d9ef">desc</span> <span style="color:#66d9ef">limit</span> <span style="color:#ae81ff">3</span>; </code></pre></div>
+<p><code>order by</code> 默认升序，我们使用<code>desc</code>设置为降序，同时我们安装<code>count(*)</code>出来的结果作为排序依据。</p>
+
+<p>在实际生产环境中，我们都需要将我们查询得到的结果存入另一张表中，以供其他人使用：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> wordcount <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">select</span> t.word,<span style="color:#a6e22e">count</span>(<span style="color:#f92672">*</span>) c <span style="color:#66d9ef">from</span> (<span style="color:#66d9ef">select</span> <span style="color:#a6e22e">explode</span>(<span style="color:#a6e22e">split</span>(line,<span style="color:#e6db74">&#39; &#39;</span>))<span style="color:#66d9ef">as</span> word <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">text</span>) <span style="color:#66d9ef">as</span> t <span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> t.word <span style="color:#66d9ef">order</span> <span style="color:#66d9ef">by</span> c <span style="color:#66d9ef">desc</span> <span style="color:#66d9ef">limit</span> <span style="color:#ae81ff">3</span>; </code></pre></div>
+<p>查看wordcount表：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">desc</span> wordcount;
+<span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> wordcount;</code></pre></div>
+<h4 id="hive查询-dense-rank-rank-row-number-的区别">hive查询<code>dense_rank()</code>, <code>rank()</code>, <code>row_number()</code>的区别</h4>
+
+<p>1、hive中查询一组中的前几名，就用到<code>dense_rank()</code>, <code>rank()</code>, <code>row_number()</code>这几个函数，他们的区别在于<code>rank()</code>就是排序 相同的排序是一样的，但是下一个小的会跳着排序，比如</p>
+
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>排序</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>23</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>23</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>22</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+
+<p><code>dense_rank()</code>相同的排序相同，下一个小的会紧挨着排序，比如</p>
+
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>排序</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>23</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>23</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>22</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+<p>这样总个数是相对减少的，适合求某些指标前几个等级的个数。
+<code>row_number()</code>就很简单，顺序排序。比如</p>
+
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>排序</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>23</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>23</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>22</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+
+<p>这种排序 总个数是不变的，适合求某些值的前几名。</p>
+
+<h2 id="reference">REFERENCE</h2>
+
+<p><a href="https://cwiki.apache.org/confluence/display/Hive/Home#Home-UserDocumentation">HiveUserDocumentation</a></p>
+
+<p><a href="https://baike.baidu.com/item/hive/67986">baike-hive(数据仓库工具)</a></p>
+
+<p><a href="https://blog.csdn.net/hguisu/article/details/7256833">Hadoop Hive sql语法详解</a></p>
+
+<p><a href="https://www.geeksforgeeks.org/hadoop-ecosystem/">hadoop-ecosystem</a></p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.wentixiaogege.com/tags/big-data"><span class="tag">Big Data</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/hive"><span class="tag">Hive</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/sql"><span class="tag">SQL</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/ai"><span class="tag">AI</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/data-science"><span class="tag">Data Science</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>329</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "orion-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.wentixiaogege.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5713bba443e20a46d066ca93c131f795";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  </body>
+</html>

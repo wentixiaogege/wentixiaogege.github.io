@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Python可视化：一些常用绘图脚本</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <link href="//hm.baidu.com" rel="dns-prefetch">
+
+  
+
+  
+  <meta name="author" content="Qi Zhang">
+  <meta name="description" content="个人整理的一些常用的绘图脚本，基于python的可视化库： matplotlib和seaborn。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="Python可视化：一些常用绘图脚本">
+    <meta name="twitter:description" content="个人整理的一些常用的绘图脚本，基于python的可视化库： matplotlib和seaborn。
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Python可视化：一些常用绘图脚本">
+  <meta property="og:description" content="个人整理的一些常用的绘图脚本，基于python的可视化库： matplotlib和seaborn。
+">
+  <meta property="og:url" content="https://www.wentixiaogege.com/post/python_visualization/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.57.2">
+
+
+<link rel="canonical" href="https://www.wentixiaogege.com/post/python_visualization/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.wentixiaogege.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.wentixiaogege.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.wentixiaogege.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.wentixiaogege.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.wentixiaogege.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.wentixiaogege.com/manifest.json">
+
+
+<link rel="preload" href="https://www.wentixiaogege.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.wentixiaogege.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.wentixiaogege.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.wentixiaogege.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://www.wentixiaogege.com/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">wentixiaogege</h2>
+  
+  <p class="subtitle">Getty Images Contributor. I&#39;m not a photographer but a data enthusiast.</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.wentixiaogege.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">GitHub</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://wentixiaogegefoto.tuchong.com/">Gallery</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:hi@wentixiaogege.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/wentixiaogege" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/bother7" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://www.wentixiaogege.com/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Python可视化：一些常用绘图脚本</h1>
+      <p class="post-meta">@Qi Zhang · May 23, 2019 · 6 min read</p>
+    </header>
+    <article class="post-content"><p>个人整理的一些常用的绘图脚本，基于<code>python</code>的可视化库： <code>matplotlib</code>和<code>seaborn</code>。</p>
+
+<h2 id="1-barplot">1. BARPLOT</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">8</span>))
+ax <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>)
+a <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0.91</span>, <span style="color:#ae81ff">2.29</span>, <span style="color:#ae81ff">3</span>]
+b <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1.73</span>, <span style="color:#ae81ff">1.99</span>, <span style="color:#ae81ff">4</span>]
+c <span style="color:#f92672">=</span> [<span style="color:#ae81ff">2.12</span>, <span style="color:#ae81ff">1.26</span>, <span style="color:#ae81ff">5</span>]
+xx <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(list(range(<span style="color:#ae81ff">3</span>)))
+l2 <span style="color:#f92672">=</span> ax<span style="color:#f92672">.</span>bar(xx<span style="color:#f92672">-</span><span style="color:#ae81ff">0.3</span>, a, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mediumseagreen&#39;</span>,align<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;edge&#39;</span>,width<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>,label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;a&#39;</span>,yerr<span style="color:#f92672">=</span><span style="color:#ae81ff">0.1</span>)
+l1 <span style="color:#f92672">=</span> ax<span style="color:#f92672">.</span>bar(xx<span style="color:#f92672">-</span><span style="color:#ae81ff">0.1</span>, b, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;indianred&#39;</span>,align<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;edge&#39;</span>,width<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>,label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;b&#39;</span>,yerr<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>)
+l3 <span style="color:#f92672">=</span> ax<span style="color:#f92672">.</span>bar(xx<span style="color:#f92672">+</span><span style="color:#ae81ff">0.1</span>, c, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;steelblue&#39;</span>,align<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;edge&#39;</span>,width<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>,label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;c&#39;</span>,yerr<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+ax<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#34;TITLE&#34;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">25</span>, pad<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+ax<span style="color:#f92672">.</span>legend(handles<span style="color:#f92672">=</span>[l1,l2,l3, ], loc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>, framealpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+ax<span style="color:#f92672">.</span>tick_params(labelcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+<span style="color:#75715e"># fig.tight_layout() # 调整整体空白</span>
+<span style="color:#75715e"># plt.subplots_adjust(wspace=0.05, hspace=0.15)  # 调整子图间距</span>
+plt<span style="color:#f92672">.</span>xticks([<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>], [<span style="color:#e6db74">&#39;label_1&#39;</span>,<span style="color:#e6db74">&#39;label_2&#39;</span>,<span style="color:#e6db74">&#39;label_3&#39;</span>]) 
+plt<span style="color:#f92672">.</span>show()</code></pre></div>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190523164334026.png" style='zoom:50%'></p>
+
+<h2 id="2-barplot按值区分颜色及画水平-垂直参考线">2. BARPLOT按值区分颜色及画水平、垂直参考线</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;d&#39;</span>, <span style="color:#e6db74">&#39;e&#39;</span>, <span style="color:#e6db74">&#39;f&#39;</span>, <span style="color:#e6db74">&#39;g&#39;</span>, <span style="color:#e6db74">&#39;h&#39;</span>, <span style="color:#e6db74">&#39;i&#39;</span>, <span style="color:#e6db74">&#39;j&#39;</span>])
+b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>])
+colors <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(b <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;indianred&#39;</span>, <span style="color:#e6db74">&#39;steelblue&#39;</span>)
+fig <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">8</span>), dpi<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+ax1 <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(<span style="color:#ae81ff">111</span>)
+ax1<span style="color:#f92672">.</span>bar(a, b, color<span style="color:#f92672">=</span>colors, width<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>)
+ax1<span style="color:#f92672">.</span>tick_params(labelcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;13&#39;</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+ax1<span style="color:#f92672">.</span>axhline(<span style="color:#ae81ff">0</span>,c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;darkorange&#39;</span>,linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>) <span style="color:#75715e"># 画水平参考线</span>
+ax1<span style="color:#f92672">.</span>axvline(<span style="color:#e6db74">&#39;e&#39;</span>,c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mediumseagreen&#39;</span>,linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>) <span style="color:#75715e"># 画水平参考线</span>
+ax1<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#34;YOUR TITLE&#34;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>)
+<span style="color:#75715e"># fig.tight_layout() # 调整整体空白</span>
+<span style="color:#75715e"># plt.subplots_adjust(wspace=0, hspace=0.40)  # 调整子图间距</span>
+<span style="color:#75715e"># plt.xticks(rotation=0)</span>
+plt<span style="color:#f92672">.</span>grid(axis<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;y&#39;</span>, linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>)
+plt<span style="color:#f92672">.</span>show()</code></pre></div>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190523182156311.png" style='zoom:50%'></p>
+
+<h2 id="3-barplot标注数值">3. BARPLOT标注数值</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x_bar <span style="color:#f92672">=</span> [<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">50</span>]
+y_bar <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0.2</span>, <span style="color:#ae81ff">0.7</span>, <span style="color:#ae81ff">0.6</span>, <span style="color:#ae81ff">0.9</span>, <span style="color:#ae81ff">0.6</span>]
+<span style="color:#75715e"># 画图：</span>
+plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>), dpi<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)  <span style="color:#75715e"># 设置画图大小和分辨率</span>
+bars <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>bar(x_bar, y_bar, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;steelblue&#39;</span>, label<span style="color:#f92672">=</span>x_bar, width<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+<span style="color:#75715e"># 在柱状图上标注数值：</span>
+<span style="color:#66d9ef">for</span> i, rec <span style="color:#f92672">in</span> enumerate(bars):
+    x_text <span style="color:#f92672">=</span> rec<span style="color:#f92672">.</span>get_x()  <span style="color:#75715e"># 获取柱形图横坐标 可以+/-数值使其居中</span>
+    y_text <span style="color:#f92672">=</span> rec<span style="color:#f92672">.</span>get_height() <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.02</span>  <span style="color:#75715e"># 获取柱子的高度 +0.02</span>
+    plt<span style="color:#f92672">.</span>text(x_text, y_text, <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%.2f</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> y_bar[i], fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>)  <span style="color:#75715e"># 标注文字</span>
+<span style="color:#75715e"># 坐标轴设置：</span>
+plt<span style="color:#f92672">.</span>ylim((<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>))   <span style="color:#75715e"># y取值范围</span>
+plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;X&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)  <span style="color:#75715e"># x标签</span>
+plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Y&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)  <span style="color:#75715e"># y标签</span>
+plt<span style="color:#f92672">.</span>tick_params(labelcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;15&#39;</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+plt<span style="color:#f92672">.</span>show()</code></pre></div>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190523184926939.png" style='zoom:50%'></p>
+
+<h2 id="4-lineplot">4. LINEPLOT</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#e6db74">&#39;a&#39;</span>,<span style="color:#e6db74">&#39;b&#39;</span>,<span style="color:#e6db74">&#39;c&#39;</span>,<span style="color:#e6db74">&#39;d&#39;</span>,<span style="color:#e6db74">&#39;e&#39;</span>,<span style="color:#e6db74">&#39;f&#39;</span>])
+b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">2</span>])
+std <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">0.1</span>,<span style="color:#ae81ff">0.2</span>,<span style="color:#ae81ff">0.4</span>,<span style="color:#ae81ff">0.2</span>,<span style="color:#ae81ff">0.9</span>,<span style="color:#ae81ff">0.2</span>])
+fig <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">6</span>), dpi<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+ax1 <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(<span style="color:#ae81ff">111</span>)
+l1, <span style="color:#f92672">=</span> ax1<span style="color:#f92672">.</span>plot(a, b, c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;indianred&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;b_test&#39;</span>,lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+ax1<span style="color:#f92672">.</span>scatter(a, b, c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;indianred&#39;</span>,lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2.5</span>,alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>)
+ax1<span style="color:#f92672">.</span>fill_between(a, b<span style="color:#f92672">-</span>std, b<span style="color:#f92672">+</span>std,alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.1</span>,color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;indianred&#39;</span>)
+ax1<span style="color:#f92672">.</span>tick_params(labelcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;15&#39;</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+ax1<span style="color:#f92672">.</span>legend(handles<span style="color:#f92672">=</span>[l1, ], loc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>, framealpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+ax1<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#34;Your_Title&#34;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">18</span>)
+ax1<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;X&#39;</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)  <span style="color:#75715e"># x标签</span>
+ax1<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;Y&#39;</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)  <span style="color:#75715e"># x标签</span>
+plt<span style="color:#f92672">.</span>xticks(rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">45</span>)
+plt<span style="color:#f92672">.</span>show()</code></pre></div>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190523172802518.png" style='zoom:50%'></p>
+
+<h2 id="5-双y轴">5. 双y轴</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#e6db74">&#39;a&#39;</span>,<span style="color:#e6db74">&#39;b&#39;</span>,<span style="color:#e6db74">&#39;c&#39;</span>,<span style="color:#e6db74">&#39;d&#39;</span>,<span style="color:#e6db74">&#39;e&#39;</span>,<span style="color:#e6db74">&#39;f&#39;</span>])
+b1 <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">2</span>])
+b2 <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">24</span>,<span style="color:#ae81ff">37</span>,<span style="color:#ae81ff">48</span>,<span style="color:#ae81ff">59</span>,<span style="color:#ae81ff">62</span>])
+<span style="color:#75715e"># sns.set()</span>
+<span style="color:#75715e"># sns.reset_orig()</span>
+fig <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">6</span>), dpi<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+ax1 <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(<span style="color:#ae81ff">111</span>)
+l1, <span style="color:#f92672">=</span> ax1<span style="color:#f92672">.</span>plot(a,b1,c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;steelblue&#39;</span>)
+ax1<span style="color:#f92672">.</span>scatter(a,b1,c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;steelblue&#39;</span>)
+ax2 <span style="color:#f92672">=</span> ax1<span style="color:#f92672">.</span>twinx() <span style="color:#75715e"># 双y轴</span>
+l2, <span style="color:#f92672">=</span> ax2<span style="color:#f92672">.</span>plot(a,b2,c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;indianred&#39;</span>)
+ax2<span style="color:#f92672">.</span>scatter(a,b2,c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;indianred&#39;</span>) <span style="color:#75715e"># lw=5,alpha=0.7</span>
+ax1<span style="color:#f92672">.</span>tick_params(labelcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;20&#39;</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+ax1<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#34;b1&#34;</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+ax2<span style="color:#f92672">.</span>tick_params(labelcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;20&#39;</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+ax2<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#34;b2&#34;</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">90</span>)
+ax1<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;X&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)  <span style="color:#75715e"># x标签</span>
+<span style="color:#75715e"># plt.grid()</span>
+plt<span style="color:#f92672">.</span>legend(handles<span style="color:#f92672">=</span>[l1,l2],labels<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;b1&#39;</span>,<span style="color:#e6db74">&#39;b2&#39;</span>],loc<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;best&#39;</span>,prop<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;size&#39;</span>: <span style="color:#ae81ff">15</span>},ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,framealpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+plt<span style="color:#f92672">.</span>show()</code></pre></div>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190523175728168.png" style='zoom:50%'></p>
+
+<h2 id="6-多子图样例1">6. 多子图样例1</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+plt<span style="color:#f92672">.</span>rcParams[<span style="color:#e6db74">&#39;font.sans-serif&#39;</span>]<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;SimHei&#39;</span>] <span style="color:#75715e">#用来正常显示中文标签</span>
+plt<span style="color:#f92672">.</span>rcParams[<span style="color:#e6db74">&#39;axes.unicode_minus&#39;</span>]<span style="color:#f92672">=</span>False  <span style="color:#75715e">#用来正常显示负号</span>
+
+<span style="color:#75715e">### Data:</span>
+<span style="color:#75715e">#1290-2017</span>
+a1<span style="color:#f92672">=</span>(<span style="color:#ae81ff">21.98</span>, <span style="color:#ae81ff">14.97</span>, <span style="color:#ae81ff">7.42</span>, <span style="color:#ae81ff">3.30</span>)
+a2<span style="color:#f92672">=</span>(<span style="color:#ae81ff">24.07</span>, <span style="color:#ae81ff">16.59</span>, <span style="color:#ae81ff">8.41</span>, <span style="color:#ae81ff">3.50</span>)
+a3<span style="color:#f92672">=</span>(<span style="color:#ae81ff">19.</span>,   <span style="color:#ae81ff">12.67</span>, <span style="color:#ae81ff">6.</span>,   <span style="color:#ae81ff">3.</span>  )
+<span style="color:#75715e">#1290-1850</span>
+b1<span style="color:#f92672">=</span>(<span style="color:#ae81ff">22.10</span>,  <span style="color:#ae81ff">13.73</span>,  <span style="color:#ae81ff">6.42</span>,  <span style="color:#ae81ff">2.67</span>)
+b2<span style="color:#f92672">=</span>(<span style="color:#ae81ff">24.34</span>,  <span style="color:#ae81ff">15.84</span>,  <span style="color:#ae81ff">7.62</span>,  <span style="color:#ae81ff">2.93</span>)
+b3<span style="color:#f92672">=</span>(<span style="color:#ae81ff">18.64</span>,  <span style="color:#ae81ff">10.45</span>,  <span style="color:#ae81ff">4.55</span>,  <span style="color:#ae81ff">2.27</span>)
+<span style="color:#75715e">#1850-2017</span>
+c1<span style="color:#f92672">=</span>(<span style="color:#ae81ff">21.56</span>,  <span style="color:#ae81ff">19.16</span>,  <span style="color:#ae81ff">10.78</span>,  <span style="color:#ae81ff">5.39</span>)
+c2<span style="color:#f92672">=</span>(<span style="color:#ae81ff">22.99</span>,  <span style="color:#ae81ff">19.54</span> , <span style="color:#ae81ff">11.49</span>,  <span style="color:#ae81ff">5.75</span>)
+c3<span style="color:#f92672">=</span>(<span style="color:#ae81ff">20.</span>  ,  <span style="color:#ae81ff">18.75</span>,  <span style="color:#ae81ff">10.</span>  ,  <span style="color:#ae81ff">5.</span>  )
+<span style="color:#75715e">#1981-2017</span>
+d1<span style="color:#f92672">=</span>(<span style="color:#ae81ff">16.22</span>, <span style="color:#ae81ff">16.22</span>,  <span style="color:#ae81ff">13.51</span>,  <span style="color:#ae81ff">5.41</span>)
+d2<span style="color:#f92672">=</span>(<span style="color:#ae81ff">25.</span>,   <span style="color:#ae81ff">25.</span>, <span style="color:#ae81ff">25.</span>,  <span style="color:#ae81ff">10.</span>)
+d3<span style="color:#f92672">=</span>(<span style="color:#ae81ff">5.88</span>,  <span style="color:#ae81ff">5.88</span>, <span style="color:#ae81ff">0.</span>,  <span style="color:#ae81ff">0.</span>)
+
+<span style="color:#75715e">### Plot:</span>
+ind <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">4</span>)  <span style="color:#75715e"># the x locations for the groups</span>
+width <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>  <span style="color:#75715e"># the width of the bars</span>
+
+fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">15</span>),dpi<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+
+rects1 <span style="color:#f92672">=</span> ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>bar(ind <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.2</span>, a1, width, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mediumseagreen&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;所有年份&#39;</span>)
+rects2 <span style="color:#f92672">=</span> ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>bar(ind , a2, width, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;IndianRed&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;海冰偏少年&#39;</span>)
+rects3 <span style="color:#f92672">=</span> ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>bar(ind <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.2</span>, a3, width, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;steelblue&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;海冰偏多年&#39;</span>)
+
+<span style="color:#75715e"># Add some text for labels, title and custom x-axis tick labels, etc.</span>
+ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;强冷冬年占比（%）&#39;</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;(a) 1289-2017&#39;</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>set_xticks(ind)
+ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>set_xticklabels((<span style="color:#e6db74">&#39;0.75 std&#39;</span>, <span style="color:#e6db74">&#39;1 std&#39;</span>, <span style="color:#e6db74">&#39;1.5 std&#39;</span>, <span style="color:#e6db74">&#39;2 std&#39;</span>),fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>legend(loc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,prop<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;size&#39;</span>: <span style="color:#ae81ff">14</span>},framealpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>tick_params(labelcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;20&#39;</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>set_ylim(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">26</span>)
+
+rects1 <span style="color:#f92672">=</span> ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>bar(ind <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.2</span>, d1, width, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mediumseagreen&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;所有年份&#39;</span>)
+rects2 <span style="color:#f92672">=</span> ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>bar(ind , d2, width, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;IndianRed&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;海冰偏少年&#39;</span>)
+rects3 <span style="color:#f92672">=</span> ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>bar(ind <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.2</span>, d3, width, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;steelblue&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;海冰偏多年&#39;</span>)
+<span style="color:#75715e"># Add some text for labels, title and custom x-axis tick labels, etc.</span>
+<span style="color:#75715e"># ax[0,1].set_ylabel(u&#39;强冷冬年占比（%）&#39;,fontsize=20)</span>
+ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;(b) 1981-2017&#39;</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>set_xticks(ind)
+ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>set_xticklabels((<span style="color:#e6db74">&#39;0.75 std&#39;</span>, <span style="color:#e6db74">&#39;1 std&#39;</span>, <span style="color:#e6db74">&#39;1.5 std&#39;</span>, <span style="color:#e6db74">&#39;2 std&#39;</span>),fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>legend(loc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,prop<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;size&#39;</span>: <span style="color:#ae81ff">14</span>},framealpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>tick_params(labelcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;20&#39;</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+ax[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>set_ylim(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">26</span>)
+
+rects1 <span style="color:#f92672">=</span> ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>bar(ind <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.2</span>, b1, width, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mediumseagreen&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;所有年份&#39;</span>)
+rects2 <span style="color:#f92672">=</span> ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>bar(ind , b2, width, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;IndianRed&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;海冰偏少年&#39;</span>)
+rects3 <span style="color:#f92672">=</span> ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>bar(ind <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.2</span>, b3, width, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;steelblue&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;海冰偏多年&#39;</span>)
+<span style="color:#75715e"># Add some text for labels, title and custom x-axis tick labels, etc.</span>
+ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;强冷冬年占比（%）&#39;</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;(c) 1290-1850&#39;</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>set_xticks(ind)
+ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>set_xticklabels((<span style="color:#e6db74">&#39;0.75 std&#39;</span>, <span style="color:#e6db74">&#39;1 std&#39;</span>, <span style="color:#e6db74">&#39;1.5 std&#39;</span>, <span style="color:#e6db74">&#39;2 std&#39;</span>),fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>legend(loc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,prop<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;size&#39;</span>: <span style="color:#ae81ff">14</span>},framealpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>tick_params(labelcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;20&#39;</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>set_ylim(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">26</span>)
+
+rects1 <span style="color:#f92672">=</span> ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>bar(ind <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.2</span>, c1, width, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mediumseagreen&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;所有年份&#39;</span>)
+rects2 <span style="color:#f92672">=</span> ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>bar(ind , c2, width, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;IndianRed&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;海冰偏少年&#39;</span>)
+rects3 <span style="color:#f92672">=</span> ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>bar(ind <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.2</span>, c3, width, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;steelblue&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;海冰偏多年&#39;</span>)
+<span style="color:#75715e"># Add some text for labels, title and custom x-axis tick labels, etc.</span>
+<span style="color:#75715e"># ax[3].set_ylabel(u&#39;强冷冬年占比（%）&#39;,fontsize=20)</span>
+ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;(d) 1850-2017&#39;</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>set_xticks(ind)
+ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>set_xticklabels((<span style="color:#e6db74">&#39;0.75 std&#39;</span>, <span style="color:#e6db74">&#39;1 std&#39;</span>, <span style="color:#e6db74">&#39;1.5 std&#39;</span>, <span style="color:#e6db74">&#39;2 std&#39;</span>),fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>legend(loc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,prop<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;size&#39;</span>: <span style="color:#ae81ff">14</span>},framealpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>tick_params(labelcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;20&#39;</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+ax[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>set_ylim(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">26</span>)
+<span style="color:#75715e"># ax[1,1].set_yticks([-1,0,1])</span>
+
+plt<span style="color:#f92672">.</span>subplots_adjust(hspace <span style="color:#f92672">=</span><span style="color:#ae81ff">0.128</span>)
+plt<span style="color:#f92672">.</span>subplots_adjust(wspace <span style="color:#f92672">=</span><span style="color:#ae81ff">0.078</span>)
+plt<span style="color:#f92672">.</span>show()</code></pre></div>
+<p><img src='https://www.wentixiaogege.com/post/pics/image-20190523182754002.png' style='zoom:50%'></p>
+
+<h2 id="7-多子图样例2">7. 多子图样例2</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> seaborn <span style="color:#f92672">as</span> sns
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">%</span>matplotlib inline
+
+sns<span style="color:#f92672">.</span>set()
+
+<span style="color:#75715e"># make data</span>
+np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>seed(<span style="color:#ae81ff">8</span>)
+df_metric <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame()
+a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(<span style="color:#ae81ff">20</span>)
+aa <span style="color:#f92672">=</span> a <span style="color:#f92672">+</span> a<span style="color:#f92672">.</span>mean()
+b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>rand(<span style="color:#ae81ff">20</span>)
+bb <span style="color:#f92672">=</span> b <span style="color:#f92672">-</span> b<span style="color:#f92672">.</span>mean()
+c <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">20</span>)
+cc <span style="color:#f92672">=</span> c <span style="color:#f92672">+</span> c<span style="color:#f92672">.</span>std()
+inx_date <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>date_range(<span style="color:#e6db74">&#39;2019-05-20 00:00:00&#39;</span>,periods<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>,freq<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;5H&#39;</span>)
+df_metric[<span style="color:#e6db74">&#39;a&#39;</span>] <span style="color:#f92672">=</span> a
+df_metric[<span style="color:#e6db74">&#39;aa&#39;</span>] <span style="color:#f92672">=</span> aa
+df_metric[<span style="color:#e6db74">&#39;b&#39;</span>] <span style="color:#f92672">=</span> b
+df_metric[<span style="color:#e6db74">&#39;bb&#39;</span>] <span style="color:#f92672">=</span> bb
+df_metric[<span style="color:#e6db74">&#39;c&#39;</span>] <span style="color:#f92672">=</span> c
+df_metric[<span style="color:#e6db74">&#39;cc&#39;</span>] <span style="color:#f92672">=</span> cc
+df_metric<span style="color:#f92672">.</span>index <span style="color:#f92672">=</span> inx_date
+
+<span style="color:#75715e"># plot</span>
+fig <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">16</span>,<span style="color:#ae81ff">16</span>), dpi<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+ax1 <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(<span style="color:#ae81ff">311</span>)
+l1, <span style="color:#f92672">=</span> ax1<span style="color:#f92672">.</span>plot(df_metric<span style="color:#f92672">.</span>index, df_metric[<span style="color:#e6db74">&#39;a&#39;</span>], c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;indianred&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;a&#39;</span>,lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+l2, <span style="color:#f92672">=</span> ax1<span style="color:#f92672">.</span>plot(df_metric<span style="color:#f92672">.</span>index, df_metric[<span style="color:#e6db74">&#39;aa&#39;</span>], c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;steelblue&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;aa&#39;</span>,lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+ax1<span style="color:#f92672">.</span>scatter(df_metric<span style="color:#f92672">.</span>index, df_metric[<span style="color:#e6db74">&#39;a&#39;</span>], c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;indianred&#39;</span>,lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2.5</span>,alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>)    
+ax1<span style="color:#f92672">.</span>scatter(df_metric<span style="color:#f92672">.</span>index, df_metric[<span style="color:#e6db74">&#39;aa&#39;</span>], c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;steelblue&#39;</span>,lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2.5</span>,alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>)
+ax1<span style="color:#f92672">.</span>tick_params(labelcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;13&#39;</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+plt<span style="color:#f92672">.</span>xticks(rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>)
+ax1<span style="color:#f92672">.</span>legend(handles<span style="color:#f92672">=</span>[l1, l2, ], loc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>, framealpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+ax1<span style="color:#f92672">.</span>tick_params(labelsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>)
+ax1<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#34;title 1&#34;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">18</span>)
+
+ax2 <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(<span style="color:#ae81ff">312</span>)
+l4, <span style="color:#f92672">=</span> ax2<span style="color:#f92672">.</span>plot(df_metric<span style="color:#f92672">.</span>index, df_metric[<span style="color:#e6db74">&#39;b&#39;</span>], c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;indianred&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;b&#39;</span>,lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+l5, <span style="color:#f92672">=</span> ax2<span style="color:#f92672">.</span>plot(df_metric<span style="color:#f92672">.</span>index, df_metric[<span style="color:#e6db74">&#39;bb&#39;</span>], c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;steelblue&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;bb&#39;</span>,lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+ax2<span style="color:#f92672">.</span>scatter(df_metric<span style="color:#f92672">.</span>index, df_metric[<span style="color:#e6db74">&#39;b&#39;</span>], c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;indianred&#39;</span>,lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2.5</span>,alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>)
+ax2<span style="color:#f92672">.</span>scatter(df_metric<span style="color:#f92672">.</span>index, df_metric[<span style="color:#e6db74">&#39;bb&#39;</span>], c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;steelblue&#39;</span>,lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2.5</span>,alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>)
+ax2<span style="color:#f92672">.</span>tick_params(labelcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;13&#39;</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+plt<span style="color:#f92672">.</span>xticks(rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>)
+ax2<span style="color:#f92672">.</span>legend(handles<span style="color:#f92672">=</span>[l4, l5, ], loc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>, framealpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+ax2<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#34;title 2&#34;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">18</span>)
+ax2<span style="color:#f92672">.</span>tick_params(labelsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>)
+
+ax3 <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_subplot(<span style="color:#ae81ff">313</span>)
+l7, <span style="color:#f92672">=</span> ax3<span style="color:#f92672">.</span>plot(df_metric<span style="color:#f92672">.</span>index, df_metric[<span style="color:#e6db74">&#39;c&#39;</span>], c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;indianred&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;c&#39;</span>,lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+l8, <span style="color:#f92672">=</span> ax3<span style="color:#f92672">.</span>plot(df_metric<span style="color:#f92672">.</span>index, df_metric[<span style="color:#e6db74">&#39;cc&#39;</span>], c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;steelblue&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;cc&#39;</span>,lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+ax3<span style="color:#f92672">.</span>scatter(df_metric<span style="color:#f92672">.</span>index, df_metric[<span style="color:#e6db74">&#39;c&#39;</span>], c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;indianred&#39;</span>,lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2.5</span>,alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>)
+ax3<span style="color:#f92672">.</span>scatter(df_metric<span style="color:#f92672">.</span>index, df_metric[<span style="color:#e6db74">&#39;cc&#39;</span>], c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;steelblue&#39;</span>,lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2.5</span>,alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>)
+ax3<span style="color:#f92672">.</span>tick_params(labelcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;13&#39;</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+ax3<span style="color:#f92672">.</span>legend(handles<span style="color:#f92672">=</span>[l7, l8, ], loc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>, framealpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+ax3<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#34;title 3&#34;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">18</span>)
+<span style="color:#75715e"># fig.tight_layout() # 调整整体空白</span>
+ax3<span style="color:#f92672">.</span>tick_params(labelsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>)
+plt<span style="color:#f92672">.</span>subplots_adjust(wspace<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, hspace<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)  <span style="color:#75715e"># 调整子图间距</span>
+plt<span style="color:#f92672">.</span>xticks(rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>)
+plt<span style="color:#f92672">.</span>show()</code></pre></div>
+<p><img src='https://www.wentixiaogege.com/post/pics/image-20190523184458514.png' style='zoom:50%'></p>
+
+<h2 id="8-small-multiples">8. small multiples</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">plt<span style="color:#f92672">.</span>rcParams[<span style="color:#e6db74">&#39;font.sans-serif&#39;</span>] <span style="color:#f92672">=</span> [<span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;SimHei&#39;</span>] <span style="color:#75715e"># 或其他系统有的字体，比如： [&#39;Microsoft YaHei&#39;]</span>
+plt<span style="color:#f92672">.</span>rcParams[<span style="color:#e6db74">&#39;axes.unicode_minus&#39;</span>] <span style="color:#f92672">=</span> False  <span style="color:#75715e"># 用来正常显示负号</span>
+
+<span style="color:#75715e"># make data</span>
+dict_raw <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;col_a&#39;</span>: {<span style="color:#ae81ff">0</span>: <span style="color:#e6db74">&#39;TYPE0S8&#39;</span>, <span style="color:#ae81ff">1</span>: <span style="color:#e6db74">&#39;TYPE1P7&#39;</span>, <span style="color:#ae81ff">2</span>: <span style="color:#e6db74">&#39;TYPE1S0&#39;</span>, <span style="color:#ae81ff">3</span>: <span style="color:#e6db74">&#39;TYPE1SS&#39;</span>, <span style="color:#ae81ff">4</span>: <span style="color:#e6db74">&#39;TYPE70P&#39;</span>, <span style="color:#ae81ff">5</span>: <span style="color:#e6db74">&#39;TYPE703&#39;</span>, 
+                      <span style="color:#ae81ff">6</span>: <span style="color:#e6db74">&#39;TYPE707&#39;</span>, <span style="color:#ae81ff">7</span>: <span style="color:#e6db74">&#39;TYPE736&#39;</span>, <span style="color:#ae81ff">8</span>: <span style="color:#e6db74">&#39;TYPE753&#39;</span>, <span style="color:#ae81ff">9</span>: <span style="color:#e6db74">&#39;TYPE755&#39;</span>, <span style="color:#ae81ff">10</span>: <span style="color:#e6db74">&#39;TYPE813&#39;</span>, <span style="color:#ae81ff">11</span>: <span style="color:#e6db74">&#39;TYPE8P1&#39;</span>, 
+                      <span style="color:#ae81ff">12</span>: <span style="color:#e6db74">&#39;TYPE8PP&#39;</span>, <span style="color:#ae81ff">13</span>: <span style="color:#e6db74">&#39;TYPE90S&#39;</span>, <span style="color:#ae81ff">14</span>: <span style="color:#e6db74">&#39;TYPE908&#39;</span>, <span style="color:#ae81ff">35</span>: <span style="color:#e6db74">&#39;TYPE0S8&#39;</span>, <span style="color:#ae81ff">36</span>: <span style="color:#e6db74">&#39;TYPE1P7&#39;</span>, <span style="color:#ae81ff">37</span>: <span style="color:#e6db74">&#39;TYPE1S0&#39;</span>, 
+                      <span style="color:#ae81ff">38</span>: <span style="color:#e6db74">&#39;TYPE1SS&#39;</span>, <span style="color:#ae81ff">39</span>: <span style="color:#e6db74">&#39;TYPE70P&#39;</span>, <span style="color:#ae81ff">40</span>: <span style="color:#e6db74">&#39;TYPE703&#39;</span>, <span style="color:#ae81ff">41</span>: <span style="color:#e6db74">&#39;TYPE707&#39;</span>, <span style="color:#ae81ff">42</span>: <span style="color:#e6db74">&#39;TYPE736&#39;</span>, <span style="color:#ae81ff">43</span>: <span style="color:#e6db74">&#39;TYPE753&#39;</span>, 
+                      <span style="color:#ae81ff">44</span>: <span style="color:#e6db74">&#39;TYPE755&#39;</span>, <span style="color:#ae81ff">45</span>: <span style="color:#e6db74">&#39;TYPE813&#39;</span>, <span style="color:#ae81ff">46</span>: <span style="color:#e6db74">&#39;TYPE8P1&#39;</span>, <span style="color:#ae81ff">47</span>: <span style="color:#e6db74">&#39;TYPE8PP&#39;</span>, <span style="color:#ae81ff">48</span>: <span style="color:#e6db74">&#39;TYPE90S&#39;</span>, <span style="color:#ae81ff">49</span>: <span style="color:#e6db74">&#39;TYPE908&#39;</span>}, 
+            <span style="color:#e6db74">&#39;col_b&#39;</span>: {<span style="color:#ae81ff">0</span>: <span style="color:#e6db74">&#39;9月&#39;</span>, <span style="color:#ae81ff">1</span>: <span style="color:#e6db74">&#39;9月&#39;</span>, <span style="color:#ae81ff">2</span>: <span style="color:#e6db74">&#39;9月&#39;</span>, <span style="color:#ae81ff">3</span>: <span style="color:#e6db74">&#39;9月&#39;</span>, <span style="color:#ae81ff">4</span>: <span style="color:#e6db74">&#39;9月&#39;</span>, <span style="color:#ae81ff">5</span>: <span style="color:#e6db74">&#39;9月&#39;</span>, <span style="color:#ae81ff">6</span>: <span style="color:#e6db74">&#39;9月&#39;</span>, <span style="color:#ae81ff">7</span>: <span style="color:#e6db74">&#39;9月&#39;</span>, <span style="color:#ae81ff">8</span>: <span style="color:#e6db74">&#39;9月&#39;</span>, 
+                      <span style="color:#ae81ff">9</span>: <span style="color:#e6db74">&#39;9月&#39;</span>, <span style="color:#ae81ff">10</span>: <span style="color:#e6db74">&#39;9月&#39;</span>, <span style="color:#ae81ff">11</span>: <span style="color:#e6db74">&#39;9月&#39;</span>, <span style="color:#ae81ff">12</span>: <span style="color:#e6db74">&#39;9月&#39;</span>, <span style="color:#ae81ff">13</span>: <span style="color:#e6db74">&#39;9月&#39;</span>, <span style="color:#ae81ff">14</span>: <span style="color:#e6db74">&#39;9月&#39;</span>, <span style="color:#ae81ff">35</span>: <span style="color:#e6db74">&#39;10月&#39;</span>, <span style="color:#ae81ff">36</span>: <span style="color:#e6db74">&#39;10月&#39;</span>, 
+                      <span style="color:#ae81ff">37</span>: <span style="color:#e6db74">&#39;10月&#39;</span>, <span style="color:#ae81ff">38</span>: <span style="color:#e6db74">&#39;10月&#39;</span>, <span style="color:#ae81ff">39</span>: <span style="color:#e6db74">&#39;10月&#39;</span>, <span style="color:#ae81ff">40</span>: <span style="color:#e6db74">&#39;10月&#39;</span>, <span style="color:#ae81ff">41</span>: <span style="color:#e6db74">&#39;10月&#39;</span>, <span style="color:#ae81ff">42</span>: <span style="color:#e6db74">&#39;10月&#39;</span>, <span style="color:#ae81ff">43</span>: <span style="color:#e6db74">&#39;10月&#39;</span>, <span style="color:#ae81ff">44</span>: <span style="color:#e6db74">&#39;10月&#39;</span>, 
+                      <span style="color:#ae81ff">45</span>: <span style="color:#e6db74">&#39;10月&#39;</span>, <span style="color:#ae81ff">46</span>: <span style="color:#e6db74">&#39;10月&#39;</span>, <span style="color:#ae81ff">47</span>: <span style="color:#e6db74">&#39;10月&#39;</span>, <span style="color:#ae81ff">48</span>: <span style="color:#e6db74">&#39;10月&#39;</span>, <span style="color:#ae81ff">49</span>: <span style="color:#e6db74">&#39;10月&#39;</span>}, 
+            <span style="color:#e6db74">&#39;col_c&#39;</span>: {<span style="color:#ae81ff">0</span>: <span style="color:#ae81ff">2.6428601514360017</span>, <span style="color:#ae81ff">1</span>: <span style="color:#ae81ff">1.8319798053011773</span>, <span style="color:#ae81ff">2</span>: <span style="color:#ae81ff">2.601229123057832</span>, <span style="color:#ae81ff">3</span>: <span style="color:#ae81ff">1.72169662572525</span>, 
+                      <span style="color:#ae81ff">4</span>: <span style="color:#ae81ff">1.637656679935968</span>, <span style="color:#ae81ff">5</span>: <span style="color:#ae81ff">2.6350520642062403</span>, <span style="color:#ae81ff">6</span>: <span style="color:#ae81ff">2.2498173621928217</span>, <span style="color:#ae81ff">7</span>: <span style="color:#ae81ff">2.298807428556654</span>, 
+                      <span style="color:#ae81ff">8</span>: <span style="color:#ae81ff">1.9654078492733291</span>, <span style="color:#ae81ff">9</span>: <span style="color:#ae81ff">2.56251943219609</span>, <span style="color:#ae81ff">10</span>: <span style="color:#ae81ff">2.1881414261088743</span>, <span style="color:#ae81ff">11</span>: <span style="color:#ae81ff">2.40588210634869</span>, 
+                      <span style="color:#ae81ff">12</span>: <span style="color:#ae81ff">2.4080364119992685</span>, <span style="color:#ae81ff">13</span>: <span style="color:#ae81ff">2.418858600226157</span>, <span style="color:#ae81ff">14</span>: <span style="color:#ae81ff">2.275355095895594</span>, <span style="color:#ae81ff">35</span>: <span style="color:#ae81ff">2.6302242713734163</span>, 
+                      <span style="color:#ae81ff">36</span>: <span style="color:#ae81ff">2.749858196921841</span>, <span style="color:#ae81ff">37</span>: <span style="color:#ae81ff">2.6632009348161807</span>, <span style="color:#ae81ff">38</span>: <span style="color:#ae81ff">3.1462676552066275</span>, <span style="color:#ae81ff">39</span>: <span style="color:#ae81ff">2.9537594325705214</span>, 
+                      <span style="color:#ae81ff">40</span>: <span style="color:#ae81ff">2.194474507822355</span>, <span style="color:#ae81ff">41</span>: <span style="color:#ae81ff">2.9186372365641944</span>, <span style="color:#ae81ff">42</span>: <span style="color:#ae81ff">3.7921705624244755</span>, <span style="color:#ae81ff">43</span>: <span style="color:#ae81ff">3.046406643811439</span>, 
+                      <span style="color:#ae81ff">44</span>: <span style="color:#ae81ff">3.0391317507811673</span>, <span style="color:#ae81ff">45</span>: <span style="color:#ae81ff">2.4109368543025282</span>, <span style="color:#ae81ff">46</span>: <span style="color:#ae81ff">2.07482417438061</span>, <span style="color:#ae81ff">47</span>: <span style="color:#ae81ff">3.0976472954696685</span>, 
+                      <span style="color:#ae81ff">48</span>: <span style="color:#ae81ff">2.7432562987349196</span>, <span style="color:#ae81ff">49</span>: <span style="color:#ae81ff">2.0569511603235604</span>}, 
+            <span style="color:#e6db74">&#39;col_d&#39;</span>: {<span style="color:#ae81ff">0</span>: <span style="color:#ae81ff">1.9812875781312758</span>, <span style="color:#ae81ff">1</span>: <span style="color:#ae81ff">2.096699560700066</span>, <span style="color:#ae81ff">2</span>: <span style="color:#ae81ff">2.2816854661768877</span>, <span style="color:#ae81ff">3</span>: <span style="color:#ae81ff">2.8931088754456313</span>, 
+                      <span style="color:#ae81ff">4</span>: <span style="color:#ae81ff">2.0294500573338676</span>, <span style="color:#ae81ff">5</span>: <span style="color:#ae81ff">2.580210383486994</span>, <span style="color:#ae81ff">6</span>: <span style="color:#ae81ff">2.5804163915356066</span>, <span style="color:#ae81ff">7</span>: <span style="color:#ae81ff">2.5516185895623527</span>, 
+                      <span style="color:#ae81ff">8</span>: <span style="color:#ae81ff">2.354802917894336</span>, <span style="color:#ae81ff">9</span>: <span style="color:#ae81ff">2.6357998623211003</span>, <span style="color:#ae81ff">10</span>: <span style="color:#ae81ff">2.6791760036089585</span>, <span style="color:#ae81ff">11</span>: <span style="color:#ae81ff">2.7300954422777455</span>, 
+                      <span style="color:#ae81ff">12</span>: <span style="color:#ae81ff">2.5956405590120353</span>, <span style="color:#ae81ff">13</span>: <span style="color:#ae81ff">2.3493458894314823</span>, <span style="color:#ae81ff">14</span>: <span style="color:#ae81ff">2.492005756633012</span>, <span style="color:#ae81ff">35</span>: <span style="color:#ae81ff">2.730489032968205</span>, 
+                      <span style="color:#ae81ff">36</span>: <span style="color:#ae81ff">2.792451184984058</span>, <span style="color:#ae81ff">37</span>: <span style="color:#ae81ff">2.9411054743190674</span>, <span style="color:#ae81ff">38</span>: <span style="color:#ae81ff">3.3903275163409066</span>, <span style="color:#ae81ff">39</span>: <span style="color:#ae81ff">3.0930567552674715</span>, 
+                      <span style="color:#ae81ff">40</span>: <span style="color:#ae81ff">3.2844194681423358</span>, <span style="color:#ae81ff">41</span>: <span style="color:#ae81ff">2.5416425128417184</span>, <span style="color:#ae81ff">42</span>: <span style="color:#ae81ff">3.08728983954736</span>, <span style="color:#ae81ff">43</span>: <span style="color:#ae81ff">3.5953189913850454</span>, 
+                      <span style="color:#ae81ff">44</span>: <span style="color:#ae81ff">2.7328204558541556</span>, <span style="color:#ae81ff">45</span>: <span style="color:#ae81ff">2.815085801904495</span>, <span style="color:#ae81ff">46</span>: <span style="color:#ae81ff">2.388500586386029</span>, <span style="color:#ae81ff">47</span>: <span style="color:#ae81ff">2.398294142683776</span>, 
+                      <span style="color:#ae81ff">48</span>: <span style="color:#ae81ff">2.631769697717314</span>, <span style="color:#ae81ff">49</span>: <span style="color:#ae81ff">2.2519270271606033</span>}}
+
+df_test <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(dict_raw)
+
+fig, axes <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(nrows<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, ncols<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, sharex<span style="color:#f92672">=</span>True,
+                         sharey<span style="color:#f92672">=</span>True, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">12</span>))
+plt<span style="color:#f92672">.</span>subplots_adjust(wspace<span style="color:#f92672">=</span><span style="color:#ae81ff">0.07</span>, hspace<span style="color:#f92672">=</span><span style="color:#ae81ff">0.07</span>)  <span style="color:#75715e"># 调整子图间距</span>
+id_lst <span style="color:#f92672">=</span> df_test[<span style="color:#e6db74">&#39;col_a&#39;</span>]<span style="color:#f92672">.</span>unique()
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):
+    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">5</span>):
+        idx_id <span style="color:#f92672">=</span> i<span style="color:#f92672">*</span><span style="color:#ae81ff">5</span><span style="color:#f92672">+</span>j
+        xid <span style="color:#f92672">=</span> id_lst[idx_id]
+        df_metric <span style="color:#f92672">=</span> df_test<span style="color:#f92672">.</span>loc[df_test[<span style="color:#e6db74">&#39;col_a&#39;</span>] <span style="color:#f92672">==</span> xid, :]
+        df_metric <span style="color:#f92672">=</span> df_metric<span style="color:#f92672">.</span>reset_index(drop<span style="color:#f92672">=</span>True)
+        l1 <span style="color:#f92672">=</span> axes[i, j]<span style="color:#f92672">.</span>bar(df_metric<span style="color:#f92672">.</span>index<span style="color:#f92672">-</span><span style="color:#ae81ff">0.15</span>, df_metric[<span style="color:#e6db74">&#39;col_c&#39;</span>],
+                            color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;darkorange&#39;</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;c&#39;</span>)
+        l2 <span style="color:#f92672">=</span> axes[i, j]<span style="color:#f92672">.</span>bar(df_metric<span style="color:#f92672">.</span>index<span style="color:#f92672">+</span><span style="color:#ae81ff">0.15</span>, df_metric[<span style="color:#e6db74">&#39;col_d&#39;</span>],
+                            color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;steelblue&#39;</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;d&#39;</span>)
+
+        axes[i, j]<span style="color:#f92672">.</span>set_title(f<span style="color:#e6db74">&#34;Title {i,j}&#34;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">18</span>, pad<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
+        axes[i, j]<span style="color:#f92672">.</span>legend(handles<span style="color:#f92672">=</span>[l1, l2, ], loc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,
+                          fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">13</span>, framealpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+        axes[i, j]<span style="color:#f92672">.</span>tick_params(labelcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+        <span style="color:#75715e"># 取消边框，使其不可见</span>
+        <span style="color:#75715e"># axes[i,j].spines[&#39;top&#39;].set_visible(False)</span>
+        <span style="color:#75715e"># axes[i,j].spines[&#39;right&#39;].set_visible(False)</span>
+        <span style="color:#75715e"># axes[i,j].spines[&#39;bottom&#39;].set_visible(False)</span>
+        <span style="color:#75715e"># axes[i,j].spines[&#39;left&#39;].set_visible(False)</span>
+        <span style="color:#75715e"># 调整边框的颜色</span>
+        <span style="color:#75715e"># axes[i,j].spines[&#39;top&#39;].set_color(&#39;#C8C8C8&#39;)</span>
+        <span style="color:#75715e"># axes[i,j].spines[&#39;right&#39;].set_color(&#39;#C8C8C8&#39;)</span>
+        <span style="color:#75715e"># axes[i,j].spines[&#39;bottom&#39;].set_color(&#39;#C8C8C8&#39;)</span>
+        <span style="color:#75715e"># axes[i,j].spines[&#39;left&#39;].set_color(&#39;#C8C8C8&#39;)</span>
+
+fig<span style="color:#f92672">.</span>tight_layout()  <span style="color:#75715e"># 调整整体空白</span>
+plt<span style="color:#f92672">.</span>subplots_adjust(wspace<span style="color:#f92672">=</span><span style="color:#ae81ff">0.05</span>, hspace<span style="color:#f92672">=</span><span style="color:#ae81ff">0.15</span>)  <span style="color:#75715e"># 调整子图间距</span>
+plt<span style="color:#f92672">.</span>xticks(df_metric<span style="color:#f92672">.</span>index, df_metric[<span style="color:#e6db74">&#39;col_b&#39;</span>])
+
+plt<span style="color:#f92672">.</span>show()</code></pre></div>
+<p><img src='https://www.wentixiaogege.com/post/pics/image-20190523191806742.png' style='zoom:50%'></p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="http://www.python-graph-gallery.com/">1. Python Graph Gallery</a></p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.wentixiaogege.com/tags/python"><span class="tag">Python</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/visualization"><span class="tag">Visualization</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/matplotlib"><span class="tag">Matplotlib</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/seaborn"><span class="tag">Seaborn</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>123</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "orion-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.wentixiaogege.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5713bba443e20a46d066ca93c131f795";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  </body>
+</html>

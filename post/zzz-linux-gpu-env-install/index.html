@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>新的GPU服务器环境配置--Ubuntu18.04&#43;CUDA10.0&#43;cuDNN7.6.5&#43;TensorFlow2.0安装笔记</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <link href="//hm.baidu.com" rel="dns-prefetch">
+
+  
+
+  
+  <meta name="author" content="Qi Zhang">
+  <meta name="description" content="第一次安装CUDA的过程简直抓狂，中间出现了很多次莫名其妙的bug，踩了很多坑。比如装好了CUDA重启后进不去桌面系统了，直接黑屏、比如鼠标键盘都不work了、再比如装好了却安装不了TensorFlow-GPU&amp;hellip;&amp;hellip;看了一圈网上的安装教程，发现还是官方指南真香了~
+新年第一篇，分享一下我的Ubuntu 18.04 &#43; CUDA 10.0 &#43; cuDNN 7.6.5 &#43; TensorFlow 2.0 安装笔记，希望可以帮助大家少踩坑。
+整个安装流程大致是：安装显卡驱动 -&amp;gt; 安装CUDA -&amp;gt; 安装cuDNN -&amp;gt; 安装tensorflow-gpu并测试。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="新的GPU服务器环境配置--Ubuntu18.04&#43;CUDA10.0&#43;cuDNN7.6.5&#43;TensorFlow2.0安装笔记">
+    <meta name="twitter:description" content="第一次安装CUDA的过程简直抓狂，中间出现了很多次莫名其妙的bug，踩了很多坑。比如装好了CUDA重启后进不去桌面系统了，直接黑屏、比如鼠标键盘都不work了、再比如装好了却安装不了TensorFlow-GPU&amp;hellip;&amp;hellip;看了一圈网上的安装教程，发现还是官方指南真香了~
+新年第一篇，分享一下我的Ubuntu 18.04 &#43; CUDA 10.0 &#43; cuDNN 7.6.5 &#43; TensorFlow 2.0 安装笔记，希望可以帮助大家少踩坑。
+整个安装流程大致是：安装显卡驱动 -&amp;gt; 安装CUDA -&amp;gt; 安装cuDNN -&amp;gt; 安装tensorflow-gpu并测试。
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="新的GPU服务器环境配置--Ubuntu18.04&#43;CUDA10.0&#43;cuDNN7.6.5&#43;TensorFlow2.0安装笔记">
+  <meta property="og:description" content="第一次安装CUDA的过程简直抓狂，中间出现了很多次莫名其妙的bug，踩了很多坑。比如装好了CUDA重启后进不去桌面系统了，直接黑屏、比如鼠标键盘都不work了、再比如装好了却安装不了TensorFlow-GPU&amp;hellip;&amp;hellip;看了一圈网上的安装教程，发现还是官方指南真香了~
+新年第一篇，分享一下我的Ubuntu 18.04 &#43; CUDA 10.0 &#43; cuDNN 7.6.5 &#43; TensorFlow 2.0 安装笔记，希望可以帮助大家少踩坑。
+整个安装流程大致是：安装显卡驱动 -&amp;gt; 安装CUDA -&amp;gt; 安装cuDNN -&amp;gt; 安装tensorflow-gpu并测试。
+">
+  <meta property="og:url" content="https://www.wentixiaogege.com/post/zzz-linux-gpu-env-install/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.57.2">
+
+
+<link rel="canonical" href="https://www.wentixiaogege.com/post/zzz-linux-gpu-env-install/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.wentixiaogege.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.wentixiaogege.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.wentixiaogege.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.wentixiaogege.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.wentixiaogege.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.wentixiaogege.com/manifest.json">
+
+
+<link rel="preload" href="https://www.wentixiaogege.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.wentixiaogege.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.wentixiaogege.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.wentixiaogege.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://www.wentixiaogege.com/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">wentixiaogege</h2>
+  
+  <p class="subtitle">Getty Images Contributor. I&#39;m not a photographer but a data enthusiast.</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.wentixiaogege.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">GitHub</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://wentixiaogegefoto.tuchong.com/">Gallery</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:hi@wentixiaogege.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/wentixiaogege" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/bother7" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://www.wentixiaogege.com/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">新的GPU服务器环境配置--Ubuntu18.04&#43;CUDA10.0&#43;cuDNN7.6.5&#43;TensorFlow2.0安装笔记</h1>
+      <p class="post-meta">@Qi Zhang · Dec 30, 2019 · 7 min read</p>
+    </header>
+    <article class="post-content"><p>第一次安装CUDA的过程简直抓狂，中间出现了很多次莫名其妙的bug，踩了很多坑。比如装好了CUDA重启后进不去桌面系统了，直接黑屏、比如鼠标键盘都不work了、再比如装好了却安装不了TensorFlow-GPU&hellip;&hellip;看了一圈网上的安装教程，发现还是官方指南真香了~</p>
+
+<p>新年第一篇，分享一下我的Ubuntu 18.04 + CUDA 10.0 + cuDNN 7.6.5 + TensorFlow 2.0 安装笔记，希望可以帮助大家少踩坑。</p>
+
+<p>整个安装流程大致是：安装显卡驱动 -&gt; <a href="https://developer.nvidia.com/cuda-toolkit-archive">安装CUDA</a> -&gt; <a href="https://developer.nvidia.com/rdp/cudnn-download">安装cuDNN</a> -&gt; 安装tensorflow-gpu并测试。</p>
+
+<h2 id="1-ubuntu安装和更新">1. Ubuntu安装和更新</h2>
+
+<p>全新的ubuntu18.04系统，先进行一些基本的安装和更新。具体的系统安装过程省略。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt-get update <span style="color:#75715e"># 更新源</span>
+sudo apt-get upgrade <span style="color:#75715e"># 更新已安装的包</span>
+sudo apt-get install vim</code></pre></div>
+<h2 id="2-安装显卡驱动">2. 安装显卡驱动</h2>
+
+<h3 id="2-1-禁用nouveau驱动">2.1 禁用Nouveau驱动</h3>
+
+<p>注意：使用runfile安装需要手动<b>禁用系统自带的Nouveau驱动</b></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">lsmod | grep nouveau <span style="color:#75715e"># 要确保这条命令无输出</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vim /etc/modprobe.d/blacklist-nouveau.conf
+
+<span style="color:#75715e"># 添加下面两行：</span>
+<span style="color:#75715e">#######################################################</span>
+blacklist nouveau
+options nouveau modeset<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+<span style="color:#75715e">#######################################################</span>
+
+<span style="color:#75715e"># 保存后重启：</span>
+sudo update-initramfs -u
+sudo reboot
+
+<span style="color:#75715e"># 再次输入以下命令，无输出就表示设置成功了</span>
+lsmod | grep nouveau</code></pre></div>
+<h3 id="2-2-安装合适的显卡驱动-http-www-linuxandubuntu-com-home-how-to-install-latest-nvidia-drivers-in-linux">2.2 <a href="http://www.linuxandubuntu.com/home/how-to-install-latest-nvidia-drivers-in-linux">安装合适的显卡驱动</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 先清空现有的显卡驱动及依赖并重启</span>
+sudo apt-get remove --purge nvidia* 
+sudo apt autoremove                 
+sudo reboot                         </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 添加ppa源并安装最新的驱动</span>
+sudo add-apt-repository ppa:graphics-drivers/ppa 
+sudo apt update
+ubuntu-drivers devices                          
+sudo apt install nvidia-driver-440
+<span style="color:#75715e"># 为了防止自动更新驱动导致的兼容性问题，我们还可以锁定驱动版本:</span>
+sudo apt-mark hold nvidia-driver-440 
+<span style="color:#75715e"># nvidia-driver-440 set on hold.</span></code></pre></div>
+<p>并在【软件和更新】菜单中的附加驱动列表中，找到刚刚安装的<code>nvidia-driver-440</code>，选定即可。</p>
+
+<p>输入<code>sudo reboot</code>重启后输入<code>nvidia-smi</code>，显示下图信息，这样表示显卡驱动已经ready：</p>
+
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20191230144403606.png" alt="image-20191230144403606" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">lsmod | grep nvidia <span style="color:#75715e"># 看到下面的输出则为安装成功，如果无输出，表示有问题</span></code></pre></div>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20191231111357213.png" alt="image-20191231111357213" /></p>
+
+<p><a href="https://www.geforce.cn/drivers">也可以手动去官网下载对应的安装程序安装显卡</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 动态监测显卡</span>
+watch -n <span style="color:#ae81ff">1</span> nvidia-smi <span style="color:#75715e"># 1表示每1秒刷新一次</span>
+watch -n <span style="color:#ae81ff">0</span>.01 nvidia-smi <span style="color:#75715e"># 也可改成0.01s刷新一次</span>
+<span style="color:#75715e"># 也可以用gpustat</span>
+pip install gpustat
+gpustat -i <span style="color:#ae81ff">1</span> -P</code></pre></div>
+<h2 id="3-安装cuda">3. 安装CUDA</h2>
+
+<blockquote>
+<p>百度百科：CUDA（Compute Unified Device Architecture），是显卡厂商<a href="https://baike.baidu.com/item/NVIDIA">NVIDIA</a>推出的运算平台。 CUDA是一种由NVIDIA推出的通用<a href="https://baike.baidu.com/item/并行计算/113443">并行计算</a>架构，该架构使<a href="https://baike.baidu.com/item/GPU">GPU</a>能够解决复杂的计算问题。</p>
+</blockquote>
+
+<p>Linux系统下有两种方案安装CUDA：一种是Package Manager Installation(.deb)，另一种是Runfile Installation(.run)。本文采取的是第一种（也是官方推荐的方式）。</p>
+
+<p>CUDA对于系统环境有严格的依赖，比如对于CUDA10.0有如下的要求。其他的版本可查看对应的<a href="https://developer.nvidia.com/cuda-toolkit-archive">Online Documentation</a>。</p>
+
+<p><img src=https://www.wentixiaogege.com/post/pics/image-20191230145112796.png style=width:666px></p>
+
+<h3 id="3-1-安装前的准备">3.1 安装前的准备</h3>
+
+<p>在安装CUDA之前需要先确定环境是ready的，以免出现乱七八糟的bug无从下手。直接引用官网的说明：</p>
+
+<blockquote>
+<p>Some actions must be taken before the CUDA Toolkit and Driver can be installed on Linux:</p>
+
+<ul>
+<li>Verify the system has a CUDA-capable GPU.</li>
+<li>Verify the system is running a supported version of Linux.</li>
+<li>Verify the system has gcc installed.</li>
+<li>Verify the system has the correct kernel headers and development packages installed.</li>
+<li>Download the NVIDIA CUDA Toolkit.</li>
+<li>Handle conflicting installation methods.</li>
+</ul>
+</blockquote>
+
+<h5 id="3-1-1-确认你有支持cuda的gpu">3.1.1 确认你有支持CUDA的GPU</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">lspci | grep -i nvidia | grep VGA</code></pre></div>
+<h5 id="3-1-2-确认你的linux版本">3.1.2 确认你的linux版本</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">uname -m <span style="color:#f92672">&amp;&amp;</span> cat /etc/*release
+uname -a
+<span style="color:#75715e"># The x86_64 line indicates you are running on a 64-bit system.</span></code></pre></div>
+<h5 id="3-1-3-确认gcc版本">3.1.3 确认gcc版本</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcc --version
+<span style="color:#75715e"># gcc (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0</span></code></pre></div>
+<h5 id="3-1-4-安装对应内核版本的头文件">3.1.4 安装对应内核版本的头文件</h5>
+
+<p>查看kernel的版本：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">uname -r
+<span style="color:#75715e"># 5.0.0-37-generic</span></code></pre></div>
+<blockquote>
+<p>This is the version of the kernel headers and development packages that must be installed prior to installing the CUDA Drivers.</p>
+</blockquote>
+
+<p>安装对应内核版本的头文件：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt-get install linux-headers-<span style="color:#66d9ef">$(</span>uname -r<span style="color:#66d9ef">)</span></code></pre></div>
+<h5 id="3-1-5-选择安装方式">3.1.5 选择安装方式</h5>
+
+<p><a href="https://developer.nvidia.com/cuda-10.0-download-archive?target_os=Linux&amp;target_arch=x86_64&amp;target_distro=Ubuntu&amp;target_version=1804&amp;target_type=deblocal">下载对应的安装包（以官方推荐的Deb packages安装方式为例）</a></p>
+
+<blockquote>
+<p>The CUDA Toolkit can be installed using either of two different installation mechanisms: <b>distribution-specific packages (RPM and Deb packages)</b>, or a <b>distribution-independent package (runfile packages)</b>.
+<b>The distribution-independent package</b> has the advantage of working across a wider set of Linux distributions, but does not update the distribution&rsquo;s native package management system.
+<b>The distribution-specific packages</b> interface with the distribution&rsquo;s native package management system. It is recommended to use the distribution-specific packages, where possible.</p>
+</blockquote>
+
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20191230164607833.png" alt="image-20191230164607833" /></p>
+
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20191230164654335.png" alt="image-20191230164654335" /></p>
+
+<h5 id="3-1-6-彻底卸载之前安装过的相关应用-避免冲突">3.1.6 彻底卸载之前安装过的相关应用，避免冲突</h5>
+
+<p>如果是全新的ubuntu，可忽略此部分，执行2.2部分即可。</p>
+
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20191230180216163.png" alt="image-20191230180216163" /></p>
+
+<p>如果ubuntu下用RPM/Deb安装的：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt-get --purge remove &lt;package_name&gt; 
+sudo apt autoremove</code></pre></div>
+<p>如果是runfile安装的：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo /usr/bin/nvidia-uninstall
+sudo /usr/local/cuda-X.Y/bin/uninstall_cuda_X.Y.pl</code></pre></div>
+<h3 id="3-2-安装">3.2 安装</h3>
+
+<p>首先确保已经下载好对应的.deb文件，然后执行：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo dpkg -i cuda-repo-ubuntu1804-10-0-local-10.0.130-410.48_1.0-1_amd64.deb
+sudo apt-key add /var/cuda-repo-&lt;version&gt;/7fa2af80.pub <span style="color:#75715e"># 根据执行完第一步的提示输入，比如我是：</span>
+<span style="color:#75715e"># sudo apt-key add /var/cuda-repo-10-0-local-10.0.130-410.48/7fa2af80.pub</span>
+sudo apt-get update
+sudo apt-get install cuda-toolkit-10-0 <span style="color:#75715e"># 注意不是cuda，因为在第二步中装过驱动了，此过程安装cuda-toolkit-10-0即可</span></code></pre></div>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20191230182544813.png" alt="image-20191230182544813" /></p>
+
+<h3 id="3-3-安装后">3.3 安装后</h3>
+
+<p>安装之后需要手动进行一些设置才能使CUDA正常的工作。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export PATH<span style="color:#f92672">=</span>/usr/local/cuda-10.0/bin<span style="color:#e6db74">${</span>PATH:+:<span style="color:#e6db74">${</span>PATH<span style="color:#e6db74">}}</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">nvcc -V <span style="color:#75715e"># 检查CUDA是否安装成功</span>
+
+<span style="color:#75715e"># OUTPUT:</span>
+nvcc: NVIDIA <span style="color:#f92672">(</span>R<span style="color:#f92672">)</span> Cuda compiler driver
+Copyright <span style="color:#f92672">(</span>c<span style="color:#f92672">)</span> <span style="color:#ae81ff">2005</span>-2018 NVIDIA Corporation
+Built on Sat_Aug_25_21:08:01_CDT_2018
+Cuda compilation tools, release <span style="color:#ae81ff">10</span>.0, V10.0.130</code></pre></div>
+<p>最好关闭系统的自动更新，防止安装好的环境突然bug：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo vi /etc/apt/apt.conf.d/10periodic
+
+<span style="color:#75715e"># 修改为：</span>
+APT::Periodic::Update-Package-Lists <span style="color:#e6db74">&#34;0&#34;</span>;
+APT::Periodic::Download-Upgradeable-Packages <span style="color:#e6db74">&#34;0&#34;</span>;
+APT::Periodic::AutocleanInterval <span style="color:#e6db74">&#34;0&#34;</span>;</code></pre></div>
+<p>也可以通过桌面设置：System Settings =&gt; Software&amp;Updates =&gt; updates</p>
+
+<p><img src=https://www.wentixiaogege.com/post/pics/image-20191230201318972.png style=width:400px></p>
+
+<h2 id="4-安装cudnn-https-developer-nvidia-com-rdp-cudnn-download">4. <a href="https://developer.nvidia.com/rdp/cudnn-download">安装cuDNN</a></h2>
+
+<p>NVIDIA cuDNN是用于深度神经网络的GPU加速库。</p>
+
+<p>首先需要注册下载对应CUDA版本号的cuDNN安装包，<a href="https://developer.nvidia.com/rdp/cudnn-download">链接</a>。</p>
+
+<p>比如对应CUDA10.0，我下载的是：<code>tar -zxvf cudnn-10.0-linux-x64-v7.6.5.32.tgz</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tar -zxvf cudnn-10.0-linux-x64-v7.6.5.32.tgz
+sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*</code></pre></div>
+<p>验证是否安装成功：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A <span style="color:#ae81ff">2</span>
+
+<span style="color:#75715e"># 输出</span>
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">#define CUDNN_MAJOR 7
+</span><span style="color:#e6db74">#define CUDNN_MINOR 6
+</span><span style="color:#e6db74">#define CUDNN_PATCHLEVEL 5
+</span><span style="color:#e6db74">--
+</span><span style="color:#e6db74">#define CUDNN_VERSION (CUDNN_MAJOR * 1000 + CUDNN_MINOR * 100 + CUDNN_PATCHLEVEL)
+</span><span style="color:#e6db74">#include &#34;</span>driver_types.h<span style="color:#e6db74">&#34;
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span></code></pre></div>
+<p>更推荐使用Debian File去安装，因为可以通过里面的样例去验证cuDNN是否成功安装。首先下载下面三个文件：</p>
+
+<p><img src=https://www.wentixiaogege.com/post/pics/image-20191230211132269.png style=width:666px></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 分别下载</span>
+sudo dpkg -i libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb
+sudo dpkg -i libcudnn7-dev_7.6.5.32-1+cuda10.0_amd64.deb
+sudo dpkg -i libcudnn7-doc_7.6.5.32-1+cuda10.0_amd64.deb
+
+<span style="color:#75715e"># 安装完验证：</span>
+cp -r /usr/src/cudnn_samples_v7/ $HOME
+cd  $HOME/cudnn_samples_v7/mnistCUDNN
+make clean <span style="color:#f92672">&amp;&amp;</span> make
+./mnistCUDNN
+<span style="color:#75715e"># Test passed!</span></code></pre></div>
+<p>另外也可以用conda来安装cudatoolkit和cuDNN，但要保证驱动是ready的。不过我没有试验过。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda install cudatoolkit<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>.0
+conda install -c anaconda cudnn</code></pre></div>
+<h2 id="5-安装tensorflow2-0-gpu">5. 安装TensorFlow2.0 GPU</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 安装conda</span>
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh <span style="color:#f92672">&amp;&amp;</span> bash Miniconda3-latest-Linux-x86_64.sh
+source ~/.bashrc
+
+<span style="color:#75715e"># conda添加国内源:</span>
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+conda config --set show_channel_urls yes
+
+conda create -y -n tf2 python<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>.7
+conda activate tf2
+<span style="color:#75715e"># source activate tf2</span>
+pip install --upgrade pip
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+pip install tensorflow-gpu
+pip install catboost
+
+
+<span style="color:#75715e"># 或者：</span>
+conda create -y -n tf_2.1 python<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>.7 tensorflow-gpu<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>.1.0
+conda create -y -n tf_2.0 python<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>.7 tensorflow-gpu<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>.0.0
+
+<span style="color:#75715e"># 或者 TF 2.2 这么安装也OK</span>
+conda create -y -n TF2.2 python<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>.8
+conda activate TF2.2
+pip install --upgrade pip
+pip install tensorflow-gpu<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>.2.0
+conda install cudatoolkit<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>.1 cudnn<span style="color:#f92672">=</span><span style="color:#ae81ff">7</span>.6.5</code></pre></div>
+<p>测试:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+<span style="color:#66d9ef">print</span>(tf<span style="color:#f92672">.</span>__version__)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Num GPUs Available: &#34;</span>, len(tf<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>experimental<span style="color:#f92672">.</span>list_physical_devices(<span style="color:#e6db74">&#39;GPU&#39;</span>)))
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">2.0.0
+</span><span style="color:#e6db74">Num GPUs Available:  2
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">测试程序：
+</span><span style="color:#e6db74">源链接：https://github.com/dragen1860/TensorFlow-2.x-Tutorials/blob/master/08-ResNet/main.py
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+<span style="color:#f92672">import</span> os
+os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;CUDA_VISIBLE_DEVICES&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#75715e"># os.environ[&#34;CUDA_VISIBLE_DEVICES&#34;] = &#34;0,1&#34; </span>
+<span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">from</span> tensorflow <span style="color:#f92672">import</span> keras
+
+tf<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>set_seed(<span style="color:#ae81ff">22</span>)
+np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>seed(<span style="color:#ae81ff">22</span>)
+os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#39;TF_CPP_MIN_LOG_LEVEL&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;2&#39;</span>
+<span style="color:#66d9ef">assert</span> tf<span style="color:#f92672">.</span>__version__<span style="color:#f92672">.</span>startswith(<span style="color:#e6db74">&#39;2.&#39;</span>)
+
+(x_train, y_train), (x_test, y_test) <span style="color:#f92672">=</span> keras<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>fashion_mnist<span style="color:#f92672">.</span>load_data()
+x_train, x_test <span style="color:#f92672">=</span> x_train<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>float32) <span style="color:#f92672">/</span> <span style="color:#ae81ff">255.</span>, x_test<span style="color:#f92672">.</span>astype(
+    np<span style="color:#f92672">.</span>float32) <span style="color:#f92672">/</span> <span style="color:#ae81ff">255.</span>
+<span style="color:#75715e"># [b, 28, 28] =&gt; [b, 28, 28, 1]</span>
+x_train, x_test <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>expand_dims(x_train, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>), np<span style="color:#f92672">.</span>expand_dims(x_test,
+                                                                  axis<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+<span style="color:#75715e"># one hot encode the labels. convert back to numpy as we cannot use a combination of numpy</span>
+<span style="color:#75715e"># and tensors as input to keras</span>
+y_train_ohe <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>one_hot(y_train, depth<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)<span style="color:#f92672">.</span>numpy()
+y_test_ohe <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>one_hot(y_test, depth<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)<span style="color:#f92672">.</span>numpy()
+
+<span style="color:#66d9ef">print</span>(x_train<span style="color:#f92672">.</span>shape, y_train<span style="color:#f92672">.</span>shape)
+<span style="color:#66d9ef">print</span>(x_test<span style="color:#f92672">.</span>shape, y_test<span style="color:#f92672">.</span>shape)
+
+<span style="color:#75715e"># 3x3 convolution</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">conv3x3</span>(channels, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, kernel<span style="color:#f92672">=</span>(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>)):
+    <span style="color:#66d9ef">return</span> keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Conv2D(
+        channels,
+        kernel,
+        strides<span style="color:#f92672">=</span>stride,
+        padding<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;same&#39;</span>,
+        use_bias<span style="color:#f92672">=</span>False,
+        kernel_initializer<span style="color:#f92672">=</span>tf<span style="color:#f92672">.</span>random_normal_initializer())
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ResnetBlock</span>(keras<span style="color:#f92672">.</span>Model):
+    <span style="color:#66d9ef">def</span> __init__(self, channels, strides<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, residual_path<span style="color:#f92672">=</span>False):
+        super(ResnetBlock, self)<span style="color:#f92672">.</span>__init__()
+        self<span style="color:#f92672">.</span>channels <span style="color:#f92672">=</span> channels
+        self<span style="color:#f92672">.</span>strides <span style="color:#f92672">=</span> strides
+        self<span style="color:#f92672">.</span>residual_path <span style="color:#f92672">=</span> residual_path
+        self<span style="color:#f92672">.</span>conv1 <span style="color:#f92672">=</span> conv3x3(channels, strides)
+        self<span style="color:#f92672">.</span>bn1 <span style="color:#f92672">=</span> keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>BatchNormalization()
+        self<span style="color:#f92672">.</span>conv2 <span style="color:#f92672">=</span> conv3x3(channels)
+        self<span style="color:#f92672">.</span>bn2 <span style="color:#f92672">=</span> keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>BatchNormalization()
+        <span style="color:#66d9ef">if</span> residual_path:
+            self<span style="color:#f92672">.</span>down_conv <span style="color:#f92672">=</span> conv3x3(channels, strides, kernel<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>))
+            self<span style="color:#f92672">.</span>down_bn <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>BatchNormalization()
+            
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">call</span>(self, inputs, training<span style="color:#f92672">=</span>None):
+        residual <span style="color:#f92672">=</span> inputs
+        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>bn1(inputs, training<span style="color:#f92672">=</span>training)
+        x <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>relu(x)
+        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>conv1(x)
+        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>bn2(x, training<span style="color:#f92672">=</span>training)
+        x <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>relu(x)
+        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>conv2(x)
+        <span style="color:#75715e"># this module can be added into self.</span>
+        <span style="color:#75715e"># however, module in for can not be added.</span>
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>residual_path:
+            residual <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>down_bn(inputs, training<span style="color:#f92672">=</span>training)
+            residual <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>relu(residual)
+            residual <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>down_conv(residual)
+        x <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> residual
+        <span style="color:#66d9ef">return</span> x
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ResNet</span>(keras<span style="color:#f92672">.</span>Model):
+    <span style="color:#66d9ef">def</span> __init__(self, block_list, num_classes, initial_filters<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>, <span style="color:#f92672">**</span>kwargs):
+        super(ResNet, self)<span style="color:#f92672">.</span>__init__(<span style="color:#f92672">**</span>kwargs)
+        self<span style="color:#f92672">.</span>num_blocks <span style="color:#f92672">=</span> len(block_list)
+        self<span style="color:#f92672">.</span>block_list <span style="color:#f92672">=</span> block_list
+        self<span style="color:#f92672">.</span>in_channels <span style="color:#f92672">=</span> initial_filters
+        self<span style="color:#f92672">.</span>out_channels <span style="color:#f92672">=</span> initial_filters
+        self<span style="color:#f92672">.</span>conv_initial <span style="color:#f92672">=</span> conv3x3(self<span style="color:#f92672">.</span>out_channels)
+        self<span style="color:#f92672">.</span>blocks <span style="color:#f92672">=</span> keras<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>Sequential(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;dynamic-blocks&#39;</span>)
+        <span style="color:#75715e"># build all the blocks</span>
+        <span style="color:#66d9ef">for</span> block_id <span style="color:#f92672">in</span> range(len(block_list)):
+            <span style="color:#66d9ef">for</span> layer_id <span style="color:#f92672">in</span> range(block_list[block_id]):
+
+                <span style="color:#66d9ef">if</span> block_id <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> layer_id <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+                    block <span style="color:#f92672">=</span> ResnetBlock(self<span style="color:#f92672">.</span>out_channels,
+                                        strides<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,
+                                        residual_path<span style="color:#f92672">=</span>True)
+                <span style="color:#66d9ef">else</span>:
+                    <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>in_channels <span style="color:#f92672">!=</span> self<span style="color:#f92672">.</span>out_channels:
+                        residual_path <span style="color:#f92672">=</span> True
+                    <span style="color:#66d9ef">else</span>:
+                        residual_path <span style="color:#f92672">=</span> False
+                    block <span style="color:#f92672">=</span> ResnetBlock(self<span style="color:#f92672">.</span>out_channels,
+                                        residual_path<span style="color:#f92672">=</span>residual_path)
+                self<span style="color:#f92672">.</span>in_channels <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>out_channels
+                self<span style="color:#f92672">.</span>blocks<span style="color:#f92672">.</span>add(block)
+            self<span style="color:#f92672">.</span>out_channels <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>
+        self<span style="color:#f92672">.</span>final_bn <span style="color:#f92672">=</span> keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>BatchNormalization()
+        self<span style="color:#f92672">.</span>avg_pool <span style="color:#f92672">=</span> keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>GlobalAveragePooling2D()
+        self<span style="color:#f92672">.</span>fc <span style="color:#f92672">=</span> keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Dense(num_classes)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">call</span>(self, inputs, training<span style="color:#f92672">=</span>None):
+        out <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>conv_initial(inputs)
+        out <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>blocks(out, training<span style="color:#f92672">=</span>training)
+        out <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>final_bn(out, training<span style="color:#f92672">=</span>training)
+        out <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>relu(out)
+        out <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>avg_pool(out)
+        out <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>fc(out)
+        <span style="color:#66d9ef">return</span> out
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    num_classes <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+    batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">128</span>
+    epochs <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+    <span style="color:#75715e"># build model and optimizer</span>
+    model <span style="color:#f92672">=</span> ResNet([<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>], num_classes)
+    model<span style="color:#f92672">.</span>compile(optimizer<span style="color:#f92672">=</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>Adam(<span style="color:#ae81ff">0.001</span>),
+                  loss<span style="color:#f92672">=</span>keras<span style="color:#f92672">.</span>losses<span style="color:#f92672">.</span>CategoricalCrossentropy(from_logits<span style="color:#f92672">=</span>True),
+                  metrics<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;accuracy&#39;</span>])
+    model<span style="color:#f92672">.</span>build(input_shape<span style="color:#f92672">=</span>(None, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">1</span>))
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Number of variables in the model :&#34;</span>, len(model<span style="color:#f92672">.</span>variables))
+    model<span style="color:#f92672">.</span>summary()
+    <span style="color:#75715e"># train</span>
+    model<span style="color:#f92672">.</span>fit(x_train,
+              y_train_ohe,
+              batch_size<span style="color:#f92672">=</span>batch_size,
+              epochs<span style="color:#f92672">=</span>epochs,
+              validation_data<span style="color:#f92672">=</span>(x_test, y_test_ohe),
+              verbose<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+
+    <span style="color:#75715e"># evaluate on test set</span>
+    scores <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>evaluate(x_test, y_test_ohe, batch_size, verbose<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Final test loss and accuracy :&#34;</span>, scores)
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()</code></pre></div>
+<p>监测GPU使用：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">watch -n <span style="color:#ae81ff">0</span>.01 nvidia-smi</code></pre></div>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20191231145755896.png" alt="image-20191231145755896" /></p>
+
+<p>测试catboost使用CPU：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> catboost.datasets <span style="color:#f92672">import</span> titanic
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> train_test_split
+<span style="color:#f92672">from</span> catboost <span style="color:#f92672">import</span> CatBoostClassifier, Pool, cv
+<span style="color:#f92672">from</span> sklearn.metrics <span style="color:#f92672">import</span> accuracy_score
+
+train_df, test_df <span style="color:#f92672">=</span> titanic()
+null_value_stats <span style="color:#f92672">=</span> train_df<span style="color:#f92672">.</span>isnull()<span style="color:#f92672">.</span>sum(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+null_value_stats[null_value_stats <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>]
+
+train_df<span style="color:#f92672">.</span>fillna(<span style="color:#f92672">-</span><span style="color:#ae81ff">999</span>, inplace<span style="color:#f92672">=</span>True)
+test_df<span style="color:#f92672">.</span>fillna(<span style="color:#f92672">-</span><span style="color:#ae81ff">999</span>, inplace<span style="color:#f92672">=</span>True)
+
+X <span style="color:#f92672">=</span> train_df<span style="color:#f92672">.</span>drop(<span style="color:#e6db74">&#39;Survived&#39;</span>, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+y <span style="color:#f92672">=</span> train_df<span style="color:#f92672">.</span>Survived
+
+X_train, X_validation, y_train, y_validation <span style="color:#f92672">=</span> train_test_split(X, y, train_size<span style="color:#f92672">=</span><span style="color:#ae81ff">0.75</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>)
+X_test <span style="color:#f92672">=</span> test_df
+
+categorical_features_indices <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(X<span style="color:#f92672">.</span>dtypes <span style="color:#f92672">!=</span> np<span style="color:#f92672">.</span>float)[<span style="color:#ae81ff">0</span>]
+
+model <span style="color:#f92672">=</span> CatBoostClassifier(
+    task_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;GPU&#34;</span>,
+    custom_metric<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;Accuracy&#39;</span>],
+    random_seed<span style="color:#f92672">=</span><span style="color:#ae81ff">666</span>,
+    logging_level<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Silent&#39;</span>
+)
+
+model<span style="color:#f92672">.</span>fit(
+    X_train, y_train,
+    cat_features<span style="color:#f92672">=</span>categorical_features_indices,
+    eval_set<span style="color:#f92672">=</span>(X_validation, y_validation),
+    logging_level<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Verbose&#39;</span>,  <span style="color:#75715e"># you can comment this for no text output</span>
+    plot<span style="color:#f92672">=</span>True
+);</code></pre></div>
+<p>监测GPU使用：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">watch -n <span style="color:#ae81ff">0</span>.01 nvidia-smi</code></pre></div>
+<p><img src=https://www.wentixiaogege.com/post/pics/image-20191231144041852.png style=width:666px></p>
+
+<h2 id="6-一次成功的nvidia显卡修复">6. 一次成功的NVIDIA显卡修复</h2>
+
+<p>输入<code>nvdia-smi</code>报错：</p>
+
+<p>nvidia-smi has failed because it couldn&rsquo;t communicate with the nvidia driver. make sure that the latest nvidia driver is installed and running.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># detect the model of your nvidia graphic card and the recommended driver.</span>
+sudo ubuntu-drivers devices</code></pre></div>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20200503020955397.png" alt="image-20200503020955397" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install nvidia-driver-440
+<span style="color:#75715e"># 或者：sudo ubuntu-drivers autoinstall</span>
+sudo rmmod nvidia_uvm <span style="color:#75715e"># 不一定需要</span>
+sudo modprobe nvidia_uvm
+nvidia-smi</code></pre></div>
+<p><img src=https://www.wentixiaogege.com/post/pics/image-20200503021159493.png style=width:666px></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 关于modprobe和lsmod</span>
+<span style="color:#75715e"># We use the lsmod command to list currently loaded drivers. This command actually obtains its data from the /proc/modules file.</span>
+lsmod | grep nvidia</code></pre></div>
+<h2 id="reference">REFERENCE</h2>
+
+<p><a href="https://docs.nvidia.com/cuda/archive/10.0/cuda-installation-guide-linux/index.html">官方-NVIDIA CUDA Installation Guide for Linux</a></p>
+
+<p><a href="https://developer.download.nvidia.com/compute/cuda/10.0/Prod/docs/sidebar/CUDA_Quick_Start_Guide.pdf">CUDA_Quick_Start_Guide-pdf</a></p>
+
+<p><a href="https://developer.download.nvidia.com/compute/cuda/10.0/Prod/docs/sidebar/CUDA_Installation_Guide_Linux.pdf">CUDA_Installation_Guide_Linux-pdf</a></p>
+
+<p><a href="https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html#install-linux">官方-cuDNN安装</a></p>
+
+<p><a href="http://www.linuxandubuntu.com/home/how-to-install-latest-nvidia-drivers-in-linux">[How To] Install Latest NVIDIA Drivers In Linux</a></p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.wentixiaogege.com/tags/linux"><span class="tag">Linux</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/deep-learning"><span class="tag">Deep Learning</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>169</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "orion-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.wentixiaogege.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5713bba443e20a46d066ca93c131f795";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  </body>
+</html>

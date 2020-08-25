@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LEGB on wentixiaogege</title>
+    <link>https://www.wentixiaogege.com/tags/legb/</link>
+    <description>Recent content in LEGB on wentixiaogege</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Sat, 18 May 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.wentixiaogege.com/tags/legb/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python命名空间和作用域</title>
+      <link>https://www.wentixiaogege.com/post/py-namespace/</link>
+      <pubDate>Sat, 18 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/py-namespace/</guid>
+      <description>&lt;p&gt;本文主要介绍一下Python命名空间和作用域。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

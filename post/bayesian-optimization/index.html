@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>用贝叶斯优化进行超参数调优</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Qi Zhang">
+  <meta name="description" content="超参数调优一直是机器学习里比较intractable的问题，繁多的超参数以及指数型爆炸的参数空间，往往让人无从下手。调参是一个很枯燥的过程，而且最后也不一定有很好的reward。很多的机器学习工程师也会戏称自己是&amp;rdquo;调参民工&amp;rdquo;，&amp;rdquo;炼丹师&amp;rdquo;…&amp;hellip;
+一般的调参方法有下面几种：
+ 手动调参 网格搜索（grid search） 随机搜索（random search） 贝叶斯优化（Bayesian optimization） ">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="用贝叶斯优化进行超参数调优">
+    <meta name="twitter:description" content="超参数调优一直是机器学习里比较intractable的问题，繁多的超参数以及指数型爆炸的参数空间，往往让人无从下手。调参是一个很枯燥的过程，而且最后也不一定有很好的reward。很多的机器学习工程师也会戏称自己是&amp;rdquo;调参民工&amp;rdquo;，&amp;rdquo;炼丹师&amp;rdquo;…&amp;hellip;
+一般的调参方法有下面几种：
+ 手动调参 网格搜索（grid search） 随机搜索（random search） 贝叶斯优化（Bayesian optimization） ">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="用贝叶斯优化进行超参数调优">
+  <meta property="og:description" content="超参数调优一直是机器学习里比较intractable的问题，繁多的超参数以及指数型爆炸的参数空间，往往让人无从下手。调参是一个很枯燥的过程，而且最后也不一定有很好的reward。很多的机器学习工程师也会戏称自己是&amp;rdquo;调参民工&amp;rdquo;，&amp;rdquo;炼丹师&amp;rdquo;…&amp;hellip;
+一般的调参方法有下面几种：
+ 手动调参 网格搜索（grid search） 随机搜索（random search） 贝叶斯优化（Bayesian optimization） ">
+  <meta property="og:url" content="https://www.wentixiaogege.com/post/bayesian-optimization/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.54.0">
+
+
+<link rel="canonical" href="https://www.wentixiaogege.com/post/bayesian-optimization/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Qi Zhang">
+<meta name="msapplication-tooltip" content="Qi Zhang">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.wentixiaogege.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.wentixiaogege.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.wentixiaogege.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.wentixiaogege.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.wentixiaogege.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.wentixiaogege.com/manifest.json">
+
+
+<link rel="preload" href="https://www.wentixiaogege.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.wentixiaogege.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.wentixiaogege.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.wentixiaogege.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://www.wentixiaogege.com/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">Qi Zhang</h2>
+  
+  <p class="subtitle">Getty Images Contributor. I&#39;m not a photographer but a data enthusiast.</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.wentixiaogege.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">Works</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://bother.tuchong.com/">Fotos</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:hi@wentixiaogege.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/wentixiaogege" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/bother7" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://www.wentixiaogege.com/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">用贝叶斯优化进行超参数调优</h1>
+      <p class="post-meta">@Qi Zhang · May 10, 2019 · 1 min read</p>
+    </header>
+    <article class="post-content"><p>超参数调优一直是机器学习里比较intractable的问题，繁多的超参数以及指数型爆炸的参数空间，往往让人无从下手。调参是一个很枯燥的过程，而且最后也不一定有很好的reward。很多的机器学习工程师也会戏称自己是&rdquo;调参民工&rdquo;，&rdquo;炼丹师&rdquo;…&hellip;</p>
+
+<p>一般的调参方法有下面几种：</p>
+
+<ul>
+<li>手动调参</li>
+<li>网格搜索（grid search）</li>
+<li>随机搜索（random search）</li>
+<li>贝叶斯优化（Bayesian optimization）</li>
+</ul>
+
+<p>超参数的优化可以看做是这样一个方程：
+$$
+x^{\star}=\arg \min _{x \in \mathcal{X}} f(x)
+$$
+其中$ f(x) $ 表示目标函数，用于衡量误差，可以是MSE, RMSE, MAE等（如果是accuracy等指标可以将其添加负号求最小值），$x^{\star}$是使得$f(x)$最小的参数组合，理论上我们的目标就是要找到这个$x^{\star}$，但是要找到这样一个全局最优解几乎是不可能的。首先这个$f(x)$是个黑盒子，我们没法直接进行优化求解。事实上，我们每次为了得到$f(x)$，需要经过模型训练和评估，非常耗时，尤其对于一些深度学习模型，这个过程会特别漫长。我们只能在有限的计算资源和时间内，得到一些相对的局部最优解。</p>
+
+<p>对于手动调参，会对模型最重要的一些参数基于经验进行调节。比如lightgbm的</p>
+
+<p>grid search和random search可以让这个超参数搜索的过程自动化，但它们无法从之前的调参结果中获取信息，可能会尝试很多无效的参数空间。而贝叶斯优化，会对上一次的评估结果进行追踪，建立一个概率模型，反应超参数在目标函数上表现的概率分布，即$P(\text {score} | \text {hyperparameters})$，可用于指导下一次的参数选择。</p>
+
+<p>贝叶斯优化可以更好的trade off Exploration&amp;Exploitation，而且适用于随机、非凸、不连续方程的优化。具体过程可用一句话概括为：对目标函数建立概率模型，通过这个概率模型得到最promising的参数组合，用于最终目标函数的评估。</p>
+
+<p>Sequential Model-Based Optimization(SMBO) 是贝叶斯优化更具体的表现形式，可认为它们是等价的。一般会有以下几个过程：</p>
+
+<ol>
+<li>给定要搜索的超参数空间</li>
+<li>定义一个目标函数用于评估优化</li>
+<li>建立目标函数的surrogate model</li>
+<li>建立一个评估surrogate model，选择超参数的标准(选择方程)</li>
+<li>获取score和hyperparameter的样本用于更新 surrogate model</li>
+</ol>
+
+<p>The next set of hyperparameters are selected based on a model of the objective function called a surrogate.</p>
+
+<p>贝叶斯优化模型主要的区分是代理函数（surrogate function）的差异。surrogate model一般有 Gaussian Process, Random Forest和Tree Parzen Estimator (TPE) 这几种。常见的框架有<a href="https://github.com/JasperSnoek/spearmint">Spearmint</a>, <a href="https://hyperopt.github.io/hyperopt/">Hyperopt</a>, <a href="https://github.com/automl/SMAC3">SMAC</a>, <a href="https://github.com/Yelp/MOE">MOE</a>, <a href="https://github.com/fmfn/BayesianOptimization">BayesianOptimization</a>, <a href="https://scikit-optimize.github.io/#skopt.BayesSearchCV">skopt</a>等，它们的对比如下表：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">library</th>
+<th align="center">surrogate function</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">Spearmint</td>
+<td align="center">Gaussian Process</td>
+</tr>
+
+<tr>
+<td align="center">Hyperopt</td>
+<td align="center">Tree Parzen Estimator (TPE)</td>
+</tr>
+
+<tr>
+<td align="center">SMAC</td>
+<td align="center">Random Forest</td>
+</tr>
+</tbody>
+</table>
+
+<p>TPE(Tree-structured Parzen Estimator)是SMBO(sequential model-based optimization)方法的一种。</p>
+
+<h4 id="selection-function">Selection Function</h4>
+
+<p>$$
+\mathrm{EI}<em>{y^{*}}(x)=\int</em>{-\infty}^{y^{<em>}}\left(y^{</em>}-y\right) p(y | x) d y
+$$</p>
+
+<h3 id="贝叶斯公式">贝叶斯公式</h3>
+
+<p><img src="pics/image-20190511101729209.png" alt="image-20190511101729209" /></p>
+
+<p><img src="pics/image-20190511101820432.png" alt="image-20190511101820432" /></p>
+
+<h3 id="高斯过程">高斯过程</h3>
+
+<p><img src="pics/image-20190511103742746.png" alt="image-20190511103742746" /></p>
+
+<p><img src="pics/image-20190511134706355.png" alt="image-20190511134706355" /></p>
+
+<p><a href="https://optunity.readthedocs.io/en/latest/">Optunity</a>包括多种超参数调优的方法：</p>
+
+<ul>
+<li><a href="https://optunity.readthedocs.io/en/latest/user/solvers/grid_search.html">Grid Search</a></li>
+<li><a href="https://optunity.readthedocs.io/en/latest/user/solvers/random_search.html">Random Search</a></li>
+<li><a href="https://optunity.readthedocs.io/en/latest/user/solvers/particle_swarm.html">Particle Swarm Optimization</a>(默认方法)</li>
+<li><a href="https://optunity.readthedocs.io/en/latest/user/solvers/nelder-mead.html">Nelder-Mead simplex</a></li>
+<li><a href="https://optunity.readthedocs.io/en/latest/user/solvers/CMA_ES.html">CMA-ES</a></li>
+<li><a href="https://optunity.readthedocs.io/en/latest/user/solvers/TPE.html">Tree-structured Parzen Estimator</a>(基于hyperopt实现，用hyperopt更好)</li>
+<li><a href="https://optunity.readthedocs.io/en/latest/user/solvers/sobol.html">Sobol sequences</a></li>
+</ul>
+
+<h3 id="hyperopt-https-hyperopt-github-io-hyperopt"><a href="https://hyperopt.github.io/hyperopt/">Hyperopt</a></h3>
+
+<p>对于一个优化问题我们可以分为4个部分：</p>
+
+<ol>
+<li>优化的目标函数</li>
+<li>优化的参数空间</li>
+<li>超参数优化方程，建立代理函数（surrogate function），并用其决定下一次尝试的参数组合</li>
+<li>Trials: 记录每次尝试的loss、参数及更多额外信息（可DIY），可以记录整个迭代的过程，用于回测。</li>
+</ol>
+
+<p>空间定义：</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://github.com/hyperopt/hyperopt/issues/267">在原来的基础上继续调参：Documentation for saving and reloading evaluations with Trials</a></p>
+
+<p><a href="https://app.sigopt.com/static/pdf/SigOpt_Bayesian_Optimization_Primer.pdf">SigOpt-Bayesian Optimization Primer</a></p>
+
+<p><a href="https://github.com/claesenm/optunity">github-optunity</a></p>
+
+<p><a href="https://indico.cern.ch/event/433556/contributions/1930567/attachments/1231738/1806005/fonarev_hyperparams.pdf">Overview on Automatic Tuning of Hyperparameters</a></p>
+
+<p><a href="https://optunity.readthedocs.io/en/latest/user/solvers.html">Optunity’s</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=-sIOMs4MSuA">Christopher Fonnesbeck - Bayesian Non-parametric Models for Data Science using PyMC3 - PyCon 2018</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=4vGiHC35j9s">Machine learning - Introduction to Gaussian processes</a></p>
+
+<p><a href="https://towardsdatascience.com/a-conceptual-explanation-of-bayesian-model-based-hyperparameter-optimization-for-machine-learning-b8172278050f">Will Koehrsen: A Conceptual Explanation of Bayesian Hyperparameter Optimization for Machine Learning(A high-level overview)</a></p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.wentixiaogege.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="tag">机器学习</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/%E8%B0%83%E5%8F%82"><span class="tag">调参</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF%E4%BC%98%E5%8C%96"><span class="tag">贝叶斯优化</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "disqus_shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2019 Qi Zhang</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.wentixiaogege.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+  </body>
+</html>

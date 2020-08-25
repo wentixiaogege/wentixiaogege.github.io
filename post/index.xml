@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on wentixiaogege</title>
+    <link>https://www.wentixiaogege.com/post/</link>
+    <description>Recent content in Posts on wentixiaogege</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Mon, 30 Dec 2019 10:56:46 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.wentixiaogege.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>新的GPU服务器环境配置--Ubuntu18.04&#43;CUDA10.0&#43;cuDNN7.6.5&#43;TensorFlow2.0安装笔记</title>
+      <link>https://www.wentixiaogege.com/post/zzz-linux-gpu-env-install/</link>
+      <pubDate>Mon, 30 Dec 2019 10:56:46 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/zzz-linux-gpu-env-install/</guid>
+      <description>&lt;p&gt;第一次安装CUDA的过程简直抓狂，中间出现了很多次莫名其妙的bug，踩了很多坑。比如装好了CUDA重启后进不去桌面系统了，直接黑屏、比如鼠标键盘都不work了、再比如装好了却安装不了TensorFlow-GPU&amp;hellip;&amp;hellip;看了一圈网上的安装教程，发现还是官方指南真香了~&lt;/p&gt;
+
+&lt;p&gt;新年第一篇，分享一下我的Ubuntu 18.04 + CUDA 10.0 + cuDNN 7.6.5 + TensorFlow 2.0 安装笔记，希望可以帮助大家少踩坑。&lt;/p&gt;
+
+&lt;p&gt;整个安装流程大致是：安装显卡驱动 -&amp;gt; &lt;a href=&#34;https://developer.nvidia.com/cuda-toolkit-archive&#34;&gt;安装CUDA&lt;/a&gt; -&amp;gt; &lt;a href=&#34;https://developer.nvidia.com/rdp/cudnn-download&#34;&gt;安装cuDNN&lt;/a&gt; -&amp;gt; 安装tensorflow-gpu并测试。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>在XGBoost和LightGBM中自定义损失函数</title>
+      <link>https://www.wentixiaogege.com/post/ml-custom-loss-lgbm-xgb/</link>
+      <pubDate>Wed, 09 Oct 2019 14:41:08 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/ml-custom-loss-lgbm-xgb/</guid>
+      <description>&lt;p&gt;在LightGBM和XGBoost中的自定义损失函数（Custom Loss Function）。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ESoWC 2019 Proposal: An AutoML Framework for Predicting Extreme Weather Hazards</title>
+      <link>https://www.wentixiaogege.com/post/others-ec-proposal/</link>
+      <pubDate>Tue, 30 Jul 2019 19:11:16 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/others-ec-proposal/</guid>
+      <description>&lt;p&gt;今年参加&lt;a href=&#34;https://www.ecmwf.int/en/learning/workshops/ecmwf-summer-weather-code-2019&#34;&gt;ESoWC 2019&lt;/a&gt;写的一个Proposal: An AutoML Framework for Predicting Extreme Weather Hazards.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Subprocess模块</title>
+      <link>https://www.wentixiaogege.com/post/py-subprocess/</link>
+      <pubDate>Sun, 28 Jul 2019 13:19:54 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/py-subprocess/</guid>
+      <description>&lt;p&gt;&lt;code&gt;subprocess&lt;/code&gt; 模块允许你生成新的进程，连接它们的输入、输出、错误管道，并且获取它们的返回码。此模块可以代替一些老旧的模块与功能，如&lt;code&gt;os.system&lt;/code&gt;, &lt;code&gt;os.spawn&lt;/code&gt;, &lt;code&gt;os.popen()&lt;/code&gt;等。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hive学习整理</title>
+      <link>https://www.wentixiaogege.com/post/bd-hive/</link>
+      <pubDate>Mon, 22 Jul 2019 18:18:34 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/bd-hive/</guid>
+      <description>&lt;p&gt;Hadoop 大数据仓库 Hive：自动将 SQL 生成 MapReduce 代码。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>机器学习中的概念漂移（Concept Drift）</title>
+      <link>https://www.wentixiaogege.com/post/ml-concept-drift/</link>
+      <pubDate>Mon, 15 Jul 2019 11:31:41 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/ml-concept-drift/</guid>
+      <description>&lt;p&gt;机器学习中的概念漂移（Concept Drift）的理解与解决方法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用贝叶斯优化进行超参数调优</title>
+      <link>https://www.wentixiaogege.com/post/ml-bayesian-optimization/</link>
+      <pubDate>Fri, 12 Jul 2019 10:57:57 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/ml-bayesian-optimization/</guid>
+      <description>&lt;p&gt;超参数调优一直是机器学习里比较intractable的问题，繁多的超参数以及指数型爆炸的参数空间，往往让人无从下手。调参是一个很枯燥的过程，而且最后也不一定有很好的reward。很多的机器学习工程师也会戏称自己是&amp;rdquo;调参民工&amp;rdquo;，&amp;rdquo;炼丹师&amp;rdquo;…&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>RNN, LSTM和GRU</title>
+      <link>https://www.wentixiaogege.com/post/dl-lstm-gru/</link>
+      <pubDate>Wed, 10 Jul 2019 10:28:14 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/dl-lstm-gru/</guid>
+      <description>&lt;p&gt;普通的RNN对短时记忆比较敏感，如果输入序列很长，在反向传播期间，RNN 会面临梯度消失和梯度爆炸的问题。为解决这个问题，人们对RNN进行了很多改进，其中最有效的改进方式是引入门控机制， 于是就有了LSTM和GRU。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用python下载文件的若干种方法汇总</title>
+      <link>https://www.wentixiaogege.com/post/crawler-downloader/</link>
+      <pubDate>Tue, 09 Jul 2019 18:23:12 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/crawler-downloader/</guid>
+      <description>&lt;p&gt;用python下载文件的若干种方法汇总。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python装饰器</title>
+      <link>https://www.wentixiaogege.com/post/py-decorator/</link>
+      <pubDate>Tue, 09 Jul 2019 12:23:32 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/py-decorator/</guid>
+      <description>&lt;p&gt;Python装饰器的常见用法。所谓的装饰器，其实就是通过装饰器函数，来修改原函数的一些功能，使得原函数不需要修改。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Catboost基础介绍</title>
+      <link>https://www.wentixiaogege.com/post/ml-catboost/</link>
+      <pubDate>Sat, 06 Jul 2019 14:22:46 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/ml-catboost/</guid>
+      <description>&lt;p&gt;Catboost入门介绍与实例。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python中的路径处理</title>
+      <link>https://www.wentixiaogege.com/post/py-pathlib/</link>
+      <pubDate>Wed, 03 Jul 2019 18:51:46 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/py-pathlib/</guid>
+      <description>&lt;p&gt;本文介绍一下Python中进行文件路径处理的一些技巧。从字符串连接、&lt;code&gt;os.path.join()&lt;/code&gt;到Python3中处理文件路径的简单方法：&lt;code&gt;pathlib&lt;/code&gt;，以及如何获取当前工作路径以及原始脚本路径。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>常用的Git命令整理</title>
+      <link>https://www.wentixiaogege.com/post/cs-git/</link>
+      <pubDate>Tue, 02 Jul 2019 13:31:21 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/cs-git/</guid>
+      <description>&lt;p&gt;Git 是目前最流行、最好用的版本控制系统，在它的基础之上催生出了 GitHub 和 GitLab 这两个当前最流行的代码托管平台。本文梳理了一些常用的Git命令。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用Conda进行Python开发环境管理</title>
+      <link>https://www.wentixiaogege.com/post/py-conda/</link>
+      <pubDate>Mon, 24 Jun 2019 23:51:49 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/py-conda/</guid>
+      <description>&lt;p&gt;Conda 是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。 Conda 是为 Python 程序创建的，适用于 Linux，OS X 和Windows，也可以打包和分发其他软件。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ssh如何实现免密登录</title>
+      <link>https://www.wentixiaogege.com/post/linux-ssh/</link>
+      <pubDate>Mon, 24 Jun 2019 15:24:21 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/linux-ssh/</guid>
+      <description>&lt;p&gt;SSH 为 Secure Shell 的缩写，SSH 为建立在应用层基础上的安全协议。SSH 是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Pandas中的数据重塑(Reshaping)</title>
+      <link>https://www.wentixiaogege.com/post/pd-pandas-reshaping/</link>
+      <pubDate>Sat, 15 Jun 2019 10:51:26 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/pd-pandas-reshaping/</guid>
+      <description>&lt;p&gt;Pandas中的数据重塑(Reshaping): &lt;code&gt;pivot&lt;/code&gt;, &lt;code&gt;pivot_table&lt;/code&gt;, &lt;code&gt;stack&lt;/code&gt;, &lt;code&gt;unstack&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用机器学习应对气候变化？</title>
+      <link>https://www.wentixiaogege.com/post/ml-climate-change/</link>
+      <pubDate>Fri, 14 Jun 2019 20:32:44 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/ml-climate-change/</guid>
+      <description>&lt;p&gt;气候变化是人类面临的越来越严重的问题，相信大家对此都不陌生。全球变暖、冰川消融、海平面上升、极端天气事件频发……人类的生存正在逐渐受到威胁。科学家们已经从很多不同的角度对气候变化进行了深入的研究，提出了很多应对气候变化的策略。除此之外，大家有没想过，近些年火遍各行各业的机器学习（ML）和人工智能（AI）可以与气候变化碰撞出什么样的火花呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>剑指Offer刷题全纪录(Python版)</title>
+      <link>https://www.wentixiaogege.com/post/algo-jianzhi-offer/</link>
+      <pubDate>Thu, 13 Jun 2019 22:00:40 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/algo-jianzhi-offer/</guid>
+      <description>&lt;p&gt;这篇文章是本人刷《剑指Offer》的记录，用Python实现的，也有一点点C++。&lt;/p&gt;
+
+&lt;p&gt;都说数据结构与算法是程序猿的必修课，是任何时候都需要苦修的内功。好吧，作为一个非科班的半路出家的野生程序猿，我当然也得刷一刷数据结构和算法啊啊啊。其实早在两年前就听闻要多刷算法题，那时候没有形成良好的习惯，也没制定详细的计划，就很佛的刷了一些LeetCode，感觉现在也都忘得一干二净了。最近心血来潮，正好遇到一个成长平台期，就开始下决心刷算法题了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>一文梳理正则表达式常用方法</title>
+      <link>https://www.wentixiaogege.com/post/py-regex-intro/</link>
+      <pubDate>Thu, 30 May 2019 13:34:21 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/py-regex-intro/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;正则表达式&lt;/strong&gt;，又称规则表达式&lt;strong&gt;。&lt;/strong&gt;（英语：Regular Expression，在代码中常简写为regex、regexp或RE），计算机科学的一个概念。正则表达式通常被用来检索、替换那些符合某个模式(规则)的文本。&lt;/p&gt;
+
+&lt;p&gt;许多程序设计语言都支持利用正则表达式进行字符串操作。例如，在&lt;a href=&#34;https://baike.baidu.com/item/Perl&#34;&gt;Perl&lt;/a&gt;中就内建了一个功能强大的正则表达式引擎。正则表达式这个概念最初是由&lt;a href=&#34;https://baike.baidu.com/item/Unix&#34;&gt;Unix&lt;/a&gt;中的工具软件（例如sed和&lt;a href=&#34;https://baike.baidu.com/item/grep/5997841&#34;&gt;grep&lt;/a&gt;）普及开的。&lt;/p&gt;
+
+&lt;p&gt;—&lt;a href=&#34;[https://baike.baidu.com/item/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/1700215?fr=aladdin](https://baike.baidu.com/item/正则表达式/1700215?fr=aladdin)&#34;&gt;baidu百科&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;简单来说，正则表达式就是对字符串进行操作的一种逻辑公式，用事先定义好的⼀些规则，组成⼀个规则字符串，然后用这个规则字符串去匹配符合这个规则的字符串，实现对字符串的匹配和过滤。本文基于python中的re模块来介绍正则表达式的常见用法，但这并非Python独有的，绝大多数语言都支持正则表达式。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python可视化：一些常用绘图脚本</title>
+      <link>https://www.wentixiaogege.com/post/py-visualization/</link>
+      <pubDate>Thu, 23 May 2019 16:32:25 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/py-visualization/</guid>
+      <description>&lt;p&gt;个人整理的一些常用的绘图脚本，基于&lt;code&gt;python&lt;/code&gt;的可视化库： &lt;code&gt;matplotlib&lt;/code&gt;和&lt;code&gt;seaborn&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python命名空间和作用域</title>
+      <link>https://www.wentixiaogege.com/post/py-namespace/</link>
+      <pubDate>Sat, 18 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/py-namespace/</guid>
+      <description>&lt;p&gt;本文主要介绍一下Python命名空间和作用域。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用concurrent.futures模块实现并行</title>
+      <link>https://www.wentixiaogege.com/post/py-concurrent-futures/</link>
+      <pubDate>Wed, 08 May 2019 00:28:24 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/py-concurrent-futures/</guid>
+      <description>&lt;p&gt;Python实现多线程/多进程，大家常常会用到标准库中的&lt;code&gt;threading&lt;/code&gt;和&lt;code&gt;multiprocessing&lt;/code&gt;模块。&lt;/p&gt;
+
+&lt;p&gt;但从Python3.2开始，标准库为我们提供了&lt;code&gt;concurrent.futures&lt;/code&gt;模块，它提供了&lt;code&gt;ThreadPoolExecutor&lt;/code&gt;和&lt;code&gt;ProcessPoolExecutor&lt;/code&gt;两个类，实现了对&lt;code&gt;threading&lt;/code&gt;和&lt;code&gt;multiprocessing&lt;/code&gt;的进一步抽象，使得开发者只需编写少量代码即可让程序实现并行计算。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>(转)Hugo 主题 Nuo 文章样式预览</title>
+      <link>https://www.wentixiaogege.com/post/others-hugo-nuo-post-preview/</link>
+      <pubDate>Sat, 04 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/others-hugo-nuo-post-preview/</guid>
+      <description>&lt;p&gt;本文转载自主题原作者，&lt;a href=&#34;https://laozhu.me/post/hugo-nuo-post-preview/&#34;&gt;这是原文链接&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;这篇文章集中说明本人博客主题所支持的 Markdown 语法和 Hugo Shortcodes 插件，你也可以在这里预览到他们的样子。如果你不喜欢某些部分的样式，可以去修改 &lt;code&gt;content.scss&lt;/code&gt; 和 &lt;code&gt;shortcodes.scss&lt;/code&gt; 这两个文件。预告一下，我所用的这个名为 &lt;code&gt;Nuo&lt;/code&gt; 的 &lt;code&gt;Hugo&lt;/code&gt; 也将于近期发布，敬请期待。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用Hugo和Github Pages创建和部署个人博客</title>
+      <link>https://www.wentixiaogege.com/post/others-creating-and-deploying-my-first-hugo-site-to-github-pages/</link>
+      <pubDate>Sat, 04 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/others-creating-and-deploying-my-first-hugo-site-to-github-pages/</guid>
+      <description>&lt;p&gt;Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。相较于Hexo和WordPress，Hugo的安装和配置都方便得多，生成页面的速度也是前两者无可比拟的。而Github Pages是github提供的静态网页托管服务，提供1GB的免费空间，可直接通过github仓库进行站点部署，十分方便。&lt;/p&gt;
+
+&lt;p&gt;本站就是使用了Hugo和Github Pages来进行创建和部署的，下面来简单介绍一下部署过程。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

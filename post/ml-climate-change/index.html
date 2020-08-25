@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>用机器学习应对气候变化？</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <link href="//hm.baidu.com" rel="dns-prefetch">
+
+  
+
+  
+  <meta name="author" content="Qi Zhang">
+  <meta name="description" content="气候变化是人类面临的越来越严重的问题，相信大家对此都不陌生。全球变暖、冰川消融、海平面上升、极端天气事件频发……人类的生存正在逐渐受到威胁。科学家们已经从很多不同的角度对气候变化进行了深入的研究，提出了很多应对气候变化的策略。除此之外，大家有没想过，近些年火遍各行各业的机器学习（ML）和人工智能（AI）可以与气候变化碰撞出什么样的火花呢？
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="用机器学习应对气候变化？">
+    <meta name="twitter:description" content="气候变化是人类面临的越来越严重的问题，相信大家对此都不陌生。全球变暖、冰川消融、海平面上升、极端天气事件频发……人类的生存正在逐渐受到威胁。科学家们已经从很多不同的角度对气候变化进行了深入的研究，提出了很多应对气候变化的策略。除此之外，大家有没想过，近些年火遍各行各业的机器学习（ML）和人工智能（AI）可以与气候变化碰撞出什么样的火花呢？
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="用机器学习应对气候变化？">
+  <meta property="og:description" content="气候变化是人类面临的越来越严重的问题，相信大家对此都不陌生。全球变暖、冰川消融、海平面上升、极端天气事件频发……人类的生存正在逐渐受到威胁。科学家们已经从很多不同的角度对气候变化进行了深入的研究，提出了很多应对气候变化的策略。除此之外，大家有没想过，近些年火遍各行各业的机器学习（ML）和人工智能（AI）可以与气候变化碰撞出什么样的火花呢？
+">
+  <meta property="og:url" content="https://www.wentixiaogege.com/post/ml-climate-change/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.57.2">
+
+
+<link rel="canonical" href="https://www.wentixiaogege.com/post/ml-climate-change/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.wentixiaogege.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.wentixiaogege.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.wentixiaogege.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.wentixiaogege.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.wentixiaogege.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.wentixiaogege.com/manifest.json">
+
+
+<link rel="preload" href="https://www.wentixiaogege.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.wentixiaogege.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.wentixiaogege.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.wentixiaogege.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://www.wentixiaogege.com/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">wentixiaogege</h2>
+  
+  <p class="subtitle">Getty Images Contributor. I&#39;m not a photographer but a data enthusiast.</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.wentixiaogege.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">GitHub</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://wentixiaogegefoto.tuchong.com/">Gallery</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:hi@wentixiaogege.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/wentixiaogege" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/bother7" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://www.wentixiaogege.com/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">用机器学习应对气候变化？</h1>
+      <p class="post-meta">@Qi Zhang · Jun 14, 2019 · 1 min read</p>
+    </header>
+    <article class="post-content"><p>气候变化是人类面临的越来越严重的问题，相信大家对此都不陌生。全球变暖、冰川消融、海平面上升、极端天气事件频发……人类的生存正在逐渐受到威胁。科学家们已经从很多不同的角度对气候变化进行了深入的研究，提出了很多应对气候变化的策略。除此之外，大家有没想过，近些年火遍各行各业的机器学习（ML）和人工智能（AI）可以与气候变化碰撞出什么样的火花呢？</p>
+
+<p>前几天arXiv上发布了一篇新文章主要就是介绍了机器学习可以如何辅助我们应对气候变化。文章的题目是：<a href="https://arxiv.org/abs/1906.05433v1">《Tackling Climate Change with Machine Learning》</a>，大家看到这个作者阵容有没有觉得不淡定了（反正我是）。文章作者云集了一群AI界的大佬，来自斯坦福大学，哈佛大学，MIT，Google，DeepMind，微软…&hellip;我们熟知的Andrew NG和Yoshua Bengio也在列。</p>
+
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190615224033470.png" alt="image-20190615224033470" /></p>
+
+<p>嗯哼。这是要搞大事情了？？？气候变化问题会被AI解决？？？地球和人类最终会被AI救赎？？？</p>
+
+<p>且慢，事情当然不会这么简单。我们先来看看文章。全文大家可以通过<a href="https://arxiv.org/abs/1906.05433v1">这个链接</a>获取，这里是它们的<a href="https://slideslive.com/38917142/climate-change-how-can-ai-help">presentation录播</a>，更多资源也可以<a href="https://www.climatechange.ai/">访问他们的主页Climate Change + AI</a>。</p>
+
+<p>这篇文章面向气候变化领域的研究人员和工程师、企业家、投资人、企业管理人员、政府等，提出了很多气候变化与机器学习结合的研究方向及商业前景。</p>
+
+<p>文章整体上围绕<strong>缓解（Mitigation）</strong>气候变化和<strong>适应（Adaptation）</strong>气候变化两个大的方向展开。分别介绍了机器学习不同的技术方向在电力系统、交通、城市和建筑、工业、农林业、气候预测等方面的可能应用（具体可参考下图，数字对应文章中相应的章节）。</p>
+
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190616104715471.png" alt="image-20190616104715471" /></p>
+
+<p>同时，为了突出重点，方便阅读，文章在相应的章节进行了标注：</p>
+
+<ul>
+<li><p><strong>High Leverage</strong>：非常适合用ML突破现有瓶颈的气候变化方向</p></li>
+
+<li><p><strong>Long-term</strong>：长期（2040后）才可能有效的方向</p></li>
+
+<li><p><strong>High Risk</strong>：不确定性大的或者有副作用的方向</p></li>
+</ul>
+
+<p>推荐大家先着重看看<strong>High Leverage</strong>的部分。全文很长，我也只读了气候预测和智慧城市相关的几个章节，下面简单介绍一下其中的几个<strong>High Leverage</strong>部分，更详细的内容大家可以查阅原文。</p>
+
+<h4 id="气候模式改进">气候模式改进</h4>
+
+<p>现在的气候预测大多还是基于气候模式，计算代价巨大。比如The Community Earth System Model (CESM) Large Ensemble project在NCAR的超算上就要花费3周的时间进行模拟计算，计算成本巨大，效率较低。机器学习的引入势必将突破目前数值模式巨大的计算瓶颈。机器学习模型在训练阶段可能会花费较大的计算资源和时间，但是一旦模型训练完成，后期的实际预测以及加入新数据的再训练都是可以很快出结果的。目前机器学习在气候预测上的应用大多还是在模式后处理阶段，用于进行多个气候预测模式结果的融合，而直接融合机器学习算法的气候预测模型目前还没有成熟落地的方案，但是已有一定的研究。现有的海量多源的观测数据（卫星、雷达、常规观测站等）以及各种模式模拟的数据足以支撑训练出非常robust的机器学习模型，下一代融合机器学习模型的更快更好的气候预测模型指日可待。</p>
+
+<h4 id="极端事件预测">极端事件预测</h4>
+
+<p>虽然气候预测的时间尺度比较粗糙，很难抓住短时局地性的极端天气事件，也不可能精确预测灾害事件的发生的具体日期。但是基于海量的天气观测数据和大气模式预测数据，我们可以借助于机器学习模型，预测一个地区某个时段内灾害事件的发生概率，可以将其量化成相应的风险指数。以及，我们可以基于历史数据通过模式识别来提取出某一灾害事件发生的pattern，时空分布等。事实上，目前已经有很多这方面的研究成果了，有兴趣大家可以阅读<a href="https://journals.ametsoc.org/doi/full/10.1175/BAMS-D-16-0123.1"> Using artificial intelligence to improve real-time decisionmaking for high-impact weather</a>。</p>
+
+<h4 id="电力系统的供需预测">电力系统的供需预测</h4>
+
+<p>电力系统的供需端都是浮动变化的，精准的短期或长期预测，对于电力系统的调度和长远规划都有着重要的意义。电力系统的转化效率提升以及推进新能源的生产和使用，本身就有助于节能减排，更加的绿色环保，对气候变化意义重大。而这些都可以很好的借助于ML和AI来优化。目前，深度学习和机器学习模型在电力系统的供需预测上已有较多的应用，如风功率预测、光伏功率预测、负荷预测等。这些方法大多借助于大量的历史观测数据，物理模型输出，甚至图像和影像观测资料进行模型训练，并融合数值模型进行预测。整套的解决方案已经较为成熟。但是目前该领域应用的大多数的ML模型还都是黑箱，对于未来的改进，有待于结合domain knowledge和模型本身提高模型的可解释性，这也是AI在各领域应用中的一个挑战。</p>
+
+<h4 id="更智慧的交通和供应链">更智慧的交通和供应链</h4>
+
+<p>在06年，为了节约人力成本，至少有两家苏格兰的海鲜公司会将他们的大虾运到中国和泰国进行剥皮，然后再运回苏格兰销售。全球化催生了复杂的供应链网络，推动了各地经济发展的同时，也造成了数不胜数的资源浪费。如果可以借助于大数据，建立更加智能的供应链网络，链接更便利的卖方和买方，同时优化交通调度系统，将会大幅提高生产效率，减少温室气体排放，缓解气候变化。</p>
+
+<h4 id="更精细化的农业">更精细化的农业</h4>
+
+<p>农业生产贡献了大约14%的温室气体排放，更精细化的农业生产运作可以提高生产效率，减少碳排放。智慧农业目前已经一定程度的普及，目前的一些策略是，通过在农场接入更智能的软硬件，提高自动化程度，可以优化农业生产效率。如可以借助于卫星遥感和农场的历史及实时数据，建立模型自动监测病虫害、土壤及环境状况进行自适应调整，精细化灌溉系统等。甚至在播种的前期，根据宏观经济进行作物的需求预测，进行更精细化的播种，提高产值。农业学家和政策制定者也可以借助于ML去做有利于缓解气候变化的决策。</p>
+
+<h4 id="最后">最后</h4>
+
+<p>近几年，ML和AI被捧上神坛，似乎什么问题都可以用ML和AI解决，这显然是不够理智的。文章的结尾也提到了，ML不是包治百病的良方，它也不总是有效的，只是在一些场景下它可以为我们提供更好解决方案的可能性。文章也一直强调，ML不是解决这些问题的唯一方法，只是解决方案的一部分，可以通过跨领域的方案融合，达到更佳的效果。</p>
+
+<p>对于ML和AI的应用探索，更需要结合更多的domain knowledge，构建可解释性更强的模型，去更好的服务我们的需求。</p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.wentixiaogege.com/tags/meteorology"><span class="tag">Meteorology</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/machine-learning"><span class="tag">Machine Learning</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/ai"><span class="tag">AI</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>367</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "orion-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.wentixiaogege.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5713bba443e20a46d066ca93c131f795";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Visualization on wentixiaogege</title>
+    <link>https://www.wentixiaogege.com/tags/visualization/</link>
+    <description>Recent content in Visualization on wentixiaogege</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Thu, 23 May 2019 16:32:25 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.wentixiaogege.com/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python可视化：一些常用绘图脚本</title>
+      <link>https://www.wentixiaogege.com/post/py-visualization/</link>
+      <pubDate>Thu, 23 May 2019 16:32:25 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/py-visualization/</guid>
+      <description>&lt;p&gt;个人整理的一些常用的绘图脚本，基于&lt;code&gt;python&lt;/code&gt;的可视化库： &lt;code&gt;matplotlib&lt;/code&gt;和&lt;code&gt;seaborn&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

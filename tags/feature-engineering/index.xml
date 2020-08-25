@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Feature Engineering on Qi Zhang</title>
+    <link>https://www.wentixiaogege.com/tags/feature-engineering/</link>
+    <description>Recent content in Feature Engineering on Qi Zhang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Sun, 19 May 2019 14:00:02 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.wentixiaogege.com/tags/feature-engineering/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Feature Selection</title>
+      <link>https://www.wentixiaogege.com/post/feature-selection/</link>
+      <pubDate>Sun, 19 May 2019 14:00:02 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/feature-selection/</guid>
+      <description>&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

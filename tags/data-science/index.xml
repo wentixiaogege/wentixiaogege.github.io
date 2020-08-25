@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Science on wentixiaogege</title>
+    <link>https://www.wentixiaogege.com/tags/data-science/</link>
+    <description>Recent content in Data Science on wentixiaogege</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Tue, 30 Jul 2019 19:11:16 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.wentixiaogege.com/tags/data-science/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ESoWC 2019 Proposal: An AutoML Framework for Predicting Extreme Weather Hazards</title>
+      <link>https://www.wentixiaogege.com/post/others-ec-proposal/</link>
+      <pubDate>Tue, 30 Jul 2019 19:11:16 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/others-ec-proposal/</guid>
+      <description>&lt;p&gt;今年参加&lt;a href=&#34;https://www.ecmwf.int/en/learning/workshops/ecmwf-summer-weather-code-2019&#34;&gt;ESoWC 2019&lt;/a&gt;写的一个Proposal: An AutoML Framework for Predicting Extreme Weather Hazards.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hive学习整理</title>
+      <link>https://www.wentixiaogege.com/post/bd-hive/</link>
+      <pubDate>Mon, 22 Jul 2019 18:18:34 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/bd-hive/</guid>
+      <description>&lt;p&gt;Hadoop 大数据仓库 Hive：自动将 SQL 生成 MapReduce 代码。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用python下载文件的若干种方法汇总</title>
+      <link>https://www.wentixiaogege.com/post/crawler-downloader/</link>
+      <pubDate>Tue, 09 Jul 2019 18:23:12 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/crawler-downloader/</guid>
+      <description>&lt;p&gt;用python下载文件的若干种方法汇总。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Catboost基础介绍</title>
+      <link>https://www.wentixiaogege.com/post/ml-catboost/</link>
+      <pubDate>Sat, 06 Jul 2019 14:22:46 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/ml-catboost/</guid>
+      <description>&lt;p&gt;Catboost入门介绍与实例。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用Conda进行Python开发环境管理</title>
+      <link>https://www.wentixiaogege.com/post/py-conda/</link>
+      <pubDate>Mon, 24 Jun 2019 23:51:49 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/py-conda/</guid>
+      <description>&lt;p&gt;Conda 是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。 Conda 是为 Python 程序创建的，适用于 Linux，OS X 和Windows，也可以打包和分发其他软件。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Pandas中的数据重塑(Reshaping)</title>
+      <link>https://www.wentixiaogege.com/post/pd-pandas-reshaping/</link>
+      <pubDate>Sat, 15 Jun 2019 10:51:26 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/pd-pandas-reshaping/</guid>
+      <description>&lt;p&gt;Pandas中的数据重塑(Reshaping): &lt;code&gt;pivot&lt;/code&gt;, &lt;code&gt;pivot_table&lt;/code&gt;, &lt;code&gt;stack&lt;/code&gt;, &lt;code&gt;unstack&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

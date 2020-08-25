@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Conda on wentixiaogege</title>
+    <link>https://www.wentixiaogege.com/tags/conda/</link>
+    <description>Recent content in Conda on wentixiaogege</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Mon, 24 Jun 2019 23:51:49 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.wentixiaogege.com/tags/conda/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>用Conda进行Python开发环境管理</title>
+      <link>https://www.wentixiaogege.com/post/py-conda/</link>
+      <pubDate>Mon, 24 Jun 2019 23:51:49 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/py-conda/</guid>
+      <description>&lt;p&gt;Conda 是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。 Conda 是为 Python 程序创建的，适用于 Linux，OS X 和Windows，也可以打包和分发其他软件。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

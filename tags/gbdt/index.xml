@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GBDT on wentixiaogege</title>
+    <link>https://www.wentixiaogege.com/tags/gbdt/</link>
+    <description>Recent content in GBDT on wentixiaogege</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Wed, 09 Oct 2019 14:41:08 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.wentixiaogege.com/tags/gbdt/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在XGBoost和LightGBM中自定义损失函数</title>
+      <link>https://www.wentixiaogege.com/post/ml-custom-loss-lgbm-xgb/</link>
+      <pubDate>Wed, 09 Oct 2019 14:41:08 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/ml-custom-loss-lgbm-xgb/</guid>
+      <description>&lt;p&gt;在LightGBM和XGBoost中的自定义损失函数（Custom Loss Function）。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Catboost基础介绍</title>
+      <link>https://www.wentixiaogege.com/post/ml-catboost/</link>
+      <pubDate>Sat, 06 Jul 2019 14:22:46 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/ml-catboost/</guid>
+      <description>&lt;p&gt;Catboost入门介绍与实例。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

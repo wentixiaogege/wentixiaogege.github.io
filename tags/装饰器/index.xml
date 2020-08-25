@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>装饰器 on wentixiaogege</title>
+    <link>https://www.wentixiaogege.com/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/</link>
+    <description>Recent content in 装饰器 on wentixiaogege</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Tue, 09 Jul 2019 12:23:32 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.wentixiaogege.com/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python装饰器</title>
+      <link>https://www.wentixiaogege.com/post/py-decorator/</link>
+      <pubDate>Tue, 09 Jul 2019 12:23:32 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/py-decorator/</guid>
+      <description>&lt;p&gt;Python装饰器的常见用法。所谓的装饰器，其实就是通过装饰器函数，来修改原函数的一些功能，使得原函数不需要修改。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

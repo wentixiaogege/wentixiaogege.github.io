@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pytorch on wentixiaogege</title>
+    <link>https://www.wentixiaogege.com/tags/pytorch/</link>
+    <description>Recent content in Pytorch on wentixiaogege</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Mon, 08 Jul 2019 20:12:05 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.wentixiaogege.com/tags/pytorch/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pytorch(2): Autograd</title>
+      <link>https://www.wentixiaogege.com/post/pyorch-autograd/</link>
+      <pubDate>Mon, 08 Jul 2019 20:12:05 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/pyorch-autograd/</guid>
+      <description>&lt;p&gt;Pyorch中的自动求导。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Pytorch(1): 从0到1</title>
+      <link>https://www.wentixiaogege.com/post/pytorch-from-scratch/</link>
+      <pubDate>Sun, 07 Jul 2019 14:37:19 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/pytorch-from-scratch/</guid>
+      <description>&lt;p&gt;PyTorch 是由 Facebook 主导开发的深度学习框架，因其高效的计算过程以及良好的易用性被诸多大公司和科研人员所喜爱。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

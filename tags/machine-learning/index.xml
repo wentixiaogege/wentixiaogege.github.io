@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning on wentixiaogege</title>
+    <link>https://www.wentixiaogege.com/tags/machine-learning/</link>
+    <description>Recent content in Machine Learning on wentixiaogege</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Wed, 09 Oct 2019 14:41:08 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.wentixiaogege.com/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在XGBoost和LightGBM中自定义损失函数</title>
+      <link>https://www.wentixiaogege.com/post/ml-custom-loss-lgbm-xgb/</link>
+      <pubDate>Wed, 09 Oct 2019 14:41:08 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/ml-custom-loss-lgbm-xgb/</guid>
+      <description>&lt;p&gt;在LightGBM和XGBoost中的自定义损失函数（Custom Loss Function）。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ESoWC 2019 Proposal: An AutoML Framework for Predicting Extreme Weather Hazards</title>
+      <link>https://www.wentixiaogege.com/post/others-ec-proposal/</link>
+      <pubDate>Tue, 30 Jul 2019 19:11:16 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/others-ec-proposal/</guid>
+      <description>&lt;p&gt;今年参加&lt;a href=&#34;https://www.ecmwf.int/en/learning/workshops/ecmwf-summer-weather-code-2019&#34;&gt;ESoWC 2019&lt;/a&gt;写的一个Proposal: An AutoML Framework for Predicting Extreme Weather Hazards.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>机器学习中的概念漂移（Concept Drift）</title>
+      <link>https://www.wentixiaogege.com/post/ml-concept-drift/</link>
+      <pubDate>Mon, 15 Jul 2019 11:31:41 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/ml-concept-drift/</guid>
+      <description>&lt;p&gt;机器学习中的概念漂移（Concept Drift）的理解与解决方法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用贝叶斯优化进行超参数调优</title>
+      <link>https://www.wentixiaogege.com/post/ml-bayesian-optimization/</link>
+      <pubDate>Fri, 12 Jul 2019 10:57:57 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/ml-bayesian-optimization/</guid>
+      <description>&lt;p&gt;超参数调优一直是机器学习里比较intractable的问题，繁多的超参数以及指数型爆炸的参数空间，往往让人无从下手。调参是一个很枯燥的过程，而且最后也不一定有很好的reward。很多的机器学习工程师也会戏称自己是&amp;rdquo;调参民工&amp;rdquo;，&amp;rdquo;炼丹师&amp;rdquo;…&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Catboost基础介绍</title>
+      <link>https://www.wentixiaogege.com/post/ml-catboost/</link>
+      <pubDate>Sat, 06 Jul 2019 14:22:46 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/ml-catboost/</guid>
+      <description>&lt;p&gt;Catboost入门介绍与实例。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用机器学习应对气候变化？</title>
+      <link>https://www.wentixiaogege.com/post/ml-climate-change/</link>
+      <pubDate>Fri, 14 Jun 2019 20:32:44 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/ml-climate-change/</guid>
+      <description>&lt;p&gt;气候变化是人类面临的越来越严重的问题，相信大家对此都不陌生。全球变暖、冰川消融、海平面上升、极端天气事件频发……人类的生存正在逐渐受到威胁。科学家们已经从很多不同的角度对气候变化进行了深入的研究，提出了很多应对气候变化的策略。除此之外，大家有没想过，近些年火遍各行各业的机器学习（ML）和人工智能（AI）可以与气候变化碰撞出什么样的火花呢？&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

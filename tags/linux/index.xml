@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on wentixiaogege</title>
+    <link>https://www.wentixiaogege.com/tags/linux/</link>
+    <description>Recent content in Linux on wentixiaogege</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Mon, 30 Dec 2019 10:56:46 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.wentixiaogege.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>新的GPU服务器环境配置--Ubuntu18.04&#43;CUDA10.0&#43;cuDNN7.6.5&#43;TensorFlow2.0安装笔记</title>
+      <link>https://www.wentixiaogege.com/post/zzz-linux-gpu-env-install/</link>
+      <pubDate>Mon, 30 Dec 2019 10:56:46 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/zzz-linux-gpu-env-install/</guid>
+      <description>&lt;p&gt;第一次安装CUDA的过程简直抓狂，中间出现了很多次莫名其妙的bug，踩了很多坑。比如装好了CUDA重启后进不去桌面系统了，直接黑屏、比如鼠标键盘都不work了、再比如装好了却安装不了TensorFlow-GPU&amp;hellip;&amp;hellip;看了一圈网上的安装教程，发现还是官方指南真香了~&lt;/p&gt;
+
+&lt;p&gt;新年第一篇，分享一下我的Ubuntu 18.04 + CUDA 10.0 + cuDNN 7.6.5 + TensorFlow 2.0 安装笔记，希望可以帮助大家少踩坑。&lt;/p&gt;
+
+&lt;p&gt;整个安装流程大致是：安装显卡驱动 -&amp;gt; &lt;a href=&#34;https://developer.nvidia.com/cuda-toolkit-archive&#34;&gt;安装CUDA&lt;/a&gt; -&amp;gt; &lt;a href=&#34;https://developer.nvidia.com/rdp/cudnn-download&#34;&gt;安装cuDNN&lt;/a&gt; -&amp;gt; 安装tensorflow-gpu并测试。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>常用的Git命令整理</title>
+      <link>https://www.wentixiaogege.com/post/cs-git/</link>
+      <pubDate>Tue, 02 Jul 2019 13:31:21 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/cs-git/</guid>
+      <description>&lt;p&gt;Git 是目前最流行、最好用的版本控制系统，在它的基础之上催生出了 GitHub 和 GitLab 这两个当前最流行的代码托管平台。本文梳理了一些常用的Git命令。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ssh如何实现免密登录</title>
+      <link>https://www.wentixiaogege.com/post/linux-ssh/</link>
+      <pubDate>Mon, 24 Jun 2019 15:24:21 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/linux-ssh/</guid>
+      <description>&lt;p&gt;SSH 为 Secure Shell 的缩写，SSH 为建立在应用层基础上的安全协议。SSH 是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

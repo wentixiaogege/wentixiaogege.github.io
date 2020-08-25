@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>用Hugo和Github Pages创建和部署个人博客</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <link href="//hm.baidu.com" rel="dns-prefetch">
+
+  
+
+  
+  
+  <meta name="description" content="Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。相较于Hexo和WordPress，Hugo的安装和配置都方便得多，生成页面的速度也是前两者无可比拟的。而Github Pages是github提供的静态网页托管服务，提供1GB的免费空间，可直接通过github仓库进行站点部署，十分方便。
+本站就是使用了Hugo和Github Pages来进行创建和部署的，下面来简单介绍一下部署过程。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gohugoio">
+    <meta name="twitter:title" content="用Hugo和Github Pages创建和部署个人博客">
+    <meta name="twitter:description" content="Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。相较于Hexo和WordPress，Hugo的安装和配置都方便得多，生成页面的速度也是前两者无可比拟的。而Github Pages是github提供的静态网页托管服务，提供1GB的免费空间，可直接通过github仓库进行站点部署，十分方便。
+本站就是使用了Hugo和Github Pages来进行创建和部署的，下面来简单介绍一下部署过程。
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="用Hugo和Github Pages创建和部署个人博客">
+  <meta property="og:description" content="Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。相较于Hexo和WordPress，Hugo的安装和配置都方便得多，生成页面的速度也是前两者无可比拟的。而Github Pages是github提供的静态网页托管服务，提供1GB的免费空间，可直接通过github仓库进行站点部署，十分方便。
+本站就是使用了Hugo和Github Pages来进行创建和部署的，下面来简单介绍一下部署过程。
+">
+  <meta property="og:url" content="https://www.wentixiaogege.com/post/creating-and-deploying-my-first-hugo-site-to-github-pages/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.54.0">
+
+
+<link rel="canonical" href="https://www.wentixiaogege.com/post/creating-and-deploying-my-first-hugo-site-to-github-pages/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://www.wentixiaogege.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.wentixiaogege.com/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.wentixiaogege.com/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://www.wentixiaogege.com/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://www.wentixiaogege.com/icons/icon-152x152.png">
+<link rel="manifest" href="https://www.wentixiaogege.com/manifest.json">
+
+
+<link rel="preload" href="https://www.wentixiaogege.com/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://www.wentixiaogege.com/images/avatar.png" as="image">
+<link rel="preload" href="https://www.wentixiaogege.com/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://www.wentixiaogege.com/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="https://www.wentixiaogege.com/images/avatar.png" alt="Avatar">
+  
+  <h2 class="title">wentixiaogege</h2>
+  
+  <p class="subtitle">Getty Images Contributor. I&#39;m not a photographer but a data enthusiast.</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://www.wentixiaogege.com/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">GitHub</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://wentixiaogegefoto.tuchong.com/">Gallery</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.wentixiaogege.com/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:hi@wentixiaogege.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/wentixiaogege" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/bother7" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://www.wentixiaogege.com/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">用Hugo和Github Pages创建和部署个人博客</h1>
+      <p class="post-meta">@Qi Zhang · May 4, 2019 · 1 min read</p>
+    </header>
+    <article class="post-content"><p>Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。相较于Hexo和WordPress，Hugo的安装和配置都方便得多，生成页面的速度也是前两者无可比拟的。而Github Pages是github提供的静态网页托管服务，提供1GB的免费空间，可直接通过github仓库进行站点部署，十分方便。</p>
+
+<p>本站就是使用了Hugo和Github Pages来进行创建和部署的，下面来简单介绍一下部署过程。</p>
+
+<h2 id="安装及新建站点">安装及新建站点</h2>
+
+<p>以macOS为例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install hugo <span style="color:#75715e"># 安装hugo，其他平台类似，参考：https://gohugo.io/getting-started/installing/</span>
+
+hugo version <span style="color:#75715e"># 测试是否安装成功</span>
+
+hugo new site myblog <span style="color:#75715e"># 创建一个新站点myblog，会新建一个文件夹myblog，并在该文件夹中生成基础的网页配置模块。</span>
+
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">.
+</span><span style="color:#e6db74">├── archetypes
+</span><span style="color:#e6db74">├── assets
+</span><span style="color:#e6db74">├── config
+</span><span style="color:#e6db74">├── content
+</span><span style="color:#e6db74">├── data
+</span><span style="color:#e6db74">├── layouts
+</span><span style="color:#e6db74">├── static
+</span><span style="color:#e6db74">└── themes
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span></code></pre></div>
+<h2 id="选择主题">选择主题</h2>
+
+<p>下一步就是要找到合适的主题，以本站使用的<a href="https://themes.gohugo.io/hugo-nuo/">hugo-nuo</a>为例。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd myblog
+cd themes
+git clone https://github.com/laozhu/hugo-nuo</code></pre></div>
+<p>这一步是讲hugo-nuo主题从git仓库中clone到本地themes的文件夹中，其他主题同理。可以在<a href="https://themes.gohugo.io/">hugo官网</a>发现更多主题。</p>
+
+<h2 id="配置站点">配置站点</h2>
+
+<p>下一步就需要进行网页的配置，一些自定义的内容，是通过myblog文件夹中的<code>config.toml</code>文件实现的。</p>
+
+<p>可以参考作者给出的配置文件样例：<code>themes/hugo-nuo/exampleSite/config.toml</code>，不懂的地方可以参考<a href="https://github.com/laozhu/hugo-nuo/blob/master/README.md">说明文档</a>，作者的博客里也有<a href="https://laozhu.me/post/hugo-nuo-theme/">中文版</a>。</p>
+
+<h2 id="新建文章">新建文章</h2>
+
+<p>在配置完<code>config.toml</code>后，可以新建文章进行测试。在主文件夹目录myblog下运行：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo new post/hello-world.md</code></pre></div>
+<p>会在目录<code>content/post</code>中生成<code>hello-world.md</code>，文档的头部内容如下：发布前将draft改为false即可。</p>
+
+<pre><code>---
+title: &quot;Hello World&quot;
+author: &quot;Author Name&quot;
+cover: &quot;/images/cover.jpg&quot;
+tags: [&quot;tagA&quot;, &quot;tagB&quot;]
+date: 2019-05-04T11:15:31+08:00
+draft: true
+---
+
+&lt;!--more--&gt; # 标记 READ MORE 位置
+
+</code></pre>
+
+<h2 id="发布并预览">发布并预览</h2>
+
+<p>启动hugo，<code>-D</code>使得draft为true的文档也会被预览。执行以下命令后即可通过<code>http://localhost:1313/</code>进行预览。</p>
+
+<pre><code>hugo server -D
+</code></pre>
+
+<p>预览没有问题后可以在主目录下执行：</p>
+
+<pre><code>hugo
+</code></pre>
+
+<p>则会下<code>public/</code>目录下根据配置生成网页。</p>
+
+<h2 id="host-on-github">Host on GitHub</h2>
+
+<p>渲染完成后，我们当然是要把我们的网站发布在网络上，可以随时随地让所有人都可以通过网页访问到。一种简单免费的方法是通过github pages，这样就不用捣腾自己的服务器了，省时省力省钱。可以把<code>public/</code>目录可以同步到github上，通过github pages部署。</p>
+
+<p>首先，需要在<a href="https://github.com/">github</a>上新建一个个人仓库，命名为：<code>&lt;USERNAME&gt;.github.io</code>。</p>
+
+<p><img src="https://www.wentixiaogege.com/post/pics/20190504201539.png" alt="" />
+在GitHub Pages的部分可以配置自己的域名：
+<img src="https://www.wentixiaogege.com/post/pics/20190504201421.png" alt="" /></p>
+
+<p>新建完仓库后，需要建立本地<code>public/</code>目录，和github上<code>&lt;USERNAME&gt;.github.io</code>仓库的链接：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 进入public目录：</span>
+cd public
+
+<span style="color:#75715e"># git初始化</span>
+git init
+
+<span style="color:#75715e"># 链接到远程仓库</span>
+git remote add origin git@github.com:&lt;github_username&gt;/&lt;username&gt;.github.io.git
+
+git add .
+git commit -m <span style="color:#e6db74">&#34;first commit of myblog&#34;</span>
+git push -u origin master</code></pre></div>
+<p>很快我们就可以通过<code>https://&lt;USERNAME&gt;.github.io</code>访问到我们的网页啦，如果配置了自己的域名，则可通过该域名进行访问。</p>
+
+<h2 id="recommended-themes">Recommended Themes</h2>
+
+<p><a href="https://github.com/xtfly/hugo-theme-next">NexT</a></p>
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+<li><p><a href="https://gohugo.io/documentation/">hugo docs</a></p></li>
+
+<li><p><a href="https://laozhu.me/post/hugo-nuo-theme/">Hugo-nuo-theme</a></p></li>
+</ol></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://www.wentixiaogege.com/tags/hugo"><span class="tag">Hugo</span></a></li>
+        
+          <li><a href="https://www.wentixiaogege.com/tags/github-pages"><span class="tag">Github Pages</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "orion-4" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://www.wentixiaogege.com/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5713bba443e20a46d066ca93c131f795";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  </body>
+</html>

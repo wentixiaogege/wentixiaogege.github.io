@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deep Learning on wentixiaogege</title>
+    <link>https://www.wentixiaogege.com/tags/deep-learning/</link>
+    <description>Recent content in Deep Learning on wentixiaogege</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Mon, 30 Dec 2019 10:56:46 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.wentixiaogege.com/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>新的GPU服务器环境配置--Ubuntu18.04&#43;CUDA10.0&#43;cuDNN7.6.5&#43;TensorFlow2.0安装笔记</title>
+      <link>https://www.wentixiaogege.com/post/zzz-linux-gpu-env-install/</link>
+      <pubDate>Mon, 30 Dec 2019 10:56:46 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/zzz-linux-gpu-env-install/</guid>
+      <description>&lt;p&gt;第一次安装CUDA的过程简直抓狂，中间出现了很多次莫名其妙的bug，踩了很多坑。比如装好了CUDA重启后进不去桌面系统了，直接黑屏、比如鼠标键盘都不work了、再比如装好了却安装不了TensorFlow-GPU&amp;hellip;&amp;hellip;看了一圈网上的安装教程，发现还是官方指南真香了~&lt;/p&gt;
+
+&lt;p&gt;新年第一篇，分享一下我的Ubuntu 18.04 + CUDA 10.0 + cuDNN 7.6.5 + TensorFlow 2.0 安装笔记，希望可以帮助大家少踩坑。&lt;/p&gt;
+
+&lt;p&gt;整个安装流程大致是：安装显卡驱动 -&amp;gt; &lt;a href=&#34;https://developer.nvidia.com/cuda-toolkit-archive&#34;&gt;安装CUDA&lt;/a&gt; -&amp;gt; &lt;a href=&#34;https://developer.nvidia.com/rdp/cudnn-download&#34;&gt;安装cuDNN&lt;/a&gt; -&amp;gt; 安装tensorflow-gpu并测试。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ESoWC 2019 Proposal: An AutoML Framework for Predicting Extreme Weather Hazards</title>
+      <link>https://www.wentixiaogege.com/post/others-ec-proposal/</link>
+      <pubDate>Tue, 30 Jul 2019 19:11:16 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/others-ec-proposal/</guid>
+      <description>&lt;p&gt;今年参加&lt;a href=&#34;https://www.ecmwf.int/en/learning/workshops/ecmwf-summer-weather-code-2019&#34;&gt;ESoWC 2019&lt;/a&gt;写的一个Proposal: An AutoML Framework for Predicting Extreme Weather Hazards.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>RNN, LSTM和GRU</title>
+      <link>https://www.wentixiaogege.com/post/dl-lstm-gru/</link>
+      <pubDate>Wed, 10 Jul 2019 10:28:14 +0800</pubDate>
+      
+      <guid>https://www.wentixiaogege.com/post/dl-lstm-gru/</guid>
+      <description>&lt;p&gt;普通的RNN对短时记忆比较敏感，如果输入序列很长，在反向传播期间，RNN 会面临梯度消失和梯度爆炸的问题。为解决这个问题，人们对RNN进行了很多改进，其中最有效的改进方式是引入门控机制， 于是就有了LSTM和GRU。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
