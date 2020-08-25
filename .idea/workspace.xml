@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c306eb30-b119-424a-b379-f32028dd118d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/links/index.html" afterPath="$PROJECT_DIR$/links/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resume/index.html" afterPath="$PROJECT_DIR$/resume/index.html" />
     </list>
     <ignored path="wentixiaogege.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,8 +57,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/links/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="235" column="4" selection-start-line="235" selection-start-column="4" selection-end-line="235" selection-end-column="4" />
+            <state relative-caret-position="223">
+              <caret line="237" column="55" selection-start-line="237" selection-start-column="55" selection-end-line="237" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -6286,8 +6285,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/links/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="235" column="4" selection-start-line="235" selection-start-column="4" selection-end-line="235" selection-end-column="4" />
+        <state relative-caret-position="223">
+          <caret line="237" column="55" selection-start-line="237" selection-start-column="55" selection-end-line="237" selection-end-column="55" />
           <folding />
         </state>
       </provider>
