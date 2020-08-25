@@ -26,12 +26,14 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="134" column="33" selection-start-line="134" selection-start-column="33" selection-end-line="134" selection-end-column="33" />
+            <state relative-caret-position="362">
+              <caret line="134" column="26" selection-start-line="134" selection-start-column="26" selection-end-line="134" selection-end-column="26" />
               <folding>
-                <element signature="e#8132#8136#0" expanded="true" />
-                <element signature="e#8145#8149#0" expanded="true" />
-                <element signature="e#8159#8163#0" expanded="true" />
+                <element signature="n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#nav#1;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="e#8803#8807#0" expanded="true" />
+                <element signature="e#8816#8820#0" expanded="true" />
+                <element signature="e#8830#8834#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1050,12 +1052,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="134" column="33" selection-start-line="134" selection-start-column="33" selection-end-line="134" selection-end-column="33" />
+        <state relative-caret-position="362">
+          <caret line="134" column="26" selection-start-line="134" selection-start-column="26" selection-end-line="134" selection-end-column="26" />
           <folding>
-            <element signature="e#8132#8136#0" expanded="true" />
-            <element signature="e#8145#8149#0" expanded="true" />
-            <element signature="e#8159#8163#0" expanded="true" />
+            <element signature="n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#nav#1;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="e#8803#8807#0" expanded="true" />
+            <element signature="e#8816#8820#0" expanded="true" />
+            <element signature="e#8830#8834#0" expanded="true" />
           </folding>
         </state>
       </provider>
