@@ -2,242 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c306eb30-b119-424a-b379-f32028dd118d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/404.html" afterPath="$PROJECT_DIR$/404.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/about/index.html" afterPath="$PROJECT_DIR$/about/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/categories/index.html" afterPath="$PROJECT_DIR$/categories/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/links/index.html" afterPath="$PROJECT_DIR$/links/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/page/2/index.html" afterPath="$PROJECT_DIR$/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/page/3/index.html" afterPath="$PROJECT_DIR$/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/page/4/index.html" afterPath="$PROJECT_DIR$/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/algo-jianzhi-offer/index.html" afterPath="$PROJECT_DIR$/post/algo-jianzhi-offer/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/algorithms_jianzhi_offer/index.html" afterPath="$PROJECT_DIR$/post/algorithms_jianzhi_offer/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/bayesian-optimization/index.html" afterPath="$PROJECT_DIR$/post/bayesian-optimization/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/bd-hive/index.html" afterPath="$PROJECT_DIR$/post/bd-hive/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/beautifulsoup/index.html" afterPath="$PROJECT_DIR$/post/beautifulsoup/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/crawler-beautifulsoup/index.html" afterPath="$PROJECT_DIR$/post/crawler-beautifulsoup/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/crawler-downloader/index.html" afterPath="$PROJECT_DIR$/post/crawler-downloader/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/crawler-pyquery/index.html" afterPath="$PROJECT_DIR$/post/crawler-pyquery/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/creating-and-deploying-my-first-hugo-site-to-github-pages/index.html" afterPath="$PROJECT_DIR$/post/creating-and-deploying-my-first-hugo-site-to-github-pages/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/cs-git/index.html" afterPath="$PROJECT_DIR$/post/cs-git/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/cs-linux-new-env/index.html" afterPath="$PROJECT_DIR$/post/cs-linux-new-env/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/cs-linux-ssh/index.html" afterPath="$PROJECT_DIR$/post/cs-linux-ssh/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/cs-sql-basic/index.html" afterPath="$PROJECT_DIR$/post/cs-sql-basic/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/cs-sql-bizhibihui/index.html" afterPath="$PROJECT_DIR$/post/cs-sql-bizhibihui/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/cs-sql-join/index.html" afterPath="$PROJECT_DIR$/post/cs-sql-join/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/cs-sql-keys/index.html" afterPath="$PROJECT_DIR$/post/cs-sql-keys/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/da-pandas-reshaping/index.html" afterPath="$PROJECT_DIR$/post/da-pandas-reshaping/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/dl-lstm-gru/index.html" afterPath="$PROJECT_DIR$/post/dl-lstm-gru/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/dl-pyorch-autograd/index.html" afterPath="$PROJECT_DIR$/post/dl-pyorch-autograd/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/dl-pytorch-from-scratch/index.html" afterPath="$PROJECT_DIR$/post/dl-pytorch-from-scratch/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/feature-selection/index.html" afterPath="$PROJECT_DIR$/post/feature-selection/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/hugo-nuo-post-preview/index.html" afterPath="$PROJECT_DIR$/post/hugo-nuo-post-preview/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/index.html" afterPath="$PROJECT_DIR$/post/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/interview-algorithms-jianzhi-offer/index.html" afterPath="$PROJECT_DIR$/post/interview-algorithms-jianzhi-offer/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/linux-new-env/index.html" afterPath="$PROJECT_DIR$/post/linux-new-env/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/linux-ssh/index.html" afterPath="$PROJECT_DIR$/post/linux-ssh/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/machine-learning-feature-engineering/index.html" afterPath="$PROJECT_DIR$/post/machine-learning-feature-engineering/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/machine-learning-intro/index.html" afterPath="$PROJECT_DIR$/post/machine-learning-intro/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/machine-learning-preprocessing/index.html" afterPath="$PROJECT_DIR$/post/machine-learning-preprocessing/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/machine_learning_climate_change/index.html" afterPath="$PROJECT_DIR$/post/machine_learning_climate_change/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/ml-bayesian-optimization/index.html" afterPath="$PROJECT_DIR$/post/ml-bayesian-optimization/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/ml-beautifulsoup/index.html" afterPath="$PROJECT_DIR$/post/ml-beautifulsoup/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/ml-catboost/index.html" afterPath="$PROJECT_DIR$/post/ml-catboost/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/ml-climate-change/index.html" afterPath="$PROJECT_DIR$/post/ml-climate-change/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/ml-concept-drift/index.html" afterPath="$PROJECT_DIR$/post/ml-concept-drift/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/ml-custom-loss-lgbm-xgb/index.html" afterPath="$PROJECT_DIR$/post/ml-custom-loss-lgbm-xgb/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/ml-dump-models/index.html" afterPath="$PROJECT_DIR$/post/ml-dump-models/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/ml-tuning-params/index.html" afterPath="$PROJECT_DIR$/post/ml-tuning-params/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/others-creating-and-deploying-my-first-hugo-site-to-github-pages/index.html" afterPath="$PROJECT_DIR$/post/others-creating-and-deploying-my-first-hugo-site-to-github-pages/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/others-diskfailure-proposal/index.html" afterPath="$PROJECT_DIR$/post/others-diskfailure-proposal/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/others-ec-proposal/index.html" afterPath="$PROJECT_DIR$/post/others-ec-proposal/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/others-hugo-nuo-post-preview/index.html" afterPath="$PROJECT_DIR$/post/others-hugo-nuo-post-preview/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/page/2/index.html" afterPath="$PROJECT_DIR$/post/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/page/3/index.html" afterPath="$PROJECT_DIR$/post/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/page/4/index.html" afterPath="$PROJECT_DIR$/post/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/pandas-reshaping/index.html" afterPath="$PROJECT_DIR$/post/pandas-reshaping/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/pd-pandas-reshaping/index.html" afterPath="$PROJECT_DIR$/post/pd-pandas-reshaping/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/py-concurrent-futures/index.html" afterPath="$PROJECT_DIR$/post/py-concurrent-futures/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/py-conda/index.html" afterPath="$PROJECT_DIR$/post/py-conda/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/py-decorator/index.html" afterPath="$PROJECT_DIR$/post/py-decorator/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/py-namespace/index.html" afterPath="$PROJECT_DIR$/post/py-namespace/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/py-pathlib/index.html" afterPath="$PROJECT_DIR$/post/py-pathlib/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/py-regex-intro/index.html" afterPath="$PROJECT_DIR$/post/py-regex-intro/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/py-subprocess/index.html" afterPath="$PROJECT_DIR$/post/py-subprocess/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/py-visualization/index.html" afterPath="$PROJECT_DIR$/post/py-visualization/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/pyorch-autograd/index.html" afterPath="$PROJECT_DIR$/post/pyorch-autograd/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/pyquery/index.html" afterPath="$PROJECT_DIR$/post/pyquery/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/python-collections/index.html" afterPath="$PROJECT_DIR$/post/python-collections/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/python-concurrent-futures/index.html" afterPath="$PROJECT_DIR$/post/python-concurrent-futures/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/python-conda/index.html" afterPath="$PROJECT_DIR$/post/python-conda/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/python-decorator/index.html" afterPath="$PROJECT_DIR$/post/python-decorator/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/python-namespace/index.html" afterPath="$PROJECT_DIR$/post/python-namespace/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/python-pathlib/index.html" afterPath="$PROJECT_DIR$/post/python-pathlib/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/python-paths/index.html" afterPath="$PROJECT_DIR$/post/python-paths/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/python-regex-intro/index.html" afterPath="$PROJECT_DIR$/post/python-regex-intro/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/python-subprocess/index.html" afterPath="$PROJECT_DIR$/post/python-subprocess/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/python-visualization/index.html" afterPath="$PROJECT_DIR$/post/python-visualization/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/python_visualization/index.html" afterPath="$PROJECT_DIR$/post/python_visualization/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/pytorch-from-scratch/index.html" afterPath="$PROJECT_DIR$/post/pytorch-from-scratch/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/regex-intro/index.html" afterPath="$PROJECT_DIR$/post/regex-intro/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/tools-to-share/index.html" afterPath="$PROJECT_DIR$/post/tools-to-share/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/tools-vscode/index.html" afterPath="$PROJECT_DIR$/post/tools-vscode/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/zzz-linux-gpu-env-install/index.html" afterPath="$PROJECT_DIR$/post/zzz-linux-gpu-env-install/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resume/index.html" afterPath="$PROJECT_DIR$/resume/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/ai/index.html" afterPath="$PROJECT_DIR$/tags/ai/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/ai/page/2/index.html" afterPath="$PROJECT_DIR$/tags/ai/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/ai/page/3/index.html" afterPath="$PROJECT_DIR$/tags/ai/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/ai/page/4/index.html" afterPath="$PROJECT_DIR$/tags/ai/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/beautifulsoup/index.html" afterPath="$PROJECT_DIR$/tags/beautifulsoup/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/beautifulsoup/page/2/index.html" afterPath="$PROJECT_DIR$/tags/beautifulsoup/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/beautifulsoup/page/3/index.html" afterPath="$PROJECT_DIR$/tags/beautifulsoup/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/beautifulsoup/page/4/index.html" afterPath="$PROJECT_DIR$/tags/beautifulsoup/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/big-data/index.html" afterPath="$PROJECT_DIR$/tags/big-data/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/big-data/page/2/index.html" afterPath="$PROJECT_DIR$/tags/big-data/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/big-data/page/3/index.html" afterPath="$PROJECT_DIR$/tags/big-data/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/big-data/page/4/index.html" afterPath="$PROJECT_DIR$/tags/big-data/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/c/index.html" afterPath="$PROJECT_DIR$/tags/c/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/catboost/index.html" afterPath="$PROJECT_DIR$/tags/catboost/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/catboost/page/2/index.html" afterPath="$PROJECT_DIR$/tags/catboost/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/catboost/page/3/index.html" afterPath="$PROJECT_DIR$/tags/catboost/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/catboost/page/4/index.html" afterPath="$PROJECT_DIR$/tags/catboost/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/collections/index.html" afterPath="$PROJECT_DIR$/tags/collections/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/concurrent.futures/index.html" afterPath="$PROJECT_DIR$/tags/concurrent.futures/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/concurrent.futures/page/2/index.html" afterPath="$PROJECT_DIR$/tags/concurrent.futures/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/concurrent.futures/page/3/index.html" afterPath="$PROJECT_DIR$/tags/concurrent.futures/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/concurrent.futures/page/4/index.html" afterPath="$PROJECT_DIR$/tags/concurrent.futures/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/conda/index.html" afterPath="$PROJECT_DIR$/tags/conda/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/conda/page/2/index.html" afterPath="$PROJECT_DIR$/tags/conda/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/conda/page/3/index.html" afterPath="$PROJECT_DIR$/tags/conda/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/conda/page/4/index.html" afterPath="$PROJECT_DIR$/tags/conda/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/d/index.html" afterPath="$PROJECT_DIR$/tags/d/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/data-science/index.html" afterPath="$PROJECT_DIR$/tags/data-science/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/data-science/page/2/index.html" afterPath="$PROJECT_DIR$/tags/data-science/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/data-science/page/3/index.html" afterPath="$PROJECT_DIR$/tags/data-science/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/data-science/page/4/index.html" afterPath="$PROJECT_DIR$/tags/data-science/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/deep-learning/index.html" afterPath="$PROJECT_DIR$/tags/deep-learning/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/deep-learning/page/2/index.html" afterPath="$PROJECT_DIR$/tags/deep-learning/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/deep-learning/page/3/index.html" afterPath="$PROJECT_DIR$/tags/deep-learning/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/deep-learning/page/4/index.html" afterPath="$PROJECT_DIR$/tags/deep-learning/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/deeplearning/index.html" afterPath="$PROJECT_DIR$/tags/deeplearning/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/feature-engineering/index.html" afterPath="$PROJECT_DIR$/tags/feature-engineering/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/gbdt/index.html" afterPath="$PROJECT_DIR$/tags/gbdt/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/gbdt/page/2/index.html" afterPath="$PROJECT_DIR$/tags/gbdt/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/gbdt/page/3/index.html" afterPath="$PROJECT_DIR$/tags/gbdt/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/gbdt/page/4/index.html" afterPath="$PROJECT_DIR$/tags/gbdt/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/git/index.html" afterPath="$PROJECT_DIR$/tags/git/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/git/page/2/index.html" afterPath="$PROJECT_DIR$/tags/git/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/git/page/3/index.html" afterPath="$PROJECT_DIR$/tags/git/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/git/page/4/index.html" afterPath="$PROJECT_DIR$/tags/git/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/github-pages/index.html" afterPath="$PROJECT_DIR$/tags/github-pages/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/github-pages/page/2/index.html" afterPath="$PROJECT_DIR$/tags/github-pages/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/github-pages/page/3/index.html" afterPath="$PROJECT_DIR$/tags/github-pages/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/github-pages/page/4/index.html" afterPath="$PROJECT_DIR$/tags/github-pages/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/gru/index.html" afterPath="$PROJECT_DIR$/tags/gru/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/gru/page/2/index.html" afterPath="$PROJECT_DIR$/tags/gru/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/gru/page/3/index.html" afterPath="$PROJECT_DIR$/tags/gru/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/gru/page/4/index.html" afterPath="$PROJECT_DIR$/tags/gru/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/hive/index.html" afterPath="$PROJECT_DIR$/tags/hive/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/hive/page/2/index.html" afterPath="$PROJECT_DIR$/tags/hive/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/hive/page/3/index.html" afterPath="$PROJECT_DIR$/tags/hive/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/hive/page/4/index.html" afterPath="$PROJECT_DIR$/tags/hive/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/hugo/index.html" afterPath="$PROJECT_DIR$/tags/hugo/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/hugo/page/2/index.html" afterPath="$PROJECT_DIR$/tags/hugo/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/hugo/page/3/index.html" afterPath="$PROJECT_DIR$/tags/hugo/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/hugo/page/4/index.html" afterPath="$PROJECT_DIR$/tags/hugo/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/index.html" afterPath="$PROJECT_DIR$/tags/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/legb/index.html" afterPath="$PROJECT_DIR$/tags/legb/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/legb/page/2/index.html" afterPath="$PROJECT_DIR$/tags/legb/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/legb/page/3/index.html" afterPath="$PROJECT_DIR$/tags/legb/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/legb/page/4/index.html" afterPath="$PROJECT_DIR$/tags/legb/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/linux/index.html" afterPath="$PROJECT_DIR$/tags/linux/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/linux/page/2/index.html" afterPath="$PROJECT_DIR$/tags/linux/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/linux/page/3/index.html" afterPath="$PROJECT_DIR$/tags/linux/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/linux/page/4/index.html" afterPath="$PROJECT_DIR$/tags/linux/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/lstm/index.html" afterPath="$PROJECT_DIR$/tags/lstm/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/lstm/page/2/index.html" afterPath="$PROJECT_DIR$/tags/lstm/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/lstm/page/3/index.html" afterPath="$PROJECT_DIR$/tags/lstm/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/lstm/page/4/index.html" afterPath="$PROJECT_DIR$/tags/lstm/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/machine-learning/index.html" afterPath="$PROJECT_DIR$/tags/machine-learning/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/machine-learning/page/2/index.html" afterPath="$PROJECT_DIR$/tags/machine-learning/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/machine-learning/page/3/index.html" afterPath="$PROJECT_DIR$/tags/machine-learning/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/machine-learning/page/4/index.html" afterPath="$PROJECT_DIR$/tags/machine-learning/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/markdown/index.html" afterPath="$PROJECT_DIR$/tags/markdown/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/markdown/page/2/index.html" afterPath="$PROJECT_DIR$/tags/markdown/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/markdown/page/3/index.html" afterPath="$PROJECT_DIR$/tags/markdown/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/markdown/page/4/index.html" afterPath="$PROJECT_DIR$/tags/markdown/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/matplotlib/index.html" afterPath="$PROJECT_DIR$/tags/matplotlib/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/matplotlib/page/2/index.html" afterPath="$PROJECT_DIR$/tags/matplotlib/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/matplotlib/page/3/index.html" afterPath="$PROJECT_DIR$/tags/matplotlib/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/matplotlib/page/4/index.html" afterPath="$PROJECT_DIR$/tags/matplotlib/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/meteorology/index.html" afterPath="$PROJECT_DIR$/tags/meteorology/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/meteorology/page/2/index.html" afterPath="$PROJECT_DIR$/tags/meteorology/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/meteorology/page/3/index.html" afterPath="$PROJECT_DIR$/tags/meteorology/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/meteorology/page/4/index.html" afterPath="$PROJECT_DIR$/tags/meteorology/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/mooc/index.html" afterPath="$PROJECT_DIR$/tags/mooc/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/pandas/index.html" afterPath="$PROJECT_DIR$/tags/pandas/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/pandas/page/2/index.html" afterPath="$PROJECT_DIR$/tags/pandas/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/pandas/page/3/index.html" afterPath="$PROJECT_DIR$/tags/pandas/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/pandas/page/4/index.html" afterPath="$PROJECT_DIR$/tags/pandas/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/pathlib/index.html" afterPath="$PROJECT_DIR$/tags/pathlib/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/pathlib/page/2/index.html" afterPath="$PROJECT_DIR$/tags/pathlib/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/pathlib/page/3/index.html" afterPath="$PROJECT_DIR$/tags/pathlib/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/pathlib/page/4/index.html" afterPath="$PROJECT_DIR$/tags/pathlib/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/pyquery/index.html" afterPath="$PROJECT_DIR$/tags/pyquery/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/pyquery/page/2/index.html" afterPath="$PROJECT_DIR$/tags/pyquery/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/pyquery/page/3/index.html" afterPath="$PROJECT_DIR$/tags/pyquery/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/pyquery/page/4/index.html" afterPath="$PROJECT_DIR$/tags/pyquery/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/python/index.html" afterPath="$PROJECT_DIR$/tags/python/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/python/page/2/index.html" afterPath="$PROJECT_DIR$/tags/python/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/python/page/3/index.html" afterPath="$PROJECT_DIR$/tags/python/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/python/page/4/index.html" afterPath="$PROJECT_DIR$/tags/python/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/pytorch/index.html" afterPath="$PROJECT_DIR$/tags/pytorch/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/pytorch/page/2/index.html" afterPath="$PROJECT_DIR$/tags/pytorch/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/pytorch/page/3/index.html" afterPath="$PROJECT_DIR$/tags/pytorch/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/pytorch/page/4/index.html" afterPath="$PROJECT_DIR$/tags/pytorch/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/rnn/index.html" afterPath="$PROJECT_DIR$/tags/rnn/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/rnn/page/2/index.html" afterPath="$PROJECT_DIR$/tags/rnn/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/rnn/page/3/index.html" afterPath="$PROJECT_DIR$/tags/rnn/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/rnn/page/4/index.html" afterPath="$PROJECT_DIR$/tags/rnn/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/scikit-learn/index.html" afterPath="$PROJECT_DIR$/tags/scikit-learn/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/scikit-learn/page/2/index.html" afterPath="$PROJECT_DIR$/tags/scikit-learn/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/scikit-learn/page/3/index.html" afterPath="$PROJECT_DIR$/tags/scikit-learn/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/scikit-learn/page/4/index.html" afterPath="$PROJECT_DIR$/tags/scikit-learn/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/seaborn/index.html" afterPath="$PROJECT_DIR$/tags/seaborn/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/seaborn/page/2/index.html" afterPath="$PROJECT_DIR$/tags/seaborn/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/seaborn/page/3/index.html" afterPath="$PROJECT_DIR$/tags/seaborn/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/seaborn/page/4/index.html" afterPath="$PROJECT_DIR$/tags/seaborn/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/sql/index.html" afterPath="$PROJECT_DIR$/tags/sql/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/sql/page/2/index.html" afterPath="$PROJECT_DIR$/tags/sql/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/sql/page/3/index.html" afterPath="$PROJECT_DIR$/tags/sql/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/sql/page/4/index.html" afterPath="$PROJECT_DIR$/tags/sql/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/taga/index.html" afterPath="$PROJECT_DIR$/tags/taga/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/tagb/index.html" afterPath="$PROJECT_DIR$/tags/tagb/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/theme/index.html" afterPath="$PROJECT_DIR$/tags/theme/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/theme/page/2/index.html" afterPath="$PROJECT_DIR$/tags/theme/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/theme/page/3/index.html" afterPath="$PROJECT_DIR$/tags/theme/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/theme/page/4/index.html" afterPath="$PROJECT_DIR$/tags/theme/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/tools/index.html" afterPath="$PROJECT_DIR$/tags/tools/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/tools/page/2/index.html" afterPath="$PROJECT_DIR$/tags/tools/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/tools/page/3/index.html" afterPath="$PROJECT_DIR$/tags/tools/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/tools/page/4/index.html" afterPath="$PROJECT_DIR$/tags/tools/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/visualization/index.html" afterPath="$PROJECT_DIR$/tags/visualization/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/visualization/page/2/index.html" afterPath="$PROJECT_DIR$/tags/visualization/page/2/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/visualization/page/3/index.html" afterPath="$PROJECT_DIR$/tags/visualization/page/3/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/visualization/page/4/index.html" afterPath="$PROJECT_DIR$/tags/visualization/page/4/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/剑指offer/index.html" afterPath="$PROJECT_DIR$/tags/剑指offer/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/多进程/多线程/index.html" afterPath="$PROJECT_DIR$/tags/多进程/多线程/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/并行/index.html" afterPath="$PROJECT_DIR$/tags/并行/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/数据结构/index.html" afterPath="$PROJECT_DIR$/tags/数据结构/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/机器学习/index.html" afterPath="$PROJECT_DIR$/tags/机器学习/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/正则表达式/index.html" afterPath="$PROJECT_DIR$/tags/正则表达式/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/气候变化/index.html" afterPath="$PROJECT_DIR$/tags/气候变化/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/爬虫/index.html" afterPath="$PROJECT_DIR$/tags/爬虫/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/算法/index.html" afterPath="$PROJECT_DIR$/tags/算法/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/装饰器/index.html" afterPath="$PROJECT_DIR$/tags/装饰器/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/调参/index.html" afterPath="$PROJECT_DIR$/tags/调参/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/贝叶斯优化/index.html" afterPath="$PROJECT_DIR$/tags/贝叶斯优化/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/面试/index.html" afterPath="$PROJECT_DIR$/tags/面试/index.html" />
     </list>
     <ignored path="wentixiaogege.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -261,29 +27,29 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="254" column="101" selection-start-line="254" selection-start-column="38" selection-end-line="254" selection-end-column="101" />
+            <state relative-caret-position="248">
+              <caret line="254" column="141" selection-start-line="254" selection-start-column="141" selection-end-line="254" selection-end-column="141" />
               <folding>
                 <element signature="n#nav#1;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="e#8726#8731#0" expanded="true" />
-                <element signature="e#8739#8744#0" expanded="true" />
-                <element signature="e#8754#8759#0" expanded="true" />
-                <element signature="e#9065#9070#0" expanded="true" />
-                <element signature="e#9081#9086#0" expanded="true" />
-                <element signature="e#9099#9104#0" expanded="true" />
-                <element signature="e#9162#9166#0" expanded="true" />
-                <element signature="e#9175#9179#0" expanded="true" />
-                <element signature="e#9189#9193#0" expanded="true" />
+                <element signature="e#8733#8738#0" expanded="true" />
+                <element signature="e#8746#8751#0" expanded="true" />
+                <element signature="e#8761#8766#0" expanded="true" />
+                <element signature="e#9072#9077#0" expanded="true" />
+                <element signature="e#9088#9093#0" expanded="true" />
+                <element signature="e#9106#9111#0" expanded="true" />
+                <element signature="e#9169#9173#0" expanded="true" />
+                <element signature="e#9182#9186#0" expanded="true" />
+                <element signature="e#9196#9200#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/post/others-diskfailure-proposal/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="147" column="34" selection-start-line="147" selection-start-column="22" selection-end-line="147" selection-end-column="34" />
+            <state relative-caret-position="167">
+              <caret line="241" column="130" selection-start-line="241" selection-start-column="130" selection-end-line="241" selection-end-column="130" />
               <folding>
                 <element signature="e#3795#3879#0" expanded="false" />
                 <element signature="n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -350,7 +116,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="404.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="404.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/404.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="142">
@@ -382,10 +148,10 @@
         <option value="$PROJECT_DIR$/CNAME" />
         <option value="$PROJECT_DIR$/links/index.html" />
         <option value="$PROJECT_DIR$/resume/index.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/post/others-diskfailure-proposal/index0.html" />
-        <option value="$PROJECT_DIR$/post/others-diskfailure-proposal/index.html" />
         <option value="$PROJECT_DIR$/404.html" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/post/others-diskfailure-proposal/index.html" />
       </list>
     </option>
   </component>
@@ -455,7 +221,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="links" />
+              <option name="myItemId" value="post" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wentixiaogege.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wentixiaogege.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="post" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="others-diskfailure-proposal" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1304,25 +1088,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="254" column="101" selection-start-line="254" selection-start-column="38" selection-end-line="254" selection-end-column="101" />
-          <folding>
-            <element signature="n#nav#1;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="e#8726#8731#0" expanded="true" />
-            <element signature="e#8739#8744#0" expanded="true" />
-            <element signature="e#8754#8759#0" expanded="true" />
-            <element signature="e#9065#9070#0" expanded="true" />
-            <element signature="e#9081#9086#0" expanded="true" />
-            <element signature="e#9099#9104#0" expanded="true" />
-            <element signature="e#9162#9166#0" expanded="true" />
-            <element signature="e#9175#9179#0" expanded="true" />
-            <element signature="e#9189#9193#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/post/others-ec-proposal/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="872">
@@ -1331,23 +1096,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/post/others-diskfailure-proposal/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="147" column="34" selection-start-line="147" selection-start-column="22" selection-end-line="147" selection-end-column="34" />
-          <folding>
-            <element signature="e#3795#3879#0" expanded="false" />
-            <element signature="n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#nav#1;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/404.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="142">
           <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="254" column="141" selection-start-line="254" selection-start-column="141" selection-end-line="254" selection-end-column="141" />
+          <folding>
+            <element signature="n#nav#1;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="e#8733#8738#0" expanded="true" />
+            <element signature="e#8746#8751#0" expanded="true" />
+            <element signature="e#8761#8766#0" expanded="true" />
+            <element signature="e#9072#9077#0" expanded="true" />
+            <element signature="e#9088#9093#0" expanded="true" />
+            <element signature="e#9106#9111#0" expanded="true" />
+            <element signature="e#9169#9173#0" expanded="true" />
+            <element signature="e#9182#9186#0" expanded="true" />
+            <element signature="e#9196#9200#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/post/others-diskfailure-proposal/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="241" column="130" selection-start-line="241" selection-start-column="130" selection-end-line="241" selection-end-column="130" />
+          <folding>
+            <element signature="e#3795#3879#0" expanded="false" />
+            <element signature="n#nav#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#nav#1;n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
