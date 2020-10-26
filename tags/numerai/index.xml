@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>numerai on wentixiaogege</title>
+    <link>/tags/numerai/</link>
+    <description>Recent content in numerai on wentixiaogege</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Mon, 26 Oct 2020 22:20:38 +0800</lastBuildDate><atom:link href="/tags/numerai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Get Started With Numerai</title>
+      <link>/post/how-to-get-started-with-numerai/</link>
+      <pubDate>Mon, 26 Oct 2020 22:20:38 +0800</pubDate>
+      
+      <guid>/post/how-to-get-started-with-numerai/</guid>
+      <description>&lt;p&gt;numerai 基本概念介绍，以及展示一个入门的程序代码~&lt;/p&gt;
+&lt;p&gt;github：https://github.com/wentixiaogege/numerai【辛苦star！！】&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>How to Get Started With Numerai</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Author Name">
+  <meta name="description" content="numerai 基本概念介绍，以及展示一个入门的程序代码~
+github：https://github.com/wentixiaogege/numerai【辛苦star！！】
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@wentixiaogege">
+    <meta name="twitter:title" content="How to Get Started With Numerai">
+    <meta name="twitter:description" content="numerai 基本概念介绍，以及展示一个入门的程序代码~
+github：https://github.com/wentixiaogege/numerai【辛苦star！！】
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Get Started With Numerai">
+  <meta property="og:description" content="numerai 基本概念介绍，以及展示一个入门的程序代码~
+github：https://github.com/wentixiaogege/numerai【辛苦star！！】
+">
+  <meta property="og:url" content="/post/how-to-get-started-with-numerai/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.76.3">
+
+
+<link rel="canonical" href="/post/how-to-get-started-with-numerai/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href=""><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="">wentixiaogege</a></h2>
+  
+  <p class="subtitle">一半忧与愁 &amp; 一半花与海</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">Github</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.kaggle.com/wentixiaogege">Kaggler</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/reco/">Recommend</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/times/">Time Series</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:wentixiaogege@163.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/wentixiaogege" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/wentixiaogege" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/wentixiaogege" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">How to Get Started With Numerai</h1>
+      <p class="post-meta">@Author Name · Oct 26, 2020 · 10 min read</p>
+    </header>
+    <article class="post-content"><p>numerai 基本概念介绍，以及展示一个入门的程序代码~</p>
+<p>github：https://github.com/wentixiaogege/numerai【辛苦star！！】</p>
+<h3 id="how-to-get-started-with-numerai如何开始使用numerai">How to get started with Numerai（如何开始使用Numerai）</h3>
+<h5 id="the-hardest-data-science-tournament-on-the-planet地球上最艰苦的数据科学比赛">The hardest data science tournament on the planet?*（地球上最艰苦的数据科学比赛？）</h5>
+<h1 id="img-srchttpsmiromediumcommax40001g5ptfpii33p5eehxfzn9yapng-stylezoom-15-img-srchttpscamogithubusercontentcom55d9a214447683aae34c1c84b29fc401201d751b68747470733a2f2f692e696d6775722e636f6d2f52557469567a482e706e67-stylezoom35-"><!-- raw HTML omitted --><!-- raw HTML omitted --></h1>
+<p>github：https://github.com/wentixiaogege/numerai【辛苦star！！】</p>
+<h3 id="numerai简介">NumerAI简介</h3>
+<p>**背景：**前些日子跟好友交流，聊到numerai作为一个公司，不仅是创意和方案都非常有意思，所以决定开始调研一下；机器学习，区块链，同态加密。热点全部链接上了！！</p>
+<p><strong>一句话介绍：</strong> Numerai is building a blockchain based hedge fund using crowdsourced predictions， 中文意思就是说：Numerai正在利用众包预测建立一个基于区块链的对冲基金！！</p>
+<p><strong>基本概念讲解：</strong></p>
+<p>​    对冲基金：https://www.zhihu.com/question/19902214</p>
+<p>​    众包预测：https://zhuanlan.zhihu.com/p/56636272，意思就是一群人，一群模型预测</p>
+<p>**基本流程：**注册账号-》Settings 找到api key 【注意key是注册的时候在页面最底部出现额】-》运行下文基本逻辑代码 -》提交观察；</p>
+<p>**创始人想法：**是利用人工智能【机器学习，区块链，同态加密】、众包预测、虚拟货币的概念来包装自己的对冲基金，先来个名声大噪再说。</p>
+<p>**交流方式：**交流既有 <a href="https://link.zhihu.com/?target=https%3A//numerai.slack.com/">Slack</a> 又有 <a href="https://link.zhihu.com/?target=https%3A//forum.numer.ai/">Numerai Network</a> ，方便不同习惯的用户。</p>
+<p>**私有货币很神奇：**这个系统比较有趣的地方在于，为了解决用户增长的问题，以及在一定程度上解决回测和实盘效果不一致的问题，Numerai还开发了自己的数字货币Numeraire，数据科学家可以在提交结果的时候用Numeraire下注，最终根据实盘结果决定 Numeraire 筹码的增减。这个过程也使 Numeraire 本身越来越有经济价值。( <a href="https://link.zhihu.com/?target=https%3A//medium.com/numerai/a-new-cryptocurrency-for-coordinating-artificial-intelligence-on-numerai-9251a131419a">https://medium.com/numerai/a-new-cryptocurrency-for-coordinating-artificial-intelligence-on-numerai-9251a131419a</a> )</p>
+<p><strong>提交时间：</strong></p>
+<p>Every Saturday at <code>18:00 UTC</code>, a new <code>round</code> begins and new <code>tournament_data</code> is released. Submit your predictions to Numerai to enter the tournament.The submission deadline is <code>Monday 14:30 UTC</code>. Late submissions will not be eligible for payouts.</p>
+<p><strong>国内：换算一下就是每周日2：AM开始，然后周一晚上22：30 结束</strong></p>
+<p>不是北京时间，比北京时间慢了8个小时！！！！</p>
+<p><img src="C:%5CUsers%5Clijingjie%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201010153615483.png" alt="image-20201010153615483"></p>
+<h3 id="weightsbiases模块">Weights&amp;Biases模块</h3>
+<p>可帮助您跟踪机器学习项目。记录运行中的超参数和输出指标，然后可视化和比较结果并快速共享。</p>
+<p><strong>我理解就是配置一下，远程记录，并且做好了不错的展示工具；</strong></p>
+<p><img src="https://gblobscdn.gitbook.com/assets%2F-Lqya5RvLedGEWPhtkjU%2F-MA9nX3-ka1BJ3SSgsbv%2F-MA9nYwfD5Kb-oiPwEtt%2FWorkflow%20June%202020%20v1.png?alt=media&amp;token=e8ddf3ac-4a84-4269-bfd7-f519ffc792ee" alt="img"></p>
+<h2 id="numerai--weightsbiases新手入门实例代码">Numerai + Weights&amp;Biases新手入门实例代码</h2>
+<p>运行代码：</p>
+<pre><code>#!/usr/bin/env python
+# coding: utf-8
+## How to get started with Numerai
+## *The hardest data science tournament on the planet?*
+# 如何开始使用Numerai
+# 地球上最艰苦的数据科学比赛？
+
+# ![](https://miro.medium.com/max/4000/1*g5PtFpII33P5EeHxFZN9YA.png)
+# 
+# ![](https://camo.githubusercontent.com/55d9a214447683aae34c1c84b29fc401201d751b/68747470733a2f2f692e696d6775722e636f6d2f52557469567a482e706e67)
+
+# This notebook accompanies the [Weights and Biases Gallery Report](https://app.wandb.ai/gallery) on getting started with [Numerai](https://numer.ai). We will go through the whole process from loading the data to submitting your predictions to Numerai. [Weights and Biases](https://www.wandb.com/) will be used for experiment tracking and hyperparameter optimization.
+
+### Preparation
+#### Install Numerai's API
+#### pip install numerapi
+#### Get the latest version of Weights and Biases
+####pip install wandb --upgrade
+
+import os
+import numpy as np
+import random as rn
+import pandas as pd
+import seaborn as sns
+import lightgbm as lgb
+import matplotlib.pyplot as plt
+from scipy.stats import spearmanr
+from sklearn.metrics import mean_absolute_error
+import numerapi
+import wandb
+from wandb.lightgbm import wandb_callback
+
+# Initialize Numerai's API
+NAPI = numerapi.NumerAPI(verbosity=&quot;info&quot;)
+# Weights and Biases requires you to add your WandB API key for logging in automatically. Because this is a secret key we will use [Kaggle User Secrets](https://www.kaggle.com/product-feedback/114053) to obfuscate the API key.
+# Obfuscated WANDB API Key
+# from kaggle_secrets import UserSecretsClient
+WANDB_KEY = 'XXXXXXXXXXXXXXXXXXXXXXXXXX'#UserSecretsClient().get_secret(&quot;WANDB_API_KEY&quot;)
+wandb.login(key=WANDB_KEY)
+# Data directory
+DIR = &quot;working&quot;
+# Set seed for reproducability
+seed = 1234
+rn.seed(seed)
+np.random.seed(seed)
+os.environ['PYTHONHASHSEED'] = str(seed)
+# Surpress Pandas warnings
+pd.set_option('chained_assignment', None)
+
+
+# ## Data Processing
+def download_current_data(directory: str):
+    &quot;&quot;&quot;
+    Downloads the data for the current round
+    :param directory: The path to the directory where the data needs to be saved
+    &quot;&quot;&quot;
+    current_round = NAPI.get_current_round()
+    if os.path.isdir(f'{directory}/numerai_dataset_{current_round}/'):
+        print(f&quot;You already have the newest data! Current round is: {current_round}&quot;)
+    else:
+        print(f&quot;Downloading new data for round: {current_round}!&quot;)
+        NAPI.download_current_dataset(dest_path=directory, unzip=True)
+def load_data(directory: str, reduce_memory: bool=True) -&gt; tuple:
+    &quot;&quot;&quot;
+    Get data for current round
+    :param directory: The path to the directory where the data needs to be saved
+    :return: A tuple containing the datasets
+    &quot;&quot;&quot;
+    print('Loading the data')
+    full_path = f'{directory}/numerai_dataset_{NAPI.get_current_round()}/'
+    train_path = full_path + 'numerai_training_data.csv'
+    test_path = full_path + 'numerai_tournament_data.csv'
+    train = pd.read_csv(train_path)
+    test = pd.read_csv(test_path)
+    
+    # Reduce all features to 32-bit floats
+    if reduce_memory:
+        num_features = [f for f in train.columns if f.startswith(&quot;feature&quot;)]
+        train[num_features] = train[num_features].astype(np.float32)
+        test[num_features] = test[num_features].astype(np.float32)
+        
+    val = test[test['data_type'] == 'validation']
+    return train, val, test
+def get_group_stats(df: pd.DataFrame) -&gt; pd.DataFrame:
+    &quot;&quot;&quot;
+    Create features by calculating statistical moments for each group.
+
+    :param df: Pandas DataFrame containing all features
+    &quot;&quot;&quot;
+    for group in [&quot;intelligence&quot;, &quot;wisdom&quot;, &quot;charisma&quot;, &quot;dexterity&quot;, &quot;strength&quot;, &quot;constitution&quot;]:
+        cols = [col for col in df.columns if group in col]
+        df[f&quot;feature_{group}_mean&quot;] = df[cols].mean(axis=1)
+        df[f&quot;feature_{group}_std&quot;] = df[cols].std(axis=1)
+        df[f&quot;feature_{group}_skew&quot;] = df[cols].skew(axis=1)
+    return df
+def _train():
+    # Configure and train model
+    wandb.init(name=&quot;LightGBM_sweep&quot;)
+    lgbm_config = {&quot;num_leaves&quot;: wandb.config.num_leaves, &quot;max_depth&quot;: wandb.config.max_depth,
+                   &quot;learning_rate&quot;: wandb.config.learning_rate,
+                   &quot;bagging_freq&quot;: wandb.config.bagging_freq, &quot;bagging_fraction&quot;: wandb.config.bagging_fraction,
+                   &quot;feature_fraction&quot;: wandb.config.feature_fraction,
+                   &quot;metric&quot;: 'mse', &quot;random_state&quot;: seed}
+    lgbm_model = lgb.train(lgbm_config, train_set=dtrain, num_boost_round=750, valid_sets=watchlist,
+                           callbacks=[wandb_callback()], verbose_eval=100, early_stopping_rounds=50)
+
+    # Create predictions for evaluation
+    val_preds = lgbm_model.predict(val[feature_list], num_iteration=lgbm_model.best_iteration)
+    val.loc[:, &quot;prediction_kazutsugi&quot;] = val_preds
+    # W&amp;B log metrics
+    spearman, payout, numerai_sharpe, mae = evaluate(val)
+    wandb.log(
+        {&quot;Spearman&quot;: spearman, &quot;Payout&quot;: payout, &quot;Numerai Sharpe Ratio&quot;: numerai_sharpe, &quot;Mean Absolute Error&quot;: mae})
+### Metrics
+# In this experiment we will monitor the Spearman correlation (main metric), the Sharpe ratio, payout and Mean Absolute Error (MAE).
+def sharpe_ratio(corrs: pd.Series) -&gt; np.float32:
+    &quot;&quot;&quot;
+    Calculate the Sharpe ratio for Numerai by using grouped per-era data
+
+    :param corrs: A Pandas Series containing the Spearman correlations for each era
+    :return: A float denoting the Sharpe ratio of your predictions.
+    &quot;&quot;&quot;
+    return corrs.mean() / corrs.std()
+def evaluate(df: pd.DataFrame) -&gt; tuple:
+    &quot;&quot;&quot;
+    Evaluate and display relevant metrics for Numerai
+
+    :param df: A Pandas DataFrame containing the columns &quot;era&quot;, &quot;target_kazutsugi&quot; and a column for predictions
+    :param pred_col: The column where the predictions are stored
+    :return: A tuple of float containing the metrics
+    &quot;&quot;&quot;
+
+    def _score(sub_df: pd.DataFrame) -&gt; np.float32:
+        &quot;&quot;&quot;Calculates Spearman correlation&quot;&quot;&quot;
+        return spearmanr(sub_df[&quot;target_kazutsugi&quot;], sub_df[&quot;prediction_kazutsugi&quot;])[0]
+
+    # Calculate metrics
+    corrs = df.groupby(&quot;era&quot;).apply(_score)
+    payout_raw = (corrs / 0.2).clip(-1, 1)
+    spearman = round(corrs.mean(), 4)
+    payout = round(payout_raw.mean(), 4)
+    numerai_sharpe = round(sharpe_ratio(corrs), 4)
+    mae = mean_absolute_error(df[&quot;target_kazutsugi&quot;], df[&quot;prediction_kazutsugi&quot;]).round(4)
+
+    # Display metrics
+    print(f&quot;Spearman Correlation: {spearman}&quot;)
+    print(f&quot;Average Payout: {payout}&quot;)
+    print(f&quot;Sharpe Ratio: {numerai_sharpe}&quot;)
+    print(f&quot;Mean Absolute Error (MAE): {mae}&quot;)
+    return spearman, payout, numerai_sharpe, mae
+
+
+# Download, unzip and load data
+download_current_data(DIR)
+train, val, test = load_data(DIR, reduce_memory=True)
+
+### Exploratory Data Analysis (EDA)
+# The Numerai data has 310 obfuscated numerical features that can hold values of 0.0, 0.25, 0.5, 0.75, 1.00. The features are divided into 6 groups (&quot;intelligence&quot;, &quot;wisdom&quot;, &quot;charisma&quot;, &quot;dexterity&quot;, &quot;strength&quot; and &quot;constitution&quot;). The meaning of the groups is unclear, but we can use the fact that features are within the same group.
+
+print(&quot;Training data:&quot;)
+print(train.head(2))
+print(&quot;Test data:&quot;)
+print(test.head(2))
+print(&quot;Training set info:&quot;)
+print(train.info())
+print(&quot;Test set info:&quot;)
+print(test.info())
+
+# When we group by the eras it can be seen that the era sizes change over time. This can be taken into account when creating features using the eras.
+# Extract era numbers
+train[&quot;erano&quot;] = train.era.str.slice(3).astype(int)
+plt.figure(figsize=[14, 6])
+train.groupby(train['erano'])[&quot;target_kazutsugi&quot;].size().plot(title=&quot;Era sizes&quot;, figsize=(14, 8));
+plt.show()
+
+# Most of the features have similar standard deviations, but some have very low variability. Consider standardizing the features or removing these low variability features when experimenting with for example neural networks.
+
+feats = [f for f in train.columns if &quot;feature&quot; in f]
+plt.figure(figsize=(15, 5))
+sns.distplot(pd.DataFrame(train[feats].std()), bins=100)
+sns.distplot(pd.DataFrame(val[feats].std()), bins=100)
+sns.distplot(pd.DataFrame(test[feats].std()), bins=100)
+plt.legend([&quot;Train&quot;, &quot;Val&quot;, &quot;Test&quot;], fontsize=20)
+plt.title(&quot;Standard deviations over all features in the data&quot;, weight='bold', fontsize=20);
+plt.show()
+
+
+# ## Feature Engineering
+# The features have a remarkably low correlation to the target variable. Even the most correlated features only have around 1.5% correlation with the target. Engineering useful features out of feature + era groups is key for creating good Numerai models.
+# 
+# Additionally, the importance of features may change over time and by selecting a limited number of features we risk having a high &quot;feature exposure&quot;. Feature exposure can be quantified as the standard deviation of all your predictions' correlations  with each feature. You can mitigate this risk by using dimensionality reduction techniques like Principal Component Analysis (PCA) to integrate almost all features into your model.
+# 
+# One example of creating features out of the groups is to calculate statistical moments (mean, standard deviation, skewness) of every group.
+# Add group statistics features
+train = get_group_stats(train)
+val = get_group_stats(val)
+test = get_group_stats(test)
+
+# ## Feature Selection
+
+# The features have a remarkably low correlation to the target variable. Even the most correlated features only have around 1.5% correlation with the target. Engineering useful features out of feature and era groupings is key for creating good Numerai models.
+# 
+# Also, the importance of features may change over time. By selecting a limited number of features we risk having a high &quot;feature exposure&quot;. Feature exposure can be quantified as the standard deviation of all your predictions' correlations  with each feature. You can mitigate this risk by using dimensionality reduction techniques like Principal Component Analysis (PCA) to integrate almost all features into your model. In this starter example we take the 150 features that are most correlated to the target variable.
+
+# Calculate correlations with target
+full_corr = train.corr()
+corr_with_target = full_corr[&quot;target_kazutsugi&quot;].T.apply(abs).sort_values(ascending=False)
+
+# Select features with highest correlation to the target variable
+features = corr_with_target[:150]
+features.drop(&quot;target_kazutsugi&quot;, inplace=True)
+print(&quot;Top 10 Features according to correlation with target:&quot;)
+print(features[:10])
+
+# Create list of most correlated features
+feature_list = features.index.tolist()
+### Modeling (using Weights and Biases)
+
+# To get a first good model for Numerai we will train a [LightGBM](https://lightgbm.readthedocs.io/en/latest) model and use Weights and Biases to do a hyperparameter sweep. In this example it will be a grid search over some of the most important hyperparameters for LightGBM. First, we define the configuration of the sweep.
+
+# Configuration for hyperparameter sweep
+sweep_config = {
+   'method': 'grid',
+   'metric': {
+          'name': 'mse',
+          'goal': 'minimize'   
+        },
+   'parameters': {
+       &quot;num_leaves&quot;: {'values': [30, 40, 50]}, 
+       &quot;max_depth&quot;: {'values': [4, 5, 6, 7]}, 
+       &quot;learning_rate&quot;: {'values': [0.1, 0.05, 0.01]},
+       &quot;bagging_freq&quot;: {'values': [7]}, 
+       &quot;bagging_fraction&quot;: {'values': [0.6, 0.7, 0.8]}, 
+       &quot;feature_fraction&quot;: {'values': [0.85, 0.75, 0.65]},
+   }
+}
+sweep_id = wandb.sweep(sweep_config, project=&quot;numerai_tutorial&quot;)
+
+
+# After that we define a function (_train) using wandb.config attributes so Weights and Biases can perform the grid search. We then log all the results and start the agent.
+
+
+# Prepare data for LightGBM
+dtrain = lgb.Dataset(train[feature_list], label=train[&quot;target_kazutsugi&quot;])
+dvalid = lgb.Dataset(val[feature_list], label=val[&quot;target_kazutsugi&quot;])
+watchlist = [dtrain, dvalid]
+# Run hyperparameter sweep (grid search)
+wandb.agent(sweep_id, function=_train)
+# Now the grid search is finished we select the hyperparameters that lead to the highest Sharpe ratio.
+# Train model with best configuration
+wandb.init(project=&quot;numerai_tutorial&quot;, name=&quot;LightGBM&quot;)
+best_config = {&quot;num_leaves&quot;: 50, &quot;max_depth&quot;: 6, &quot;learning_rate&quot;: 0.1,
+               &quot;bagging_freq&quot;: 7, &quot;bagging_fraction&quot;: 0.6, &quot;feature_fraction&quot;: 0.75,
+               &quot;metric&quot;: 'mse', &quot;random_state&quot;: seed}
+lgbm_model = lgb.train(best_config, train_set=dtrain, num_boost_round=750, valid_sets=watchlist, 
+                       callbacks=[wandb_callback()], verbose_eval=100, early_stopping_rounds=50)
+    
+# Create final predictions from best model
+train.loc[:, &quot;prediction_kazutsugi&quot;] = lgbm_model.predict(train[feature_list], num_iteration=lgbm_model.best_iteration)
+val.loc[:, &quot;prediction_kazutsugi&quot;] = lgbm_model.predict(val[feature_list], num_iteration=lgbm_model.best_iteration)
+
+### Evaluation
+# Without much feature engineering it is already possible to get a reasonable score on Numerai. Sharpe ratio is one of the best indications of performance on Numerai because it takes into account the variability across eras.
+
+
+# Evaluate Model
+print(&quot;--- Final Training Scores ---&quot;)
+spearman, payout, numerai_sharpe, mae = evaluate(train)
+print(&quot;\n--- Final Validation Scores ---&quot;)
+spearman, payout, numerai_sharpe, mae = evaluate(val)
+
+# Calculate feature exposure
+all_features = [col for col in train.columns if 'feature' in col]
+feature_spearman_val = [spearmanr(val[&quot;prediction_kazutsugi&quot;], val[f])[0] for f in all_features]
+feature_exposure_val = np.std(feature_spearman_val).round(4)
+print(f&quot;Feature exposure on validation set: {feature_exposure_val}&quot;)
+
+
+# ## Submission
+
+# You can use this code to upload your predictions directly to Numerai. You will need a public and private API key that you can create from your Numerai account settings.
+
+# Set API Keys for submitting to Numerai
+PUBLIC_ID = &quot;wentixiaogege@163.com&quot;
+SECRET_KEY = &quot;XXXXXXXXXXXXXXXXXXXXXXXXXXXX&quot;
+
+# Initialize API with API Keys
+napi = numerapi.NumerAPI(public_id=PUBLIC_ID, 
+                          secret_key=SECRET_KEY, 
+                          verbosity=&quot;info&quot;)
+# Upload predictions for current round
+test.loc[:, &quot;prediction_kazutsugi&quot;] = lgbm_model.predict(test[feature_list], num_iteration=lgbm_model.best_iteration)
+test[['id', &quot;prediction_kazutsugi&quot;]].to_csv(&quot;submission.csv&quot;, index=False)
+
+
+# Add your API keys and uncomment the line of code below to automatically upload your predictions to Numerai.
+
+# Upload predictions to Numerai
+napi.upload_predictions(&quot;submission.csv&quot;, tournament=napi.get_current_round())
+
+print(&quot;Submission File:&quot;)
+test[['id', &quot;prediction_kazutsugi&quot;]].head(2)
+
+# That's all! Note that there is still a lot to be improved and that a good model requires more rigorous evaluation. However, I hope this introduction got you excited about starting with Numerai!
+
+# **If you like this Kaggle notebook, feel free to give an upvote and leave a comment! I will try to implement your suggestions in this kernel!**
+
+</code></pre><pre><code>运行结果：
+
+D:\Program_Files\Anaconda3\python.exe D:/PycharmProjects/numerai/how-to-get-started-with-numerai.py
+2020-10-10 11:20:21,522 INFO wandb: setting login settings: {'api_key': 'XXXXXXXXXX'}
+wandb: Currently logged in as: wentixiaogege (use `wandb login --relogin` to force relogin)
+wandb: Appending key for api.wandb.ai to your netrc file: C:\Users\XXXXXXXX/.netrc
+Downloading new data for round: 232!
+working\numerai_dataset_232.zip: 392MB [06:33, 997kB/s]                            
+2020-10-10 11:26:58,692 INFO numerapi.base_api: unzipping file...
+Loading the data
+Training data:
+                 id   era  ... feature_wisdom46  target_kazutsugi
+0  n000315175b67977  era1  ...             0.75              0.75
+1  n0014af834a96cdd  era1  ...             1.00              0.25
+
+[2 rows x 314 columns]
+Test data:
+                 id     era  ... feature_wisdom46  target_kazutsugi
+0  n0003aa52cab36c2  era121  ...              0.0              0.00
+1  n000920ed083903f  era121  ...              0.5              0.25
+
+[2 rows x 314 columns]
+Training set info:
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 501808 entries, 0 to 501807
+Columns: 314 entries, id to target_kazutsugi
+dtypes: float32(310), float64(1), object(3)
+memory usage: 608.7+ MB
+None
+Test set info:
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 1653463 entries, 0 to 1653462
+Columns: 314 entries, id to target_kazutsugi
+dtypes: float32(310), float64(1), object(3)
+memory usage: 2.0+ GB
+None
+
+</code></pre><p>有一个日本哥们公开了他的key</p>
+<p><a href="https://github.com/Kei-Sanada/Numerai/blob/master/Making_your_first_submission_on_Numerai_20200927.ipynb">https://github.com/Kei-Sanada/Numerai/blob/master/Making_your_first_submission_on_Numerai_20200927.ipynb</a></p>
+<p><a href="">本文章目前只是简要介绍，如果要知道如何挣到钱，请持续关注!!</a></p>
+<h3 id="附录">附录</h3>
+<p>numerai 链接：https://docs.numer.ai/tournament/new-users</p>
+<p>知乎：https://www.zhihu.com/question/50275557</p>
+<p>kaggle：https://www.kaggle.com/carlolepelaars/how-to-get-started-with-numerai</p>
+<p>NMR货币：https://coinmarket.no/price/numeraire/</p>
+<p>Weigths&amp;Biases: <a href="https://docs.wandb.com/">https://docs.wandb.com/</a></p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/numerai"><span class="tag">Numerai</span></a></li>
+        
+          <li><a href="/tags/github"><span class="tag">Github</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "disqus_shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2020 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+  </body>
+</html>
