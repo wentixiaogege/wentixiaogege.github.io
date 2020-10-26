@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>RNN, LSTM和GRU</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  
+  <meta name="description" content="普通的RNN对短时记忆比较敏感，如果输入序列很长，在反向传播期间，RNN 会面临梯度消失和梯度爆炸的问题。为解决这个问题，人们对RNN进行了很多改进，其中最有效的改进方式是引入门控机制， 于是就有了LSTM和GRU。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@wentixiaogege">
+    <meta name="twitter:title" content="RNN, LSTM和GRU">
+    <meta name="twitter:description" content="普通的RNN对短时记忆比较敏感，如果输入序列很长，在反向传播期间，RNN 会面临梯度消失和梯度爆炸的问题。为解决这个问题，人们对RNN进行了很多改进，其中最有效的改进方式是引入门控机制， 于是就有了LSTM和GRU。
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="RNN, LSTM和GRU">
+  <meta property="og:description" content="普通的RNN对短时记忆比较敏感，如果输入序列很长，在反向传播期间，RNN 会面临梯度消失和梯度爆炸的问题。为解决这个问题，人们对RNN进行了很多改进，其中最有效的改进方式是引入门控机制， 于是就有了LSTM和GRU。
+">
+  <meta property="og:url" content="/post/wenti-dl-lstm-gru/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.76.3">
+
+
+<link rel="canonical" href="/post/wenti-dl-lstm-gru/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href=""><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="">wentixiaogege</a></h2>
+  
+  <p class="subtitle">一半忧与愁 &amp; 一半花与海</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/reco/">Recommend</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/times/">Time Series</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">Github</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.kaggle.com/wentixiaogege">Kaggler</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">Resume</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:wentixiaogege@163.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/wentixiaogege" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/wentixiaogege" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/wentixiaogege" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">RNN, LSTM和GRU</h1>
+      <p class="post-meta">@问题小哥哥 · Oct 9, 2020 · 3 min read</p>
+    </header>
+    <article class="post-content"><p>普通的RNN对短时记忆比较敏感，如果输入序列很长，在反向传播期间，RNN 会面临梯度消失和梯度爆炸的问题。为解决这个问题，人们对RNN进行了很多改进，其中最有效的改进方式是引入门控机制， 于是就有了LSTM和GRU。</p>
+<p>LSTM和GRU都属于RNN（Recurrent Neural Network, 循环神经网络）的一种，是对普通RNN的改进。</p>
+<h2 id="basic-rnn">Basic RNN</h2>
+<p>普通RNN的基本结构如下图所示：</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190802185806105.png" alt="img"></p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190802190139807.png" alt="img"></p>
+<p>其中𝑡t时刻计算单元的图示为：</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190804101221896.png" alt="image-20190804101221896"></p>
+<p>综上，对于一个BASIC RNN CELL的计算步骤如下：</p>
+<p>1.利用 𝑎⟨𝑡−1⟩a⟨t−1⟩ 和 𝑥⟨𝑡⟩x⟨t⟩计算新的隐藏层激活状态：</p>
+<p>𝐴=𝑊𝑎𝑎𝑎⟨𝑡−1⟩A=Waaa⟨t−1⟩</p>
+<p>𝐵=𝑊𝑎𝑥𝑥⟨𝑡⟩B=Waxx⟨t⟩</p>
+<p>𝑎⟨𝑡⟩=tanh(𝐴+𝐵+𝑏𝑎)a⟨t⟩=tanh⁡(A+B+ba)</p>
+<p>𝑦̂ ⟨𝑡⟩=𝑠𝑜𝑓𝑡𝑚𝑎𝑥(𝑊𝑦𝑎𝑎⟨𝑡⟩+𝑏𝑦)y^⟨t⟩=softmax(Wyaa⟨t⟩+by)</p>
+<p>2.用新的隐藏层激活状态 𝑎⟨𝑡⟩a⟨t⟩进行预测：</p>
+<p>𝑦̂ ⟨𝑡⟩=𝑠𝑜𝑓𝑡𝑚𝑎𝑥(𝑊𝑦𝑎𝑎⟨𝑡⟩+𝑏𝑦)y^⟨t⟩=softmax(Wyaa⟨t⟩+by)</p>
+<p>所以，对于𝑇𝑥Tx长度的输入序列𝑥x和𝑦y，RNN结构图如下：</p>
+<p>输入序列：𝑥=(𝑥⟨1⟩,𝑥⟨2⟩,…,𝑥⟨𝑇𝑥⟩)x=(x⟨1⟩,x⟨2⟩,…,x⟨Tx⟩)</p>
+<p>输出序列：𝑦=(𝑦⟨1⟩,𝑦⟨2⟩,…,𝑦⟨𝑇𝑥⟩)y=(y⟨1⟩,y⟨2⟩,…,y⟨Tx⟩)</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190804104058462.png" alt="image-20190804104058462"></p>
+<p>但是，普通RNN有较大的局限性，由于梯度消失或爆炸问题，很难建模长时间间隔 （Long Range ）的状态之间的依赖关系。RNN计算参数梯度的方式和前馈神经网络不太相同。在循环神经网络中主要有两种计算梯度的方式：随时间反向传播（BPTT）和实时循环学习（RTRL）算法。RNN一般会比较难训练，这种难训练并不是因为activation function，而是来源于循环神经网络在学习过程中的梯度消失或爆炸问题，很难建模长时间间隔（Long Range）的状态之间的依赖关系。</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190720084006929.png" alt="img"></p>
+<p>RNN中梯度的计算和存储一般是通过时间反向传播（backpropagation through time, BPTT）进行的。通过时间反向传播是反向传播在循环神经⽹络中的具体应⽤。但是，当时间步数较⼤或者时间步较小时，循环神经⽹络的梯度较容易出现消失或爆炸。虽然裁剪梯度可以应对梯度爆炸，但⽆法解决梯度消失的问题。所以普通RNN较难捕捉时间序列中时间步距离较⼤的依赖关系。</p>
+<p>为解决这个问题，⻔控循环神经⽹络（gated recurrent neural network ）应运而生，正是为了更好地捕捉时间序列中时间步距离较⼤的依赖关系。它通过可以学习的⻔来控制信息的流动。其中，<strong>⻔控循环单元（gated recurrent unit, GRU ）<strong>是⼀种常⽤的⻔控循环神经⽹络，另⼀种常⽤的⻔控循环神经⽹络是</strong>⻓短期记忆（long short-term memory, LSTM ）</strong>。</p>
+<h2 id="lstm">LSTM</h2>
+<p>LSTM 中引⼊了 3个⻔，即输⼊⻔（ input gate）、遗忘⻔（ forget gate）和输出⻔（ output gate），以及与隐藏状态形状相同的记忆细胞（某些⽂献把记忆细胞当成⼀种特殊的隐藏状态），从而记录额外的信息。</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190804153206532.png" alt="img"></p>
+<p>LSTM的基本结构：(图中的update gate其实就是input gate)</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190804105308434.png" alt="img"></p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190804170028986.png" alt="img"></p>
+<p>对应上图的主要公式：</p>
+<hr>
+<p>Γ⟨𝑡⟩𝑓=𝜎(𝑊𝑓[𝑎⟨𝑡−1⟩,𝑥⟨𝑡⟩]+𝑏𝑓)(1)(1)Γf⟨t⟩=σ(Wf[a⟨t−1⟩,x⟨t⟩]+bf)</p>
+<p>Γ⟨𝑡⟩𝑢=𝜎(𝑊𝑢[𝑎⟨𝑡−1⟩,𝑥𝑡]+𝑏𝑢)(2)(2)Γu⟨t⟩=σ(Wu[a⟨t−1⟩,xt]+bu)</p>
+<p>𝑐̃ ⟨𝑡⟩=tanh(𝑊𝑐[𝑎⟨𝑡−1⟩,𝑥⟨𝑡⟩]+𝑏𝑐)(3)(3)c~⟨t⟩=tanh⁡(Wc[a⟨t−1⟩,x⟨t⟩]+bc)</p>
+<p>𝑐⟨𝑡⟩=Γ⟨𝑡⟩𝑓∗𝑐⟨𝑡−1⟩+Γ⟨𝑡⟩𝑢∗𝑐̃ ⟨𝑡⟩(4)(4)c⟨t⟩=Γf⟨t⟩∗c⟨t−1⟩+Γu⟨t⟩∗c~⟨t⟩</p>
+<p>Γ⟨𝑡⟩𝑜=𝜎(𝑊𝑜[𝑎⟨𝑡−1⟩,𝑥⟨𝑡⟩]+𝑏𝑜)(5)(5)Γo⟨t⟩=σ(Wo[a⟨t−1⟩,x⟨t⟩]+bo)</p>
+<p>𝑎⟨𝑡⟩=Γ⟨𝑡⟩𝑜∗tanh(𝑐⟨𝑡⟩)(6)(6)a⟨t⟩=Γo⟨t⟩∗tanh⁡(c⟨t⟩)</p>
+<hr>
+<h5 id="forget-gate">Forget gate</h5>
+<p>For the sake of this illustration, lets assume we are reading words in a piece of text, and want use an LSTM to keep track of grammatical structures, such as whether the subject is singular or plural. If the subject changes from a singular word to a plural word, we need to find a way to get rid of our previously stored memory value of the singular/plural state. In an LSTM, the forget gate lets us do this:</p>
+<p>Γ⟨𝑡⟩𝑓=𝜎(𝑊𝑓[𝑎⟨𝑡−1⟩,𝑥⟨𝑡⟩]+𝑏𝑓)(1)(1)Γf⟨t⟩=σ(Wf[a⟨t−1⟩,x⟨t⟩]+bf)</p>
+<p>Here, 𝑊𝑓Wf are weights that govern the forget gate’s behavior. We concatenate [𝑎⟨𝑡−1⟩,𝑥⟨𝑡⟩][a⟨t−1⟩,x⟨t⟩] and multiply by 𝑊𝑓Wf. The equation above results in a vector Γ⟨𝑡⟩𝑓Γf⟨t⟩ with values between 0 and 1. <strong>This forget gate vector will be multiplied element-wise by the previous cell state 𝑐⟨𝑡−1⟩c⟨t−1⟩.</strong> So if one of the values of Γ⟨𝑡⟩𝑓Γf⟨t⟩ is 0 (or close to 0) then it means that the LSTM should remove that piece of information (e.g. the singular subject) in the corresponding component of 𝑐⟨𝑡−1⟩c⟨t−1⟩. If one of the values is 1, then it will keep the information. (其中𝑎a也常用ℎh来表示，如下图)</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190804153316470.png" alt="img"></p>
+<h5 id="update-gate">Update gate</h5>
+<p>Once we forget that the subject being discussed is singular, we need to find a way to update it to reflect that the new subject is now plural. Here is the formulat for the update gate:</p>
+<p>Γ⟨𝑡⟩𝑢=𝜎(𝑊𝑢[𝑎⟨𝑡−1⟩,𝑥𝑡]+𝑏𝑢)(2)(2)Γu⟨t⟩=σ(Wu[a⟨t−1⟩,xt]+bu)</p>
+<p>Similar to the forget gate, here Γ⟨𝑡⟩𝑢Γu⟨t⟩ is again a vector of values between 0 and 1. This will be multiplied element-wise with 𝑐̃ ⟨𝑡⟩c~⟨t⟩, in order to compute 𝑐⟨𝑡⟩c⟨t⟩.</p>
+<h5 id="updating-the-cell-更新细胞状态">Updating the cell (更新细胞状态)</h5>
+<p>To update the new subject we need to create a new vector of numbers that we can add to our previous cell state. The equation we use is:</p>
+<p>𝑐̃ ⟨𝑡⟩=tanh(𝑊𝑐[𝑎⟨𝑡−1⟩,𝑥⟨𝑡⟩]+𝑏𝑐)(3)(3)c~⟨t⟩=tanh⁡(Wc[a⟨t−1⟩,x⟨t⟩]+bc)</p>
+<p>Finally, the new cell state is:</p>
+<p>𝑐⟨𝑡⟩=Γ⟨𝑡⟩𝑓∗𝑐⟨𝑡−1⟩+Γ⟨𝑡⟩𝑢∗𝑐̃ ⟨𝑡⟩(4)(4)c⟨t⟩=Γf⟨t⟩∗c⟨t−1⟩+Γu⟨t⟩∗c~⟨t⟩</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190804153402447.png" alt="img"></p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190804153416674.png" alt="img"></p>
+<h5 id="output-gate">Output gate</h5>
+<p>To decide which outputs we will use, we will use the following two formulas:</p>
+<p>Γ⟨𝑡⟩𝑜=𝜎(𝑊𝑜[𝑎⟨𝑡−1⟩,𝑥⟨𝑡⟩]+𝑏𝑜)(5)(5)Γo⟨t⟩=σ(Wo[a⟨t−1⟩,x⟨t⟩]+bo)</p>
+<p>𝑎⟨𝑡⟩=Γ⟨𝑡⟩𝑜∗tanh(𝑐⟨𝑡⟩)(6)(6)a⟨t⟩=Γo⟨t⟩∗tanh⁡(c⟨t⟩)</p>
+<p>Where in equation 5 you decide what to output using a sigmoid function and in equation 6 you multiply that by the tanhtanh of the previous state.</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190804153449131.png" alt="img"></p>
+<p>综上，对于一个LSTM CELL的计算步骤如下：</p>
+<ol>
+<li>首先拼接 𝑎⟨𝑡−1⟩a⟨t−1⟩ 和 𝑥⟨𝑡⟩x⟨t⟩: 𝑐𝑜𝑛𝑐𝑎𝑡=[𝑎⟨𝑡−1⟩ 𝑥⟨𝑡⟩]concat=[a⟨t−1⟩ x⟨t⟩]</li>
+<li>利用上面的公式1-6进行计算.</li>
+<li>利用𝑎⟨𝑡⟩a⟨t⟩ 计算𝑦⟨𝑡⟩y⟨t⟩. 𝑦̂ ⟨𝑡⟩=𝑠𝑜𝑓𝑡𝑚𝑎𝑥(𝑊𝑦𝑎𝑎⟨𝑡⟩+𝑏𝑦)y^⟨t⟩=softmax(Wyaa⟨t⟩+by)</li>
+</ol>
+<hr>
+<p>更多直观的LSTM图示：</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190716090336849.png" alt="img"></p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190716090807231.png" alt="img"></p>
+<p>其中一个LSTM单元结构：</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190716091133742.png" alt="img"></p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190716085302166.png" alt="img"></p>
+<p>通常会把ℎ𝑡ht和𝑐𝑡ct和𝑥𝑡+1xt+1一起作为下一层的输入。</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190716085444248.png" alt="img"></p>
+<p>多层的LSTM</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190716112300796.png" alt="img"></p>
+<h2 id="gru">GRU</h2>
+<p>GRU将遗忘门和输入门合并成了更新门（forget gate + input gate =&gt; update gate），它只有两个门(<strong>重置门：reset 门</strong>和<strong>更新门：update 门</strong>)，参数量少，Training更加robust。</p>
+<p>GRU公式：</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190804183517611.png" alt="image-20190804183517611"></p>
+<p>上式中的𝑎⟨𝑡⟩a⟨t⟩和𝑐&lt;⟨𝑡⟩&gt;c&lt;⟨t⟩&gt;等同于下式中的ℎ𝑡ht，都表示𝑡t时刻的隐藏状态。</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190804161538163.png" alt="img"></p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20190804165520204.png" alt="img"></p>
+<hr>
+<p>GRU的输入为：前一时刻隐藏层ℎ𝑡−1ht−1和当前输入 𝑥𝑡xt , 输出为下一时刻隐藏层ℎ𝑡ht
+GRU 包含两个门：<strong>重置门（Reset Gate）</strong> 和<strong>更新门（Update Gate）</strong>:</p>
+<p>重置门𝑟𝑡rt用来计算候选隐藏层ℎ̃ 𝑡h~t，控制的是保留多少前一时刻隐藏层ℎ𝑡−1ht−1的信息（ 控制候选状态ℎ̃ 𝑡h~t的计算是否依赖上一时刻的状态ℎ𝑡−1ht−1）</p>
+<p>更新门𝑧𝑡zt用来控制加入多少候选隐藏层ℎ̃ 𝑡h~t的信息，从而得到输出ℎ𝑡ht（控制当前状态ℎ𝑡ht需要从历史状态ℎ𝑡−1ht−1中保留多少信息（不经过非线性变换），以及需要从候选状态ℎ̃ 𝑡h~t中接受多少新信息）</p>
+<h2 id="reference">REFERENCE</h2>
+<p><a href="https://towardsdatascience.com/illustrated-guide-to-lstms-and-gru-s-a-step-by-step-explanation-44e9eb85bf21">Illustrated Guide to LSTM’s and GRU’s: A step by step explanation</a></p>
+<p><a href="https://www.wentixiaogege.com/post/dl-lstm-gru/%5Bhttp://colah.github.io/posts/2015-08-Understanding-LSTMs/%5D(http://colah.github.io/posts/2015-08-Understanding-LSTMs/)">Understanding LSTM Networks</a></p>
+<p><a href="https://www.wentixiaogege.com/post/dl-lstm-gru/%5Bhttp://www.wildml.com/category/neural-networks/recurrent-neural-networks/%5D(http://www.wildml.com/category/neural-networks/recurrent-neural-networks/)">RECURRENT NEURAL NETWORKS</a></p>
+<p><a href="https://towardsdatascience.com/animated-rnn-lstm-and-gru-ef124d06cf45">Animated RNN, LSTM and GRU</a></p>
+<p><a href="https://jhui.github.io/2017/03/15/RNN-LSTM-GRU/">RNN, LSTM and GRU tutorial</a></p>
+<p>[三次简化一张图：一招理解LSTM/GRU门控机制](<a href="https://www.jiqizhixin.com/articles/2018-12-18-12?from=synced&amp;keyword=lstm">https://www.jiqizhixin.com/articles/2018-12-18-12?from=synced&amp;keyword=lstm</a> gru)</p>
+<p><a href="https://www.jessicayung.com/lstms-for-time-series-in-pytorch/">LSTMs for Time Series in PyTorch</a></p>
+<p><a href="https://www.kaggle.com/bminixhofer/simple-lstm-pytorch-version">Simple LSTM - PyTorch version</a></p></article>
+    <footer class="post-footer">
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "disqus_shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2020 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+  </body>
+</html>

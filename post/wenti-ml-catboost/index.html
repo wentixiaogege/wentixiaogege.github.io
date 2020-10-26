@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Catboost 入门介绍</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  
+  <meta name="description" content="Catboost入门介绍与实例。
+用过sklearn进行机器学习的同学应该都知道，在用sklearn进行机器学习的时候，我们需要对类别特征进行预处理，如label encoding, one hot encoding等，因为sklearn无法处理类别特征，会报错。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@wentixiaogege">
+    <meta name="twitter:title" content="Catboost 入门介绍">
+    <meta name="twitter:description" content="Catboost入门介绍与实例。
+用过sklearn进行机器学习的同学应该都知道，在用sklearn进行机器学习的时候，我们需要对类别特征进行预处理，如label encoding, one hot encoding等，因为sklearn无法处理类别特征，会报错。
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Catboost 入门介绍">
+  <meta property="og:description" content="Catboost入门介绍与实例。
+用过sklearn进行机器学习的同学应该都知道，在用sklearn进行机器学习的时候，我们需要对类别特征进行预处理，如label encoding, one hot encoding等，因为sklearn无法处理类别特征，会报错。
+">
+  <meta property="og:url" content="/post/wenti-ml-catboost/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.76.3">
+
+
+<link rel="canonical" href="/post/wenti-ml-catboost/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href=""><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="">wentixiaogege</a></h2>
+  
+  <p class="subtitle">一半忧与愁 &amp; 一半花与海</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/reco/">Recommend</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/times/">Time Series</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">Github</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.kaggle.com/wentixiaogege">Kaggler</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">Resume</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:wentixiaogege@163.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/wentixiaogege" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/wentixiaogege" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/wentixiaogege" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Catboost 入门介绍</h1>
+      <p class="post-meta">@问题小哥哥 · Oct 9, 2020 · 10 min read</p>
+    </header>
+    <article class="post-content"><p>Catboost入门介绍与实例。</p>
+<p>用过sklearn进行机器学习的同学应该都知道，在用sklearn进行机器学习的时候，我们需要对类别特征进行预处理，如label encoding, one hot encoding等，因为sklearn无法处理类别特征，会报错。</p>
+<p>而俄罗斯Yandex公司开源的 <a href="https://catboost.yandex/">CatBoost</a>模型可直接对类别特征进行处理，在很多公开数据集上的表现都相当优异。从它的名字也可以看出来（CatBoost = <strong>Cat</strong>egory and <strong>Boost</strong>ing），它的优势是<a href="https://catboost.ai/docs/concepts/algorithm-main-stages_cat-to-numberic.html">对类别特征的处理</a>，同时结果更加robust，不需要费力去调参也能获得非常不错的结果，关于调参可参考<a href="https://catboost.ai/docs/concepts/parameter-tuning.html">链接</a>。</p>
+<blockquote>
+<p>catboost:</p>
+<p>Attention. Do not use one-hot encoding during preprocessing. This affects both the training speed and the resulting quality.</p>
+</blockquote>
+<h2 id="1-install">1. Install</h2>
+<p>首先安装相应的工具：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># 用pip</span>
+pip install catboost
+<span style="color:#75715e"># 或者用conda</span>
+conda install <span style="color:#f92672">-</span>c conda<span style="color:#f92672">-</span>forge catboost 
+
+<span style="color:#75715e"># 安装jupyter notebook中的交互组件，用于交互绘图</span>
+pip install ipywidgets 
+jupyter nbextension enable <span style="color:#f92672">--</span>py widgetsnbextension
+</code></pre></div><h2 id="2-preprocessing">2. Preprocessing</h2>
+<h4 id="pool"><code>Pool</code></h4>
+<p><code>Pool</code>是catboost中的用于组织数据的一种形式，也可以用numpy array和dataframe。但更推荐<code>Pool</code>，其内存和速度都更优。</p>
+<p>关于<a href="https://catboost.ai/docs/concepts/python-reference_pool.html"><code>Pool</code></a>的用法：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Pool</span>(data, 
+           label<span style="color:#f92672">=</span>None,
+           cat_features<span style="color:#f92672">=</span>None,
+           column_description<span style="color:#f92672">=</span>None,
+           pairs<span style="color:#f92672">=</span>None,
+           delimiter<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span>,
+           has_header<span style="color:#f92672">=</span>False,
+           weight<span style="color:#f92672">=</span>None, 
+           group_id<span style="color:#f92672">=</span>None,
+           group_weight<span style="color:#f92672">=</span>None,
+           subgroup_id<span style="color:#f92672">=</span>None,
+           pairs_weight<span style="color:#f92672">=</span>None
+           baseline<span style="color:#f92672">=</span>None,
+           feature_names<span style="color:#f92672">=</span>None,
+           thread_count<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>)
+<span style="color:#f92672">from</span> catboost <span style="color:#f92672">import</span> CatBoostClassifier, Pool
+
+train_data <span style="color:#f92672">=</span> Pool(data<span style="color:#f92672">=</span>[[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>],
+                        [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>],
+                        [<span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">60</span>]],
+                  label<span style="color:#f92672">=</span>[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],
+                  weight<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.1</span>, <span style="color:#ae81ff">0.2</span>, <span style="color:#ae81ff">0.3</span>])
+train_data 
+<span style="color:#75715e"># &lt;catboost.core.Pool at 0x1a22af06d0&gt;</span>
+
+model <span style="color:#f92672">=</span> CatBoostClassifier(iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+model<span style="color:#f92672">.</span>fit(train_data)
+preds_class <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict(train_data)
+</code></pre></div><h4 id="featuresdata"><code>FeaturesData</code></h4>
+<p>创建<code>Pool</code>有多种方式，而通过<a href="https://catboost.ai/docs/concepts/python-features-data__desc.html"><code>FeaturesData</code></a>构建<code>Pool</code>是更优的方式。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FeaturesData</span>(num_feature_data<span style="color:#f92672">=</span>None,
+                   cat_feature_data<span style="color:#f92672">=</span>None,
+                   num_feature_names<span style="color:#f92672">=</span>None,
+                   cat_feature_names<span style="color:#f92672">=</span>None)
+</code></pre></div><p><a href="https://catboost.ai/docs/concepts/python-reference_catboostclassifier.html#python-reference_catboostclassifier">CatBoostClassifier</a> with <a href="https://catboost.ai/docs/concepts/python-features-data__desc.html#python-features-data__desc">FeaturesData</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">from</span> catboost <span style="color:#f92672">import</span> CatBoostClassifier, FeaturesData
+<span style="color:#75715e"># Initialize data</span>
+cat_features <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]
+train_data <span style="color:#f92672">=</span> FeaturesData(
+    num_feature_data<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>array([[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>], [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>], [<span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">60</span>]], dtype<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>float32),
+    cat_feature_data<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>array([[<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>], [<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>], [<span style="color:#e6db74">&#34;c&#34;</span>, <span style="color:#e6db74">&#34;d&#34;</span>]], dtype<span style="color:#f92672">=</span>object)
+)
+train_labels <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+test_data <span style="color:#f92672">=</span> FeaturesData(
+    num_feature_data<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>array([[<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">60</span>]], dtype<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>float32),
+    cat_feature_data<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>array([[<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>], [<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;d&#34;</span>]], dtype<span style="color:#f92672">=</span>object))
+
+<span style="color:#75715e"># Initialize CatBoostClassifier</span>
+model <span style="color:#f92672">=</span> CatBoostClassifier(iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, depth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, loss_function<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Logloss&#39;</span>)
+<span style="color:#75715e"># Fit model</span>
+model<span style="color:#f92672">.</span>fit(train_data, train_labels)
+<span style="color:#75715e"># Get predicted classes</span>
+preds_class <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict(test_data)
+<span style="color:#75715e"># Get predicted probabilities for each class</span>
+preds_proba <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict_proba(test_data)
+<span style="color:#75715e"># Get predicted RawFormulaVal</span>
+preds_raw <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict(test_data, prediction_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;RawFormulaVal&#39;</span>)
+</code></pre></div><p><a href="https://catboost.ai/docs/concepts/python-reference_catboostclassifier.html#python-reference_catboostclassifier">CatBoostClassifier</a> with <a href="https://catboost.ai/docs/concepts/python-reference_pool.html#python-reference_pool">Pool</a> and <a href="https://catboost.ai/docs/concepts/python-features-data__desc.html#python-features-data__desc">FeaturesData</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">from</span> catboost <span style="color:#f92672">import</span> CatBoostClassifier, FeaturesData, Pool
+<span style="color:#75715e"># Initialize data</span>
+train_data <span style="color:#f92672">=</span> Pool(
+    data<span style="color:#f92672">=</span>FeaturesData(
+        num_feature_data<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>array([[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>], 
+                                   [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>], 
+                                   [<span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">60</span>]], 
+                                   dtype<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>float32),
+        cat_feature_data<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>array([[<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>], 
+                                   [<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>], 
+                                   [<span style="color:#e6db74">&#34;c&#34;</span>, <span style="color:#e6db74">&#34;d&#34;</span>]], 
+                                   dtype<span style="color:#f92672">=</span>object)
+    ),
+    label<span style="color:#f92672">=</span>[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+)
+test_data <span style="color:#f92672">=</span> Pool(
+    data<span style="color:#f92672">=</span>FeaturesData(
+        num_feature_data<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>array([[<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>], 
+                                   [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">60</span>]], 
+                                   dtype<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>float32),
+        cat_feature_data<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>array([[<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>], 
+                                   [<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;d&#34;</span>]], 
+                                   dtype<span style="color:#f92672">=</span>object)
+    )
+)
+<span style="color:#75715e"># Initialize CatBoostClassifier</span>
+model <span style="color:#f92672">=</span> CatBoostClassifier(iterations <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, 
+                           learning_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,
+                           depth <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, 
+                           loss_function <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Logloss&#39;</span>)
+<span style="color:#75715e"># Fit model</span>
+model<span style="color:#f92672">.</span>fit(train_data)
+<span style="color:#75715e"># Get predicted classes</span>
+preds_class <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict(test_data)
+<span style="color:#75715e"># Get predicted probabilities for each class</span>
+preds_proba <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict_proba(test_data)
+<span style="color:#75715e"># Get predicted RawFormulaVal</span>
+preds_raw <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict(test_data, prediction_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;RawFormulaVal&#39;</span>)
+</code></pre></div><h2 id="3-case">3. Case</h2>
+<p>下面利用catboost内置的titanic数据集做演示。</p>
+<h4 id="库和数据集准备">库和数据集准备</h4>
+<p>首先导入必要的库和做数据准备，这里忽略最为重要的特征工程部分，仅仅作为演示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> catboost.datasets <span style="color:#f92672">import</span> titanic
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> train_test_split
+<span style="color:#f92672">from</span> catboost <span style="color:#f92672">import</span> CatBoostClassifier, Pool, cv
+<span style="color:#f92672">from</span> sklearn.metrics <span style="color:#f92672">import</span> accuracy_score
+
+<span style="color:#75715e"># 导入数据</span>
+train_df, test_df <span style="color:#f92672">=</span> titanic()
+
+<span style="color:#75715e"># 查看缺测数据：</span>
+null_value_stats <span style="color:#f92672">=</span> train_df<span style="color:#f92672">.</span>isnull()<span style="color:#f92672">.</span>sum(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+null_value_stats[null_value_stats <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>]
+
+<span style="color:#75715e"># 填充缺失值：</span>
+train_df<span style="color:#f92672">.</span>fillna(<span style="color:#f92672">-</span><span style="color:#ae81ff">999</span>, inplace<span style="color:#f92672">=</span>True)
+test_df<span style="color:#f92672">.</span>fillna(<span style="color:#f92672">-</span><span style="color:#ae81ff">999</span>, inplace<span style="color:#f92672">=</span>True)
+
+<span style="color:#75715e"># 拆分features和label</span>
+X <span style="color:#f92672">=</span> train_df<span style="color:#f92672">.</span>drop(<span style="color:#e6db74">&#39;Survived&#39;</span>, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+y <span style="color:#f92672">=</span> train_df<span style="color:#f92672">.</span>Survived
+
+<span style="color:#75715e"># train test split</span>
+X_train, X_validation, y_train, y_validation <span style="color:#f92672">=</span> train_test_split(X, y, train_size<span style="color:#f92672">=</span><span style="color:#ae81ff">0.75</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>)
+X_test <span style="color:#f92672">=</span> test_df
+
+<span style="color:#75715e"># indices of categorical features</span>
+categorical_features_indices <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(X<span style="color:#f92672">.</span>dtypes <span style="color:#f92672">!=</span> np<span style="color:#f92672">.</span>float)[<span style="color:#ae81ff">0</span>]
+</code></pre></div><h4 id="进行模型训练">进行模型训练</h4>
+<p>catboost提供的默认参数可以提供非常好的baseline。所以不妨从默认参数开始。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model <span style="color:#f92672">=</span> CatBoostClassifier(
+    custom_metric<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;Accuracy&#39;</span>],
+    random_seed<span style="color:#f92672">=</span><span style="color:#ae81ff">666</span>,
+    logging_level<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Silent&#39;</span>
+)
+<span style="color:#75715e"># custom_metric &lt;==&gt; custom_loss</span>
+
+model<span style="color:#f92672">.</span>fit(
+    X_train, y_train,
+    cat_features<span style="color:#f92672">=</span>categorical_features_indices,
+    eval_set<span style="color:#f92672">=</span>(X_validation, y_validation),
+    logging_level<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Verbose&#39;</span>,  <span style="color:#75715e"># you can comment this for no text output</span>
+    plot<span style="color:#f92672">=</span>True
+);
+
+<span style="color:#75715e"># OUTPUT:</span>
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">...
+</span><span style="color:#e6db74">...
+</span><span style="color:#e6db74">...
+</span><span style="color:#e6db74">bestTest = 0.3792389991
+</span><span style="color:#e6db74">bestIteration = 342
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Shrink model to first 343 iterations.
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</code></pre></div><p><img src="https://www.wentixiaogege.com/post/ml-catboost/pics/image-20190808164800993.png" alt="image-20190808164800993"></p>
+<h4 id="应用模型进行预测">应用模型进行预测</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">predictions <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict(X_test)
+predictions_probs <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict_proba(X_test)
+<span style="color:#66d9ef">print</span>(predictions[:<span style="color:#ae81ff">10</span>])
+<span style="color:#66d9ef">print</span>(predictions_probs[:<span style="color:#ae81ff">10</span>])
+<span style="color:#75715e"># OUTPUT:</span>
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">[0. 0. 0. 0. 1. 0. 1. 0. 1. 0.]
+</span><span style="color:#e6db74">[[0.90866781 0.09133219]
+</span><span style="color:#e6db74"> [0.63668717 0.36331283]
+</span><span style="color:#e6db74"> [0.95333247 0.04666753]
+</span><span style="color:#e6db74"> [0.91051481 0.08948519]
+</span><span style="color:#e6db74"> [0.28010084 0.71989916]
+</span><span style="color:#e6db74"> [0.94618962 0.05381038]
+</span><span style="color:#e6db74"> [0.35536101 0.64463899]
+</span><span style="color:#e6db74"> [0.81843278 0.18156722]
+</span><span style="color:#e6db74"> [0.32829247 0.67170753]
+</span><span style="color:#e6db74"> [0.92653732 0.07346268]]
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</code></pre></div><h4 id="选择最好的模型输出use_best_model">选择最好的模型输出(<code>use_best_model</code>)</h4>
+<p>在进行模型训练的时候，<code>use_best_model</code>最好用默认设置<code>True</code>，这意味着最后的模型训练结果是收缩在最佳的迭代次数上的（可以用<code>model.tree_count_</code>获得最佳的迭代次数），如果<code>use_best_model</code>设置为<code>False</code>，则 <code>model.tree_count_</code> = <code>iteration</code>。 如下面的例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># 数据准备的部分见库和数据集准备部分</span>
+params <span style="color:#f92672">=</span> {
+    <span style="color:#e6db74">&#39;iterations&#39;</span>: <span style="color:#ae81ff">500</span>,
+    <span style="color:#e6db74">&#39;learning_rate&#39;</span>: <span style="color:#ae81ff">0.1</span>,
+    <span style="color:#e6db74">&#39;eval_metric&#39;</span>: <span style="color:#e6db74">&#39;Accuracy&#39;</span>,
+    <span style="color:#e6db74">&#39;random_seed&#39;</span>: <span style="color:#ae81ff">666</span>,
+    <span style="color:#e6db74">&#39;logging_level&#39;</span>: <span style="color:#e6db74">&#39;Silent&#39;</span>,
+    <span style="color:#e6db74">&#39;use_best_model&#39;</span>: False
+}
+<span style="color:#75715e"># train</span>
+train_pool <span style="color:#f92672">=</span> Pool(X_train, y_train, cat_features<span style="color:#f92672">=</span>categorical_features_indices)
+<span style="color:#75715e"># validation</span>
+validate_pool <span style="color:#f92672">=</span> Pool(X_validation, y_validation, cat_features<span style="color:#f92672">=</span>categorical_features_indices)
+
+<span style="color:#75715e"># train with &#39;use_best_model&#39;: False</span>
+model <span style="color:#f92672">=</span> CatBoostClassifier(<span style="color:#f92672">**</span>params)
+model<span style="color:#f92672">.</span>fit(train_pool, eval_set<span style="color:#f92672">=</span>validate_pool)
+
+<span style="color:#75715e"># train with &#39;use_best_model&#39;: True</span>
+best_model_params <span style="color:#f92672">=</span> params<span style="color:#f92672">.</span>copy()
+best_model_params<span style="color:#f92672">.</span>update({<span style="color:#e6db74">&#39;use_best_model&#39;</span>: True})
+best_model <span style="color:#f92672">=</span> CatBoostClassifier(<span style="color:#f92672">**</span>best_model_params)
+best_model<span style="color:#f92672">.</span>fit(train_pool, eval_set<span style="color:#f92672">=</span>validate_pool);
+
+<span style="color:#75715e"># show result</span>
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Simple model validation accuracy: {:.4}, and the number of trees: {}&#39;</span><span style="color:#f92672">.</span>format(
+    accuracy_score(y_validation, model<span style="color:#f92672">.</span>predict(X_validation)), model<span style="color:#f92672">.</span>tree_count_))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;&#39;</span>)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Best model validation accuracy: {:.4}, and the number of trees: {}&#39;</span><span style="color:#f92672">.</span>format(
+    accuracy_score(y_validation, best_model<span style="color:#f92672">.</span>predict(X_validation)),best_model<span style="color:#f92672">.</span>tree_count_))
+</code></pre></div><h4 id="用early-stopping防止过拟合节约训练时间">用Early Stopping防止过拟合、节约训练时间</h4>
+<p>earlystopping是常用的防止模型过拟合的方式，同时也可以大幅度的节约训练时间。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">params<span style="color:#f92672">.</span>update({<span style="color:#e6db74">&#39;iterations&#39;</span>:<span style="color:#ae81ff">1000</span>})
+params
+<span style="color:#75715e"># OUTPUT:</span>
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">{&#39;iterations&#39;: 1000,
+</span><span style="color:#e6db74"> &#39;learning_rate&#39;: 0.1,
+</span><span style="color:#e6db74"> &#39;eval_metric&#39;: &#39;Accuracy&#39;,
+</span><span style="color:#e6db74"> &#39;random_seed&#39;: 42,
+</span><span style="color:#e6db74"> &#39;logging_level&#39;: &#39;Silent&#39;,
+</span><span style="color:#e6db74"> &#39;use_best_model&#39;: False}
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+<span style="color:#f92672">%%</span>time
+model <span style="color:#f92672">=</span> CatBoostClassifier(<span style="color:#f92672">**</span>params)
+model<span style="color:#f92672">.</span>fit(train_pool, eval_set<span style="color:#f92672">=</span>validate_pool)
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">CPU times: user 2min 11s, sys: 52.1 s, total: 3min 3s
+</span><span style="color:#e6db74">Wall time: 27.8 s
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+<span style="color:#f92672">%%</span>time
+earlystop_model_1 <span style="color:#f92672">=</span> CatBoostClassifier(<span style="color:#f92672">**</span>params)
+earlystop_model_1<span style="color:#f92672">.</span>fit(train_pool, eval_set<span style="color:#f92672">=</span>validate_pool, early_stopping_rounds<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>, verbose<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">CPU times: user 46.6 s, sys: 15.6 s, total: 1min 2s
+</span><span style="color:#e6db74">Wall time: 9.2 s
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+<span style="color:#f92672">%%</span>time
+earlystop_params <span style="color:#f92672">=</span> params<span style="color:#f92672">.</span>copy()
+earlystop_params<span style="color:#f92672">.</span>update({
+    <span style="color:#e6db74">&#39;od_type&#39;</span>: <span style="color:#e6db74">&#39;Iter&#39;</span>,
+    <span style="color:#e6db74">&#39;od_wait&#39;</span>: <span style="color:#ae81ff">200</span>,
+    <span style="color:#e6db74">&#39;logging_level&#39;</span>: <span style="color:#e6db74">&#39;Verbose&#39;</span>    
+})
+earlystop_model_2 <span style="color:#f92672">=</span> CatBoostClassifier(<span style="color:#f92672">**</span>earlystop_params)
+earlystop_model_2<span style="color:#f92672">.</span>fit(train_pool, eval_set<span style="color:#f92672">=</span>validate_pool);
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">CPU times: user 49.6 s, sys: 19.9 s, total: 1min 9s
+</span><span style="color:#e6db74">Wall time: 10.3 s
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</code></pre></div><p>也可以直接设置参数<code>early_stopping_rounds</code>:</p>
+<blockquote>
+<p><code>early_stopping_rounds</code>:</p>
+<p>Set the overfitting detector type to ‘Iter’ ( ‘od_type’: ‘Iter’) and stop the training after the specified number of iterations since the iteration with the optimal metric value.</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">earlystop_params <span style="color:#f92672">=</span> params<span style="color:#f92672">.</span>copy()
+earlystop_params<span style="color:#f92672">.</span>update({
+    <span style="color:#e6db74">&#39;early_stopping_rounds&#39;</span>: <span style="color:#ae81ff">200</span>,
+    <span style="color:#e6db74">&#39;logging_level&#39;</span>: <span style="color:#e6db74">&#39;Verbose&#39;</span>    
+})
+</code></pre></div><p>输出结果：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Simple model tree count: {}&#39;</span><span style="color:#f92672">.</span>format(model<span style="color:#f92672">.</span>tree_count_))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Simple model validation accuracy: {:.4}&#39;</span><span style="color:#f92672">.</span>format(
+    accuracy_score(y_validation, model<span style="color:#f92672">.</span>predict(X_validation))
+))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;&#39;</span>)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Early-stopped model 1 tree count: {}&#39;</span><span style="color:#f92672">.</span>format(earlystop_model_1<span style="color:#f92672">.</span>tree_count_))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Early-stopped model 1 validation accuracy: {:.4}&#39;</span><span style="color:#f92672">.</span>format(
+    accuracy_score(y_validation, earlystop_model_1<span style="color:#f92672">.</span>predict(X_validation))
+))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;&#39;</span>)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Early-stopped model 2 tree count: {}&#39;</span><span style="color:#f92672">.</span>format(earlystop_model_2<span style="color:#f92672">.</span>tree_count_))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Early-stopped model 2 validation accuracy: {:.4}&#39;</span><span style="color:#f92672">.</span>format(
+    accuracy_score(y_validation, earlystop_model_2<span style="color:#f92672">.</span>predict(X_validation))
+))
+
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">Simple model tree count: 1000
+</span><span style="color:#e6db74">Simple model validation accuracy: 0.8206
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Early-stopped model 1 tree count: 393
+</span><span style="color:#e6db74">Early-stopped model 1 validation accuracy: 0.8296
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Early-stopped model 2 tree count: 393
+</span><span style="color:#e6db74">Early-stopped model 2 validation accuracy: 0.8296
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</code></pre></div><p>可以看到用earlystopping后训练时间更短，可以有效避免过拟合，得到的模型准确率更高。</p>
+<h4 id="feature-importance">Feature Importance</h4>
+<p>显示特征重要性：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model <span style="color:#f92672">=</span> CatBoostClassifier(iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>, random_seed<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>, logging_level<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Silent&#39;</span>)<span style="color:#f92672">.</span>fit(train_pool)
+
+feature_importances <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>get_feature_importance(train_pool)
+feature_names <span style="color:#f92672">=</span> X_train<span style="color:#f92672">.</span>columns
+<span style="color:#66d9ef">for</span> score, name <span style="color:#f92672">in</span> sorted(zip(feature_importances, feature_names), reverse<span style="color:#f92672">=</span>True):
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;{}: {}&#39;</span><span style="color:#f92672">.</span>format(name, score))
+    
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">Sex: 48.21061102095765
+</span><span style="color:#e6db74">Pclass: 17.045040317206695
+</span><span style="color:#e6db74">Age: 7.611166250335819
+</span><span style="color:#e6db74">Parch: 5.220861205417323
+</span><span style="color:#e6db74">SibSp: 5.16579933751564
+</span><span style="color:#e6db74">Embarked: 4.968165121183137
+</span><span style="color:#e6db74">Fare: 4.858908301370388
+</span><span style="color:#e6db74">Cabin: 4.140024994004162
+</span><span style="color:#e6db74">Ticket: 2.7794234520091585
+</span><span style="color:#e6db74">PassengerId: 0.0
+</span><span style="color:#e6db74">Name: 0.0
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+<span style="color:#75715e"># 设置参数：prettified=True 获得更多的输出信息</span>
+importances <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>get_feature_importance(prettified<span style="color:#f92672">=</span>True)
+<span style="color:#66d9ef">print</span>(importances)
+</code></pre></div><p>封装函数，实现更好的显示方式。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+<span style="color:#f92672">import</span> seaborn <span style="color:#f92672">as</span> sns
+sns<span style="color:#f92672">.</span>set(font_scale<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+<span style="color:#f92672">%</span>matplotlib inline
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">func_plot_importance</span>(df_imp):
+
+    sns<span style="color:#f92672">.</span>set(font_scale<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+    fig <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>), dpi<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+    ax <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>barplot(
+        x<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Importance&#34;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Features&#34;</span>, data<span style="color:#f92672">=</span>df_imp, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Total&#34;</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;b&#34;</span>)
+    ax<span style="color:#f92672">.</span>tick_params(labelcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>, labelsize<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;10&#39;</span>, width<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+    plt<span style="color:#f92672">.</span>show()
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">display_importance</span>(model_out, columns, printing<span style="color:#f92672">=</span>True, plotting<span style="color:#f92672">=</span>True):
+    importances <span style="color:#f92672">=</span> model_out<span style="color:#f92672">.</span>feature_importances_
+    indices <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>argsort(importances)[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+    importance_list <span style="color:#f92672">=</span> []
+    <span style="color:#66d9ef">for</span> f <span style="color:#f92672">in</span> range(len(columns)):
+        importance_list<span style="color:#f92672">.</span>append((columns[indices[f]], importances[indices[f]]))
+        <span style="color:#66d9ef">if</span> printing:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%2d</span><span style="color:#e6db74">) </span><span style="color:#e6db74">%-*s</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%f</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (f <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">30</span>, columns[indices[f]],
+                                    importances[indices[f]]))
+    <span style="color:#66d9ef">if</span> plotting:
+        df_imp <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(
+            importance_list, columns<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;Features&#39;</span>, <span style="color:#e6db74">&#39;Importance&#39;</span>])
+        func_plot_importance(df_imp)
+        
+
+display_importance(model_out<span style="color:#f92672">=</span>model, columns<span style="color:#f92672">=</span>X_train<span style="color:#f92672">.</span>columns)
+</code></pre></div><p><img src="https://www.wentixiaogege.com/post/ml-catboost/pics/image-20190809183337522.png" alt="img"></p>
+<h4 id="cross-validationhttpscatboostaidocsconceptspython-reference_cvhtml"><a href="https://catboost.ai/docs/concepts/python-reference_cv.html">Cross Validation</a></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cv(pool<span style="color:#f92672">=</span>None, 
+   params<span style="color:#f92672">=</span>None, 
+   dtrain<span style="color:#f92672">=</span>None, 
+   iterations<span style="color:#f92672">=</span>None, 
+   num_boost_round<span style="color:#f92672">=</span>None,
+   fold_count<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, 
+   nfold<span style="color:#f92672">=</span>None,
+   inverted<span style="color:#f92672">=</span>False,
+   partition_random_seed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,
+   seed<span style="color:#f92672">=</span>None, 
+   shuffle<span style="color:#f92672">=</span>True, 
+   logging_level<span style="color:#f92672">=</span>None, 
+   stratified<span style="color:#f92672">=</span>None,
+   as_pandas<span style="color:#f92672">=</span>True,
+   metric_period<span style="color:#f92672">=</span>None,
+   verbose<span style="color:#f92672">=</span>None,
+   verbose_eval<span style="color:#f92672">=</span>None,
+   plot<span style="color:#f92672">=</span>False,
+   early_stopping_rounds<span style="color:#f92672">=</span>None,
+   folds<span style="color:#f92672">=</span>None)
+</code></pre></div><p>需要先将数据封装<code>Pool</code>里，然后再进行交叉验证。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cv_params <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>get_params()
+cv_params<span style="color:#f92672">.</span>update({
+    <span style="color:#e6db74">&#39;loss_function&#39;</span>: <span style="color:#e6db74">&#39;Logloss&#39;</span>
+})
+cv_data <span style="color:#f92672">=</span> cv(
+    Pool(X, y, cat_features<span style="color:#f92672">=</span>categorical_features_indices),
+    cv_params,
+    plot<span style="color:#f92672">=</span>True
+)
+
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Best validation accuracy score: {:.3f}±{:.3f} on step {}&#39;</span><span style="color:#f92672">.</span>format(
+    np<span style="color:#f92672">.</span>max(cv_data[<span style="color:#e6db74">&#39;test-Accuracy-mean&#39;</span>]),
+    cv_data[<span style="color:#e6db74">&#39;test-Accuracy-std&#39;</span>][np<span style="color:#f92672">.</span>argmax(cv_data[<span style="color:#e6db74">&#39;test-Accuracy-mean&#39;</span>])],
+    np<span style="color:#f92672">.</span>argmax(cv_data[<span style="color:#e6db74">&#39;test-Accuracy-mean&#39;</span>])))
+<span style="color:#75715e"># Best validation accuracy score: 0.833±0.007 on step 286</span>
+best_value <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>min(np<span style="color:#f92672">.</span>array(cv_data[<span style="color:#e6db74">&#39;test-Logloss-mean&#39;</span>]))
+best_iter_idx <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>argmin(np<span style="color:#f92672">.</span>array(cv_data[<span style="color:#e6db74">&#39;test-Logloss-mean&#39;</span>]))
+
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Best validation Logloss score, not stratified: {:.4f}±{:.4f} on step {}&#39;</span><span style="color:#f92672">.</span>format(
+    best_value,
+    cv_data[<span style="color:#e6db74">&#39;test-Logloss-std&#39;</span>][best_iter_idx],
+    best_iter_idx<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>))
+</code></pre></div><p><strong>注意：iteration = index+1</strong></p>
+<p>用holdout做验证容易低估或高估我们的模型预测偏差，用交叉验证是更好的方式。</p>
+<h4 id="using-baseline">Using Baseline</h4>
+<p>可以实现在之前预训练的基础上继续训练。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">params <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;iterations&#39;</span>: <span style="color:#ae81ff">200</span>,
+          <span style="color:#e6db74">&#39;learning_rate&#39;</span>: <span style="color:#ae81ff">0.1</span>,
+          <span style="color:#e6db74">&#39;eval_metric&#39;</span>: <span style="color:#e6db74">&#39;Accuracy&#39;</span>,
+          <span style="color:#e6db74">&#39;random_seed&#39;</span>: <span style="color:#ae81ff">42</span>,
+          <span style="color:#e6db74">&#39;logging_level&#39;</span>: <span style="color:#e6db74">&#39;Verbose&#39;</span>,
+          <span style="color:#e6db74">&#39;use_best_model&#39;</span>: False}
+
+current_params <span style="color:#f92672">=</span> params<span style="color:#f92672">.</span>copy()
+current_params<span style="color:#f92672">.</span>update({
+    <span style="color:#e6db74">&#39;iterations&#39;</span>: <span style="color:#ae81ff">10</span>
+})
+model <span style="color:#f92672">=</span> CatBoostClassifier(<span style="color:#f92672">**</span>current_params)<span style="color:#f92672">.</span>fit(X_train, y_train, categorical_features_indices)
+<span style="color:#75715e"># Get baseline (only with prediction_type=&#39;RawFormulaVal&#39;)</span>
+baseline <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict(X_train, prediction_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;RawFormulaVal&#39;</span>)
+<span style="color:#75715e"># Fit new model</span>
+model<span style="color:#f92672">.</span>fit(X_train, y_train, categorical_features_indices, baseline<span style="color:#f92672">=</span>baseline);
+</code></pre></div><h4 id="snapshot">Snapshot</h4>
+<p>可用于在中断后恢复之前训练状态，以及在之前训练的基础上进行继续训练。假如我们的训练会持续较长时间，设置snapshot可以有效防止我们的电脑或者服务器在过程中重启或者其他故障而导致我们的训练前功尽弃。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">params_with_snapshot <span style="color:#f92672">=</span> params<span style="color:#f92672">.</span>copy()
+params_with_snapshot<span style="color:#f92672">.</span>update({
+    <span style="color:#e6db74">&#39;iterations&#39;</span>: <span style="color:#ae81ff">5</span>,
+    <span style="color:#e6db74">&#39;learning_rate&#39;</span>: <span style="color:#ae81ff">0.5</span>,
+    <span style="color:#e6db74">&#39;logging_level&#39;</span>: <span style="color:#e6db74">&#39;Verbose&#39;</span>
+})
+model <span style="color:#f92672">=</span> CatBoostClassifier(<span style="color:#f92672">**</span>params_with_snapshot)<span style="color:#f92672">.</span>fit(train_pool, eval_set<span style="color:#f92672">=</span>validate_pool, save_snapshot<span style="color:#f92672">=</span>True)
+
+params_with_snapshot<span style="color:#f92672">.</span>update({
+    <span style="color:#e6db74">&#39;iterations&#39;</span>: <span style="color:#ae81ff">10</span>,
+    <span style="color:#e6db74">&#39;learning_rate&#39;</span>: <span style="color:#ae81ff">0.1</span>,
+})
+model <span style="color:#f92672">=</span> CatBoostClassifier(<span style="color:#f92672">**</span>params_with_snapshot)<span style="color:#f92672">.</span>fit(train_pool, eval_set<span style="color:#f92672">=</span>validate_pool, save_snapshot<span style="color:#f92672">=</span>True)
+</code></pre></div><p>训练的中间信息会默认保存在<code>catboost_info/</code>目录下，如需修改可以通过<code>train_dir</code>参数进行设置。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!rm &#39;catboost_info/snapshot.bkp&#39;</span>
+<span style="color:#f92672">from</span> catboost <span style="color:#f92672">import</span> CatBoostClassifier
+model <span style="color:#f92672">=</span> CatBoostClassifier(
+    iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">40</span>,
+    random_seed<span style="color:#f92672">=</span><span style="color:#ae81ff">43</span>
+)
+model<span style="color:#f92672">.</span>fit(
+    train_pool,
+    eval_set<span style="color:#f92672">=</span>validate_pool,
+    save_snapshot<span style="color:#f92672">=</span>True,
+    snapshot_file<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;snapshot.bkp&#39;</span>,
+    logging_level<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Verbose&#39;</span>
+)
+</code></pre></div><h4 id="loss-and-metric-function">Loss and Metric Function</h4>
+<p>注意区分两个参数：</p>
+<p>(1) <code>loss_function</code>, Alias: <code>objective</code>.</p>
+<p>The <a href="https://catboost.ai/docs/concepts/loss-functions.html#loss-functions">metric</a> to use in training. The specified value also determines the machine learning problem to solve. Some metrics support optional parameters (see the <a href="https://catboost.ai/docs/concepts/loss-functions.html#loss-functions">Objectives and metrics</a> section for details on each metric).</p>
+<p>训练模型的优化目标函数。默认参数如下：</p>
+<ul>
+<li><a href="https://catboost.ai/docs/concepts/python-reference_catboostclassifier.html">CatBoostClassifier</a>: Logloss if the target_border parameter value differs from None. Otherwise, the default loss function depends on the number of unique target values and is either set to Logloss or MultiClass.</li>
+<li><a href="https://catboost.ai/docs/concepts/python-reference_catboost.html">CatBoost</a> and <a href="https://catboost.ai/docs/concepts/python-reference_catboostregressor.html">CatBoostRegressor</a>: RMSE</li>
+</ul>
+<p>(2) <code>custom_metric</code>, Alias: <code>custom_loss</code></p>
+<p><a href="https://catboost.ai/docs/concepts/loss-functions.html#loss-functions">Metric</a> values to output during training. These functions are not optimized and are displayed for informational purposes only. Some metrics support optional parameters (see the <a href="https://catboost.ai/docs/concepts/loss-functions.html#loss-functions">Objectives and metrics</a> section for details on each metric)..</p>
+<p>在训练时输出的评估指标，仅作为模型训练状态的参照，而非实际的优化目标。</p>
+<p>(3) <code>eval_metric</code></p>
+<p>The metric used for overfitting detection (if enabled) and best model selection (if enabled). Some metrics support optional parameters (see the <a href="https://catboost.ai/docs/concepts/loss-functions.html#loss-functions">Objectives and metrics</a> section for details on each metric).</p>
+<p>用于监测模型过拟合以及作为选择最优模型的参考。(<code>loss_function</code>和<code>eval_metric</code>可以不一致，比如训练用<code>Logloss</code>，用<code>AUC</code>选择最佳模型/最佳迭代次数)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model <span style="color:#f92672">=</span> CatBoostClassifier(
+    iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">500</span>,
+    loss_function<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Logloss&#39;</span>,
+    custom_metric<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;Accuracy&#39;</span>,<span style="color:#e6db74">&#39;AUC&#39;</span>],
+    eval_metric<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;F1&#39;</span>,
+    random_seed<span style="color:#f92672">=</span><span style="color:#ae81ff">666</span>
+)
+
+<span style="color:#75715e"># custom_metric &lt;==&gt; custom_loss</span>
+<span style="color:#75715e"># 只作为评估参考，而非优化目标</span>
+
+model<span style="color:#f92672">.</span>fit(
+    X_train, y_train,
+    cat_features<span style="color:#f92672">=</span>categorical_features_indices,
+    eval_set<span style="color:#f92672">=</span>(X_validation, y_validation),
+    verbose<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>,
+    plot<span style="color:#f92672">=</span>True
+);
+</code></pre></div><p><img src="https://www.wentixiaogege.com/post/ml-catboost/pics/image-20190810232551298.png" alt="image-20190810232551298"></p>
+<p>不同参数的测试：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># custom_metric=[&#39;Accuracy&#39;,&#39;AUC&#39;], eval_metric=&#39;F1&#39;,</span>
+model<span style="color:#f92672">.</span>best_iteration_, model<span style="color:#f92672">.</span>best_score_, model<span style="color:#f92672">.</span>tree_count_
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">(219,
+</span><span style="color:#e6db74"> {&#39;learn&#39;: {&#39;Accuracy&#39;: 0.9491017964071856,
+</span><span style="color:#e6db74">   &#39;Logloss&#39;: 0.1747009677350333,
+</span><span style="color:#e6db74">   &#39;F1&#39;: 0.9294605809128631},
+</span><span style="color:#e6db74">  &#39;validation&#39;: {&#39;Accuracy&#39;: 0.8385650224215246,
+</span><span style="color:#e6db74">   &#39;Logloss&#39;: 0.39249638575985446,
+</span><span style="color:#e6db74">   &#39;F1&#39;: 0.7906976744186046,
+</span><span style="color:#e6db74">   &#39;AUC&#39;: 0.9018111688747275}},
+</span><span style="color:#e6db74"> 220)
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+
+<span style="color:#75715e"># custom_metric=[&#39;Accuracy&#39;,&#39;AUC&#39;], eval_metric=&#39;Logloss&#39;,</span>
+model<span style="color:#f92672">.</span>best_iteration_, model<span style="color:#f92672">.</span>best_score_, model<span style="color:#f92672">.</span>tree_count_    
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">(152,
+</span><span style="color:#e6db74"> {&#39;learn&#39;: {&#39;Accuracy&#39;: 0.9491017964071856, &#39;Logloss&#39;: 0.1747009677350333},
+</span><span style="color:#e6db74">  &#39;validation&#39;: {&#39;Accuracy&#39;: 0.8385650224215246,
+</span><span style="color:#e6db74">   &#39;Logloss&#39;: 0.39249638575985446,
+</span><span style="color:#e6db74">   &#39;AUC&#39;: 0.9018111688747275}},
+</span><span style="color:#e6db74"> 153)
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+
+<span style="color:#75715e"># custom_metric=[&#39;Accuracy&#39;,&#39;AUC&#39;], eval_metric=&#39;Accuracy&#39;,</span>
+model<span style="color:#f92672">.</span>best_iteration_, model<span style="color:#f92672">.</span>best_score_, model<span style="color:#f92672">.</span>tree_count_    
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">(219,
+</span><span style="color:#e6db74"> {&#39;learn&#39;: {&#39;Accuracy&#39;: 0.9491017964071856, &#39;Logloss&#39;: 0.1747009677350333},
+</span><span style="color:#e6db74">  &#39;validation&#39;: {&#39;Accuracy&#39;: 0.8385650224215246,
+</span><span style="color:#e6db74">   &#39;Logloss&#39;: 0.39249638575985446,
+</span><span style="color:#e6db74">   &#39;AUC&#39;: 0.9018111688747275}},
+</span><span style="color:#e6db74"> 220)
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</code></pre></div><h5 id="1-user-defined-objective-functionhttpscatboostaidocsconceptspython-usages-exampleshtmlcustom-objective-function">1. <a href="https://catboost.ai/docs/concepts/python-usages-examples.html#custom-objective-function">User Defined Objective Function</a></h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LoglossObjective</span>(object):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calc_ders_range</span>(self, approxes, targets, weights):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        approxes, targets, weights are indexed containers of floats
+</span><span style="color:#e6db74">        (containers which have only __len__ and __getitem__ defined).
+</span><span style="color:#e6db74">        weights parameter can be None.
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">        To understand what these parameters mean, assume that there is
+</span><span style="color:#e6db74">        a subset of your dataset that is currently being processed.
+</span><span style="color:#e6db74">        approxes contains current predictions for this subset,
+</span><span style="color:#e6db74">        targets contains target values you provided with the dataset.
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">        This function should return a list of pairs (der1, der2), where
+</span><span style="color:#e6db74">        der1 is the first derivative of the loss function with respect
+</span><span style="color:#e6db74">        to the predicted value, and der2 is the second derivative.
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">        In our case, logloss is defined by the following formula:
+</span><span style="color:#e6db74">        target * log(sigmoid(approx)) + (1 - target) * (1 - sigmoid(approx))
+</span><span style="color:#e6db74">        where sigmoid(x) = 1 / (1 + e^(-x)).
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">assert</span> len(approxes) <span style="color:#f92672">==</span> len(targets)
+        <span style="color:#66d9ef">if</span> weights <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None:
+            <span style="color:#66d9ef">assert</span> len(weights) <span style="color:#f92672">==</span> len(approxes)
+        result <span style="color:#f92672">=</span> []
+        <span style="color:#66d9ef">for</span> index <span style="color:#f92672">in</span> range(len(targets)):
+            e <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>exp(approxes[index])
+            p <span style="color:#f92672">=</span> e <span style="color:#f92672">/</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> e)
+            der1 <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> p) <span style="color:#66d9ef">if</span> targets[index] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.0</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">-</span>p
+            der2 <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>p <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> p)
+            <span style="color:#66d9ef">if</span> weights <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None:
+                der1 <span style="color:#f92672">*=</span> weights[index]
+                der2 <span style="color:#f92672">*=</span> weights[index]
+            result<span style="color:#f92672">.</span>append((der1, der2))
+        <span style="color:#66d9ef">return</span> result
+
+model <span style="color:#f92672">=</span> CatBoostClassifier(
+    iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+    random_seed<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>, 
+    loss_function<span style="color:#f92672">=</span>LoglossObjective(), 
+    eval_metric<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Logloss&#34;</span>
+)
+<span style="color:#75715e"># Fit model</span>
+model<span style="color:#f92672">.</span>fit(train_pool)
+<span style="color:#75715e"># Only prediction_type=&#39;RawFormulaVal&#39; is allowed with custom `loss_function`</span>
+preds_raw <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict(X_test, prediction_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;RawFormulaVal&#39;</span>)
+</code></pre></div><h5 id="2-user-defined-metric-functionhttpscatboostaidocsconceptspython-usages-exampleshtmlcustom-loss-function-eval-metric">2. <a href="https://catboost.ai/docs/concepts/python-usages-examples.html#custom-loss-function-eval-metric">User Defined Metric Function</a></h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LoglossMetric</span>(object):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_final_error</span>(self, error, weight):
+        <span style="color:#66d9ef">return</span> error <span style="color:#f92672">/</span> (weight <span style="color:#f92672">+</span> <span style="color:#ae81ff">1e-38</span>)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">is_max_optimal</span>(self):
+        <span style="color:#66d9ef">return</span> False
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">evaluate</span>(self, approxes, target, weight):
+        <span style="color:#e6db74">&#34;&#34;&#34;        
+</span><span style="color:#e6db74">        approxes is a list of indexed containers
+</span><span style="color:#e6db74">        (containers with only __len__ and __getitem__ defined),
+</span><span style="color:#e6db74">        one container per approx dimension.
+</span><span style="color:#e6db74">        Each container contains floats.
+</span><span style="color:#e6db74">        weight is a one dimensional indexed container.
+</span><span style="color:#e6db74">        target is float.
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">        weight parameter can be None.
+</span><span style="color:#e6db74">        Returns pair (error, weights sum)
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">assert</span> len(approxes) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">assert</span> len(target) <span style="color:#f92672">==</span> len(approxes[<span style="color:#ae81ff">0</span>])
+        approx <span style="color:#f92672">=</span> approxes[<span style="color:#ae81ff">0</span>]
+        error_sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>
+        weight_sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(approx)):
+            w <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span> <span style="color:#66d9ef">if</span> weight <span style="color:#f92672">is</span> None <span style="color:#66d9ef">else</span> weight[i]
+            weight_sum <span style="color:#f92672">+=</span> w
+            error_sum <span style="color:#f92672">+=</span> <span style="color:#f92672">-</span>w <span style="color:#f92672">*</span> (target[i] <span style="color:#f92672">*</span> approx[i] <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>log(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> np<span style="color:#f92672">.</span>exp(approx[i])))
+
+        <span style="color:#66d9ef">return</span> error_sum, weight_sum
+
+model <span style="color:#f92672">=</span> CatBoostClassifier(
+    iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+    random_seed<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>, 
+    loss_function<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Logloss&#34;</span>,
+    eval_metric<span style="color:#f92672">=</span>LoglossMetric()
+)
+<span style="color:#75715e"># Fit model</span>
+model<span style="color:#f92672">.</span>fit(train_pool)
+<span style="color:#75715e"># Only prediction_type=&#39;RawFormulaVal&#39; is allowed with custom `loss_function`</span>
+preds_raw <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict(X_test, prediction_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;RawFormulaVal&#39;</span>)
+</code></pre></div><h4 id="训练后查看模型在新数据集上的表现eval-metrics">训练后查看模型在新数据集上的表现（Eval Metrics）</h4>
+<p><code>CatBoost</code>有一个<code>eval_metrics</code>的方法，可以用于计算训练后的模型某一指定指标在每一轮迭代的表现，同时也可以可视化。可用于训练后的模型在新数据集上的评估。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model <span style="color:#f92672">=</span> CatBoostClassifier(iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>, random_seed<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>, logging_level<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Silent&#39;</span>)<span style="color:#f92672">.</span>fit(train_pool)
+eval_metrics <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>eval_metrics(validate_pool, [<span style="color:#e6db74">&#39;AUC&#39;</span>,<span style="color:#e6db74">&#39;F1&#39;</span>,<span style="color:#e6db74">&#39;Logloss&#39;</span>], plot<span style="color:#f92672">=</span>True)
+<span style="color:#75715e"># 返回一个dict，有&#39;AUC&#39;,&#39;F1&#39;,&#39;Logloss&#39;这几个键</span>
+</code></pre></div><p><img src="https://www.wentixiaogege.com/post/ml-catboost/pics/image-20190809184201901.png" alt="image-20190809184201901"></p>
+<h4 id="对比不同参数配置下模型的学习过程">对比不同参数配置下模型的学习过程</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> catboost <span style="color:#f92672">import</span> MetricVisualizer
+
+model1 <span style="color:#f92672">=</span> CatBoostClassifier(iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, depth<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, train_dir<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;model_depth_5/&#39;</span>, logging_level<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Silent&#39;</span>)
+model1<span style="color:#f92672">.</span>fit(train_pool, eval_set<span style="color:#f92672">=</span>validate_pool)
+
+model2 <span style="color:#f92672">=</span> CatBoostClassifier(iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, depth<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>, train_dir<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;model_depth_8/&#39;</span>, logging_level<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Silent&#39;</span>)
+model2<span style="color:#f92672">.</span>fit(train_pool, eval_set<span style="color:#f92672">=</span>validate_pool);
+
+widget <span style="color:#f92672">=</span> MetricVisualizer([<span style="color:#e6db74">&#39;model_depth_5&#39;</span>, <span style="color:#e6db74">&#39;model_depth_8&#39;</span>])
+widget<span style="color:#f92672">.</span>start()
+</code></pre></div><p><img src="https://www.wentixiaogege.com/post/ml-catboost/pics/image-20190809185049769.png" alt="image-20190809185049769"></p>
+<h4 id="保存和导入模型">保存和导入模型</h4>
+<p>将模型保存为二进制文件。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model <span style="color:#f92672">=</span> CatBoostClassifier(iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, random_seed<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>, logging_level<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Silent&#39;</span>)<span style="color:#f92672">.</span>fit(train_pool)
+model<span style="color:#f92672">.</span>save_model(<span style="color:#e6db74">&#39;catboost_model.dump&#39;</span>)
+model <span style="color:#f92672">=</span> CatBoostClassifier()
+model<span style="color:#f92672">.</span>load_model(<span style="color:#e6db74">&#39;catboost_model.dump&#39;</span>);
+
+<span style="color:#66d9ef">print</span>(model<span style="color:#f92672">.</span>get_params())
+<span style="color:#66d9ef">print</span>(model<span style="color:#f92672">.</span>random_seed_)
+<span style="color:#66d9ef">print</span>(model<span style="color:#f92672">.</span>learning_rate_)
+</code></pre></div><h4 id="模型的分析与理解">模型的分析与理解</h4>
+<pre><code>shap
+</code></pre><h4 id="调参">调参</h4>
+<p>我们可以通过交叉验证和learning curve得到最佳的iterations (boosting steps)，但还有一些重要的参数需要我们额外调整。较为重要的比如<code>l2_leaf_reg</code>, <code>learning_rate</code>等，更多的参数说明请<a href="https://catboost.ai/docs/concepts/python-reference_parameters-list.html#python-reference_parameters-list">参考官网</a>。下面用<code>hyperopt</code>进行调参演示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> hyperopt
+<span style="color:#f92672">from</span> catboost <span style="color:#f92672">import</span> CatBoostClassifier, Pool, cv
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hyperopt_objective</span>(params):
+    
+    model <span style="color:#f92672">=</span> CatBoostClassifier(
+        l2_leaf_reg<span style="color:#f92672">=</span>int(params[<span style="color:#e6db74">&#39;l2_leaf_reg&#39;</span>]),
+        learning_rate<span style="color:#f92672">=</span>params[<span style="color:#e6db74">&#39;learning_rate&#39;</span>],
+        iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>,
+        eval_metric<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Accuracy&#39;</span>,
+        loss_function<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Logloss&#39;</span>,
+        random_seed<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>,
+        logging_level<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Silent&#39;</span>
+    )
+    
+    cv_data <span style="color:#f92672">=</span> cv(
+        Pool(X, y, cat_features<span style="color:#f92672">=</span>categorical_features_indices),
+        model<span style="color:#f92672">.</span>get_params()
+    )
+    best_accuracy <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>max(cv_data[<span style="color:#e6db74">&#39;test-Accuracy-mean&#39;</span>])
+    
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> best_accuracy <span style="color:#75715e"># as hyperopt minimises</span>
+<span style="color:#f92672">from</span> numpy.random <span style="color:#f92672">import</span> RandomState
+
+params_space <span style="color:#f92672">=</span> {
+    <span style="color:#e6db74">&#39;l2_leaf_reg&#39;</span>: hyperopt<span style="color:#f92672">.</span>hp<span style="color:#f92672">.</span>qloguniform(<span style="color:#e6db74">&#39;l2_leaf_reg&#39;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>),
+    <span style="color:#e6db74">&#39;learning_rate&#39;</span>: hyperopt<span style="color:#f92672">.</span>hp<span style="color:#f92672">.</span>uniform(<span style="color:#e6db74">&#39;learning_rate&#39;</span>, <span style="color:#ae81ff">1e-3</span>, <span style="color:#ae81ff">5e-1</span>),
+}
+
+trials <span style="color:#f92672">=</span> hyperopt<span style="color:#f92672">.</span>Trials()
+
+best <span style="color:#f92672">=</span> hyperopt<span style="color:#f92672">.</span>fmin(
+    hyperopt_objective,
+    space<span style="color:#f92672">=</span>params_space,
+    algo<span style="color:#f92672">=</span>hyperopt<span style="color:#f92672">.</span>tpe<span style="color:#f92672">.</span>suggest,
+    max_evals<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+    trials<span style="color:#f92672">=</span>trials,
+    rstate<span style="color:#f92672">=</span>RandomState(<span style="color:#ae81ff">123</span>)
+)
+
+<span style="color:#66d9ef">print</span>(best)
+
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">100%|██████████| 10/10 [01:02&lt;00:00,  6.69s/it, best loss: 0.1728395061728395]
+</span><span style="color:#e6db74">{&#39;l2_leaf_reg&#39;: 3.0, &#39;learning_rate&#39;: 0.36395429572850696}
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+model <span style="color:#f92672">=</span> CatBoostClassifier(
+    l2_leaf_reg<span style="color:#f92672">=</span>int(best[<span style="color:#e6db74">&#39;l2_leaf_reg&#39;</span>]),
+    learning_rate<span style="color:#f92672">=</span>best[<span style="color:#e6db74">&#39;learning_rate&#39;</span>],
+    iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>,
+    eval_metric<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Accuracy&#39;</span>,
+    loss_function<span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Logloss&#39;</span>,
+    random_seed<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>,
+    logging_level<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Silent&#39;</span>
+)
+cv_data <span style="color:#f92672">=</span> cv(Pool(X, y, cat_features<span style="color:#f92672">=</span>categorical_features_indices), model<span style="color:#f92672">.</span>get_params())
+
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Precise validation accuracy score: {}&#39;</span><span style="color:#f92672">.</span>format(np<span style="color:#f92672">.</span>max(cv_data[<span style="color:#e6db74">&#39;test-Accuracy-mean&#39;</span>])))
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;Best iteration: {int(np.argmax(cv_data[&#39;test-Accuracy-mean&#39;])+1)}&#34;</span>)
+
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">Precise validation accuracy score: 0.8271604938271605
+</span><span style="color:#e6db74">Best iteration: 49
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</code></pre></div><p>一些常用参数的说明，更多参数请查阅官网文档<a href="https://catboost.ai/docs/concepts/python-reference_parameters-list.html">Python Training Parameters</a>：</p>
+<ol>
+<li><code>iterations</code> + <code>learning_rate</code></li>
+</ol>
+<p>默认状况下会迭代1000次， <code>learning_rate</code>是根据数据集及<code>iterations</code>参数自动定义的。如果减小<code>iterations</code>，最好相应的增大 <code>learning_rate</code>，使得结果收敛。</p>
+<p>如果在训练中发现结果没收敛，可以考虑提高 <code>learning_rate</code>；如果发现过拟合了，则需要减小 <code>learning_rate</code></p>
+<ol>
+<li><code>boosting_type</code></li>
+</ol>
+<p>默认是<code>Ordered</code>，效果不错，在小数据集推荐使。但是速度会比<code>Plain</code>模式慢。</p>
+<ol>
+<li>
+<p><a href="https://catboost.ai/docs/concepts/algorithm-main-stages_bootstrap-options.html"><code>bootstrap_type</code></a></p>
+</li>
+<li>
+<p><code>one_hot_max_size</code></p>
+<p>在类别特征转换时，对取值少于或等于<code>one_hot_max_size</code>的类别特征，采用OneHot编码，对其他类别特征采用更多统计值。通常OneHot是更快的方式，而计算统计值耗时更多，所以为了提高速度，我们可以给该参数设置较大的值。</p>
+</li>
+<li>
+<p><code>rsm</code>: <em>Alias:</em> <code>colsample_bylevel</code>, float(0,1]</p>
+<p>参与每次分裂选择的特征比例。在你有好几百维以上特征的情况下，这个参数非常有效，可以有效的加速训练同时保持较好的结果。如果特征较少，可以不用该参数。</p>
+<p>假设你有很多的特征，你设置了<code>rsm</code>=0.1，通常你需要增加20%的迭代次数使得模型收敛，但是每次的迭代速度将会比原来快10倍。</p>
+</li>
+<li>
+<p><code>max_ctr_complexity</code></p>
+<p>特征组合的最大特征数量。catboost用贪心算法做类别特征的特征组合，非常耗时。设置 <code>max_ctr_complexity</code> = 1 取消特征组合，设置 <code>max_ctr_complexity</code> = 2 只做两个特征的组合。</p>
+</li>
+<li>
+<p><code>depth</code></p>
+</li>
+</ol>
+<p>树深。大多数情况下，在4-10之间，可以在6-10之间多加调试。</p>
+<ol>
+<li>
+<p><code>l2_leaf_reg</code></p>
+<p>L2正则系数，多尝试不同的取值。</p>
+</li>
+<li>
+<p><code>random_strength</code></p>
+<p>可以防止过拟合。在分裂过程计算各特征score时加入的随机因子。本来score是确定性的，我们加入一个满足均值为0，方差为1*<code>random_strength</code>（方差随着迭代减小）分布的误差项来产生随机性，防止过拟合。</p>
+</li>
+<li>
+<p><code>bagging_temperature</code>: [0,inf)</p>
+<p>当<a href="https://catboost.ai/docs/concepts/algorithm-main-stages_bootstrap-options.html"><code>bootstrap_type</code></a>为<code>Bayesian</code>时有效，用于设置Bayesian bootstrap的参数。当取值为1时，会从指数分布中采样权值；当为0时，所有的权重为1。这个值越大，则bootstrap越aggressive。</p>
+</li>
+<li>
+<p><code>has_time</code></p>
+<p>如果数据集是时间序列，需要考虑样本的先后关系，则可以设置该参数。则<a href="https://catboost.ai/docs/concepts/algorithm-main-stages_cat-to-numberic.html#algorithm-main-stages_cat-to-numberic">Transforming categorical features to numerical features</a> 和 <a href="https://catboost.ai/docs/concepts/algorithm-main-stages_choose-tree-structure.html#algorithm-main-stages_choose-tree-structure">Choosing the tree structure</a> 的阶段，数据会保持原有顺序，或根据Timestamp的列排列（如果在input data中声明），而不会进行shuffle操作 (random permutations)。</p>
+</li>
+<li>
+<p><code>grow_policy</code>: 可选值为 [<code>SymmetricTree</code>, <code>Depthwise</code>, <code>Lossguide</code>]</p>
+<p>决策树的生长方式，默认是level-wise的symmetric trees。</p>
+<p><code>min_data_in_leaf</code> Alias: <code>min_child_samples</code>: 支持<code>Depthwise</code>, <code>Lossguide</code></p>
+<p><code>max_leaves</code> Alias: <code>num_leaves</code>: 支持<code>Lossguide</code></p>
+</li>
+</ol>
+<p>如果是<strong>GPU</strong>环境：可以设置<code>task_type=&quot;GPU&quot;</code>。</p>
+<p><code>border_count</code>: Alias: <code>max_bin</code>. 对数值型特征的切分次数，在CPU上默认值为254，在GPU上默认值为128。在CPU上该参数不会显著影响到训练速度，在GPU上该参数会显著影响到训练的速度，如果为了更好的训练质量可以设置为254，如果为了更快，可以降低该参数的值。</p>
+<p>例如：</p>
+<h5 id="更快的模型">更快的模型</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> catboost <span style="color:#f92672">import</span> CatBoost
+fast_model <span style="color:#f92672">=</span> CatBoostClassifier(
+    random_seed<span style="color:#f92672">=</span><span style="color:#ae81ff">63</span>,
+    iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">150</span>,
+    learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.01</span>,
+    boosting_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Plain&#39;</span>,
+    bootstrap_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Bernoulli&#39;</span>,
+    subsample<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>,
+    one_hot_max_size<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>,
+    rsm<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>,
+    leaf_estimation_iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,
+    max_ctr_complexity<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,
+    border_count<span style="color:#f92672">=</span><span style="color:#ae81ff">32</span>)
+
+fast_model<span style="color:#f92672">.</span>fit(
+    X_train, y_train,
+    cat_features<span style="color:#f92672">=</span>cat_features,
+    logging_level<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Silent&#39;</span>,
+    plot<span style="color:#f92672">=</span>True
+)
+</code></pre></div><h5 id="更准确的模型">更准确的模型</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">tunned_model <span style="color:#f92672">=</span> CatBoostClassifier(
+    random_seed<span style="color:#f92672">=</span><span style="color:#ae81ff">63</span>,
+    iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>,
+    learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.03</span>,
+    l2_leaf_reg<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,
+    bagging_temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,
+    random_strength<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,
+    one_hot_max_size<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,
+    leaf_estimation_method<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Newton&#39;</span>,
+    depth<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>
+)
+tunned_model<span style="color:#f92672">.</span>fit(
+    X_train, y_train,
+    cat_features<span style="color:#f92672">=</span>cat_features,
+    logging_level<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Silent&#39;</span>,
+    eval_set<span style="color:#f92672">=</span>(X_validation, y_validation),
+    plot<span style="color:#f92672">=</span>True
+)
+</code></pre></div><h2 id="reference">REFERENCE</h2>
+<ul>
+<li><a href="https://catboost.ai/">catboost</a></li>
+<li><a href="https://github.com/catboost/catboost">catboost in github</a></li>
+<li><a href="https://arxiv.org/pdf/1706.09516.pdf">catboost paper</a></li>
+<li><a href="https://catboost.ai/docs/concepts/algorithm-main-stages.html">catboost算法细节</a></li>
+<li><a href="https://catboost.ai/docs/concepts/python-usages-examples.html">python usages examples</a></li>
+<li><a href="https://github.com/catboost/tutorials">catboost git tutorial</a></li>
+<li><a href="https://catboost.ai/docs/concepts/loss-functions.html">Objectives and metrics</a></li>
+<li><a href="https://catboost.ai/docs/concepts/python-reference_parameters-list.html">Python Training Parameters</a></li>
+<li><a href="https://github.com/catboost/catboost-viewer">catboost-viewer</a></li>
+<li><a href="https://github.com/slundberg/shap">shap</a></li>
+<li><a href="https://towardsdatascience.com/https-medium-com-talperetz24-mastering-the-new-generation-of-gradient-boosting-db04062a7ea2">Mastering The New Generation of Gradient Boosting</a></li>
+</ul></article>
+    <footer class="post-footer">
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "disqus_shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2020 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+  </body>
+</html>

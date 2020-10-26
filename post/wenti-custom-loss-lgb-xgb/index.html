@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>在XGBoost和LightGBM中自定义损失函数</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  
+  <meta name="description" content="在LightGBM和XGBoost中的自定义损失函数（Custom Loss Function）。
+Training loss and Validation loss  Training loss: This is the function that is optimized on the training data. For example, in a neural network binary classifier, this is usually the binary cross entropy. For the random forest classifier, this is the Gini impurity. The training loss is often called the “objective function” as well. The training loss in LightGBM is called objective.
+Validation loss: This is the function that we use to evaluate the performance of our trained model on unseen data.">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@wentixiaogege">
+    <meta name="twitter:title" content="在XGBoost和LightGBM中自定义损失函数">
+    <meta name="twitter:description" content="在LightGBM和XGBoost中的自定义损失函数（Custom Loss Function）。
+Training loss and Validation loss  Training loss: This is the function that is optimized on the training data. For example, in a neural network binary classifier, this is usually the binary cross entropy. For the random forest classifier, this is the Gini impurity. The training loss is often called the “objective function” as well. The training loss in LightGBM is called objective.
+Validation loss: This is the function that we use to evaluate the performance of our trained model on unseen data.">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="在XGBoost和LightGBM中自定义损失函数">
+  <meta property="og:description" content="在LightGBM和XGBoost中的自定义损失函数（Custom Loss Function）。
+Training loss and Validation loss  Training loss: This is the function that is optimized on the training data. For example, in a neural network binary classifier, this is usually the binary cross entropy. For the random forest classifier, this is the Gini impurity. The training loss is often called the “objective function” as well. The training loss in LightGBM is called objective.
+Validation loss: This is the function that we use to evaluate the performance of our trained model on unseen data.">
+  <meta property="og:url" content="/post/wenti-custom-loss-lgb-xgb/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.76.3">
+
+
+<link rel="canonical" href="/post/wenti-custom-loss-lgb-xgb/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href=""><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="">wentixiaogege</a></h2>
+  
+  <p class="subtitle">一半忧与愁 &amp; 一半花与海</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/reco/">Recommend</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/times/">Time Series</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">Github</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.kaggle.com/wentixiaogege">Kaggler</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">Resume</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:wentixiaogege@163.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/wentixiaogege" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/wentixiaogege" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/wentixiaogege" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">在XGBoost和LightGBM中自定义损失函数</h1>
+      <p class="post-meta">@问题小哥哥 · Oct 9, 2020 · 5 min read</p>
+    </header>
+    <article class="post-content"><p>在LightGBM和XGBoost中的自定义损失函数（Custom Loss Function）。</p>
+<h2 id="training-loss-and-validation-loss">Training loss and Validation loss</h2>
+<blockquote>
+<p><strong>Training loss:</strong> This is the function that is optimized on the training data. For example, in a neural network binary classifier, this is usually the binary cross entropy. For the random forest classifier, this is the Gini impurity. The training loss is often called the “objective function” as well. The training loss in LightGBM is called <a href="https://lightgbm.readthedocs.io/en/latest/Parameters.html#objective"><code>objective</code></a>.</p>
+<p><strong>Validation loss:</strong> This is the function that we use to evaluate the performance of our trained model on unseen data. This is often not the same as the training loss. For example, in the case of a classifier, this is often the area under the curve of the receiver operating characteristic (ROC) — though this is never directly optimized, because it is not differentiable. This is often called the “performance or evaluation metric”. The validation loss is often used to tune hyper-parameters. It is often easier to customize, as it doesn’t have as many functional requirements like the training loss does. The validation loss can be non-convex, non-differentiable, and discontinuous. The validation loss in LightGBM is called <a href="https://lightgbm.readthedocs.io/en/latest/Parameters.html#metric"><code>metric</code></a>.</p>
+</blockquote>
+<p>我们可以用Validation loss做early stopping：当迭代次数（boosting rounds，树的数量）增加的时候，loss经过early_stopping_rounds不减小，则停止训练。</p>
+<p>但是如果Validation loss function是二阶可导的，则可以考虑直接用其作为Training loss直接优化模型。</p>
+<blockquote>
+<p><strong>Training loss:</strong> Customizing the training loss in LightGBM requires defining a function that takes in two arrays, the targets and their predictions. In turn, the function should return two arrays of the gradient and hessian of each observation. As noted above, we need to use calculus to derive gradient and hessian and then implement it in Python.</p>
+<p><strong>Validation loss:</strong> Customizing the validation loss in LightGBM requires defining a function that takes in the same two arrays, but returns three values: a string with name of metric to print, the loss itself, and a boolean about whether higher is better.</p>
+</blockquote>
+<p><a href="https://github.com/microsoft/LightGBM/blob/master/examples/python-guide/advanced_example.py">官方例子-LGBM中自定义log likelihood loss：</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># self-defined objective function</span>
+<span style="color:#75715e"># f(preds: array, train_data: Dataset) -&gt; grad: array, hess: array</span>
+<span style="color:#75715e"># log likelihood loss</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">loglikelihood</span>(preds, train_data):
+    labels <span style="color:#f92672">=</span> train_data<span style="color:#f92672">.</span>get_label()
+    preds <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.</span> <span style="color:#f92672">/</span> (<span style="color:#ae81ff">1.</span> <span style="color:#f92672">+</span> np<span style="color:#f92672">.</span>exp(<span style="color:#f92672">-</span>preds))
+    grad <span style="color:#f92672">=</span> preds <span style="color:#f92672">-</span> labels
+    hess <span style="color:#f92672">=</span> preds <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1.</span> <span style="color:#f92672">-</span> preds)
+    <span style="color:#66d9ef">return</span> grad, hess
+
+<span style="color:#75715e"># self-defined eval metric</span>
+<span style="color:#75715e"># f(preds: array, train_data: Dataset) -&gt; name: string, eval_result: float, is_higher_better: bool</span>
+<span style="color:#75715e"># binary error</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">binary_error</span>(preds, train_data):
+    labels <span style="color:#f92672">=</span> train_data<span style="color:#f92672">.</span>get_label()
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;error&#39;</span>, np<span style="color:#f92672">.</span>mean(labels <span style="color:#f92672">!=</span> (preds <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.5</span>)), False
+</code></pre></div><h2 id="实例">实例</h2>
+<h4 id="1自定义mse">（1）自定义MSE</h4>
+<p>考虑这样一种场景，我们赶车赶飞机，预测我们的出发时间，使得我们等候时间最少。对于早到和晚到，惩罚是不一样的，早到机场火车站，无可厚非。但是要是晚到，就麻烦了… 所以显而易见，我们在建模时候需要加大迟到的惩罚。如下customMSE公式，对于迟到我们加大10倍的惩罚。</p>
+<p>𝑐𝑢𝑠𝑡𝑜𝑚𝑀𝑆𝐸=1𝑁∑𝑖𝑔𝑖(𝑥)𝑔𝑖(𝑥)={𝑦𝑖−𝑦𝑖^,𝑦𝑖≥𝑦𝑖^10×(𝑦𝑖−𝑦𝑖^),𝑦𝑖&lt;𝑦𝑖^customMSE=1N∑igi(x)gi(x)={yi−yi^,yi≥yi^10×(yi−yi^),yi&lt;yi^</p>
+<p>该函数及其gradient和hessian可视化：</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20191010151603301.png" alt="img"></p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20191010151711499.png" alt="img"></p>
+<p>则可以自定义training loss和validation loss：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">custom_asymmetric_train</span>(y_true, y_pred):
+    residual <span style="color:#f92672">=</span> (y_true <span style="color:#f92672">-</span> y_pred)<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#34;float&#34;</span>)
+    grad <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(residual<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span><span style="color:#ae81ff">10.0</span><span style="color:#f92672">*</span>residual, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>residual)
+    hess <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(residual<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span><span style="color:#ae81ff">10.0</span>, <span style="color:#ae81ff">2.0</span>)
+    <span style="color:#66d9ef">return</span> grad, hess
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">custom_asymmetric_valid</span>(y_true, y_pred):
+    residual <span style="color:#f92672">=</span> (y_true <span style="color:#f92672">-</span> y_pred)<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#34;float&#34;</span>)
+    loss <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(residual <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>, (residual<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">*</span><span style="color:#ae81ff">10.0</span>, residual<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>) 
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;custom_asymmetric_eval&#34;</span>, np<span style="color:#f92672">.</span>mean(loss), False
+<span style="color:#f92672">import</span> lightgbm
+<span style="color:#75715e"># ********* Sklearn API **********</span>
+<span style="color:#75715e"># default lightgbm model with sklearn api</span>
+gbm <span style="color:#f92672">=</span> lightgbm<span style="color:#f92672">.</span>LGBMRegressor() 
+<span style="color:#75715e"># updating objective function to custom</span>
+<span style="color:#75715e"># default is &#34;regression&#34;</span>
+<span style="color:#75715e"># also adding metrics to check different scores</span>
+gbm<span style="color:#f92672">.</span>set_params(<span style="color:#f92672">**</span>{<span style="color:#e6db74">&#39;objective&#39;</span>: custom_asymmetric_train}, metrics <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;mse&#34;</span>, <span style="color:#e6db74">&#39;mae&#39;</span>])
+<span style="color:#75715e"># fitting model </span>
+gbm<span style="color:#f92672">.</span>fit(
+    X_train,
+    y_train,
+    eval_set<span style="color:#f92672">=</span>[(X_valid, y_valid)],
+    eval_metric<span style="color:#f92672">=</span>custom_asymmetric_valid,
+    verbose<span style="color:#f92672">=</span>False)
+y_pred <span style="color:#f92672">=</span> gbm<span style="color:#f92672">.</span>predict(X_valid)
+
+<span style="color:#75715e"># ********* Python API **********</span>
+<span style="color:#75715e"># create dataset for lightgbm</span>
+<span style="color:#75715e"># if you want to re-use data, remember to set free_raw_data=False</span>
+lgb_train <span style="color:#f92672">=</span> lgb<span style="color:#f92672">.</span>Dataset(X_train, y_train, free_raw_data<span style="color:#f92672">=</span>False)
+lgb_eval <span style="color:#f92672">=</span> lgb<span style="color:#f92672">.</span>Dataset(X_valid, y_valid, reference<span style="color:#f92672">=</span>lgb_train, free_raw_data<span style="color:#f92672">=</span>False)
+<span style="color:#75715e"># specify your configurations as a dict</span>
+params <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;objective&#39;</span>: <span style="color:#e6db74">&#39;regression&#39;</span>, <span style="color:#e6db74">&#39;verbose&#39;</span>: <span style="color:#ae81ff">0</span>}
+gbm <span style="color:#f92672">=</span> lgb<span style="color:#f92672">.</span>train(params,
+                lgb_train,
+                num_boost_round<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+                init_model<span style="color:#f92672">=</span>gbm,
+                fobj<span style="color:#f92672">=</span>custom_asymmetric_train,
+                feval<span style="color:#f92672">=</span>custom_asymmetric_valid,
+                valid_sets<span style="color:#f92672">=</span>lgb_eval)           
+y_pred <span style="color:#f92672">=</span> gbm<span style="color:#f92672">.</span>predict(X_valid)
+</code></pre></div><p><a href="https://github.com/manifoldai/mf-eng-public/blob/master/notebooks/custom_loss_lightgbm.ipynb">完整代码在这里</a></p>
+<h4 id="2cost-sensitive-logloss">（2）Cost-sensitive Logloss</h4>
+<p>同比上述例子，在疾病诊断中，FN和FP的惩罚也应该是要不一样的。没病判断成有病还好（FP: False Positive），有病判断为没病则会更可怕（FN: False Negative），比如漏诊了癌症耽误了最佳治疗时间。所以我们可以定义一个Loss加大对FN的惩罚：</p>
+<p>𝑐𝑢𝑠𝑡𝑜𝑚𝐿𝑜𝑔𝐿𝑜𝑠𝑠𝐹𝑁𝐹𝑃𝑦̂ 𝑝=−1𝑁∑𝑖(5×𝐹𝑁+𝐹𝑃)=𝑦×log(𝑦̂ )=(1−𝑦)×log(1−𝑦̂ )=𝑚𝑖𝑛(𝑚𝑎𝑥(𝑝,10−7),1−10−7)=11+𝑒−𝑥customLogLoss=−1N∑i(5×FN+FP)FN=y×log⁡(y^)FP=(1−y)×log⁡(1−y^)y^=min(max(p,10−7),1−10−7)p=11+e−x</p>
+<p>该Loss Function的gradient 和 hessian：</p>
+<p>𝑑𝐿𝑜𝑠𝑠𝑑𝑥=4𝑝𝑦+𝑝−5𝑦𝑑2𝐿𝑜𝑠𝑠𝑑𝑥2=(4𝑦+1)∗𝑝(1.0−𝑝)dLossdx=4py+p−5yd2Lossdx2=(4y+1)∗p(1.0−p)</p>
+<p>其中sigmoid函数求导：</p>
+<p>𝑝=𝑒𝑥𝑒𝑥+1, 1−𝑝=1𝑒𝑥+1𝑑𝑝𝑑𝑥=𝑒𝑥(𝑒𝑥+1)−(𝑒𝑥∗𝑒𝑥)(𝑒𝑥+1)2=𝑒𝑥(𝑒𝑥+1)2=𝑝∗(1−𝑝)p=exex+1, 1−p=1ex+1dpdx=ex(ex+1)−(ex∗ex)(ex+1)2=ex(ex+1)2=p∗(1−p)</p>
+<p>Python中自定义training loss和validation loss：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">logistic_obj</span>(y_hat, dtrain):
+    y <span style="color:#f92672">=</span> dtrain<span style="color:#f92672">.</span>get_label()
+    p <span style="color:#f92672">=</span> y_hat 
+    <span style="color:#75715e"># p = 1. / (1. + np.exp(-y_hat)) # 用于避免hessian矩阵中很多0</span>
+    grad <span style="color:#f92672">=</span> p <span style="color:#f92672">-</span> y
+    hess <span style="color:#f92672">=</span> p <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1.</span> <span style="color:#f92672">-</span> p)
+    grad <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> p <span style="color:#f92672">*</span> y <span style="color:#f92672">+</span> p <span style="color:#f92672">-</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> y
+    hess <span style="color:#f92672">=</span> (<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> y <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> (p <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1.0</span> <span style="color:#f92672">-</span> p))
+    <span style="color:#66d9ef">return</span> grad, hess
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">err_rate</span>(y_hat, dtrain):
+    y <span style="color:#f92672">=</span> dtrain<span style="color:#f92672">.</span>get_label()
+    <span style="color:#75715e"># y_hat = 1.0 / (1.0 + np.exp(-y_hat)) # 用于避免hessian矩阵中很多0</span>
+    y_hat <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>clip(y_hat, <span style="color:#ae81ff">10e-7</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">10e-7</span>)
+    loss_fn <span style="color:#f92672">=</span> y<span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>log(y_hat)
+    loss_fp <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1.0</span> <span style="color:#f92672">-</span> y)<span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>log(<span style="color:#ae81ff">1.0</span> <span style="color:#f92672">-</span> y_hat)
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;error&#39;</span>, np<span style="color:#f92672">.</span>sum(<span style="color:#f92672">-</span>(<span style="color:#ae81ff">5</span><span style="color:#f92672">*</span>loss_fn<span style="color:#f92672">+</span>loss_fp))<span style="color:#f92672">/</span>len(y), False
+</code></pre></div><p><strong>同样的，如果要FP加大惩罚：</strong></p>
+<p>假设第i个预测样本的Loss为L，p(x)为sigmoid函数，我们用 𝛽(&gt;1)β(&gt;1)来表示FP的权重。</p>
+<p>𝐿=−𝑦ln𝑝−𝛽(1−𝑦)ln(1−𝑝) grad =∂𝐿∂𝑥=∂𝐿∂𝑝∂𝑝∂𝑥=𝑝(𝛽+𝑦−𝛽𝑦)−𝑦 hess =∂2𝐿∂𝑥2=𝑝(1−𝑝)(𝛽+𝑦−𝛽𝑦)L=−yln⁡p−β(1−y)ln⁡(1−p) grad =∂L∂x=∂L∂p∂p∂x=p(β+y−βy)−y hess =∂2L∂x2=p(1−p)(β+y−βy)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">weighted_logloss</span>(y_hat, dtrain):
+    y <span style="color:#f92672">=</span> dtrain<span style="color:#f92672">.</span>get_label()
+    p <span style="color:#f92672">=</span> y_hat
+    beta <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+    grad <span style="color:#f92672">=</span> p <span style="color:#f92672">*</span> (beta <span style="color:#f92672">+</span> y <span style="color:#f92672">-</span> beta<span style="color:#f92672">*</span>y) <span style="color:#f92672">-</span> y
+    hess <span style="color:#f92672">=</span> p <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> p) <span style="color:#f92672">*</span> (beta <span style="color:#f92672">+</span> y <span style="color:#f92672">-</span> beta<span style="color:#f92672">*</span>y)
+    <span style="color:#66d9ef">return</span> grad, hess
+</code></pre></div><h4 id="3jdata比赛中自定义loss">（3）JDATA比赛中自定义Loss</h4>
+<p>18年<a href="https://jdata.jd.com/html/detail.html?id=2">如期而至-用户购买时间预测</a>比赛要求利用脱敏后的京东真实用户历史行为数据，建立算法模型，预测热销品类的用户购买时间。其中的评价指标如下：</p>
+<p>𝑆2=∑𝑢∈𝑈𝑟𝑓(𝑢)|𝑈𝑟|𝑓(𝑢)={0,𝑢∉𝑈𝑟1010+𝑑2𝑢,𝑢∈𝑈𝑟S2=∑u∈Urf(u)|Ur|f(u)={0,u∉Ur1010+du2,u∈Ur</p>
+<p>其中，𝑈𝑟Ur为答案用户集合，𝑑𝑢du表示用户𝑢u的预测日期与真实日期之间的距离。</p>
+<p>其中一个参赛团队用了自定义的loss去优化模型：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># S2 loss</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">my_loss</span>(preds, train_data):
+    labels <span style="color:#f92672">=</span> train_data<span style="color:#f92672">.</span>get_label()
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;s2_error&#39;</span>, np<span style="color:#f92672">.</span>mean(<span style="color:#ae81ff">10</span><span style="color:#f92672">/</span>(<span style="color:#ae81ff">10</span><span style="color:#f92672">+</span>np<span style="color:#f92672">.</span>square(preds<span style="color:#f92672">-</span>labels))), True
+
+<span style="color:#75715e"># S2 一阶、二阶导</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">my_objective</span>(preds, train_data):
+    labels <span style="color:#f92672">=</span> train_data<span style="color:#f92672">.</span>get_label()
+    d <span style="color:#f92672">=</span> preds<span style="color:#f92672">-</span>labels
+    x <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10.</span><span style="color:#f92672">+</span>np<span style="color:#f92672">.</span>square(d))
+    grad <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">20</span><span style="color:#f92672">*</span>d<span style="color:#f92672">/</span>np<span style="color:#f92672">.</span>square(x)
+    hess <span style="color:#f92672">=</span> <span style="color:#ae81ff">80</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>square(d)<span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>power(x,<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">20</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>power(x,<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span>grad, <span style="color:#f92672">-</span>hess
+
+<span style="color:#75715e"># 训练</span>
+model_day <span style="color:#f92672">=</span> lightgbm<span style="color:#f92672">.</span>train(cu_params,rtrain_set, num_boost_round<span style="color:#f92672">=</span><span style="color:#ae81ff">20000</span>,
+                           valid_sets<span style="color:#f92672">=</span>[rvalidation_set], fobj <span style="color:#f92672">=</span> my_objective,
+                           feval <span style="color:#f92672">=</span> my_loss, valid_names<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;valid&#39;</span>],
+                           early_stopping_rounds<span style="color:#f92672">=</span><span style="color:#ae81ff">150</span>, verbose_eval<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>)
+</code></pre></div><h4 id="4focal-loss">（4）Focal loss</h4>
+<p>论文：https://arxiv.org/pdf/1708.02002.pdf</p>
+<p>数学原理：</p>
+<h5 id="a-cross-entropy">a. cross entropy</h5>
+<p>CE(𝑝,𝑦)={−log(𝑝)−log(1−𝑝) if 𝑦=1 otherwise −−−−−−−−−−−−−−−−−−−−𝑝t={𝑝1−𝑝 if 𝑦=1 otherwise −−−−−−−−−−−−−−−−−−−−=&gt;CE(𝑝,𝑦)=CE(𝑝t)=−log(𝑝t)CE⁡(p,y)={−log⁡(p) if y=1−log⁡(1−p) otherwise −−−−−−−−−−−−−−−−−−−−pt={p if y=11−p otherwise −−−−−−−−−−−−−−−−−−−−=&gt;CE(p,y)=CE(pt)=−log⁡(pt)</p>
+<p>上式中CE为cross entropy，p为预测y为1的概率。</p>
+<p>cross entropy对于样本严重不均衡的问题，大多数的样本很易分类正确，虽然单个样本的loss很小，但是加起来却也会很大，超过小样本的loss，使得这些少类的样本很难被正确预测。</p>
+<p>一个常用的做法是通过增加权重对少样本增大惩罚，如下公式（α-balanced CE loss）。（2）中其实用的就是这样的方法。</p>
+<p>CE(𝑝t)=−𝛼tlog(𝑝t)−−−−−−−−−−−−𝛼t={𝛼1−𝛼 if 𝑦=1 otherwise CE(pt)=−αtlog⁡(pt)−−−−−−−−−−−−αt={α if y=11−α otherwise</p>
+<p>其中，𝛼∈[0,1]α∈[0,1]，一般根据正负样本比例确定，或者作为超参用cross-validation确定。</p>
+<h5 id="b-focal-loss">b. focal loss</h5>
+<p>focal loss可以较好的解决样本不均衡问题，它在设计上减小了分类正确的大类样本（易预测）的损失，而让模型对小类样本进行更大的“关注”。</p>
+<p>FL(𝑝t)=−(1−𝑝t)𝛾log(𝑝t)FL(pt)=−(1−pt)γlog⁡(pt)</p>
+<p>其中，𝛾≥0γ≥0. 在𝛾=2γ=2的情况下，𝑝𝑡=0.9pt=0.9的样本loss将比CE的低100倍，𝑝𝑡≈0.968pt≈0.968的样本loss将比CE的低1000倍，这会提高分类错误样本的重要性，对其进行更大的“关注”（𝑝𝑡≤0.5pt≤0.5的样本loss仅比CE低4倍）。 在实际应用中，α-balanced Focal loss更常用：</p>
+<p>FL(𝑝t)=−𝛼t(1−𝑝t)𝛾log(𝑝t)FL(pt)=−αt(1−pt)γlog⁡(pt)</p>
+<p><img src="https://www.wentixiaogege.com/post/pics/image-20191010210049114.png" alt="img"></p>
+<p><a href="https://github.com/jrzaurin/LightGBM-with-Focal-Loss">Focal Loss for LightGBM</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> scipy.misc <span style="color:#f92672">import</span> derivative
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">focal_loss_lgb</span>(y_pred, dtrain, alpha, gamma):
+  a,g <span style="color:#f92672">=</span> alpha, gamma
+  y_true <span style="color:#f92672">=</span> dtrain<span style="color:#f92672">.</span>label
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fl</span>(x,t):
+  	p <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>np<span style="color:#f92672">.</span>exp(<span style="color:#f92672">-</span>x))
+  	<span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span>( a<span style="color:#f92672">*</span>t <span style="color:#f92672">+</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>a)<span style="color:#f92672">*</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>t) ) <span style="color:#f92672">*</span> (( <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> ( t<span style="color:#f92672">*</span>p <span style="color:#f92672">+</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>t)<span style="color:#f92672">*</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>p)) )<span style="color:#f92672">**</span>g) <span style="color:#f92672">*</span> ( t<span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>log(p)<span style="color:#f92672">+</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>t)<span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>log(<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>p) )
+  partial_fl <span style="color:#f92672">=</span> <span style="color:#66d9ef">lambda</span> x: fl(x, y_true)
+  grad <span style="color:#f92672">=</span> derivative(partial_fl, y_pred, n<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, dx<span style="color:#f92672">=</span><span style="color:#ae81ff">1e-6</span>)
+  hess <span style="color:#f92672">=</span> derivative(partial_fl, y_pred, n<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, dx<span style="color:#f92672">=</span><span style="color:#ae81ff">1e-6</span>)
+  <span style="color:#66d9ef">return</span> grad, hess
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">focal_loss_lgb_eval_error</span>(y_pred, dtrain, alpha, gamma):
+  a,g <span style="color:#f92672">=</span> alpha, gamma
+  y_true <span style="color:#f92672">=</span> dtrain<span style="color:#f92672">.</span>label
+  p <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>np<span style="color:#f92672">.</span>exp(<span style="color:#f92672">-</span>y_pred))
+  loss <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>( a<span style="color:#f92672">*</span>y_true <span style="color:#f92672">+</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>a)<span style="color:#f92672">*</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>y_true) ) <span style="color:#f92672">*</span> (( <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> ( y_true<span style="color:#f92672">*</span>p <span style="color:#f92672">+</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>y_true)<span style="color:#f92672">*</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>p)) )<span style="color:#f92672">**</span>g) <span style="color:#f92672">*</span> ( y_true<span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>log(p)<span style="color:#f92672">+</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>y_true)<span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>log(<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>p) )
+  <span style="color:#75715e"># (eval_name, eval_result, is_higher_better)</span>
+  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;focal_loss&#39;</span>, np<span style="color:#f92672">.</span>mean(loss), False
+
+focal_loss <span style="color:#f92672">=</span> <span style="color:#66d9ef">lambda</span> x,y: focal_loss_lgb(x, y, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.25</span>, gamma<span style="color:#f92672">=</span><span style="color:#ae81ff">1.</span>)
+focal_loss_eval <span style="color:#f92672">=</span> <span style="color:#66d9ef">lambda</span> x,y: focal_loss_lgb_eval_error(x, y, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.25</span>, gamma<span style="color:#f92672">=</span><span style="color:#ae81ff">1.</span>)
+model <span style="color:#f92672">=</span> lgb<span style="color:#f92672">.</span>train(best, self<span style="color:#f92672">.</span>lgtrain, fobj<span style="color:#f92672">=</span>focal_loss, feval<span style="color:#f92672">=</span>focal_loss_eval)
+
+<span style="color:#75715e"># or with f1 eval</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">focal_loss_lgb_f1_score</span>(preds, lgbDataset):
+  preds <span style="color:#f92672">=</span> sigmoid(preds)
+  binary_preds <span style="color:#f92672">=</span> [int(p<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0.5</span>) <span style="color:#66d9ef">for</span> p <span style="color:#f92672">in</span> preds]
+  y_true <span style="color:#f92672">=</span> lgbDataset<span style="color:#f92672">.</span>get_label()
+  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;f1&#39;</span>, f1_score(y_true, binary_preds), True
+
+focal_loss <span style="color:#f92672">=</span> <span style="color:#66d9ef">lambda</span> x,y: focal_loss_lgb(x, y, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.25</span>, gamma<span style="color:#f92672">=</span><span style="color:#ae81ff">1.</span>)
+cv_result <span style="color:#f92672">=</span> lgb<span style="color:#f92672">.</span>cv(
+	params,
+	train,
+	num_boost_round<span style="color:#f92672">=</span>num_boost_round,
+	fobj <span style="color:#f92672">=</span> focal_loss,
+	feval <span style="color:#f92672">=</span> focal_loss_lgb_f1_score,
+	nfold<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,
+	stratified<span style="color:#f92672">=</span>True,
+	early_stopping_rounds<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+</code></pre></div><h2 id="reference">REFERENCE</h2>
+<ul>
+<li><a href="https://datascience.stackexchange.com/questions/26972/cost-sensitive-logloss-for-xgboost">Cost-sensitive Logloss for XGBoost/LGBM</a></li>
+<li><a href="https://github.com/microsoft/LightGBM/issues/1230">接上-issue中的内容</a></li>
+<li><a href="https://github.com/microsoft/LightGBM/blob/master/examples/python-guide/advanced_example.py">github-lgbm-例子</a></li>
+<li><a href="https://towardsdatascience.com/custom-loss-functions-for-gradient-boosting-f79c1b40466d">towardsdatascience-Custom Loss Functions for Gradient Boosting</a></li>
+<li><a href="https://github.com/manifoldai/mf-eng-public/blob/master/notebooks/custom_loss_lightgbm.ipynb">接上-notebook</a></li>
+<li><a href="https://github.com/Microsoft/LightGBM/issues/1644">multi-class-custom-loss</a></li>
+<li><a href="https://towardsdatascience.com/lightgbm-with-the-focal-loss-for-imbalanced-datasets-9836a9ae00ca">LightGBM with the Focal Loss for imbalanced datasets</a></li>
+<li><a href="https://github.com/jrzaurin/LightGBM-with-Focal-Loss">github-LightGBM-with-Focal-Loss</a></li>
+<li><a href="https://github.com/jhwjhw0123/Imbalance-XGBoost">github-xgboost-focal-loss</a></li>
+<li><a href="https://github.com/h2oai/driverlessai-recipes/blob/357dab903b27fbd959997dfc908efdf1e34e13a8/models/custom_loss/lightgbm_with_custom_loss.py">lightgbm_with_custom_loss.py</a></li>
+<li><a href="https://github.com/dmlc/xgboost/tree/master/demo">xgboost-custom-loss</a></li>
+<li><a href="https://www.kaggle.com/chenglongchen/customized-softkappa-loss-in-xgboost">customized-softkappa-loss-in-xgboost</a></li>
+<li><a href="https://xgboost.readthedocs.io/en/latest/tutorials/custom_metric_obj.html">Custom Objective and Evaluation Metric In XGBoost Offical Tutorial-RMSLE</a></li>
+</ul>
+</article>
+    <footer class="post-footer">
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "disqus_shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2020 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+  </body>
+</html>

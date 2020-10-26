@@ -1,37 +1,44 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hugo on wentixiaogege</title>
-    <link>https://www.wentixiaogege.com/tags/hugo/</link>
+    <link>/tags/hugo/</link>
     <description>Recent content in Hugo on wentixiaogege</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Sat, 04 May 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.wentixiaogege.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 09 Oct 2020 20:53:25 +0800</lastBuildDate><atom:link href="/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>(转)Hugo 主题 Nuo 文章样式预览</title>
-      <link>https://www.wentixiaogege.com/post/others-hugo-nuo-post-preview/</link>
-      <pubDate>Sat, 04 May 2019 00:00:00 +0000</pubDate>
+      <title>Creating a New Theme</title>
+      <link>/post/creating-a-new-theme/</link>
+      <pubDate>Fri, 09 Oct 2020 20:53:25 +0800</pubDate>
       
-      <guid>https://www.wentixiaogege.com/post/others-hugo-nuo-post-preview/</guid>
-      <description>&lt;p&gt;本文转载自主题原作者，&lt;a href=&#34;https://laozhu.me/post/hugo-nuo-post-preview/&#34;&gt;这是原文链接&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;这篇文章集中说明本人博客主题所支持的 Markdown 语法和 Hugo Shortcodes 插件，你也可以在这里预览到他们的样子。如果你不喜欢某些部分的样式，可以去修改 &lt;code&gt;content.scss&lt;/code&gt; 和 &lt;code&gt;shortcodes.scss&lt;/code&gt; 这两个文件。预告一下，我所用的这个名为 &lt;code&gt;Nuo&lt;/code&gt; 的 &lt;code&gt;Hugo&lt;/code&gt; 也将于近期发布，敬请期待。&lt;/p&gt;</description>
+      <guid>/post/creating-a-new-theme/</guid>
+      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
+We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
     </item>
     
     <item>
-      <title>用Hugo和Github Pages创建和部署个人博客</title>
-      <link>https://www.wentixiaogege.com/post/others-creating-and-deploying-my-first-hugo-site-to-github-pages/</link>
-      <pubDate>Sat, 04 May 2019 00:00:00 +0000</pubDate>
+      <title>Getting Started with Hugo</title>
+      <link>/post/hugoisforlovers/</link>
+      <pubDate>Fri, 09 Oct 2020 20:53:25 +0800</pubDate>
       
-      <guid>https://www.wentixiaogege.com/post/others-creating-and-deploying-my-first-hugo-site-to-github-pages/</guid>
-      <description>&lt;p&gt;Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。相较于Hexo和WordPress，Hugo的安装和配置都方便得多，生成页面的速度也是前两者无可比拟的。而Github Pages是github提供的静态网页托管服务，提供1GB的免费空间，可直接通过github仓库进行站点部署，十分方便。&lt;/p&gt;
-
-&lt;p&gt;本站就是使用了Hugo和Github Pages来进行创建和部署的，下面来简单介绍一下部署过程。&lt;/p&gt;</description>
+      <guid>/post/hugoisforlovers/</guid>
+      <description>Step 1. Install Hugo Goto hugo releases and download the appropriate version for your os and architecture.
+Save it somewhere specific as we will be using it in the next step.
+More complete instructions are available at installing hugo
+Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
+Follow the following steps:
+ Clone the hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313  Corresponding pseudo commands:</description>
+    </item>
+    
+    <item>
+      <title>Hugo 主题 Nuo 文章样式预览</title>
+      <link>/post/hugo-nuo-post-preview/</link>
+      <pubDate>Fri, 09 Oct 2020 20:53:25 +0800</pubDate>
+      
+      <guid>/post/hugo-nuo-post-preview/</guid>
+      <description>&lt;p&gt;这篇文章集中说明本人博客主题所支持的 Markdown 语法和 Hugo Shortcodes 插件，你也可以在这里预览到他们的样子。如果你不喜欢某些部分的样式，可以去修改 &lt;code&gt;content.scss&lt;/code&gt; 和 &lt;code&gt;shortcodes.scss&lt;/code&gt; 这两个文件。预告一下，我所用的这个名为 &lt;code&gt;Nuo&lt;/code&gt; 的 &lt;code&gt;Hugo&lt;/code&gt; 也将于近期发布，敬请期待。&lt;/p&gt;</description>
     </item>
     
   </channel>

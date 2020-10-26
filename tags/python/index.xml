@@ -1,144 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on wentixiaogege</title>
-    <link>https://www.wentixiaogege.com/tags/python/</link>
+    <link>/tags/python/</link>
     <description>Recent content in Python on wentixiaogege</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Sun, 28 Jul 2019 13:19:54 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.wentixiaogege.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Subprocess模块</title>
-      <link>https://www.wentixiaogege.com/post/py-subprocess/</link>
-      <pubDate>Sun, 28 Jul 2019 13:19:54 +0800</pubDate>
-      
-      <guid>https://www.wentixiaogege.com/post/py-subprocess/</guid>
-      <description>&lt;p&gt;&lt;code&gt;subprocess&lt;/code&gt; 模块允许你生成新的进程，连接它们的输入、输出、错误管道，并且获取它们的返回码。此模块可以代替一些老旧的模块与功能，如&lt;code&gt;os.system&lt;/code&gt;, &lt;code&gt;os.spawn&lt;/code&gt;, &lt;code&gt;os.popen()&lt;/code&gt;等。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>用贝叶斯优化进行超参数调优</title>
-      <link>https://www.wentixiaogege.com/post/ml-bayesian-optimization/</link>
-      <pubDate>Fri, 12 Jul 2019 10:57:57 +0800</pubDate>
-      
-      <guid>https://www.wentixiaogege.com/post/ml-bayesian-optimization/</guid>
-      <description>&lt;p&gt;超参数调优一直是机器学习里比较intractable的问题，繁多的超参数以及指数型爆炸的参数空间，往往让人无从下手。调参是一个很枯燥的过程，而且最后也不一定有很好的reward。很多的机器学习工程师也会戏称自己是&amp;rdquo;调参民工&amp;rdquo;，&amp;rdquo;炼丹师&amp;rdquo;…&amp;hellip;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>用python下载文件的若干种方法汇总</title>
-      <link>https://www.wentixiaogege.com/post/crawler-downloader/</link>
-      <pubDate>Tue, 09 Jul 2019 18:23:12 +0800</pubDate>
-      
-      <guid>https://www.wentixiaogege.com/post/crawler-downloader/</guid>
-      <description>&lt;p&gt;用python下载文件的若干种方法汇总。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Python装饰器</title>
-      <link>https://www.wentixiaogege.com/post/py-decorator/</link>
-      <pubDate>Tue, 09 Jul 2019 12:23:32 +0800</pubDate>
-      
-      <guid>https://www.wentixiaogege.com/post/py-decorator/</guid>
-      <description>&lt;p&gt;Python装饰器的常见用法。所谓的装饰器，其实就是通过装饰器函数，来修改原函数的一些功能，使得原函数不需要修改。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Catboost基础介绍</title>
-      <link>https://www.wentixiaogege.com/post/ml-catboost/</link>
-      <pubDate>Sat, 06 Jul 2019 14:22:46 +0800</pubDate>
-      
-      <guid>https://www.wentixiaogege.com/post/ml-catboost/</guid>
-      <description>&lt;p&gt;Catboost入门介绍与实例。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Python中的路径处理</title>
-      <link>https://www.wentixiaogege.com/post/py-pathlib/</link>
-      <pubDate>Wed, 03 Jul 2019 18:51:46 +0800</pubDate>
-      
-      <guid>https://www.wentixiaogege.com/post/py-pathlib/</guid>
-      <description>&lt;p&gt;本文介绍一下Python中进行文件路径处理的一些技巧。从字符串连接、&lt;code&gt;os.path.join()&lt;/code&gt;到Python3中处理文件路径的简单方法：&lt;code&gt;pathlib&lt;/code&gt;，以及如何获取当前工作路径以及原始脚本路径。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>用Conda进行Python开发环境管理</title>
-      <link>https://www.wentixiaogege.com/post/py-conda/</link>
-      <pubDate>Mon, 24 Jun 2019 23:51:49 +0800</pubDate>
-      
-      <guid>https://www.wentixiaogege.com/post/py-conda/</guid>
-      <description>&lt;p&gt;Conda 是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。 Conda 是为 Python 程序创建的，适用于 Linux，OS X 和Windows，也可以打包和分发其他软件。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Pandas中的数据重塑(Reshaping)</title>
-      <link>https://www.wentixiaogege.com/post/pd-pandas-reshaping/</link>
-      <pubDate>Sat, 15 Jun 2019 10:51:26 +0800</pubDate>
-      
-      <guid>https://www.wentixiaogege.com/post/pd-pandas-reshaping/</guid>
-      <description>&lt;p&gt;Pandas中的数据重塑(Reshaping): &lt;code&gt;pivot&lt;/code&gt;, &lt;code&gt;pivot_table&lt;/code&gt;, &lt;code&gt;stack&lt;/code&gt;, &lt;code&gt;unstack&lt;/code&gt;.&lt;/p&gt;</description>
-    </item>
-    
+    <lastBuildDate>Fri, 09 Oct 2020 21:38:12 +0800</lastBuildDate><atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>剑指Offer刷题全纪录(Python版)</title>
-      <link>https://www.wentixiaogege.com/post/algo-jianzhi-offer/</link>
-      <pubDate>Thu, 13 Jun 2019 22:00:40 +0800</pubDate>
+      <link>/post/wenti-algo-jianzhi-offer/</link>
+      <pubDate>Fri, 09 Oct 2020 21:38:12 +0800</pubDate>
       
-      <guid>https://www.wentixiaogege.com/post/algo-jianzhi-offer/</guid>
+      <guid>/post/wenti-algo-jianzhi-offer/</guid>
       <description>&lt;p&gt;这篇文章是本人刷《剑指Offer》的记录，用Python实现的，也有一点点C++。&lt;/p&gt;
-
 &lt;p&gt;都说数据结构与算法是程序猿的必修课，是任何时候都需要苦修的内功。好吧，作为一个非科班的半路出家的野生程序猿，我当然也得刷一刷数据结构和算法啊啊啊。其实早在两年前就听闻要多刷算法题，那时候没有形成良好的习惯，也没制定详细的计划，就很佛的刷了一些LeetCode，感觉现在也都忘得一干二净了。最近心血来潮，正好遇到一个成长平台期，就开始下决心刷算法题了。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>一文梳理正则表达式常用方法</title>
-      <link>https://www.wentixiaogege.com/post/py-regex-intro/</link>
-      <pubDate>Thu, 30 May 2019 13:34:21 +0800</pubDate>
-      
-      <guid>https://www.wentixiaogege.com/post/py-regex-intro/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;正则表达式&lt;/strong&gt;，又称规则表达式&lt;strong&gt;。&lt;/strong&gt;（英语：Regular Expression，在代码中常简写为regex、regexp或RE），计算机科学的一个概念。正则表达式通常被用来检索、替换那些符合某个模式(规则)的文本。&lt;/p&gt;
-
-&lt;p&gt;许多程序设计语言都支持利用正则表达式进行字符串操作。例如，在&lt;a href=&#34;https://baike.baidu.com/item/Perl&#34;&gt;Perl&lt;/a&gt;中就内建了一个功能强大的正则表达式引擎。正则表达式这个概念最初是由&lt;a href=&#34;https://baike.baidu.com/item/Unix&#34;&gt;Unix&lt;/a&gt;中的工具软件（例如sed和&lt;a href=&#34;https://baike.baidu.com/item/grep/5997841&#34;&gt;grep&lt;/a&gt;）普及开的。&lt;/p&gt;
-
-&lt;p&gt;—&lt;a href=&#34;[https://baike.baidu.com/item/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/1700215?fr=aladdin](https://baike.baidu.com/item/正则表达式/1700215?fr=aladdin)&#34;&gt;baidu百科&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;简单来说，正则表达式就是对字符串进行操作的一种逻辑公式，用事先定义好的⼀些规则，组成⼀个规则字符串，然后用这个规则字符串去匹配符合这个规则的字符串，实现对字符串的匹配和过滤。本文基于python中的re模块来介绍正则表达式的常见用法，但这并非Python独有的，绝大多数语言都支持正则表达式。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Python可视化：一些常用绘图脚本</title>
-      <link>https://www.wentixiaogege.com/post/py-visualization/</link>
-      <pubDate>Thu, 23 May 2019 16:32:25 +0800</pubDate>
-      
-      <guid>https://www.wentixiaogege.com/post/py-visualization/</guid>
-      <description>&lt;p&gt;个人整理的一些常用的绘图脚本，基于&lt;code&gt;python&lt;/code&gt;的可视化库： &lt;code&gt;matplotlib&lt;/code&gt;和&lt;code&gt;seaborn&lt;/code&gt;。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Python命名空间和作用域</title>
-      <link>https://www.wentixiaogege.com/post/py-namespace/</link>
-      <pubDate>Sat, 18 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.wentixiaogege.com/post/py-namespace/</guid>
-      <description>&lt;p&gt;本文主要介绍一下Python命名空间和作用域。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>用concurrent.futures模块实现并行</title>
-      <link>https://www.wentixiaogege.com/post/py-concurrent-futures/</link>
-      <pubDate>Wed, 08 May 2019 00:28:24 +0800</pubDate>
-      
-      <guid>https://www.wentixiaogege.com/post/py-concurrent-futures/</guid>
-      <description>&lt;p&gt;Python实现多线程/多进程，大家常常会用到标准库中的&lt;code&gt;threading&lt;/code&gt;和&lt;code&gt;multiprocessing&lt;/code&gt;模块。&lt;/p&gt;
-
-&lt;p&gt;但从Python3.2开始，标准库为我们提供了&lt;code&gt;concurrent.futures&lt;/code&gt;模块，它提供了&lt;code&gt;ThreadPoolExecutor&lt;/code&gt;和&lt;code&gt;ProcessPoolExecutor&lt;/code&gt;两个类，实现了对&lt;code&gt;threading&lt;/code&gt;和&lt;code&gt;multiprocessing&lt;/code&gt;的进一步抽象，使得开发者只需编写少量代码即可让程序实现并行计算。&lt;/p&gt;</description>
     </item>
     
   </channel>

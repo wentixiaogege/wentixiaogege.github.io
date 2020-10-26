@@ -1,54 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tagb on wentixiaogege</title>
-    <link>https://www.wentixiaogege.com/tags/tagb/</link>
-    <description>Recent content in Tagb on wentixiaogege</description>
+    <title>tagB on wentixiaogege</title>
+    <link>/tags/tagb/</link>
+    <description>Recent content in tagB on wentixiaogege</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Tue, 14 May 2019 12:58:30 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.wentixiaogege.com/tags/tagb/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 09 Oct 2020 21:50:25 +0800</lastBuildDate><atom:link href="/tags/tagb/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Machine Learning Feature Engineering</title>
-      <link>https://www.wentixiaogege.com/post/machine-learning-feature-engineering/</link>
-      <pubDate>Tue, 14 May 2019 12:58:30 +0800</pubDate>
+      <title>今年参加PAKDD2020：阿里巴巴算法写的一个论文: A Voting-based Robust Model for Disk Failure Prediction</title>
+      <link>/post/wenti-diskfailure-proposal/</link>
+      <pubDate>Fri, 09 Oct 2020 21:50:25 +0800</pubDate>
       
-      <guid>https://www.wentixiaogege.com/post/machine-learning-feature-engineering/</guid>
-      <description>&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;</description>
+      <guid>/post/wenti-diskfailure-proposal/</guid>
+      <description></description>
     </item>
     
     <item>
-      <title>Machine Learning Preprocessing</title>
-      <link>https://www.wentixiaogege.com/post/machine-learning-preprocessing/</link>
-      <pubDate>Tue, 14 May 2019 12:58:18 +0800</pubDate>
+      <title>用Hugo和Github Pages创建和部署个人博客</title>
+      <link>/post/wenti-building-static-hugo-github/</link>
+      <pubDate>Fri, 09 Oct 2020 21:41:02 +0800</pubDate>
       
-      <guid>https://www.wentixiaogege.com/post/machine-learning-preprocessing/</guid>
-      <description>&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>效率至上——分享一波常用工具</title>
-      <link>https://www.wentixiaogege.com/post/tools-to-share/</link>
-      <pubDate>Sat, 11 May 2019 14:28:53 +0800</pubDate>
-      
-      <guid>https://www.wentixiaogege.com/post/tools-to-share/</guid>
-      <description>&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Machine Learning Intro</title>
-      <link>https://www.wentixiaogege.com/post/machine-learning-intro/</link>
-      <pubDate>Sat, 11 May 2019 10:49:53 +0800</pubDate>
-      
-      <guid>https://www.wentixiaogege.com/post/machine-learning-intro/</guid>
-      <description>&lt;p&gt;机器学习可以归结为学习一个函数(f)，把输入变量(X)映射到输出变量(Y)：
-算法可从训练数据中学习这样的目标映射函数。
-函数的形式是未知的，我的工作正为机器学习从业人员评估不同的机器学习算法，从而看一看哪一个算法更接近潜在的函数。
-不同的算法对函数的形式有不同的假设或者偏见，以及如何学习目标函数。&lt;/p&gt;</description>
+      <guid>/post/wenti-building-static-hugo-github/</guid>
+      <description>&lt;p&gt;Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。相较于Hexo和WordPress，Hugo的安装和配置都方便得多，生成页面的速度也是前两者无可比拟的。而Github Pages是github提供的静态网页托管服务，提供1GB的免费空间，可直接通过github仓库进行站点部署，十分方便。&lt;/p&gt;
+&lt;p&gt;本站就是使用了Hugo和Github Pages来进行创建和部署的，下面来简单介绍一下部署过程。&lt;/p&gt;</description>
     </item>
     
   </channel>
