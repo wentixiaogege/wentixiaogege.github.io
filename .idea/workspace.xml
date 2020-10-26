@@ -2,7 +2,65 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c306eb30-b119-424a-b379-f32028dd118d" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/post/how-to-get-started-with-numerai/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tags/github/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tags/github/index.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tags/github/page/1/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tags/numerai/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tags/numerai/index.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tags/numerai/page/1/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/about/index.html" afterPath="$PROJECT_DIR$/about/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/categories/index.html" afterPath="$PROJECT_DIR$/categories/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.xml" afterPath="$PROJECT_DIR$/index.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/links/index.html" afterPath="$PROJECT_DIR$/links/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/page/2/index.html" afterPath="$PROJECT_DIR$/page/2/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/creating-a-new-theme/index.html" afterPath="$PROJECT_DIR$/post/creating-a-new-theme/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/goisforlovers/index.html" afterPath="$PROJECT_DIR$/post/goisforlovers/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/hello-world/index.html" afterPath="$PROJECT_DIR$/post/hello-world/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/hugo-nuo-post-preview/index.html" afterPath="$PROJECT_DIR$/post/hugo-nuo-post-preview/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/hugoisforlovers/index.html" afterPath="$PROJECT_DIR$/post/hugoisforlovers/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/index.html" afterPath="$PROJECT_DIR$/post/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/index.xml" afterPath="$PROJECT_DIR$/post/index.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/migrate-from-jekyll/index.html" afterPath="$PROJECT_DIR$/post/migrate-from-jekyll/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/page/2/index.html" afterPath="$PROJECT_DIR$/post/page/2/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/wenti-algo-jianzhi-offer/index.html" afterPath="$PROJECT_DIR$/post/wenti-algo-jianzhi-offer/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/wenti-building-static-hugo-github/index.html" afterPath="$PROJECT_DIR$/post/wenti-building-static-hugo-github/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/wenti-custom-loss-lgb-xgb/index.html" afterPath="$PROJECT_DIR$/post/wenti-custom-loss-lgb-xgb/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/wenti-diskfailure-proposal/index.html" afterPath="$PROJECT_DIR$/post/wenti-diskfailure-proposal/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/wenti-dl-lstm-gru/index.html" afterPath="$PROJECT_DIR$/post/wenti-dl-lstm-gru/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/wenti-linux-gpu-env-install/index.html" afterPath="$PROJECT_DIR$/post/wenti-linux-gpu-env-install/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/wenti-ml-catboost/index.html" afterPath="$PROJECT_DIR$/post/wenti-ml-catboost/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/wenti-ml-climate-change/index.html" afterPath="$PROJECT_DIR$/post/wenti-ml-climate-change/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/wenti-ml-concept-drift/index.html" afterPath="$PROJECT_DIR$/post/wenti-ml-concept-drift/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resume/index.html" afterPath="$PROJECT_DIR$/resume/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sitemap.xml" afterPath="$PROJECT_DIR$/sitemap.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/ai/index.html" afterPath="$PROJECT_DIR$/tags/ai/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/cuda10.0/index.html" afterPath="$PROJECT_DIR$/tags/cuda10.0/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/cudnn7/index.html" afterPath="$PROJECT_DIR$/tags/cudnn7/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/development/index.html" afterPath="$PROJECT_DIR$/tags/development/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/go/index.html" afterPath="$PROJECT_DIR$/tags/go/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/golang/index.html" afterPath="$PROJECT_DIR$/tags/golang/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/gpu/index.html" afterPath="$PROJECT_DIR$/tags/gpu/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/hugo/index.html" afterPath="$PROJECT_DIR$/tags/hugo/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/index.html" afterPath="$PROJECT_DIR$/tags/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/index.xml" afterPath="$PROJECT_DIR$/tags/index.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/machine-learning/index.html" afterPath="$PROJECT_DIR$/tags/machine-learning/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/markdown/index.html" afterPath="$PROJECT_DIR$/tags/markdown/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/meteorology/index.html" afterPath="$PROJECT_DIR$/tags/meteorology/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/python/index.html" afterPath="$PROJECT_DIR$/tags/python/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/taga/index.html" afterPath="$PROJECT_DIR$/tags/taga/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/tagb/index.html" afterPath="$PROJECT_DIR$/tags/tagb/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/templates/index.html" afterPath="$PROJECT_DIR$/tags/templates/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/tensorflow2/index.html" afterPath="$PROJECT_DIR$/tags/tensorflow2/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/theme/index.html" afterPath="$PROJECT_DIR$/tags/theme/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/themes/index.html" afterPath="$PROJECT_DIR$/tags/themes/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/ubuntu/index.html" afterPath="$PROJECT_DIR$/tags/ubuntu/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/剑指offer/index.html" afterPath="$PROJECT_DIR$/tags/剑指offer/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/数据结构/index.html" afterPath="$PROJECT_DIR$/tags/数据结构/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/算法/index.html" afterPath="$PROJECT_DIR$/tags/算法/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags/面试/index.html" afterPath="$PROJECT_DIR$/tags/面试/index.html" />
     </list>
     <ignored path="wentixiaogege.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,31 +81,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CNAME" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CNAME" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CNAME">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/page/2/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="260" column="21" selection-start-line="260" selection-start-column="21" selection-end-line="260" selection-end-column="21" />
               <folding />
             </state>
           </provider>
