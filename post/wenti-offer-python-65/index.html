@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Wenti Offer Python 65</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Author Name">
+  <meta name="description" content="剑指offer 最新版各种问题的汇总整理答案，比较好的将各种问题按照 递归、数据、字符串、链表、二叉树、复杂数据结构做了汇总方便大家学习~
+">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@wentixiaogege">
+    <meta name="twitter:title" content="Wenti Offer Python 65">
+    <meta name="twitter:description" content="剑指offer 最新版各种问题的汇总整理答案，比较好的将各种问题按照 递归、数据、字符串、链表、二叉树、复杂数据结构做了汇总方便大家学习~
+">
+    <meta name="twitter:image" content="/media/offer_sward_65.jpg">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Wenti Offer Python 65">
+  <meta property="og:description" content="剑指offer 最新版各种问题的汇总整理答案，比较好的将各种问题按照 递归、数据、字符串、链表、二叉树、复杂数据结构做了汇总方便大家学习~
+">
+  <meta property="og:url" content="/post/wenti-offer-python-65/">
+  <meta property="og:image" content="/media/offer_sward_65.jpg">
+
+
+
+
+<meta name="generator" content="Hugo 0.76.3">
+
+
+<link rel="canonical" href="/post/wenti-offer-python-65/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc">
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587">
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="wentixiaogege">
+<meta name="msapplication-tooltip" content="wentixiaogege">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href=""><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="">wentixiaogege</a></h2>
+  
+  <p class="subtitle">一半忧与愁 &amp; 一半花与海</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/reco/">Recommend</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/times/">Time Series</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wentixiaogege">Github</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://www.kaggle.com/wentixiaogege">Kaggler</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">Resume</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:wentixiaogege@163.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wentixiaogege" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/wentixiaogege" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/wentixiaogege" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="icon icon-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="icon icon-wechat" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/wentixiaogege" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Wenti Offer Python 65</h1>
+      <p class="post-meta">@Author Name · Oct 27, 2020 · 14 min read</p>
+    </header>
+    <article class="post-content"><p>剑指offer 最新版各种问题的汇总整理答案，比较好的将各种问题按照 递归、数据、字符串、链表、二叉树、复杂数据结构做了汇总方便大家学习~</p>
+<p>[TOC]</p>
+<h3 id="0递归脑力">0.递归&amp;脑力</h3>
+<h4 id="斐波那契数列httpswwwnowcodercompracticec6c7742f5ba7442aada113136ddea0c3tpid13tqid11160tpage1rp1rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/c6c7742f5ba7442aada113136ddea0c3?tpId=13&amp;tqId=11160&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">斐波那契数列</a></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Fibonacci</span>(self, n):
+        <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">if</span> n<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">or</span> n<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>:
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+        memories <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(n<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>):
+            memories<span style="color:#f92672">.</span>append(memories[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>memories[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>])
+        <span style="color:#66d9ef">return</span> memories[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</code></pre></div><p><a href="https://www.nowcoder.com/practice/8c82a5b80378478f9484d87d1c5f12a4?tpId=13&amp;tqId=11161&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">跳台阶</a>
+一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
+dp[n]=dp[n−1]+dp[n−2]dp[n]=dp[n−1]+dp[n−2]</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">jumpFloor</span>(self, number):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">        n = 1 : 1 
+</span><span style="color:#e6db74">        n = 2 : 1+1 = 2
+</span><span style="color:#e6db74">        n = 3 : dp[n-2]+dp[n-1]
+</span><span style="color:#e6db74">        &#39;&#39;&#39;</span>
+        <span style="color:#66d9ef">if</span> number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">or</span> number <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>:
+            <span style="color:#66d9ef">return</span> number
+        dp <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(number<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>):
+            dp<span style="color:#f92672">.</span>append(dp[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>dp[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>])
+        <span style="color:#66d9ef">return</span> dp[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#ae81ff">123456789101112131415</span>
+</code></pre></div><p><a href="https://www.nowcoder.com/practice/22243d016f6b47f2a6928b4313c85387?tpId=13&amp;tqId=11162&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">变态跳台阶</a>
+一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
+思考：在dp[n] = dp[n-1] + dp[n-2] + .. + dp[1] + 1(直接跳n)步骤
+即dp[n]=∑n−1i=1dp[i]+1dp[n]=∑i=1n−1dp[i]+1</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">jumpFloorII</span>(self, number):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">or</span> number <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>:
+            <span style="color:#66d9ef">return</span> number
+        ret <span style="color:#f92672">=</span> sum_ <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(number<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>):
+            ret <span style="color:#f92672">=</span> sum_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
+            sum_<span style="color:#f92672">+=</span>ret
+        <span style="color:#66d9ef">return</span> ret <span style="color:#ae81ff">12345678910</span>
+</code></pre></div><p><a href="https://www.nowcoder.com/practice/72a5a919508a4251859fb2cfb987a0e6?tpId=13&amp;tqId=11163&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">矩形覆盖</a>
+我们可以用2<em>1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2</em>1的小矩形无重叠地覆盖一个2<em>n的大矩形，总共有多少种方法？
+思考： 2</em>1 1 种； 2<em>2 2种 2</em>3 3种 2*4 5种
+dp[n]=dp[n−1]+dp[n−2]dp[n]=dp[n−1]+dp[n−2]</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">rectCover</span>(self, number):
+        <span style="color:#75715e"># write code here</span>
+
+        <span style="color:#66d9ef">if</span> number<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">2</span>:
+            <span style="color:#66d9ef">return</span> number
+        dp <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(number<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>):
+            dp<span style="color:#f92672">.</span>append(dp[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>dp[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>])
+        <span style="color:#66d9ef">return</span> dp[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</code></pre></div><h4 id="数值的n次方httpswwwnowcodercompractice1a834e5e3e1a4b7ba251417554e07c00tpid13tqid11165tpage3rp3rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/1a834e5e3e1a4b7ba251417554e07c00?tpId=13&amp;tqId=11165&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">数值的n次方</a></h4>
+<p>思考：，用二分</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Power</span>(self, base, exponent):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> exponent <span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>:
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">if</span> exponent <span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>:
+            <span style="color:#66d9ef">return</span> base
+        ans,pos<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">if</span> exponent <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>:
+            pos<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>
+            exponent <span style="color:#f92672">=</span> <span style="color:#f92672">-</span> exponent
+        <span style="color:#66d9ef">if</span> exponent <span style="color:#f92672">%</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>: <span style="color:#75715e"># 偶数</span>
+            ans <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>Power(base,exponent<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">*</span>self<span style="color:#f92672">.</span>Power(base,exponent<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span>)
+        <span style="color:#66d9ef">else</span>: <span style="color:#75715e"># 奇数</span>
+            ans <span style="color:#f92672">=</span> base <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>Power(base,exponent<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">*</span>self<span style="color:#f92672">.</span>Power(base,exponent<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span>)
+        <span style="color:#66d9ef">return</span> ans <span style="color:#66d9ef">if</span> pos<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">1.0</span><span style="color:#f92672">/</span>ans
+</code></pre></div><h4 id="二分法和牛顿迭代法求平方根httpsblogcsdnnetycf74514articledetails48996383utm_mediumdistributepc_relevantnone-task-blog-blogcommendfrommachinelearnpai2-1channel_paramdepth_1-utm_sourcedistributepc_relevantnone-task-blog-blogcommendfrommachinelearnpai2-1channel_param"><a href="https://blog.csdn.net/ycf74514/article/details/48996383?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param">二分法和牛顿迭代法求平方根</a></h4>
+<p><img src="https://pic2.zhimg.com/80/v2-5b9cb84f2f326c5739ea5e0ae8e9411d_720w.jpg" alt="img"></p>
+<pre><code>##二分法
+import math
+from math import sqrt
+ 
+def sqrt_binary(num):
+	x=sqrt(num)
+	y=num/2.0
+	low=0.0
+	up=num*1.0
+	count=1
+	while abs(y-x)&gt;0.00000001:
+		print count,y
+		count+=1		
+		if (y*y&gt;num):
+			up=y
+			y=low+(y-low)/2
+		else:
+			low=y
+			y=up-(up-y)/2
+	return y
+ 
+print(sqrt_binary(5))
+## 牛顿法 二次方
+## https://zhuanlan.zhihu.com/p/111598542
+def sqrt_newton(num):
+	x=sqrt(num)
+	y=num/2.0
+	count=1
+	while abs(y-x)&gt;0.00000001:
+		print count,y
+		count+=1
+		y=((y*1.0)+(1.0*num)/y)/2.0000
+	return y
+ 
+print(sqrt_newton(5))
+print(sqrt(5))
+
+### 牛顿法 三次方
+def cube_newton(num):
+	x=num/3.0
+	y=0
+	count=1
+	while abs(x-y)&gt;0.00000001:
+		print count,x
+		count+=1
+		y=x
+		x=(2.0/3.0)*x+(num*1.0)/(x*x*3.0)
+	return x
+ 
+print(cube_newton(27))
+</code></pre><h4 id="丑数httpswwwnowcodercompractice6aa9e04fc3794f68acf8778237ba065btpid13tqid11186tpage2rp2rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/6aa9e04fc3794f68acf8778237ba065b?tpId=13&amp;tqId=11186&amp;tPage=2&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">丑数</a></h4>
+<p>只包含因子2、3和5的数称作丑数（Ugly Number），求按从小到大的顺序的第N个丑数。因为丑数只包含质因子2，3，5，假设我们已经有n-1个丑数，按照顺序排列，且第n-1的丑数为M。那么第n个丑数一定是由这n-1个丑数分别乘以2，3，5，得到的所有大于M的结果中，最小的那个数。</p>
+<p>事实上我们不需要每次都计算前面所有丑数乘以2，3，5的结果，然后再比较大小。因为在已存在的丑数中，一定存在某个数T2T2，在它之前的所有数乘以2都小于已有丑数，而T2×2T2×2的结果一定大于M，同理，也存在这样的数T3，T5T3，T5，我们只需要标记这三个数即可。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">GetUglyNumber_Solution</span>(self, index):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> index <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#75715e"># 1作为特殊数直接保存</span>
+        baselist <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>]
+        min2 <span style="color:#f92672">=</span> min3 <span style="color:#f92672">=</span> min5 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        curnum <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">while</span> curnum <span style="color:#f92672">&lt;</span> index:
+            minnum <span style="color:#f92672">=</span> min(baselist[min2] <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>, baselist[min3] <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>, baselist[min5] <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>)
+            baselist<span style="color:#f92672">.</span>append(minnum)
+            <span style="color:#75715e"># 找到第一个乘以2的结果大于当前最大丑数M的数字，也就是T2</span>
+            <span style="color:#66d9ef">while</span> baselist[min2] <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;=</span> minnum:
+                min2 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#75715e"># 找到第一个乘以3的结果大于当前最大丑数M的数字，也就是T3</span>
+            <span style="color:#66d9ef">while</span> baselist[min3] <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">&lt;=</span> minnum:
+                min3 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#75715e"># 找到第一个乘以5的结果大于当前最大丑数M的数字，也就是T5</span>
+            <span style="color:#66d9ef">while</span> baselist[min5] <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">&lt;=</span> minnum:
+                min5 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            curnum <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">return</span> baselist[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</code></pre></div><h4 id="正则表达式匹配httpswwwnowcodercompractice45327ae22b7b413ea21df13ee7d6429ctpid13tqid11205tpage3rp3rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/45327ae22b7b413ea21df13ee7d6429c?tpId=13&amp;tqId=11205&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">正则表达式匹配</a></h4>
+<p>请实现一个函数用来匹配包括'.&lsquo;和&rsquo;*&lsquo;的正则表达式。模式中的字符&rsquo;.&lsquo;表示任意一个字符，而&rsquo;*&lsquo;表示它前面的字符可以出现任意次（包含0次）。  在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串”aaa”与模式”a.a”和”ab<em>ac</em>a”匹配，但是与”aa.a”和”ab*a”均不匹配
+思考：
+第一种情况，当p == ” 时 return s==”
+当len(p)==1时 要满足len(s)==1 AND (p[0]==s[0] OR p[0] == ‘.’)
+当len(p)&gt;1时，要讨论p[1] 是不是为’<em>’ ，因为如果p[1]==’</em>’ 时候 可能会是p[2:] 和 s 匹配情况
+但当p[1]!=’<em>’ 时候 意味着 必须要关注是否 p[0]==s[0] 或者 p[0]==’.’
+那么这两个可以合并为
+IF len(p) == 0 or p[1]!=’</em>’
+返回 len(s) AND match(p[1:],s[1:]) AND (p[0]==s[0] OR p[0] == ‘.’)
+然后最复杂的一种情况p[1] == ‘<em>’
+p = ‘b</em>bbacd’ s = ‘bbbbbacd’
+很明显的是如果p[0]!=s[0] 且 p[0]!=’.’ 那么 看p[2:] 和 s 的匹配情况
+如果p[0] == s[0] 或者 p[0] == ‘.’ ， 可以判断p[2:] 和 s[1:] … p[2:] 和 s[2:] … p[2:] 和 s[3:] … 搞个循环 就可以</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#75715e"># s, pattern都是字符串</span>
+    <span style="color:#66d9ef">def</span> __init__(self):
+        self<span style="color:#f92672">.</span>dic <span style="color:#f92672">=</span> {}
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">match</span>(self, s, p):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> (s,p) <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>dic:
+            <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>dic[(s,p)]
+        <span style="color:#66d9ef">if</span> p <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;&#39;</span>:
+            <span style="color:#66d9ef">return</span> s<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;&#39;</span>
+        <span style="color:#66d9ef">if</span> len(p)<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">or</span> p[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">!=</span><span style="color:#e6db74">&#39;*&#39;</span>:
+            self<span style="color:#f92672">.</span>dic[(s[<span style="color:#ae81ff">1</span>:],p[<span style="color:#ae81ff">1</span>:])] <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>match(s[<span style="color:#ae81ff">1</span>:],p[<span style="color:#ae81ff">1</span>:])
+            <span style="color:#66d9ef">return</span> len(s)<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> (p[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;.&#39;</span> <span style="color:#f92672">or</span> p[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">==</span>s[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">and</span> self<span style="color:#f92672">.</span>dic[(s[<span style="color:#ae81ff">1</span>:],p[<span style="color:#ae81ff">1</span>:])]
+        <span style="color:#66d9ef">while</span>(len(s) <span style="color:#f92672">and</span> (p[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;.&#39;</span> <span style="color:#f92672">or</span> p[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">==</span>s[<span style="color:#ae81ff">0</span>])):
+            self<span style="color:#f92672">.</span>dic[(s,p[<span style="color:#ae81ff">2</span>:])] <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>match(s,p[<span style="color:#ae81ff">2</span>:])
+            <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>match(s[:],p[<span style="color:#ae81ff">2</span>:]):
+                <span style="color:#66d9ef">return</span> True
+            s <span style="color:#f92672">=</span> s[<span style="color:#ae81ff">1</span>:]
+        self<span style="color:#f92672">.</span>dic[(s,p[<span style="color:#ae81ff">2</span>:])] <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>match(s,p[<span style="color:#ae81ff">2</span>:])
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>dic[(s,p[<span style="color:#ae81ff">2</span>:])]
+</code></pre></div><h3 id="1数组">1.数组</h3>
+<h4 id="调整数组顺序使奇数位于偶数前面httpswwwnowcodercompracticebeb5aa231adc45b2a5dcc5b62c93f593tpid13tqid11166tpage4rp4rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/beb5aa231adc45b2a5dcc5b62c93f593?tpId=13&amp;tqId=11166&amp;tPage=4&amp;rp=4&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">调整数组顺序使奇数位于偶数前面</a></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reOrderArray</span>(self, array):
+        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">isOdd</span>(a):
+            <span style="color:#66d9ef">return</span> (a <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>
+        answer <span style="color:#f92672">=</span> [i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> array <span style="color:#66d9ef">if</span> isOdd(i)]
+        answer<span style="color:#f92672">.</span>extend([i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> array <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> isOdd(i)])
+        <span style="color:#66d9ef">return</span> answer
+    
+<span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reOrderArray</span>(self, array):
+        <span style="color:#66d9ef">return</span> sorted(array, key <span style="color:#f92672">=</span> <span style="color:#66d9ef">lambda</span> x: x <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</code></pre></div><h4 id="二分查找九章算法httpswwwjiuzhangcomproblembinary-searchtag-lang-python"><a href="https://www.jiuzhang.com/problem/binary-search/#tag-lang-python">二分查找（九章算法)</a></h4>
+<p>题目：给定一个排好序的证书数组nums，和一个整数target，寻找target在nums中任何一个/第一次出现/最后一次出现的位置，不存在return-1。</p>
+<p>思路：基本上看到时间复杂度要求O（logN）基本就是要用二分法，二分法的本质是保留有解的一半。</p>
+<p><strong>3.通用的二分法模板(四个要素)</strong></p>
+<p>①start+1&lt;end</p>
+<p>②start+(end-start)/2</p>
+<p>③A[mid]==,&lt;,&gt;</p>
+<p>④A[start] A[end] ? target</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#75715e"># @param nums: The integer array</span>
+    <span style="color:#75715e"># @param target: Target number to find</span>
+    <span style="color:#75715e"># @return the first position of target in nums, position start from 0 </span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">binarySearch</span>(self, nums, target):
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> nums:
+            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+            
+        start, end <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, len(nums) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#75715e"># 用 start + 1 &lt; end 而不是 start &lt; end 的目的是为了避免死循环</span>
+        <span style="color:#75715e"># 在 first position of target 的情况下不会出现死循环</span>
+        <span style="color:#75715e"># 但是在 last position of target 的情况下会出现死循环</span>
+        <span style="color:#75715e"># 样例：nums=[1，1] target = 1</span>
+        <span style="color:#75715e"># 为了统一模板，我们就都采用 start + 1 &lt; end，就保证不会出现死循环</span>
+        <span style="color:#66d9ef">while</span> start <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span> end:
+            <span style="color:#75715e"># python 没有 overflow 的问题，直接 // 2 就可以了</span>
+            <span style="color:#75715e"># java和C++ 最好写成 mid = start + (end - start) / 2</span>
+            <span style="color:#75715e"># 防止在 start = 2^31 - 1, end = 2^31 - 1 的情况下出现加法 overflow</span>
+            mid <span style="color:#f92672">=</span> (start <span style="color:#f92672">+</span> end) <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>
+            
+            <span style="color:#75715e"># &gt; , =, &lt; 的逻辑先分开写，然后在看看 = 的情况是否能合并到其他分支里</span>
+            <span style="color:#66d9ef">if</span> nums[mid] <span style="color:#f92672">&lt;</span> target:
+                <span style="color:#75715e"># 写作 start = mid + 1 也是正确的</span>
+                <span style="color:#75715e"># 只是可以偷懒不写，因为不写也没问题，不会影响时间复杂度</span>
+                <span style="color:#75715e"># 不写的好处是，万一你不小心写成了 mid - 1 你就错了</span>
+                start <span style="color:#f92672">=</span> mid
+            <span style="color:#66d9ef">elif</span> nums[mid] <span style="color:#f92672">==</span> target:
+                end <span style="color:#f92672">=</span> mid
+            <span style="color:#66d9ef">else</span>: 
+                <span style="color:#75715e"># 写作 end = mid - 1 也是正确的</span>
+                <span style="color:#75715e"># 只是可以偷懒不写，因为不写也没问题，不会影响时间复杂度</span>
+                <span style="color:#75715e"># 不写的好处是，万一你不小心写成了 mid + 1 你就错了</span>
+                end <span style="color:#f92672">=</span> mid
+                
+        <span style="color:#75715e"># 因为上面的循环退出条件是 start + 1 &lt; end</span>
+        <span style="color:#75715e"># 因此这里循环结束的时候，start 和 end 的关系是相邻关系（1和2，3和4这种）</span>
+        <span style="color:#75715e"># 因此需要再单独判断 start 和 end 这两个数谁是我们要的答案</span>
+        <span style="color:#75715e"># 如果是找 first position of target 就先看 start，否则就先看 end</span>
+        <span style="color:#66d9ef">if</span> nums[start] <span style="color:#f92672">==</span> target:
+            <span style="color:#66d9ef">return</span> start
+        <span style="color:#66d9ef">if</span> nums[end] <span style="color:#f92672">==</span> target:
+            <span style="color:#66d9ef">return</span> end
+        
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</code></pre></div><p><a href="https://www.jiuzhang.com/problem/find-first-and-last-position-of-element-in-sorted-array/#tag-lang-python">查找range</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    @param nums: the array of integers
+</span><span style="color:#e6db74">    @param target: 
+</span><span style="color:#e6db74">    @return: the starting and ending position
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">searchRange</span>(self, nums, target):
+        <span style="color:#75715e"># Write your code here.</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> nums:
+            <span style="color:#66d9ef">return</span> [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+            
+        first_index <span style="color:#f92672">=</span>  self<span style="color:#f92672">.</span>binarySearch(nums, target, True)
+        <span style="color:#66d9ef">if</span> first_index <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>:
+            <span style="color:#66d9ef">return</span> [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+        last_index <span style="color:#f92672">=</span>  self<span style="color:#f92672">.</span>binarySearch(nums, target, False)
+        <span style="color:#66d9ef">return</span> [first_index, last_index]
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">binarySearch</span>(self, nums, target, isFindFirst):
+        start, end <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, len(nums) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> 
+        <span style="color:#66d9ef">while</span> start <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span> end:
+            mid <span style="color:#f92672">=</span> (start <span style="color:#f92672">+</span> end) <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span> 
+            <span style="color:#66d9ef">if</span> target <span style="color:#f92672">&gt;</span> nums[mid]:
+                start <span style="color:#f92672">=</span> mid
+            <span style="color:#66d9ef">elif</span> target <span style="color:#f92672">&lt;</span> nums[mid]:
+                end <span style="color:#f92672">=</span> mid
+            <span style="color:#66d9ef">else</span>:
+                <span style="color:#66d9ef">if</span> isFindFirst:
+                    end <span style="color:#f92672">=</span> mid
+                <span style="color:#66d9ef">else</span>:
+                    start <span style="color:#f92672">=</span> mid
+        <span style="color:#66d9ef">if</span> isFindFirst:
+            <span style="color:#66d9ef">if</span> nums[start] <span style="color:#f92672">==</span> target:
+                <span style="color:#66d9ef">return</span> start 
+            <span style="color:#66d9ef">if</span> nums[end] <span style="color:#f92672">==</span> target:
+                <span style="color:#66d9ef">return</span> end 
+            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+        
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">if</span> nums[end] <span style="color:#f92672">==</span> target:
+                <span style="color:#66d9ef">return</span> end
+            <span style="color:#66d9ef">if</span> nums[start] <span style="color:#f92672">==</span> target:
+                <span style="color:#66d9ef">return</span> start
+            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</code></pre></div><h4 id="-旋转数组的最小数字httpswwwnowcodercompractice9f3231a991af4f55b95579b44b7a01batpid13tqid11159tpage2rp2rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/9f3231a991af4f55b95579b44b7a01ba?tpId=13&amp;tqId=11159&amp;tPage=2&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking"> 旋转数组的最小数字</a></h4>
+<p>思考：二分判断</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">minNumberInRotateArray</span>(self, rotateArray):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> rotateArray <span style="color:#f92672">==</span> []:
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+        _len <span style="color:#f92672">=</span> len(rotateArray)
+        left <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        right <span style="color:#f92672">=</span> _len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">while</span> left <span style="color:#f92672">&lt;=</span> right:
+            mid <span style="color:#f92672">=</span> int((left <span style="color:#f92672">+</span> right) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>)
+            <span style="color:#66d9ef">if</span> rotateArray[mid]<span style="color:#f92672">&lt;</span>rotateArray[mid<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]:
+                <span style="color:#66d9ef">return</span> rotateArray[mid]
+            <span style="color:#66d9ef">if</span> rotateArray[mid] <span style="color:#f92672">&gt;=</span> rotateArray[right]:
+                <span style="color:#75715e"># 说明在【mid，right】之间</span>
+                left <span style="color:#f92672">=</span> mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">else</span>:
+                <span style="color:#75715e"># 说明在【left，mid】之间</span>
+                right <span style="color:#f92672">=</span> mid <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">return</span> rotateArray[mid]
+    
+<span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">minNumberInRotateArray</span>(self, nums):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> nums:
+            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+            
+        start, end <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, len(nums) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">while</span> start <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span> end:
+            mid <span style="color:#f92672">=</span> (start <span style="color:#f92672">+</span> end) <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>
+            <span style="color:#66d9ef">if</span> nums[mid] <span style="color:#f92672">&gt;</span> nums[end]:
+                start <span style="color:#f92672">=</span> mid
+            <span style="color:#66d9ef">else</span>:
+                end <span style="color:#f92672">=</span> mid
+                
+        <span style="color:#66d9ef">return</span> min(nums[start], nums[end])
+</code></pre></div><h4 id="和为s的连续正数序列httpswwwnowcodercompracticec451a3fd84b64cb19485dad758a55ebetpid13tqid11194tpage1rp1rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/c451a3fd84b64cb19485dad758a55ebe?tpId=13&amp;tqId=11194&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">和为S的连续正数序列</a></h4>
+<p>输出所有和为S的连续正数序列。序列内按照从小至大的顺序，序列间按照开始数字从小到大的顺序
+思考：</p>
+<p>解法：1.穷举法，2.<a href="https://blog.csdn.net/shansusu/article/details/50211519">滑动窗口法</a></p>
+<p>，3.数字规律法(往下看)</p>
+<p>S%奇数==0 或者S%偶数==偶数／2 就说明有这个连续序列，但是注意是正数序列，可能会出现越界情况</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">FindContinuousSequence</span>(self, tsum):
+        <span style="color:#75715e"># write code here</span>
+        k <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+        ret <span style="color:#f92672">=</span> []
+        <span style="color:#66d9ef">for</span> k <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2</span>,tsum):
+            <span style="color:#66d9ef">if</span> k<span style="color:#f92672">%</span><span style="color:#ae81ff">2</span><span style="color:#f92672">==</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> tsum<span style="color:#f92672">%</span>k<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>:
+                tmp <span style="color:#f92672">=</span> []
+                mid <span style="color:#f92672">=</span> tsum<span style="color:#f92672">/</span>k
+                <span style="color:#66d9ef">if</span> mid<span style="color:#f92672">-</span>k<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>:
+                    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(mid<span style="color:#f92672">-</span>k<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>,mid<span style="color:#f92672">+</span>k<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>):
+                        tmp<span style="color:#f92672">.</span>append(i)
+                    ret<span style="color:#f92672">.</span>append(tmp[:])
+            <span style="color:#66d9ef">elif</span> k<span style="color:#f92672">%</span><span style="color:#ae81ff">2</span><span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> (tsum<span style="color:#f92672">%</span>k)<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span><span style="color:#f92672">==</span>k:
+                mid <span style="color:#f92672">=</span> tsum<span style="color:#f92672">/</span>k
+                tmp <span style="color:#f92672">=</span> []
+                <span style="color:#66d9ef">if</span> mid<span style="color:#f92672">-</span>k<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>:
+                    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(mid<span style="color:#f92672">-</span>k<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,mid<span style="color:#f92672">+</span>k<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>):
+                        tmp<span style="color:#f92672">.</span>append(i)
+                    ret<span style="color:#f92672">.</span>append(tmp[:])
+        ret<span style="color:#f92672">.</span>sort()
+        <span style="color:#66d9ef">return</span> ret
+</code></pre></div><h4 id="数字在排序数组中出现的次数">数字在排序数组中出现的次数</h4>
+<p><a href="https://www.nowcoder.com/practice/70610bf967994b22bb1c26f9ae901fa2?tpId=13&amp;tqId=11190&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">数字在排序数组中出现的次数</a>
+思考：原来是可以用hash做的，但是因为是排序数组，所以可以用二分查找</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">GetNumberOfK</span>(self, data, k):
+        <span style="color:#75715e"># write code here</span>
+        start <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        end <span style="color:#f92672">=</span> len(data)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">while</span>(start<span style="color:#f92672">&lt;=</span>end):
+            mid <span style="color:#f92672">=</span> (start<span style="color:#f92672">+</span>end)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>
+            <span style="color:#66d9ef">if</span> data[mid]<span style="color:#f92672">==</span>k:
+                cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+                tmp <span style="color:#f92672">=</span> mid
+                <span style="color:#66d9ef">while</span>(tmp<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> data[tmp]<span style="color:#f92672">==</span>k):
+                    cnt<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+                    tmp<span style="color:#f92672">-=</span><span style="color:#ae81ff">1</span>
+                tmp <span style="color:#f92672">=</span> mid<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
+                <span style="color:#66d9ef">while</span>(tmp<span style="color:#f92672">&lt;</span>len(data) <span style="color:#f92672">and</span> data[tmp]<span style="color:#f92672">==</span>k):
+                    cnt<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+                    tmp<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+                <span style="color:#66d9ef">return</span> cnt
+            <span style="color:#66d9ef">elif</span> data[mid]<span style="color:#f92672">&gt;</span>k:
+                end <span style="color:#f92672">=</span> mid<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">else</span>:
+                start <span style="color:#f92672">=</span> mid<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+</code></pre></div><h4 id="数组中只出现一次的数字httpswwwnowcodercompracticee02fdb54d7524710a7d664d082bb7811tpid13tqid11193tpage1rp1rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/e02fdb54d7524710a7d664d082bb7811?tpId=13&amp;tqId=11193&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">数组中只出现一次的数字</a></h4>
+<p>一个整型数组里除了两个数字之外，其他的数字都出现了两次。请写程序找出这两个只出现一次的数字
+思考：用hash；或者位运算
+首先利用0 ^ a = a; a^a = 0的性质
+两个不相等的元素在位级表示上必定会有一位存在不同，
+将数组的所有元素异或得到的结果为不存在重复的两个元素异或的结果，
+据异或的结果1所在的最低位，把数字分成两半，每一半里都还有一个出现一次的数据和其他成对出现的数据,
+问题就转化为了两个独立的子问题“数组中只有一个数出现一次，其他数都出现了2次，找出这个数字”。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#75715e"># 返回[a,b] 其中ab是出现一次的两个数字</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">FindNumsAppearOnce</span>(self, array):
+        <span style="color:#75715e"># write code here</span>
+        ans,a1,a2,flag<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">for</span> num <span style="color:#f92672">in</span> array:
+            ans <span style="color:#f92672">=</span> ans <span style="color:#f92672">^</span> num
+        <span style="color:#66d9ef">while</span>(ans):
+            <span style="color:#66d9ef">if</span> ans<span style="color:#f92672">%</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+                ans <span style="color:#f92672">=</span> ans <span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">1</span> 
+                flag <span style="color:#f92672">=</span> flag <span style="color:#f92672">&lt;&lt;</span><span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">else</span>:
+                <span style="color:#66d9ef">break</span>
+        <span style="color:#66d9ef">for</span> num <span style="color:#f92672">in</span> array:
+            <span style="color:#66d9ef">if</span> num <span style="color:#f92672">&amp;</span> flag:
+                a1 <span style="color:#f92672">=</span> a1 <span style="color:#f92672">^</span> num
+            <span style="color:#66d9ef">else</span>:
+                a2 <span style="color:#f92672">=</span> a2 <span style="color:#f92672">^</span> num
+        <span style="color:#66d9ef">return</span> a1,a2
+</code></pre></div><h4 id="和为s的两个数字httpswwwnowcodercompractice390da4f7a00f44bea7c2f3d19491311btpid13tqid11195tpage1rp1rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/390da4f7a00f44bea7c2f3d19491311b?tpId=13&amp;tqId=11195&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">和为S的两个数字</a></h4>
+<p>输入一个递增排序的数组和一个数字S，在数组中查找两个数，是的他们的和正好是S，如果有多对数字的和等于S，输出两个数的乘积最小的。
+hash</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">FindNumbersWithSum</span>(self, array, tsum):
+        <span style="color:#75715e"># write code here</span>
+        memorys<span style="color:#f92672">=</span> {}
+        ret <span style="color:#f92672">=</span> []
+        <span style="color:#66d9ef">for</span> num <span style="color:#f92672">in</span> array:
+            <span style="color:#66d9ef">if</span> tsum<span style="color:#f92672">-</span>num <span style="color:#f92672">in</span> memorys:
+                <span style="color:#66d9ef">if</span> ret <span style="color:#f92672">==</span> []:
+                    ret <span style="color:#f92672">=</span> [tsum<span style="color:#f92672">-</span>num,num]
+                <span style="color:#66d9ef">elif</span> ret <span style="color:#f92672">and</span> ret[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span>ret[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">&gt;</span>(tsum<span style="color:#f92672">-</span>num)<span style="color:#f92672">*</span>num:
+                    ret <span style="color:#f92672">=</span> [tsum<span style="color:#f92672">-</span>num,num]
+            <span style="color:#66d9ef">else</span>:
+                memorys[num] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">return</span> ret
+
+</code></pre></div><h4 id="第一个只出现一次的字符httpswwwnowcodercompractice1c82e8cf713b4bbeb2a5b31cf5b0417ctpid13tqid11187tpage2rp2rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/1c82e8cf713b4bbeb2a5b31cf5b0417c?tpId=13&amp;tqId=11187&amp;tPage=2&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">第一个只出现一次的字符</a></h4>
+<p>思考：用dict 最多256个来空间换时间</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">FirstNotRepeatingChar</span>(self, s):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> s<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;&#39;</span>:
+            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+        ret <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+        chars <span style="color:#f92672">=</span> {}
+        <span style="color:#66d9ef">for</span> i,c <span style="color:#f92672">in</span> enumerate(s):
+            <span style="color:#66d9ef">if</span> c <span style="color:#f92672">in</span> chars:
+                chars[c][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> chars[c][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">else</span>:
+                chars[c] <span style="color:#f92672">=</span>[<span style="color:#ae81ff">1</span>,i]
+        <span style="color:#66d9ef">for</span> k,v <span style="color:#f92672">in</span> chars<span style="color:#f92672">.</span>items():
+            <span style="color:#66d9ef">if</span> v[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>:
+                <span style="color:#66d9ef">if</span> ret[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==-</span><span style="color:#ae81ff">1</span>:
+                    ret <span style="color:#f92672">=</span> v
+                <span style="color:#66d9ef">elif</span> v[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> ret[<span style="color:#ae81ff">1</span>]:
+                    ret <span style="color:#f92672">=</span> v
+        <span style="color:#66d9ef">return</span> ret[<span style="color:#ae81ff">1</span>]
+</code></pre></div><h4 id="数组中的逆序对httpswwwnowcodercompractice96bd6684e04a44eb80e6a68efc0ec6c5tpid13tqid11188tpage2rp2rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/96bd6684e04a44eb80e6a68efc0ec6c5?tpId=13&amp;tqId=11188&amp;tPage=2&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">数组中的逆序对</a></h4>
+<p>在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组,求出这个数组中的逆序对的总数P。并将P对1000000007取模的结果输出。 即输出P%1000000007
+方法1：思考：这边的python会超时，但是思路是对的
+时间复杂度O(nlogn),空间复杂度O(n)。
+先将数组逆转，构建一个新的数组L，将num二分插入到L中，所插入的位置i，代表有i个数字比当前这个数字小</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> bisect
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">InversePairs</span>(self, data):
+        data<span style="color:#f92672">.</span>reverse()
+        L <span style="color:#f92672">=</span> []
+        ret <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">for</span> d <span style="color:#f92672">in</span> data:
+            pos <span style="color:#f92672">=</span> bisect<span style="color:#f92672">.</span>bisect_left(L,d)
+            L<span style="color:#f92672">.</span>insert(pos,d)
+            ret<span style="color:#f92672">+=</span> pos
+            ret <span style="color:#f92672">=</span> ret <span style="color:#f92672">%</span> <span style="color:#ae81ff">1000000007</span>
+        <span style="color:#66d9ef">return</span> ret <span style="color:#f92672">%</span> <span style="color:#ae81ff">1000000007</span>
+</code></pre></div><p>方法2：<a href="https://blog.csdn.net/dlengong/article/details/7594919">归并排序的思路</a></p>
+<h4 id="连续子数组的最大和httpswwwnowcodercompractice459bd355da1549fa8a49e350bf3df484tpid13tqid11183tpage2rp2rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/459bd355da1549fa8a49e350bf3df484?tpId=13&amp;tqId=11183&amp;tPage=2&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">连续子数组的最大和</a></h4>
+<p>可以用动态规划的思想来分析这个问题。如果用函数f(i)表示以第i个数字结尾的子数组的最大和，那么我们需要求出max[f(i)]，其中0 &lt;= i &lt; n。我们可用如下边归公式求f(i):</p>
+<p><img src="https://img-blog.csdn.net/20150703073321619" alt="这里写图片描述"></p>
+<p>这个公式的意义：当以第i-1 个数字结尾的子数组中所有数字的和小于0时，如果把这个负数与第i个数累加，得到的结果比第i个数字本身还要小，所以这种情况下以第i个数字结尾的子数组就是第i个数字本身。如果以第i-1 个数字结尾的子数组中所有数字的和大于0 ,与第i 个数字累加就得到以第i个数字结尾的子数组中所有数字的和。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">FindGreatestSumOfSubArray</span>(self, array):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> len(array)<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>:
+            <span style="color:#66d9ef">return</span> array[<span style="color:#ae81ff">0</span>]
+        cur <span style="color:#f92672">=</span> pos <span style="color:#f92672">=</span> array[<span style="color:#ae81ff">0</span>]
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>,len(array)):
+            pos <span style="color:#f92672">=</span> max(pos<span style="color:#f92672">+</span>array[i],array[i])
+            cur <span style="color:#f92672">=</span> max(cur,pos)
+        <span style="color:#66d9ef">return</span> cur
+</code></pre></div><h4 id="最小的k个数httpswwwnowcodercompractice6a296eb82cf844ca8539b57c23e6e9bftpid13tqid11182tpage2rp2rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/6a296eb82cf844ca8539b57c23e6e9bf?tpId=13&amp;tqId=11182&amp;tPage=2&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">最小的K个数</a></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> heapq
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">GetLeastNumbers_Solution</span>(self, tinput, k):
+        <span style="color:#75715e"># write code here</span>
+        heaps <span style="color:#f92672">=</span> []
+        ret <span style="color:#f92672">=</span> []
+        <span style="color:#66d9ef">for</span> num <span style="color:#f92672">in</span> tinput:
+            heapq<span style="color:#f92672">.</span>heappush(heaps,num)
+        <span style="color:#66d9ef">if</span> k<span style="color:#f92672">&gt;</span>len(heaps):
+            <span style="color:#66d9ef">return</span> []
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(k):
+            ret<span style="color:#f92672">.</span>append(heapq<span style="color:#f92672">.</span>heappop(heaps))
+        <span style="color:#66d9ef">return</span> ret
+</code></pre></div><h4 id="数组中出现次数超过一半的数字httpswwwnowcodercompracticee8a1b01a2df14cb2b228b30ee6a92163tpid13tqid11181tpage2rp2rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/e8a1b01a2df14cb2b228b30ee6a92163?tpId=13&amp;tqId=11181&amp;tPage=2&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">数组中出现次数超过一半的数字</a></h4>
+<p>思考：摩尔投票法</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">MoreThanHalfNum_Solution</span>(self, numbers):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> numbers <span style="color:#f92672">==</span> []:
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+        val,cnt <span style="color:#f92672">=</span> None,<span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">for</span> num <span style="color:#f92672">in</span> numbers:
+            <span style="color:#66d9ef">if</span> cnt<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>:
+                val,cnt <span style="color:#f92672">=</span> num,<span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">elif</span> val <span style="color:#f92672">==</span> num:
+                cnt<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">else</span>:
+                cnt<span style="color:#f92672">-=</span><span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">return</span> val <span style="color:#66d9ef">if</span> numbers<span style="color:#f92672">.</span>count(val)<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span>len(numbers) <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">0</span>
+</code></pre></div><h4 id="把数组排成最小的数httpswwwnowcodercompractice8fecd3f8ba334add803bf2a06af1b993tpid13tqid11185tpage2rp2rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/8fecd3f8ba334add803bf2a06af1b993?tpId=13&amp;tqId=11185&amp;tPage=2&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">把数组排成最小的数</a></h4>
+<p>输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。
+str 化</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">链接：</span>https:<span style="color:#f92672">//</span>www<span style="color:#f92672">.</span>nowcoder<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>questionTerminal<span style="color:#f92672">/</span><span style="color:#ae81ff">8</span>fecd3f8ba334add803bf2a06af1b993
+<span style="color:#960050;background-color:#1e0010">来源：牛客网</span>
+<span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">PrintMinNumber</span>(self, numbers):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> numbers:<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>
+        numbers <span style="color:#f92672">=</span> list(map(str,numbers))
+        numbers<span style="color:#f92672">.</span>sort(cmp<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x,y:cmp(x<span style="color:#f92672">+</span>y,y<span style="color:#f92672">+</span>x))
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#66d9ef">if</span> numbers[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(numbers)
+</code></pre></div><h4 id="数组中重复的数字httpswwwnowcodercompractice623a5ac0ea5b4e5f95552655361ae0a8tpid13tqid11203tpage2rp2rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=13&amp;tqId=11203&amp;tPage=2&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">数组中重复的数字</a></h4>
+<p>在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中第一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。</p>
+<p>返回描述：</p>
+<p>如果数组中有重复的数字，函数返回true，否则返回false。</p>
+<p>如果数组中有重复的数字，把重复的数字放到参数duplication[0]中。（ps:duplication已经初始化，可以直接赋值使用。）</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#75715e"># 这里要特别注意~找到任意重复的一个值并赋值到duplication[0]</span>
+    <span style="color:#75715e"># 函数返回True/False</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">duplicate</span>(self, numbers, duplication):
+        <span style="color:#75715e"># write code here</span>
+        dup <span style="color:#f92672">=</span> dict()
+        <span style="color:#66d9ef">for</span> num <span style="color:#f92672">in</span> numbers:
+            <span style="color:#66d9ef">if</span> num <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> dup:
+                dup[num] <span style="color:#f92672">=</span> True
+            <span style="color:#66d9ef">else</span>:
+                duplication[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span>num
+                <span style="color:#66d9ef">return</span> True
+</code></pre></div><h4 id="构造乘积数组httpswwwnowcodercompractice94a4d381a68b47b7a8bed86f2975db46tpid13tqid11204tpage2rp2rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/94a4d381a68b47b7a8bed86f2975db46?tpId=13&amp;tqId=11204&amp;tPage=2&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">构造乘积数组</a></h4>
+<p>B[i]=A[0]<em>A[1]</em>…<em>A[i-1]*A[i+1]</em>…*A[n-1]
+思考：分为下三角和上三角DP计算B
+下三角
+上三角（从最后往前）</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">multiply</span>(self, A):
+        <span style="color:#75715e"># write code here</span>
+        size <span style="color:#f92672">=</span> len(A)
+        B <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>size
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>,size):
+            B[i] <span style="color:#f92672">=</span> B[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>A[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+        tmp <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(size<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+            tmp <span style="color:#f92672">=</span> tmp<span style="color:#f92672">*</span>A[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]
+            B[i] <span style="color:#f92672">=</span> B[i]<span style="color:#f92672">*</span>tmp
+        <span style="color:#66d9ef">return</span> B
+</code></pre></div><h4 id="二维数组中的查找httpswwwnowcodercompracticeabc3fe2ce8e146608e868a70efebf62etpid13tqid11154tpage3rp3rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&amp;tqId=11154&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">二维数组中的查找</a></h4>
+<p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+思考：从0,n-1出开始，小了往下，大了往左</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#75715e"># array 二维列表</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Find</span>(self, target, array):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> len(array)<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> len(array[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>:
+            <span style="color:#66d9ef">return</span> False
+        i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        j <span style="color:#f92672">=</span> len(array[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">while</span>(i<span style="color:#f92672">&lt;</span>len(array) <span style="color:#f92672">and</span> j<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>):
+            <span style="color:#66d9ef">if</span> array[i][j]<span style="color:#f92672">==</span>target:
+                <span style="color:#66d9ef">return</span> True
+            <span style="color:#66d9ef">elif</span> array[i][j]<span style="color:#f92672">&gt;</span>target:
+                j<span style="color:#f92672">-=</span><span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">else</span>:
+                i<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">return</span> False
+</code></pre></div><h4 id="扑克牌顺子httpswwwnowcodercompractice762836f4d43d43ca9deb273b3de8e1f4tpid13tqid11198tpage3rp3rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/762836f4d43d43ca9deb273b3de8e1f4?tpId=13&amp;tqId=11198&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">扑克牌顺子</a></h4>
+<p>LL今天心情特别好,因为他去买了一副扑克牌,发现里面居然有2个大王,2个小王(一副牌原本是54张^_^)…他随机从中抽出了5张牌,想测测自己的手气,看看能不能抽到顺子,如果抽到的话,他决定去买体育彩票,嘿嘿！！“红心A,黑桃3,小王,大王,方片5”,“Oh My God!”不是顺子…..LL不高兴了,他想了想,决定大\小 王可以看成任何数字,并且A看作1,J为11,Q为12,K为13。上面的5张牌就可以变成“1,2,3,4,5”(大小王分别看作2和4),“So Lucky!”。LL决定去买体育彩票啦。 现在,要求你使用这幅牌模拟上面的过程,然后告诉我们LL的运气如何。为了方便起见,你可以认为大小王是0。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">IsContinuous</span>(self, numbers):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> numbers:
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+        numbers<span style="color:#f92672">.</span>sort()
+        zeros <span style="color:#f92672">=</span> numbers<span style="color:#f92672">.</span>count(<span style="color:#ae81ff">0</span>)
+        <span style="color:#66d9ef">for</span> i, v <span style="color:#f92672">in</span> enumerate(numbers[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]):
+            <span style="color:#66d9ef">if</span> v<span style="color:#f92672">!=</span><span style="color:#ae81ff">0</span>:
+                <span style="color:#66d9ef">if</span> numbers[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">==</span>v:
+                    <span style="color:#66d9ef">return</span> False
+                zeros <span style="color:#f92672">-=</span> (numbers[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>numbers[i]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+                <span style="color:#66d9ef">if</span> zeros<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>:
+                    <span style="color:#66d9ef">return</span> False
+        <span style="color:#66d9ef">return</span> True
+</code></pre></div><h4 id="孩子们的游戏httpswwwnowcodercompracticef78a359491e64a50bce2d89cff857eb6tpid13tqid11199tpage3rp3rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/f78a359491e64a50bce2d89cff857eb6?tpId=13&amp;tqId=11199&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">孩子们的游戏</a></h4>
+<p>每年六一儿童节,我都会准备一些小礼物去看望孤儿院的小朋友,今年亦是如此。HF作为牛客的资深元老,自然也准备了一些小游戏。其中,有个游戏是这样的:首先,让小朋友们围成一个大圈。然后,他随机指定一个数m,让编号为0的小朋友开始报数。每次喊到m-1的那个小朋友要出列唱首歌,然后可以在礼品箱中任意的挑选礼物,并且不再回到圈中,从他的下一个小朋友开始,继续0&hellip;m-1报数&hellip;.这样下去&hellip;.直到剩下最后一个小朋友,可以不用表演,并且拿到牛客名贵的“名侦探柯南”典藏版(名额有限哦!!^_^)。请你试着想下,哪个小朋友会得到这份礼品呢？(注：小朋友的编号是从0到n-1)</p>
+<p>如果没有小朋友，请返回-1</p>
+<p>为了讨论方便，先把问题稍微改变一下，并不影响原意：
+我们知道第一个人（编号一定是（m-1）) 出列之后，剩下的n-1个人组成了一个新的约瑟夫环（以编号为k=m mod n的人开始）：</p>
+<blockquote>
+<p>k, k+1, k+2, … n-2,n-1,0,1,2,… k-2</p>
+</blockquote>
+<p>并且从k开始报0。
+我们把他们的编号做一下转换：</p>
+<pre><code>k --&gt; 0
+k+1 --&gt; 1
+k+2 --&gt; 2
+...
+...
+k-2 --&gt; n-2
+</code></pre><p>变换后就完完全全成为了（n-1）个人报数的子问题，假如我们知道这个子问题的解：例如x是最终的胜利者，那么根据上面这个表把这个x变回去不刚好就是n个人情况的解吗？！！变回去的公式很简单，相信大家都可以推出来：x’=(x+k) mod n</p>
+<p>如何知道（n-1）个人报数的问题的解？对，只要知道（n-2）个人的解就行了。（n-2）个人的解呢？当然是先求（n-3）的情况 —- 这显然就是一个倒推问题！好了，思路出来了，下面写递推公式：</p>
+<p>令f表示i个人玩游戏报m退出最后胜利者的编号，最后的结果自然是f[n]</p>
+<p>递推公式</p>
+<blockquote>
+<p>让f[i]为i个人玩游戏报m退出最后的胜利者的编号，最后的结果自然是f[n]</p>
+<p>f[1] = 0;</p>
+<p>f[i] = (f[i - 1] + m) mod i;</p>
+</blockquote>
+<p>有了这个公式，我们要做的就是从1-n顺序算出f的数值，最后结果是f[n]。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># 正经思路</span>
+<span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">LastRemaining_Solution</span>(self, n, m):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> n<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">1</span>: <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+        final,start <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>
+        cnt <span style="color:#f92672">=</span> [i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(n)]
+        <span style="color:#66d9ef">while</span> cnt:
+            k <span style="color:#f92672">=</span> (start<span style="color:#f92672">+</span>m<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">%</span>n
+            final <span style="color:#f92672">=</span> cnt<span style="color:#f92672">.</span>pop(k)
+            n<span style="color:#f92672">-=</span><span style="color:#ae81ff">1</span>
+            start <span style="color:#f92672">=</span> k
+        <span style="color:#66d9ef">return</span> final 
+    
+<span style="color:#75715e"># 数学思路</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>{
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">LastRemaining_Solution</span>(self,n,m):
+    <span style="color:#66d9ef">if</span> n <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">1</span> : <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+    ans<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>,n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>):
+       ans <span style="color:#f92672">=</span> (ans <span style="color:#f92672">+</span> m) <span style="color:#f92672">%</span>i
+    <span style="color:#66d9ef">return</span> ans
+}
+<span style="color:#75715e">#include&lt;cstdio&gt;</span>
+int main(){
+    int n,m;
+    <span style="color:#66d9ef">while</span>(scanf(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>,<span style="color:#f92672">&amp;</span>n,<span style="color:#f92672">&amp;</span>m)<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span><span style="color:#f92672">&amp;&amp;</span>n<span style="color:#f92672">&amp;&amp;</span>m){
+        int ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span>(int i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;i <span style="color:#f92672">&lt;=</span> n;<span style="color:#f92672">++</span>i){
+            ans <span style="color:#f92672">=</span> (ans <span style="color:#f92672">+</span> m) <span style="color:#f92672">%</span> i;
+        }
+        printf(<span style="color:#e6db74">&#34;总人数:</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> 每次出列的人喊的号数:</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> 最后一个出列的人的序号:</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,n,m,ans<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+
+</code></pre></div><h3 id="2位运算">2.位运算</h3>
+<h4 id="二进制中1的个数httpswwwnowcodercompractice8ee967e43c2c4ec193b040ea7fbb10b8tpid13tqid11164tpage3rp3rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/8ee967e43c2c4ec193b040ea7fbb10b8?tpId=13&amp;tqId=11164&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">二进制中1的个数</a></h4>
+<p>思考：python没有无符号移动，需要处理下；python的int是不会溢出的，达到界限后会自己转为long，所以很麻烦。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">NumberOf1</span>(self, n):
+        <span style="color:#75715e"># write code here</span>
+        ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">if</span> n<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>:
+            n <span style="color:#f92672">=</span> n <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xffffffff</span>
+        <span style="color:#66d9ef">while</span> n:
+            ans <span style="color:#f92672">+=</span> n <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>
+            n <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">return</span> ans 
+</code></pre></div><h4 id="求123nhttpswwwnowcodercompractice7a0da8fc483247ff8800059e12d7caf1tpid13tqid11200tpage3rp3rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/7a0da8fc483247ff8800059e12d7caf1?tpId=13&amp;tqId=11200&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">求1+2+3+..+n</a></h4>
+<p>思考：递归 or 公式法</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+<span style="color:#75715e">#     def Sum_Solution(self, n):</span>
+<span style="color:#75715e">#         # write code here</span>
+<span style="color:#75715e">#         if n ==1:</span>
+<span style="color:#75715e">#             return n</span>
+<span style="color:#75715e">#         else:</span>
+<span style="color:#75715e">#             return n+self.Sum_Solution(n-1)</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Sum_Solution</span>(self, n):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+            <span style="color:#66d9ef">return</span> n
+        <span style="color:#66d9ef">return</span> n<span style="color:#f92672">*</span>(n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>
+</code></pre></div><h4 id="不用加减乘除做加法httpswwwnowcodercompractice59ac416b4b944300b617d4f7f111b215tpid13tqid11201tpage3rp3rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/59ac416b4b944300b617d4f7f111b215?tpId=13&amp;tqId=11201&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">不用加减乘除做加法</a></h4>
+<p>思考：不计进位的和为 a^b，进位就是 a&amp;b；python是用的补码来存的，不过python补码有一些问题；</p>
+<p>python会讲补码存成正数 需要 -1 &amp; num</p>
+<p><a href="https://blog.csdn.net/qq_16949707/article/details/106399430">https://blog.csdn.net/qq_16949707/article/details/106399430</a></p>
+<p>a+b = a^b + (a&amp;b)&laquo;1;</p>
+<pre><code># -*- coding:utf-8 -*-
+class Solution:
+    def Add(self, num1, num2):
+        xorNum = num1 ^ num2
+        andNum = num1 &amp; num2 &lt;&lt; 1
+        while andNum:
+            tmp1 = xorNum ^ andNum
+            tmp2 = (xorNum &amp; andNum) &lt;&lt; 1
+            tmp1 = tmp1 &amp; 0xFFFFFFFF
+            xorNum = tmp1
+            andNum = tmp2
+        return xorNum if xorNum &lt;= 0x7FFFFFFF else ~(-1 &amp; xorNum ^ 0xffffffff)
+</code></pre><h4 id="从1到n整数中1出现的次数httpswwwnowcodercompracticebd7f978302044eee894445e244c7eee6tpid13tqid11184tpage2rp2rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/bd7f978302044eee894445e244c7eee6?tpId=13&amp;tqId=11184&amp;tPage=2&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">从1到n整数中1出现的次数</a></h4>
+<p>思考：可以从n的每个位上入手，pos来记录位，ans来记录当前1的个数，last来记录前面的数（这样讲好复杂，举个例子好了）
+xxxxYzzzz （假设9位）
+在Y上1的个数由xxxx,zzzz和Y来决定
+首先至少有xxxx0000个
+其次看Y
+如果Y大于1那么会多了10000个
+如果Y等于1那么会多了（zzzz+1）个</p>
+<p><strong><a href="https://zhuanlan.zhihu.com/p/39712892">举例：</a></strong></p>
+<p>设N = abcde ,其中abcde分别为十进制中各位上的数字。
+如果要计算百位上1出现的次数，它要受到3方面的影响：百位上的数字，百位以下（低位）的数字，百位以上（高位）的数字。
+① 如果百位上数字为0，百位上可能出现1的次数由更高位决定。比如：12013，则可以知道百位出现1的情况可能是：100~199，1100~1199,2100~2199，，&hellip;，11100~11199，一共1200个。可以看出是由更高位数字（12）决定，并且等于更高位数字（12）乘以 当前位数（100）。
+② 如果百位上数字为1，百位上可能出现1的次数不仅受更高位影响还受低位影响。比如：12113，则可以知道百位受高位影响出现的情况是：100~199，1100~1199,2100~2199，，&hellip;.，11100~11199，一共1200个。和上面情况一样，并且等于更高位数字（12）乘以 当前位数（100）。但同时它还受低位影响，百位出现1的情况是：12100~12113,一共114个，等于低位数字（113）+1。
+③ 如果百位上数字大于1（2~9），则百位上出现1的情况仅由更高位决定，比如12213，则百位出现1的情况是：100~199,1100~1199，2100~2199，&hellip;，11100~11199,12100~12199,一共有1300个，并且等于更高位数字+1（12+1）乘以当前位数（100）。
+——参考牛客网@藍裙子的百合魂</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">NumberOf1Between1AndN_Solution</span>(self, n):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> n<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">1</span>:  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">if</span> n<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>: <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+        last,ans,pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span> <span style="color:#75715e"># pos来记录位，ans来记录当前1的个数，last来记录前面的数(右边的数)</span>
+        <span style="color:#66d9ef">while</span>(n):
+            num <span style="color:#f92672">=</span> n<span style="color:#f92672">%</span><span style="color:#ae81ff">10</span>
+            n <span style="color:#f92672">=</span> n<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>
+            ans <span style="color:#f92672">+=</span> pos<span style="color:#f92672">*</span>n
+            <span style="color:#66d9ef">if</span> num<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>:
+                ans<span style="color:#f92672">+=</span>pos
+            <span style="color:#66d9ef">elif</span> num<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>:
+                ans<span style="color:#f92672">+=</span>(last<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+            last <span style="color:#f92672">=</span> last<span style="color:#f92672">+</span>num<span style="color:#f92672">*</span>pos
+            pos<span style="color:#f92672">*=</span><span style="color:#ae81ff">10</span>
+        <span style="color:#66d9ef">return</span> ans
+</code></pre></div><h3 id="3字符串">3.字符串</h3>
+<h4 id="翻转单词顺序列httpswwwnowcodercompractice3194a4f4cf814f63919d0790578d51f3tpid13tqid11197tpage1rp1rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/3194a4f4cf814f63919d0790578d51f3?tpId=13&amp;tqId=11197&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">翻转单词顺序列</a></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ReverseSentence</span>(self, s):
+        <span style="color:#75715e"># write code here</span>
+        ret <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>)
+        ret<span style="color:#f92672">.</span>reverse()
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39; &#39;</span><span style="color:#f92672">.</span>join(ret)
+</code></pre></div><h4 id="左旋转字符串httpswwwnowcodercompractice12d959b108cb42b1ab72cef4d36af5ectpid13tqid11196tpage1rp1rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/12d959b108cb42b1ab72cef4d36af5ec?tpId=13&amp;tqId=11196&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">左旋转字符串</a></h4>
+<p>对于一个给定的字符序列S，请你把其循环左移K位后的序列输出。
+思考：需要先K= K%len(S)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">LeftRotateString</span>(self, s, n):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> s <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;&#39;</span>:
+            <span style="color:#66d9ef">return</span> s
+        n <span style="color:#f92672">=</span> n<span style="color:#f92672">%</span>len(s)
+        <span style="color:#66d9ef">return</span> s[n:]<span style="color:#f92672">+</span>s[<span style="color:#ae81ff">0</span>:n]
+</code></pre></div><h4 id="heading"></h4>
+<h4 id="把字符串转换成整数">把字符串转换成整数</h4>
+<p>将一个字符串转换成一个整数，要求不能使用字符串转换整数的库函数。 数值为0或者字符串不是一个合法的数值则返回0
+思考：如果有正负号，需要在数字之前，出现其他字符或者字符串为空都非法返回0</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">StrToInt</span>(self, s):
+        <span style="color:#75715e"># write code here</span>
+        flag <span style="color:#f92672">=</span> True  <span style="color:#75715e"># 是否出现过 + - 符号</span>
+        pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e"># 正负号</span>
+        ret <span style="color:#f92672">=</span> None <span style="color:#75715e"># 返回值</span>
+        <span style="color:#66d9ef">if</span> s<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;&#39;</span>:
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> s:
+            <span style="color:#66d9ef">if</span> i<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">or</span> i<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;-&#39;</span>:
+                <span style="color:#66d9ef">if</span> flag:
+                    pos <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> i<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">1</span>
+                    flag <span style="color:#f92672">=</span> False
+                <span style="color:#66d9ef">else</span>:
+                    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+            <span style="color:#66d9ef">elif</span> i<span style="color:#f92672">&gt;=</span><span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">and</span> i<span style="color:#f92672">&lt;=</span><span style="color:#e6db74">&#39;9&#39;</span>:
+                flag <span style="color:#f92672">=</span> False
+                <span style="color:#66d9ef">if</span> ret <span style="color:#f92672">==</span> None:
+                    ret <span style="color:#f92672">=</span> int(i)
+                <span style="color:#66d9ef">else</span>:
+                    ret <span style="color:#f92672">=</span> ret<span style="color:#f92672">*</span><span style="color:#ae81ff">10</span><span style="color:#f92672">+</span>int(i)
+            <span style="color:#66d9ef">else</span>:
+                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">return</span> pos<span style="color:#f92672">*</span>ret <span style="color:#66d9ef">if</span> ret <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">0</span>
+</code></pre></div><h4 id="判断一个字符串是否表示数值httpswwwnowcodercompractice6f8c901d091949a5837e24bb82a731f2tpid13tqid11206tpage3rp3rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/6f8c901d091949a5837e24bb82a731f2?tpId=13&amp;tqId=11206&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">判断一个字符串是否表示数值</a></h4>
+<p>请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串&quot;+100&quot;,&ldquo;5e2&rdquo;,&quot;-123&quot;,&ldquo;3.1416&quot;和&rdquo;-1E-16&quot;都表示数值。 但是&quot;12e&quot;,&ldquo;1a3.14&rdquo;,&ldquo;1.2.3&rdquo;,&quot;+-5&quot;和&quot;12e+4.3&quot;都不是。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#75715e"># s字符串</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">isNumeric</span>(self, s):
+        <span style="color:#75715e"># write code here</span>
+        INVALID<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; SPACE<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; SIGN<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>; DIGIT<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>; DOT<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>; EXPONENT<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>;
+        <span style="color:#75715e">#0invalid,1space,2sign,3digit,4dot,5exponent,6num_inputs</span>
+        transitionTable<span style="color:#f92672">=</span>[[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],    <span style="color:#75715e">#0 no input or just spaces </span>
+                         [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">8</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">4</span>,  <span style="color:#ae81ff">5</span>],    <span style="color:#75715e">#1 input is digits </span>
+                         [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">4</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],    <span style="color:#75715e">#2 no digits in front just Dot </span>
+                         [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],    <span style="color:#75715e">#3 sign </span>
+                         [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">8</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">4</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">5</span>],    <span style="color:#75715e">#4 digits and dot in front </span>
+                         [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">6</span>,  <span style="color:#ae81ff">7</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],    <span style="color:#75715e">#5 input &#39;e&#39; or &#39;E&#39; </span>
+                         [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">7</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],    <span style="color:#75715e">#6 after &#39;e&#39; input sign </span>
+                         [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">8</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">7</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],    <span style="color:#75715e">#7 after &#39;e&#39; input digits </span>
+                         [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">8</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]]    <span style="color:#75715e">#8 after valid input input space</span>
+        state<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">while</span> i<span style="color:#f92672">&lt;</span>len(s):
+            inputtype <span style="color:#f92672">=</span> INVALID
+            <span style="color:#66d9ef">if</span> s[i]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39; &#39;</span>: inputtype<span style="color:#f92672">=</span>SPACE
+            <span style="color:#66d9ef">elif</span> s[i]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">or</span> s[i]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;+&#39;</span>: inputtype<span style="color:#f92672">=</span>SIGN
+            <span style="color:#66d9ef">elif</span> s[i] <span style="color:#f92672">in</span> <span style="color:#e6db74">&#39;0123456789&#39;</span>: inputtype<span style="color:#f92672">=</span>DIGIT
+            <span style="color:#66d9ef">elif</span> s[i]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;.&#39;</span>: inputtype<span style="color:#f92672">=</span>DOT
+            <span style="color:#66d9ef">elif</span> s[i]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;e&#39;</span> <span style="color:#f92672">or</span> s[i]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;E&#39;</span>: inputtype<span style="color:#f92672">=</span>EXPONENT
+
+            state<span style="color:#f92672">=</span>transitionTable[state][inputtype]
+            <span style="color:#66d9ef">if</span> state<span style="color:#f92672">==-</span><span style="color:#ae81ff">1</span>: <span style="color:#66d9ef">return</span> False
+            <span style="color:#66d9ef">else</span>: i<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">return</span> state <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">or</span> state <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">or</span> state <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">or</span> state <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>
+</code></pre></div><h4 id="字符串的排列httpswwwnowcodercompracticefe6b651b66ae47d7acce78ffdd9a96c7tpid13tqid11180tpage3rp3rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/fe6b651b66ae47d7acce78ffdd9a96c7?tpId=13&amp;tqId=11180&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">字符串的排列</a></h4>
+<p>思考：dfs</p>
+<p>输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则按字典序打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#https://www.jiuzhang.com/problem/permutations/#tag-lang-python</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    @param: nums: A list of integers.
+</span><span style="color:#e6db74">    @return: A list of permutations.
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">permute</span>(self, nums):
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> nums:
+            <span style="color:#66d9ef">return</span> [[]]
+            
+        permutations <span style="color:#f92672">=</span> []
+        self<span style="color:#f92672">.</span>dfs(nums, [], set(), permutations)
+        <span style="color:#66d9ef">return</span> permutations
+        
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dfs</span>(self, nums, permutation, visited, permutations):
+        <span style="color:#66d9ef">if</span> len(nums) <span style="color:#f92672">==</span> len(permutation):
+            permutations<span style="color:#f92672">.</span>append(list(permutation))
+            <span style="color:#66d9ef">return</span>
+        
+        <span style="color:#66d9ef">for</span> num <span style="color:#f92672">in</span> nums:
+            <span style="color:#66d9ef">if</span> num <span style="color:#f92672">in</span> visited:
+                <span style="color:#66d9ef">continue</span>
+            permutation<span style="color:#f92672">.</span>append(num)
+            visited<span style="color:#f92672">.</span>add(num)
+            self<span style="color:#f92672">.</span>dfs(nums, permutation, visited, permutations)
+            visited<span style="color:#f92672">.</span>remove(num)
+            permutation<span style="color:#f92672">.</span>pop()
+            
+<span style="color:#75715e"># subsets</span>
+<span style="color:#75715e"># https://www.jiuzhang.com/problem/subsets/#tag-lang-python</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    @param nums: A set of numbers
+</span><span style="color:#e6db74">    @return: A list of lists
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">subsets</span>(self, nums):
+        res <span style="color:#f92672">=</span> []
+        <span style="color:#75715e"># 排序</span>
+        nums<span style="color:#f92672">.</span>sort()
+        <span style="color:#75715e"># dfs搜索</span>
+        self<span style="color:#f92672">.</span>dfs(nums, <span style="color:#ae81ff">0</span>, [], res)
+        <span style="color:#66d9ef">return</span> res
+        
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dfs</span>(self, nums, k, subset, res):
+        <span style="color:#75715e"># 当前组合存入res</span>
+        res<span style="color:#f92672">.</span>append(subset[:])
+        <span style="color:#75715e"># 为subset新增一位元素</span>
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(k, len(nums)):
+            subset<span style="color:#f92672">.</span>append(nums[i])
+            <span style="color:#75715e"># 下一层搜索</span>
+            self<span style="color:#f92672">.</span>dfs(nums, i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, subset, res)
+            <span style="color:#75715e"># 回溯</span>
+            <span style="color:#66d9ef">del</span> subset[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</code></pre></div><h4 id="替换空格httpswwwnowcodercompractice4060ac7e3e404ad1a894ef3e17650423tpid13tqid11155tpage3rp3rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/4060ac7e3e404ad1a894ef3e17650423?tpId=13&amp;tqId=11155&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">替换空格</a></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#f92672">import</span> re
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#75715e"># s 源字符串</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">replaceSpace</span>(self, s):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">return</span> re<span style="color:#f92672">.</span>sub(<span style="color:#e6db74">&#34; &#34;</span>,<span style="color:#e6db74">&#34;%20&#34;</span>,s)
+</code></pre></div><h4 id="字符流中第一个不重复的字符httpswwwnowcodercompractice00de97733b8e4f97a3fb5c680ee10720tpid13tqid11207tpage3rp3rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/00de97733b8e4f97a3fb5c680ee10720?tpId=13&amp;tqId=11207&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">字符流中第一个不重复的字符</a></h4>
+<p>思考：用个队列和hash</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding:utf-8 -*-</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#75715e"># 返回对应char</span>
+    <span style="color:#66d9ef">def</span> __init__(self):
+        self<span style="color:#f92672">.</span>memory <span style="color:#f92672">=</span> dict() <span style="color:#75715e">## 次数</span>
+        self<span style="color:#f92672">.</span>queue <span style="color:#f92672">=</span> [] <span style="color:#75715e">## 第几个</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">FirstAppearingOnce</span>(self):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">while</span> len(self<span style="color:#f92672">.</span>queue) <span style="color:#f92672">and</span> self<span style="color:#f92672">.</span>memory[self<span style="color:#f92672">.</span>queue[<span style="color:#ae81ff">0</span>]]<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>:
+            self<span style="color:#f92672">.</span>queue<span style="color:#f92672">.</span>pop(<span style="color:#ae81ff">0</span>)
+
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>queue[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">if</span> len(self<span style="color:#f92672">.</span>queue) <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#39;#&#39;</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Insert</span>(self, char):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> char <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>memory:
+            self<span style="color:#f92672">.</span>memory[char]<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+        self<span style="color:#f92672">.</span>memory[char]<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>memory[char]<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>:
+            self<span style="color:#f92672">.</span>queue<span style="color:#f92672">.</span>append(char)
+</code></pre></div><h3 id="4链表">4.链表</h3>
+<h4 id="链表中环的入口结点httpswwwnowcodercompractice253d2c59ec3e4bc68da16833f79a38e4tpid13tqid11208tpage1rp1rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/253d2c59ec3e4bc68da16833f79a38e4?tpId=13&amp;tqId=11208&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">链表中环的入口结点</a></h4>
+<p><a href="https://leetcode.com/problems/linked-list-cycle-ii/description/">Leetcode 142. Linked List Cycle II</a>
+寻找环的入口结点
+这题是<a href="https://leetcode.com/problems/linked-list-cycle/description/">Leetcode 141. Linked List Cycle</a>的扩展。
+判断是否存在环用fast和slow两个指针，从head开始，一个走一步，一个走两步，如果最终到达同一个结点，则说明存在环。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>(object):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hasCycle</span>(self, head):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        :type head: ListNode
+</span><span style="color:#e6db74">        :rtype: bool
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">if</span> head <span style="color:#f92672">==</span> None <span style="color:#f92672">or</span> head<span style="color:#f92672">.</span>next <span style="color:#f92672">==</span> None:
+            <span style="color:#66d9ef">return</span> False
+        slow <span style="color:#f92672">=</span> fast <span style="color:#f92672">=</span> head
+        <span style="color:#66d9ef">while</span> fast <span style="color:#f92672">and</span> fast<span style="color:#f92672">.</span>next:
+            slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">.</span>next
+            fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">.</span>next<span style="color:#f92672">.</span>next
+            <span style="color:#66d9ef">if</span> slow <span style="color:#f92672">==</span> fast:
+                <span style="color:#66d9ef">return</span> True
+        <span style="color:#66d9ef">return</span> False
+</code></pre></div><p>而寻找环的入口，假设入口结点距离头结点a个单位，fast和slow相遇在距离入口结点b个单位的位置，环剩下的长度为c，则有a+b+c+b = 2*(a+b) -&gt; a = c
+因此，在重合时候，将fast置为head，再一步一步地走，当与slow重合时的结点即为入口结点</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">EntryNodeOfLoop</span>(self, pHead):
+        <span style="color:#75715e"># write code here</span>
+        <span style="color:#66d9ef">if</span> pHead<span style="color:#f92672">==</span> None <span style="color:#f92672">or</span> pHead<span style="color:#f92672">.</span>next <span style="color:#f92672">==</span> None:
+            <span style="color:#66d9ef">return</span> None
+        fast <span style="color:#f92672">=</span> slow <span style="color:#f92672">=</span> pHead
+        <span style="color:#66d9ef">while</span>(fast <span style="color:#f92672">and</span> fast<span style="color:#f92672">.</span>next):
+            slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">.</span>next
+            fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">.</span>next<span style="color:#f92672">.</span>next
+            <span style="color:#66d9ef">if</span> slow <span style="color:#f92672">==</span> fast:
+                fast <span style="color:#f92672">=</span> pHead
+                <span style="color:#66d9ef">while</span>(fast<span style="color:#f92672">!=</span>slow):
+                    fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">.</span>next
+                    slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">.</span>next
+                <span style="color:#66d9ef">return</span> fast
+        <span style="color:#66d9ef">return</span> None
+</code></pre></div><h4 id="翻转链表httpswwwnowcodercompractice75e878df47f24fdc9dc3e400ec6058catpid13tqid11168tpage3rp3rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/75e878df47f24fdc9dc3e400ec6058ca?tpId=13&amp;tqId=11168&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">翻转链表</a></h4>
+<p><a href="https://blog.csdn.net/songyunli1111/article/details/79416684">https://blog.csdn.net/songyunli1111/article/details/79416684</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># class ListNode:</span>
+<span style="color:#75715e">#     def __init__(self, x):</span>
+<span style="color:#75715e">#         self.val = x</span>
+<span style="color:#75715e">#         self.next = None</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#75715e"># 返回ListNode</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ReverseList</span>(self, pHead):
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> pHead <span style="color:#f92672">or</span> <span style="color:#f92672">not</span> pHead<span style="color:#f92672">.</span>next:
+            <span style="color:#66d9ef">return</span> pHead
+        last <span style="color:#f92672">=</span> None   <span style="color:#75715e">#指向上一个节点</span>
+        <span style="color:#66d9ef">while</span> pHead:
+            <span style="color:#75715e">#先用tmp保存pHead的下一个节点的信息，</span>
+            <span style="color:#75715e">#保证单链表不会因为失去pHead节点的next而就此断裂</span>
+            tmp <span style="color:#f92672">=</span> pHead<span style="color:#f92672">.</span>next   
+            <span style="color:#75715e">#保存完next，就可以让pHead的next指向last了</span>
+            pHead<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> last
+            <span style="color:#75715e">#让last，pHead依次向后移动一个节点，继续下一次的指针反转</span>
+            last <span style="color:#f92672">=</span> pHead
+            pHead <span style="color:#f92672">=</span> tmp
+        <span style="color:#66d9ef">return</span> last
+</code></pre></div><h4 id="链表中倒数第k个结点httpswwwnowcodercompractice529d3ae5a407492994ad2a246518148atpid13tqid11167tpage3rp3rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a?tpId=13&amp;tqId=11167&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">链表中倒数第k个结点</a></h4>
+<p>思考：两个指针p,q p先走k步</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">FindKthToTail</span>(self, head, k):
+        <span style="color:#75715e"># write code here</span>
+        p1 <span style="color:#f92672">=</span> p2 <span style="color:#f92672">=</span> head
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(k):
+            <span style="color:#66d9ef">if</span> p1<span style="color:#f92672">==</span>None:
+                <span style="color:#66d9ef">return</span> None
+            p1 <span style="color:#f92672">=</span> p1<span style="color:#f92672">.</span>next
+        <span style="color:#66d9ef">while</span>(p1):
+            p2 <span style="color:#f92672">=</span> p2<span style="color:#f92672">.</span>next
+            p1 <span style="color:#f92672">=</span> p1<span style="color:#f92672">.</span>next
+        <span style="color:#66d9ef">return</span> p2
+</code></pre></div><h4 id="合并两个排序的链表httpswwwnowcodercompracticed8b6b4358f774294a89de2a6ac4d9337tpid13tqid11169tpage3rp3rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/d8b6b4358f774294a89de2a6ac4d9337?tpId=13&amp;tqId=11169&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">合并两个排序的链表</a></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+    <span style="color:#75715e"># 返回合并后列表</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Merge</span>(self, pHead1, pHead2):
+        <span style="color:#75715e"># write code here</span>
+        ret <span style="color:#f92672">=</span> ListNode(<span style="color:#ae81ff">0</span>)
+        tmp <span style="color:#f92672">=</span> ret 
+        p1 <span style="color:#f92672">=</span> pHead1
+        p2 <span style="color:#f92672">=</span> pHead2
+        <span style="color:#66d9ef">while</span>(p1 <span style="color:#f92672">and</span> p2):
+            <span style="color:#66d9ef">if</span> p1<span style="color:#f92672">.</span>val<span style="color:#f92672">&lt;</span>p2<span style="color:#f92672">.</span>val:
+                tmp<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> p1
+                p1 <span style="color:#f92672">=</span> p1<span style="color:#f92672">.</span>next
+            <span style="color:#66d9ef">else</span>:
+                tmp<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> p2
+                p2 <span style="color:#f92672">=</span> p2<span style="color:#f92672">.</span>next
+            tmp <span style="color:#f92672">=</span> tmp<span style="color:#f92672">.</span>next
+        <span style="color:#66d9ef">if</span> p1:
+            tmp<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> p1
+        <span style="color:#66d9ef">if</span> p2:
+            tmp<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> p2
+        <span style="color:#66d9ef">return</span> ret<span style="color:#f92672">.</span>next
+</code></pre></div><h4 id="复杂链表的复制httpswwwnowcodercompracticef836b2c43afc4b35ad6adc41ec941dbatpid13tqid11178tpage3rp3rutacoding-interviewsqrutacoding-interviewsquestion-ranking"><a href="https://www.nowcoder.com/practice/f836b2c43afc4b35ad6adc41ec941dba?tpId=13&amp;tqId=11178&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">复杂链表的复制</a></h4>
+<p>输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的head。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）</p>
+<ul>
+<li>将原链表所有的结点拷贝一份，并且每个拷贝的结点和原来的结点连续出现，如下图：
+<img src="https://img-blog.csdnimg.cn/20191116165949456.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0b3J5ZnVsbA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>此时，原来结点指向下一个结点的指针都可以先链接上，原来的random指针也还在；但是每个复制新建的node的random区域还是空的</li>
+<li>找出规律：A.next.random = a.random.next
+理解：如上图：A.next.raomd，是指第二个“1结点”的random指针，它应该指向 第一个“1结点”的random（第一个“3结点”）后一个结点（即第二个“3结点”），所以有上述变化通式</li>
+<li>让每两个相同的结点断开，具体做法为：比如第一个“1结点” 让它指向 第一个“2结点”，random也跟着原来的指向变化，后面的结点重复操作，就能达到下图示意的，复制了复杂链表的操作</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20191116170959156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0b3J5ZnVsbA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/offer"><span class="tag">Offer</span></a></li>
+        
+          <li><a href="/tags/python"><span class="tag">Python</span></a></li>
+        
+          <li><a href="/tags/%E5%89%91%E6%8C%87offer"><span class="tag">剑指offer</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "disqus_shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2020 wentixiaogege</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+  </body>
+</html>

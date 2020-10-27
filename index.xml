@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Mon, 26 Oct 2020 22:20:38 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 27 Oct 2020 21:16:54 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Links</title>
       <link>/links/</link>
@@ -33,6 +33,15 @@
       
       <guid>/resume/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Wenti Offer Python 65</title>
+      <link>/post/wenti-offer-python-65/</link>
+      <pubDate>Tue, 27 Oct 2020 21:16:54 +0800</pubDate>
+      
+      <guid>/post/wenti-offer-python-65/</guid>
+      <description>&lt;p&gt;剑指offer 最新版各种问题的汇总整理答案，比较好的将各种问题按照 递归、数据、字符串、链表、二叉树、复杂数据结构做了汇总方便大家学习~&lt;/p&gt;</description>
     </item>
     
     <item>
