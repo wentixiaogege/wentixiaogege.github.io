@@ -132,7 +132,8 @@
   
   <h1 class="title"><a href="">wentixiaogege</a></h1>
   
-  <p class="subtitle">一半忧与愁 &amp; 一半花与海</p>
+  <p class="subtitle">一半忧与愁 &amp; 一半花与海 
+ https://github.com/wentixiaogege</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
     <span class="icon icon-menu" aria-hidden="true"></span>
   </button>
@@ -155,7 +156,14 @@
           
           
           ">
-          <a href="https://github.com/wentixiaogege">Github</a>
+          <a href="/post/series/">Time Series</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/post/reco/">Recommend Sys</a>
         </li>
       
         <li class="menu-item
@@ -232,6 +240,35 @@
   
   
    <article class="post-entry">
+  <header class="post-header">
+    <h3 class="post-title"><a href="/post/wenti-ml-concept-drift/" class="post-link">机器学习中的概念漂移（Concept Drift）</a></h3>
+    <p class="post-meta">@问题小哥哥 · Oct 9, 2020 · 1 min read</p>
+  </header>
+  
+  <p class="post-summary">机器学习中的概念漂移（Concept Drift）的理解与解决方法。
+在一些情景下，𝑋X(输入)和𝑦y(输出)之间的映射关系𝑦=𝑓(𝑋)y=f(X)是随着时间变化的，在训练集和测试集上的𝑓f完全不一样，这样就会出现我们在离线测试调好的模型上线就不work的情况。
+ In most challenging data analysis applications, data evolve over time and must be analyzed in near real time. Patterns and relations in such data often evolve over time, thus, models built for analyzing such data quickly become obsolete over time. In machine learning and data mining this phenomenon is referred to as concept drift.
+— An overview of concept drift applications, 2016.
+ wiki上对于concept drift的定义：
+ In predictive analytics and machine learning, the concept drift means that the statistical properties of the target variable, which the model is trying to predict, change over time in unforeseen ways.</p>
+  <footer class="post-footer">
+    <a class="read-more" href="/post/wenti-ml-concept-drift/">Read More →</a>
+  </footer>
+</article>
+  <article class="post-entry">
+  <header class="post-header">
+    <h3 class="post-title"><a href="/post/wenti-custom-loss-lgb-xgb/" class="post-link">在XGBoost和LightGBM中自定义损失函数</a></h3>
+    <p class="post-meta">@问题小哥哥 · Oct 9, 2020 · 5 min read</p>
+  </header>
+  
+  <p class="post-summary">在LightGBM和XGBoost中的自定义损失函数（Custom Loss Function）。
+Training loss and Validation loss  Training loss: This is the function that is optimized on the training data. For example, in a neural network binary classifier, this is usually the binary cross entropy. For the random forest classifier, this is the Gini impurity. The training loss is often called the “objective function” as well. The training loss in LightGBM is called objective.
+Validation loss: This is the function that we use to evaluate the performance of our trained model on unseen data.</p>
+  <footer class="post-footer">
+    <a class="read-more" href="/post/wenti-custom-loss-lgb-xgb/">Read More →</a>
+  </footer>
+</article>
+  <article class="post-entry">
   <header class="post-header">
     <h3 class="post-title"><a href="/post/wenti-linux-gpu-env-install/" class="post-link">新的GPU服务器环境配置--Ubuntu18.04&#43;CUDA10.0&#43;cuDNN7.6.5&#43;TensorFlow2.0安装笔记</a></h3>
     <p class="post-meta">@问题小哥哥 · Oct 9, 2020 · 7 min read</p>
